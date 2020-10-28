@@ -109,38 +109,38 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
  testRunner.Given("instructor checks live is exist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table37.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "course_name",
                             "deneme_instructor"});
-                table37.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "meetingType",
                             "pro"});
-                table37.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "title",
                             "deneme"});
-                table37.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "hour",
                             "18"});
-                table37.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "min",
                             "00"});
-                table37.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "timezone",
                             "Turkey Time (GMT+3:00)"});
-                table37.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "duration",
                             "120"});
-                table37.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "registrationLimit",
                             "50"});
-                table37.AddRow(new string[] {
+                table40.AddRow(new string[] {
                             "description",
                             "Deneme 123"});
 #line 7
- testRunner.Given("instructor adds new live with", ((string)(null)), table37, "Given ");
+ testRunner.Given("instructor adds new live with", ((string)(null)), table40, "Given ");
 #line hidden
 #line 18
  testRunner.Then("Delete LIVE", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -156,7 +156,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("2_instructor_live_start", null, tagsOfScenario, argumentsOfScenario);
-#line 21
+#line 20
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -176,49 +176,49 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 22
+#line 21
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 23
+#line 22
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 24
+#line 23
  testRunner.Given("instructor checks live is exist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table38.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "course_name",
                             "deneme_instructor"});
-                table38.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "meetingType",
                             "pro"});
-                table38.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "title",
                             "deneme"});
-                table38.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "hour",
                             "18"});
-                table38.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "min",
                             "00"});
-                table38.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "timezone",
                             "Turkey Time (GMT+3:00)"});
-                table38.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "duration",
                             "120"});
-                table38.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "registrationLimit",
                             "50"});
-                table38.AddRow(new string[] {
+                table41.AddRow(new string[] {
                             "description",
                             "Deneme 123"});
-#line 25
- testRunner.Given("instructor adds new live with", ((string)(null)), table38, "Given ");
+#line 24
+ testRunner.Given("instructor adds new live with", ((string)(null)), table41, "Given ");
 #line hidden
-#line 36
+#line 35
  testRunner.Then("verify start live and delete live with", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -232,7 +232,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("3_instructor_add_user", null, tagsOfScenario, argumentsOfScenario);
-#line 38
+#line 37
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -252,56 +252,56 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 39
+#line 38
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 40
+#line 39
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table42 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table39.AddRow(new string[] {
+                table42.AddRow(new string[] {
                             "email",
                             "admin_deneme@anil.com"});
-#line 41
- testRunner.Given("instructor checks user is exist", ((string)(null)), table39, "Given ");
+#line 40
+ testRunner.Given("instructor checks user is exist", ((string)(null)), table42, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table43 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table40.AddRow(new string[] {
+                table43.AddRow(new string[] {
                             "firstName",
                             "deneme_user_first"});
-                table40.AddRow(new string[] {
+                table43.AddRow(new string[] {
                             "lastName",
                             "deneme_user_last"});
-                table40.AddRow(new string[] {
+                table43.AddRow(new string[] {
                             "branch",
                             "Merkez"});
-                table40.AddRow(new string[] {
+                table43.AddRow(new string[] {
                             "email",
                             "admin_deneme@anil.com"});
-                table40.AddRow(new string[] {
+                table43.AddRow(new string[] {
                             "userName",
                             "admin_deneme"});
-                table40.AddRow(new string[] {
+                table43.AddRow(new string[] {
                             "password",
                             "admin_deneme_pass"});
-                table40.AddRow(new string[] {
+                table43.AddRow(new string[] {
                             "catalog",
                             "deneme_instructor"});
-#line 44
- testRunner.Given("instructor adds new user with", ((string)(null)), table40, "Given ");
+#line 43
+ testRunner.Given("instructor adds new user with", ((string)(null)), table43, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table44 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table41.AddRow(new string[] {
+                table44.AddRow(new string[] {
                             "email",
                             "admin_deneme@anil.com"});
-#line 53
- testRunner.Then("instructor delete User", ((string)(null)), table41, "Then ");
+#line 52
+ testRunner.Then("instructor delete User", ((string)(null)), table44, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -314,7 +314,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("4_instructor_add_course", null, tagsOfScenario, argumentsOfScenario);
-#line 57
+#line 56
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -334,41 +334,41 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 58
+#line 57
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 59
+#line 58
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table42 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table45 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table42.AddRow(new string[] {
+                table45.AddRow(new string[] {
                             "name",
                             "project management"});
-#line 60
- testRunner.Given("instructor checks course is exist", ((string)(null)), table42, "Given ");
+#line 59
+ testRunner.Given("instructor checks course is exist", ((string)(null)), table45, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table43 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table46 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table43.AddRow(new string[] {
+                table46.AddRow(new string[] {
                             "name",
                             "project management"});
-                table43.AddRow(new string[] {
+                table46.AddRow(new string[] {
                             "category",
                             "DevTest"});
-#line 63
- testRunner.Given("instructor adds new course with", ((string)(null)), table43, "Given ");
+#line 62
+ testRunner.Given("instructor adds new course with", ((string)(null)), table46, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table44 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table47 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table44.AddRow(new string[] {
+                table47.AddRow(new string[] {
                             "name",
                             "project management"});
-#line 67
- testRunner.Then("instructor delete course", ((string)(null)), table44, "Then ");
+#line 66
+ testRunner.Then("instructor delete course", ((string)(null)), table47, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -381,7 +381,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("5_instructor_add_subject", null, tagsOfScenario, argumentsOfScenario);
-#line 72
+#line 70
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -401,44 +401,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 73
+#line 71
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 74
+#line 72
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table45 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table45.AddRow(new string[] {
-                            "name",
-                            "project management"});
-#line 75
- testRunner.Given("instructor checks course is exist", ((string)(null)), table45, "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table46 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table46.AddRow(new string[] {
-                            "name",
-                            "project management"});
-                table46.AddRow(new string[] {
-                            "category",
-                            "DevTest"});
-#line 78
- testRunner.Given("instructor adds new course with", ((string)(null)), table46, "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table47 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table47.AddRow(new string[] {
-                            "name",
-                            "project management"});
-                table47.AddRow(new string[] {
-                            "title",
-                            "hello world"});
-#line 82
- testRunner.Given("instructor adds subject with", ((string)(null)), table47, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table48 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
@@ -446,8 +413,41 @@ this.ScenarioInitialize(scenarioInfo);
                 table48.AddRow(new string[] {
                             "name",
                             "project management"});
-#line 86
- testRunner.Then("instructor delete course", ((string)(null)), table48, "Then ");
+#line 73
+ testRunner.Given("instructor checks course is exist", ((string)(null)), table48, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table49 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table49.AddRow(new string[] {
+                            "name",
+                            "project management"});
+                table49.AddRow(new string[] {
+                            "category",
+                            "DevTest"});
+#line 76
+ testRunner.Given("instructor adds new course with", ((string)(null)), table49, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table50 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table50.AddRow(new string[] {
+                            "name",
+                            "project management"});
+                table50.AddRow(new string[] {
+                            "title",
+                            "hello world"});
+#line 80
+ testRunner.Given("instructor adds subject with", ((string)(null)), table50, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table51 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table51.AddRow(new string[] {
+                            "name",
+                            "project management"});
+#line 84
+ testRunner.Then("instructor delete course", ((string)(null)), table51, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -460,7 +460,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("6_instructor_add_webinar_join_webinar", null, tagsOfScenario, argumentsOfScenario);
-#line 90
+#line 88
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -480,73 +480,73 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 91
+#line 89
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 92
+#line 90
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 93
+#line 91
  testRunner.Given("instructor checks live is exist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table49 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table52 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table49.AddRow(new string[] {
+                table52.AddRow(new string[] {
                             "course_name",
                             "deneme_instructor"});
-                table49.AddRow(new string[] {
+                table52.AddRow(new string[] {
                             "meetingType",
                             "webinar"});
-                table49.AddRow(new string[] {
+                table52.AddRow(new string[] {
                             "title",
                             "deneme"});
-                table49.AddRow(new string[] {
+                table52.AddRow(new string[] {
                             "hour",
                             "18"});
-                table49.AddRow(new string[] {
+                table52.AddRow(new string[] {
                             "min",
                             "00"});
-                table49.AddRow(new string[] {
+                table52.AddRow(new string[] {
                             "timezone",
                             "Turkey Time (GMT+3:00)"});
-                table49.AddRow(new string[] {
+                table52.AddRow(new string[] {
                             "duration",
                             "120"});
-                table49.AddRow(new string[] {
+                table52.AddRow(new string[] {
                             "registrationLimit",
                             "50"});
-                table49.AddRow(new string[] {
+                table52.AddRow(new string[] {
                             "description",
                             "Deneme 123"});
-#line 94
- testRunner.Given("instructor adds new webinar with", ((string)(null)), table49, "Given ");
+#line 92
+ testRunner.Given("instructor adds new webinar with", ((string)(null)), table52, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table50 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table53 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table50.AddRow(new string[] {
+                table53.AddRow(new string[] {
                             "firstName",
                             "Lorem"});
-                table50.AddRow(new string[] {
+                table53.AddRow(new string[] {
                             "lastName",
                             "Ipsum"});
-                table50.AddRow(new string[] {
+                table53.AddRow(new string[] {
                             "phone",
                             "123456789012"});
-                table50.AddRow(new string[] {
+                table53.AddRow(new string[] {
                             "email",
                             "lorem@ipsum.com"});
-#line 105
- testRunner.Then("instructor copies webinar URL with", ((string)(null)), table50, "Then ");
+#line 103
+ testRunner.Then("instructor copies webinar URL with", ((string)(null)), table53, "Then ");
 #line hidden
-#line 111
+#line 109
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 112
+#line 110
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 113
+#line 111
  testRunner.Then("instructor deletes webinar with", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -560,7 +560,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("7_instructor_add_content_as_document", null, tagsOfScenario, argumentsOfScenario);
-#line 115
+#line 113
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -580,44 +580,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 116
+#line 114
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 117
+#line 115
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table51 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table51.AddRow(new string[] {
-                            "name",
-                            "project management"});
-#line 118
- testRunner.Given("instructor checks course is exist", ((string)(null)), table51, "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table52 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table52.AddRow(new string[] {
-                            "name",
-                            "project management"});
-                table52.AddRow(new string[] {
-                            "category",
-                            "DevTest"});
-#line 121
- testRunner.Given("instructor adds new course with", ((string)(null)), table52, "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table53 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table53.AddRow(new string[] {
-                            "name",
-                            "project management"});
-                table53.AddRow(new string[] {
-                            "title",
-                            "hello world"});
-#line 125
- testRunner.Given("instructor adds subject with", ((string)(null)), table53, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table54 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
@@ -625,14 +592,8 @@ this.ScenarioInitialize(scenarioInfo);
                 table54.AddRow(new string[] {
                             "name",
                             "project management"});
-                table54.AddRow(new string[] {
-                            "title",
-                            "Döküman Ekleme"});
-                table54.AddRow(new string[] {
-                            "desc",
-                            "Test"});
-#line 129
- testRunner.Given("instructor adds file source with", ((string)(null)), table54, "Given ");
+#line 116
+ testRunner.Given("instructor checks course is exist", ((string)(null)), table54, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table55 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
@@ -640,8 +601,47 @@ this.ScenarioInitialize(scenarioInfo);
                 table55.AddRow(new string[] {
                             "name",
                             "project management"});
-#line 134
- testRunner.Then("instructor delete course", ((string)(null)), table55, "Then ");
+                table55.AddRow(new string[] {
+                            "category",
+                            "DevTest"});
+#line 119
+ testRunner.Given("instructor adds new course with", ((string)(null)), table55, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table56 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table56.AddRow(new string[] {
+                            "name",
+                            "project management"});
+                table56.AddRow(new string[] {
+                            "title",
+                            "hello world"});
+#line 123
+ testRunner.Given("instructor adds subject with", ((string)(null)), table56, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table57 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table57.AddRow(new string[] {
+                            "name",
+                            "project management"});
+                table57.AddRow(new string[] {
+                            "title",
+                            "Döküman Ekleme"});
+                table57.AddRow(new string[] {
+                            "desc",
+                            "Test"});
+#line 127
+ testRunner.Given("instructor adds file source with", ((string)(null)), table57, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table58 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table58.AddRow(new string[] {
+                            "name",
+                            "project management"});
+#line 132
+ testRunner.Then("instructor delete course", ((string)(null)), table58, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -654,7 +654,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("8_instrcutor_add_content_as_video", null, tagsOfScenario, argumentsOfScenario);
-#line 138
+#line 136
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -674,44 +674,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 139
+#line 137
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 140
+#line 138
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table56 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table56.AddRow(new string[] {
-                            "name",
-                            "project management"});
-#line 141
- testRunner.Given("instructor checks course is exist", ((string)(null)), table56, "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table57 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table57.AddRow(new string[] {
-                            "name",
-                            "project management"});
-                table57.AddRow(new string[] {
-                            "category",
-                            "DevTest"});
-#line 144
- testRunner.Given("instructor adds new course with", ((string)(null)), table57, "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table58 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table58.AddRow(new string[] {
-                            "name",
-                            "project management"});
-                table58.AddRow(new string[] {
-                            "title",
-                            "hello world"});
-#line 148
- testRunner.Given("instructor adds subject with", ((string)(null)), table58, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table59 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
@@ -719,14 +686,8 @@ this.ScenarioInitialize(scenarioInfo);
                 table59.AddRow(new string[] {
                             "name",
                             "project management"});
-                table59.AddRow(new string[] {
-                            "title",
-                            "Döküman Ekleme"});
-                table59.AddRow(new string[] {
-                            "desc",
-                            "Test"});
-#line 152
- testRunner.Given("instructor adds video source with", ((string)(null)), table59, "Given ");
+#line 139
+ testRunner.Given("instructor checks course is exist", ((string)(null)), table59, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table60 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
@@ -734,8 +695,47 @@ this.ScenarioInitialize(scenarioInfo);
                 table60.AddRow(new string[] {
                             "name",
                             "project management"});
-#line 157
- testRunner.Then("instructor delete course", ((string)(null)), table60, "Then ");
+                table60.AddRow(new string[] {
+                            "category",
+                            "DevTest"});
+#line 142
+ testRunner.Given("instructor adds new course with", ((string)(null)), table60, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table61 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table61.AddRow(new string[] {
+                            "name",
+                            "project management"});
+                table61.AddRow(new string[] {
+                            "title",
+                            "hello world"});
+#line 146
+ testRunner.Given("instructor adds subject with", ((string)(null)), table61, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table62 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table62.AddRow(new string[] {
+                            "name",
+                            "project management"});
+                table62.AddRow(new string[] {
+                            "title",
+                            "Döküman Ekleme"});
+                table62.AddRow(new string[] {
+                            "desc",
+                            "Test"});
+#line 150
+ testRunner.Given("instructor adds video source with", ((string)(null)), table62, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table63 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table63.AddRow(new string[] {
+                            "name",
+                            "project management"});
+#line 155
+ testRunner.Then("instructor delete course", ((string)(null)), table63, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -748,7 +748,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9_instructor_add_content_as_video_with_vimeo", null, tagsOfScenario, argumentsOfScenario);
-#line 161
+#line 159
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -768,44 +768,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 162
+#line 160
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 163
+#line 161
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table61 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table61.AddRow(new string[] {
-                            "name",
-                            "project management"});
-#line 164
- testRunner.Given("instructor checks course is exist", ((string)(null)), table61, "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table62 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table62.AddRow(new string[] {
-                            "name",
-                            "project management"});
-                table62.AddRow(new string[] {
-                            "category",
-                            "DevTest"});
-#line 167
- testRunner.Given("instructor adds new course with", ((string)(null)), table62, "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table63 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table63.AddRow(new string[] {
-                            "name",
-                            "project management"});
-                table63.AddRow(new string[] {
-                            "title",
-                            "hello world"});
-#line 171
- testRunner.Given("instructor adds subject with", ((string)(null)), table63, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table64 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
@@ -813,17 +780,8 @@ this.ScenarioInitialize(scenarioInfo);
                 table64.AddRow(new string[] {
                             "name",
                             "project management"});
-                table64.AddRow(new string[] {
-                            "title",
-                            "Video Ekleme (Vimeo ID ile)"});
-                table64.AddRow(new string[] {
-                            "desc",
-                            "Test"});
-                table64.AddRow(new string[] {
-                            "id",
-                            "444883013"});
-#line 175
- testRunner.Given("instructor adds video with vimeo", ((string)(null)), table64, "Given ");
+#line 162
+ testRunner.Given("instructor checks course is exist", ((string)(null)), table64, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table65 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
@@ -831,8 +789,50 @@ this.ScenarioInitialize(scenarioInfo);
                 table65.AddRow(new string[] {
                             "name",
                             "project management"});
-#line 181
- testRunner.Then("instructor delete course", ((string)(null)), table65, "Then ");
+                table65.AddRow(new string[] {
+                            "category",
+                            "DevTest"});
+#line 165
+ testRunner.Given("instructor adds new course with", ((string)(null)), table65, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table66 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table66.AddRow(new string[] {
+                            "name",
+                            "project management"});
+                table66.AddRow(new string[] {
+                            "title",
+                            "hello world"});
+#line 169
+ testRunner.Given("instructor adds subject with", ((string)(null)), table66, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table67 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table67.AddRow(new string[] {
+                            "name",
+                            "project management"});
+                table67.AddRow(new string[] {
+                            "title",
+                            "Video Ekleme (Vimeo ID ile)"});
+                table67.AddRow(new string[] {
+                            "desc",
+                            "Test"});
+                table67.AddRow(new string[] {
+                            "id",
+                            "444883013"});
+#line 173
+ testRunner.Given("instructor adds video with vimeo", ((string)(null)), table67, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table68 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table68.AddRow(new string[] {
+                            "name",
+                            "project management"});
+#line 179
+ testRunner.Then("instructor delete course", ((string)(null)), table68, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -845,7 +845,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("12_instructor_add_question_multiple_choice", null, tagsOfScenario, argumentsOfScenario);
-#line 185
+#line 183
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -865,56 +865,56 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 186
+#line 184
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 187
+#line 185
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table66 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table69 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table66.AddRow(new string[] {
+                table69.AddRow(new string[] {
                             "name",
                             "Soru - MULTIPLE CHOICE By ANIL"});
-#line 188
- testRunner.Given("instructor checks question is exist", ((string)(null)), table66, "Given ");
+#line 186
+ testRunner.Given("instructor checks question is exist", ((string)(null)), table69, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table67 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table70 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table67.AddRow(new string[] {
+                table70.AddRow(new string[] {
                             "question",
                             "Soru - MULTIPLE CHOICE By ANIL"});
-                table67.AddRow(new string[] {
+                table70.AddRow(new string[] {
                             "point",
                             "25"});
-                table67.AddRow(new string[] {
+                table70.AddRow(new string[] {
                             "choiceA",
                             "A Şıkkı"});
-                table67.AddRow(new string[] {
+                table70.AddRow(new string[] {
                             "choiceB",
                             "B Şıkkı"});
-                table67.AddRow(new string[] {
+                table70.AddRow(new string[] {
                             "choiceC",
                             "C Şıkkı"});
-                table67.AddRow(new string[] {
+                table70.AddRow(new string[] {
                             "choiceD",
                             "D Şıkkı"});
-                table67.AddRow(new string[] {
+                table70.AddRow(new string[] {
                             "TestCategory",
                             "EğitmenBurakTestKategori"});
-#line 191
- testRunner.Given("instructor adds multiple choice question with", ((string)(null)), table67, "Given ");
+#line 189
+ testRunner.Given("instructor adds multiple choice question with", ((string)(null)), table70, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table68 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table71 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table68.AddRow(new string[] {
+                table71.AddRow(new string[] {
                             "name",
                             "Soru - MULTIPLE CHOICE By ANIL"});
-#line 200
- testRunner.Then("instructor delete multiple choice question with", ((string)(null)), table68, "Then ");
+#line 198
+ testRunner.Then("instructor delete multiple choice question with", ((string)(null)), table71, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -927,7 +927,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("13_instructor_add_question_true_false", null, tagsOfScenario, argumentsOfScenario);
-#line 204
+#line 202
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -947,47 +947,47 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 205
+#line 203
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 206
+#line 204
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table69 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table72 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table69.AddRow(new string[] {
+                table72.AddRow(new string[] {
                             "name",
                             "Soru - TRUE FALSE By ANIL"});
-#line 207
- testRunner.Given("instructor checks question is exist", ((string)(null)), table69, "Given ");
+#line 205
+ testRunner.Given("instructor checks question is exist", ((string)(null)), table72, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table70 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table73 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table70.AddRow(new string[] {
+                table73.AddRow(new string[] {
                             "question",
                             "Soru - TRUE FALSE By ANIL"});
-                table70.AddRow(new string[] {
+                table73.AddRow(new string[] {
                             "point",
                             "35"});
-                table70.AddRow(new string[] {
+                table73.AddRow(new string[] {
                             "answer",
                             "False"});
-                table70.AddRow(new string[] {
+                table73.AddRow(new string[] {
                             "TestCategory",
                             "EğitmenBurakTestKategori"});
-#line 210
- testRunner.Given("instructor adds true false question with", ((string)(null)), table70, "Given ");
+#line 208
+ testRunner.Given("instructor adds true false question with", ((string)(null)), table73, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table71 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table74 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table71.AddRow(new string[] {
+                table74.AddRow(new string[] {
                             "name",
                             "Soru - TRUE FALSE By ANIL"});
-#line 216
- testRunner.Then("instructor delete multiple choice question with", ((string)(null)), table71, "Then ");
+#line 214
+ testRunner.Then("instructor delete multiple choice question with", ((string)(null)), table74, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -1000,7 +1000,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("14_instructor_add_question_open_ended", null, tagsOfScenario, argumentsOfScenario);
-#line 220
+#line 218
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1020,44 +1020,44 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 221
+#line 219
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 222
+#line 220
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table72 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table75 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table72.AddRow(new string[] {
+                table75.AddRow(new string[] {
                             "name",
                             "Soru - open ended By ANIL"});
-#line 223
- testRunner.Given("instructor checks question is exist", ((string)(null)), table72, "Given ");
+#line 221
+ testRunner.Given("instructor checks question is exist", ((string)(null)), table75, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table73 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table76 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table73.AddRow(new string[] {
+                table76.AddRow(new string[] {
                             "question",
                             "Soru - open ended By ANIL"});
-                table73.AddRow(new string[] {
+                table76.AddRow(new string[] {
                             "point",
                             "45"});
-                table73.AddRow(new string[] {
+                table76.AddRow(new string[] {
                             "TestCategory",
                             "EğitmenBurakTestKategori"});
-#line 226
- testRunner.Given("instructor adds open_ended question with", ((string)(null)), table73, "Given ");
+#line 224
+ testRunner.Given("instructor adds open_ended question with", ((string)(null)), table76, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table74 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table77 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table74.AddRow(new string[] {
+                table77.AddRow(new string[] {
                             "name",
                             "Soru - open ended By ANIL"});
-#line 231
- testRunner.Then("instructor delete multiple choice question with", ((string)(null)), table74, "Then ");
+#line 229
+ testRunner.Then("instructor delete multiple choice question with", ((string)(null)), table77, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -1070,7 +1070,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("20_instructor_add_test_multiple_choice", null, tagsOfScenario, argumentsOfScenario);
-#line 235
+#line 233
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1090,74 +1090,74 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 236
+#line 234
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 237
+#line 235
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table75 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table75.AddRow(new string[] {
-                            "question",
-                            "Soru - MULTIPLE CHOICE By ANIL"});
-                table75.AddRow(new string[] {
-                            "point",
-                            "25"});
-                table75.AddRow(new string[] {
-                            "choiceA",
-                            "A Şıkkı"});
-                table75.AddRow(new string[] {
-                            "choiceB",
-                            "B Şıkkı"});
-                table75.AddRow(new string[] {
-                            "choiceC",
-                            "C Şıkkı"});
-                table75.AddRow(new string[] {
-                            "choiceD",
-                            "D Şıkkı"});
-                table75.AddRow(new string[] {
-                            "TestCategory",
-                            "EğitmenBurakTestKategori"});
-#line 238
- testRunner.Given("instructor adds multiple choice question with", ((string)(null)), table75, "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table76 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table76.AddRow(new string[] {
-                            "name",
-                            "new test added by ANIL"});
-                table76.AddRow(new string[] {
-                            "time",
-                            "45"});
-                table76.AddRow(new string[] {
-                            "TestCategory",
-                            "EğitmenBurakTestKategori"});
-                table76.AddRow(new string[] {
-                            "question",
-                            "Soru - MULTIPLE CHOICE By ANIL"});
-#line 247
- testRunner.Given("instructor adds tests with", ((string)(null)), table76, "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table77 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table77.AddRow(new string[] {
-                            "name",
-                            "new test added by ANIL"});
-#line 253
- testRunner.Given("instructor delete tests with", ((string)(null)), table77, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table78 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table78.AddRow(new string[] {
+                            "question",
+                            "Soru - MULTIPLE CHOICE By ANIL"});
+                table78.AddRow(new string[] {
+                            "point",
+                            "25"});
+                table78.AddRow(new string[] {
+                            "choiceA",
+                            "A Şıkkı"});
+                table78.AddRow(new string[] {
+                            "choiceB",
+                            "B Şıkkı"});
+                table78.AddRow(new string[] {
+                            "choiceC",
+                            "C Şıkkı"});
+                table78.AddRow(new string[] {
+                            "choiceD",
+                            "D Şıkkı"});
+                table78.AddRow(new string[] {
+                            "TestCategory",
+                            "EğitmenBurakTestKategori"});
+#line 236
+ testRunner.Given("instructor adds multiple choice question with", ((string)(null)), table78, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table79 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table79.AddRow(new string[] {
+                            "name",
+                            "new test added by ANIL"});
+                table79.AddRow(new string[] {
+                            "time",
+                            "45"});
+                table79.AddRow(new string[] {
+                            "TestCategory",
+                            "EğitmenBurakTestKategori"});
+                table79.AddRow(new string[] {
+                            "question",
+                            "Soru - MULTIPLE CHOICE By ANIL"});
+#line 245
+ testRunner.Given("instructor adds tests with", ((string)(null)), table79, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table80 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table80.AddRow(new string[] {
+                            "name",
+                            "new test added by ANIL"});
+#line 251
+ testRunner.Given("instructor delete tests with", ((string)(null)), table80, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table81 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table81.AddRow(new string[] {
                             "name",
                             "Soru - MULTIPLE CHOICE By ANIL"});
-#line 256
- testRunner.Then("instructor delete multiple choice question with", ((string)(null)), table78, "Then ");
+#line 254
+ testRunner.Then("instructor delete multiple choice question with", ((string)(null)), table81, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

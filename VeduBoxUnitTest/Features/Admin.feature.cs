@@ -681,7 +681,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("8_admin_add_poll_question_open_ended", null, tagsOfScenario, argumentsOfScenario);
-#line 146
+#line 145
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -701,10 +701,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 147
+#line 146
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 148
+#line 147
  testRunner.Given("Login as \"admin\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
@@ -713,7 +713,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table23.AddRow(new string[] {
                             "question",
                             "Soru - OPEN ENDED By ANIL"});
-#line 149
+#line 148
  testRunner.Given("Admin checks poll question is exist", ((string)(null)), table23, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
@@ -722,7 +722,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table24.AddRow(new string[] {
                             "question",
                             "Soru - OPEN ENDED By ANIL"});
-#line 152
+#line 151
  testRunner.Given("Admin adds open ended question with", ((string)(null)), table24, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
@@ -731,8 +731,72 @@ this.ScenarioInitialize(scenarioInfo);
                 table25.AddRow(new string[] {
                             "question",
                             "Soru - OPEN ENDED By ANIL"});
-#line 155
+#line 154
  testRunner.Then("Admin delete poll question with", ((string)(null)), table25, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("9_admin_add_poll_auestion_true_false")]
+        public virtual void _9_Admin_Add_Poll_Auestion_True_False()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9_admin_add_poll_auestion_true_false", null, tagsOfScenario, argumentsOfScenario);
+#line 158
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 159
+ testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 160
+ testRunner.Given("Login as \"admin\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table26.AddRow(new string[] {
+                            "question",
+                            "Soru - TRUE FALSE By ANIL"});
+#line 161
+ testRunner.Given("Admin checks poll question is exist", ((string)(null)), table26, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table27.AddRow(new string[] {
+                            "question",
+                            "Soru - TRUE FALSE By ANIL"});
+#line 164
+ testRunner.Given("Admin adds true false question with", ((string)(null)), table27, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table28.AddRow(new string[] {
+                            "question",
+                            "Soru - TRUE FALSE By ANIL"});
+#line 167
+ testRunner.Then("Admin delete poll question with", ((string)(null)), table28, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -745,7 +809,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("10_admin_add_poll", null, tagsOfScenario, argumentsOfScenario);
-#line 160
+#line 171
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -765,74 +829,74 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 161
+#line 172
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 162
+#line 173
  testRunner.Given("Login as \"admin\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table26 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table26.AddRow(new string[] {
-                            "question",
-                            "Soru - TRUE FALSE By ANIL"});
-#line 163
- testRunner.Given("Admin checks poll question is exist", ((string)(null)), table26, "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table27 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table27.AddRow(new string[] {
-                            "question",
-                            "Soru - TRUE FALSE By ANIL"});
-#line 166
- testRunner.Given("Admin adds true false question with", ((string)(null)), table27, "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table28.AddRow(new string[] {
-                            "Name",
-                            "New Anket by Anil"});
-#line 169
- testRunner.Given("Admin checks poll is exist", ((string)(null)), table28, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table29 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table29.AddRow(new string[] {
-                            "Name",
-                            "New Anket by Anil"});
-                table29.AddRow(new string[] {
-                            "Description",
-                            "Deneme Anket by Anil"});
-                table29.AddRow(new string[] {
-                            "RepeatNumber",
-                            "3"});
-                table29.AddRow(new string[] {
                             "question",
                             "Soru - TRUE FALSE By ANIL"});
-#line 172
- testRunner.Then("Admin adds poll", ((string)(null)), table29, "Then ");
+#line 174
+ testRunner.Given("Admin checks poll question is exist", ((string)(null)), table29, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table30.AddRow(new string[] {
-                            "Name",
-                            "New Anket by Anil"});
-#line 178
- testRunner.Then("Admin deletes Newly added polls", ((string)(null)), table30, "Then ");
+                            "question",
+                            "Soru - TRUE FALSE By ANIL"});
+#line 177
+ testRunner.Given("Admin adds true false question with", ((string)(null)), table30, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table31.AddRow(new string[] {
+                            "Name",
+                            "New Anket by Anil"});
+#line 180
+ testRunner.Given("Admin checks poll is exist", ((string)(null)), table31, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table32.AddRow(new string[] {
+                            "Name",
+                            "New Anket by Anil"});
+                table32.AddRow(new string[] {
+                            "Description",
+                            "Deneme Anket by Anil"});
+                table32.AddRow(new string[] {
+                            "RepeatNumber",
+                            "3"});
+                table32.AddRow(new string[] {
                             "question",
                             "Soru - TRUE FALSE By ANIL"});
-#line 181
- testRunner.Then("Admin delete poll question with", ((string)(null)), table31, "Then ");
+#line 183
+ testRunner.Then("Admin adds poll", ((string)(null)), table32, "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table33.AddRow(new string[] {
+                            "Name",
+                            "New Anket by Anil"});
+#line 189
+ testRunner.Then("Admin deletes Newly added polls", ((string)(null)), table33, "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table34.AddRow(new string[] {
+                            "question",
+                            "Soru - TRUE FALSE By ANIL"});
+#line 192
+ testRunner.Then("Admin delete poll question with", ((string)(null)), table34, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -845,7 +909,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("15_admin_switch_to_role", null, tagsOfScenario, argumentsOfScenario);
-#line 185
+#line 196
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -865,83 +929,83 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 186
+#line 197
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 187
- testRunner.Given("Login as \"admin\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table32.AddRow(new string[] {
-                            "email",
-                            "anil@parent.com"});
-#line 188
- testRunner.Given("admin checks parent is exist", ((string)(null)), table32, "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table33.AddRow(new string[] {
-                            "first_name",
-                            "anil_vedubox_parent_firstname"});
-                table33.AddRow(new string[] {
-                            "last_name",
-                            "anil_vedubox_parent_lastname"});
-                table33.AddRow(new string[] {
-                            "email",
-                            "anil@parent.com"});
-                table33.AddRow(new string[] {
-                            "username",
-                            "anil_parent_com"});
-                table33.AddRow(new string[] {
-                            "password",
-                            "anil_parent_com"});
-#line 191
- testRunner.Then("admin adds parent", ((string)(null)), table33, "Then ");
-#line hidden
-                TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table34.AddRow(new string[] {
-                            "email",
-                            "anil@parent.com"});
-                table34.AddRow(new string[] {
-                            "role1",
-                            "Admin"});
 #line 198
- testRunner.Then("admin adds role to parent", ((string)(null)), table34, "Then ");
-#line hidden
-#line 202
- testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 203
- testRunner.Given("Login as \"custom@anil_parent_com:anil_parent_com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Login as \"admin\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table35.AddRow(new string[] {
-                            "password",
-                            "anil_parent_com"});
-#line 204
- testRunner.When("custom parent switch to admin", ((string)(null)), table35, "When ");
-#line hidden
-#line 207
- testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 208
- testRunner.Given("Login as \"admin\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+                            "email",
+                            "anil@parent.com"});
+#line 199
+ testRunner.Given("admin checks parent is exist", ((string)(null)), table35, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table36.AddRow(new string[] {
+                            "first_name",
+                            "anil_vedubox_parent_firstname"});
+                table36.AddRow(new string[] {
+                            "last_name",
+                            "anil_vedubox_parent_lastname"});
+                table36.AddRow(new string[] {
                             "email",
                             "anil@parent.com"});
+                table36.AddRow(new string[] {
+                            "username",
+                            "anil_parent_com"});
+                table36.AddRow(new string[] {
+                            "password",
+                            "anil_parent_com"});
+#line 202
+ testRunner.Then("admin adds parent", ((string)(null)), table36, "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table37.AddRow(new string[] {
+                            "email",
+                            "anil@parent.com"});
+                table37.AddRow(new string[] {
+                            "role1",
+                            "Admin"});
 #line 209
- testRunner.Then("admin deletes added parent", ((string)(null)), table36, "Then ");
+ testRunner.Then("admin adds role to parent", ((string)(null)), table37, "Then ");
+#line hidden
+#line 213
+ testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 214
+ testRunner.Given("Login as \"custom@anil_parent_com:anil_parent_com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table38.AddRow(new string[] {
+                            "password",
+                            "anil_parent_com"});
+#line 215
+ testRunner.When("custom parent switch to admin", ((string)(null)), table38, "When ");
+#line hidden
+#line 218
+ testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 219
+ testRunner.Given("Login as \"admin\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table39.AddRow(new string[] {
+                            "email",
+                            "anil@parent.com"});
+#line 220
+ testRunner.Then("admin deletes added parent", ((string)(null)), table39, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -154,6 +154,19 @@ Scenario: 8_admin_add_poll_question_open_ended
 	Then Admin delete poll question with
 		| Key      | Value                     |
 		| question | Soru - OPEN ENDED By ANIL |
+		 
+Scenario: 9_admin_add_poll_auestion_true_false
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given Admin checks poll question is exist
+		| Key      | Value                     |
+		| question | Soru - TRUE FALSE By ANIL |
+	Given Admin adds true false question with
+		| Key      | Value                     |
+		| question | Soru - TRUE FALSE By ANIL |
+	Then Admin delete poll question with
+		| Key      | Value                     |
+		| question | Soru - TRUE FALSE By ANIL |
 
 Scenario: 10_admin_add_poll
 	Given Open Kurumsal Login Page

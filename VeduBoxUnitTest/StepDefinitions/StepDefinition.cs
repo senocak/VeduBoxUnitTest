@@ -826,14 +826,13 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .openPollsPage("admin")
                 .checkPollIsExist(dictionary["Name"]);
         }
-        [Given(@"Admin checks multiple choice question is exist")]
-        public void GivenAdminChecksMultipleChoiceQuestionIsExist(Table table){
+        [Given(@"Admin checks poll question is exist")]
+        public void GivenAdminChecksPollQuestionIsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
                 .openPollQuestionsPage("admin")
                 .searchNewlyAddedQuestionByNameAndDeleteIt(dictionary["question"]);
         }
-
         [Given(@"Admin adds multiple choice question with")]
         public void GivenAdminAddsMultipleChoiceQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
@@ -841,13 +840,45 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .openPollQuestionsPage("admin")
                 .clickAddButton()
                 .enterText(dictionary["question"])
-                .selectType(dictionary["type"])
+                .selectType("Multiple Choice")
+                .clickIsPublic()
+                .clickIsEditable()
+                .clickAddNewAnswerButton()
+                .enterAnswer1(dictionary["answer1"])
+                .enterAnswer2(dictionary["answer2"])
+                .enterAnswer3(dictionary["answer3"])
+                .enterAnswer4(dictionary["answer4"])
+                .clickSaveButton()
+                .assert();
+        }
+        [Given(@"Admin adds open ended question with")]
+        public void GivenAdminAddsOpenEndedQuestionWith(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openPollQuestionsPage("admin")
+                .clickAddButton()
+                .enterText(dictionary["question"])
+                .selectType("Open-Ended")
                 .clickIsPublic()
                 .clickIsEditable()
                 .clickSaveButton()
                 .assert();
         }
-        [Then(@"Admin delete multiple choice question with")]
+
+        [Given(@"Admin adds true false question with")]
+        public void GivenAdminAddsTrueFalseQuestionWith(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openPollQuestionsPage("admin")
+                .clickAddButton()
+                .enterText(dictionary["question"])
+                .selectType("True False")
+                .clickIsPublic()
+                .clickIsEditable()
+                .clickSaveButton()
+                .assert();
+        }
+        [Then(@"Admin delete poll question with")]
         public void ThenAdminDeleteMultipleChoiceQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)

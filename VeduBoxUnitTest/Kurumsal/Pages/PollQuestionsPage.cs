@@ -21,7 +21,11 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
         private static By IS_EDITABLE_INPUT = By.CssSelector("input[ng-model='question.isEditable']");
         private static By SAVE_BUTTON = By.XPath("//*[@id='questionForm']/div[2]/div/div/button[1]");
         private static By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-
+        private static By ADD_NEW_ANSWER_BUTTON = By.CssSelector("button[ng-click='addChoice()']");
+        private static By ANSWER1_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div/div[2]/form/div[1]/div[10]/div[3]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private static By ANSWER2_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div/div[2]/form/div[1]/div[10]/div[4]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private static By ANSWER3_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div/div[2]/form/div[1]/div[10]/div[5]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private static By ANSWER4_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div/div[2]/form/div[1]/div[10]/div[6]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
         public PollQuestionsPage(IWebDriver wd, string user) : base(wd){
             _user = user;
         }
@@ -84,6 +88,27 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
         }
         public PollQuestionsPage clickSaveButton(){
             click(SAVE_BUTTON);
+            return this;
+        }
+        public PollQuestionsPage clickAddNewAnswerButton(){
+            click(ADD_NEW_ANSWER_BUTTON);
+            return this;
+        }
+        
+        public PollQuestionsPage enterAnswer1(string answer){
+            type(ANSWER1_INPUT, answer);
+            return this;
+        }
+        public PollQuestionsPage enterAnswer2(string answer){
+            type(ANSWER2_INPUT, answer);
+            return this;
+        }
+        public PollQuestionsPage enterAnswer3(string answer){
+            type(ANSWER3_INPUT, answer);
+            return this;
+        }
+        public PollQuestionsPage enterAnswer4(string answer){
+            type(ANSWER4_INPUT, answer);
             return this;
         }
     }

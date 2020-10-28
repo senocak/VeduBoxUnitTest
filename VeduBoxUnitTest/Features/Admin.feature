@@ -110,6 +110,20 @@ Scenario: 5_admin_add_role
 	Then admin deletes added branch
 		| Key   | Value               |
 		| name  | anil_vedubox_branch |
+	
+Scenario: 5_1_admin_add_branch
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks branch is exist
+		| Key   | Value               |
+		| name  | anil_vedubox_branch |
+	Then admin adds new branch
+		| Key   | Value               |
+		| name  | anil_vedubox_branch |
+		| limit | 100                 |
+	Then admin deletes added branch
+		| Key   | Value               |
+		| name  | anil_vedubox_branch |
 
 Scenario: 6_admin_add_announcement
 	Given Open Kurumsal Login Page
@@ -221,3 +235,19 @@ Scenario: 15_admin_switch_to_role
 		| Key   | Value           |
 		| email | anil@parent.com |
 	 
+Scenario: 15_1_admin_addes_parent
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks parent is exist
+		| Key   | Value           |
+		| email | anil@parent.com |
+	Then admin adds parent
+		| Key        | Value                         |
+		| first_name | anil_vedubox_parent_firstname |
+		| last_name  | anil_vedubox_parent_lastname  |
+		| email      | anil@parent.com               |
+		| username   | anil_parent_com               |
+		| password   | anil_parent_com               |
+	Then admin deletes added parent
+		| Key   | Value           |
+		| email | anil@parent.com |

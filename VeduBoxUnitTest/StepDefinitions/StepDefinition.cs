@@ -206,8 +206,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
         }
 
         [Then(@"student verify start live and delete live with")]
-        public void ThenStudentVerifyStartLiveAndDeleteLiveWith()
-        {
+        public void ThenStudentVerifyStartLiveAndDeleteLiveWith(){
             new HomePage(driver)
                 .openLIVEpage("student")
                 .goDate(YEAR, MONTH, DAY)
@@ -868,10 +867,8 @@ namespace VeduBoxUnitTest.StepDefinitions{
                .clickAreUSure()
                .assert();
         }
-
         [Then(@"instructor adds test multiple choice adding question with document")]
-        public void ThenİnstructorAddsTestMultipleChoiceAddingQuestionWithDocument(Table table)
-        {
+        public void ThenİnstructorAddsTestMultipleChoiceAddingQuestionWithDocument(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
                 .openPoolTestsPage("instructor")
@@ -894,9 +891,9 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .enterSixthAnswer(dictionary["sixthAnswer"])
                 .enterSeventhAnswer(dictionary["seventhAnswer"])
                 .enterEighthAnswer(dictionary["eighthAnswer"])
-                 .selectCategory()
-                 .clickSaveButton()
-                 .assert()
+                .selectCategory()
+                .clickSaveButton()
+                .assert()
 
             ;
         }
@@ -912,19 +909,12 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .clickAreYouSureOK()
                 .assert();
         }
-
         [Given(@"Instructor checks poll question is exist")]
-        public void GivenInstructorChecksPollQuestionİsExist(Table table)
-        {
+        public void GivenInstructorChecksPollQuestionİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
                 .openPoolTestsPage("instructor")
-                .searchNewlyAddedPollTestByName(dictionary["Name"])
-                .checkTestPoolIsExist(dictionary["Name"]);
+                .searchNewlyAddedPollTestByNameAndDeleteIt(dictionary["Name"]);
         }
-
-
-
-
     }
 }

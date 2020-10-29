@@ -218,6 +218,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 24
  testRunner.Given("instructor adds new live with", ((string)(null)), table53, "Given ");
 #line hidden
+#line 35
+ testRunner.Then("verify start live and delete live with", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

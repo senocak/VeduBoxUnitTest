@@ -32,7 +32,7 @@ Scenario: 2_instructor_live_start
 		| duration          | 120                    |
 		| registrationLimit | 50                     |
 		| description       | Deneme 123             |
-	Then verify start live and delete live with
+	#Then verify start live and delete live with
 
 Scenario: 3_instructor_add_user
 	Given Open Kurumsal Login Page
@@ -254,3 +254,29 @@ Scenario: 20_instructor_add_test_multiple_choice
 	Then instructor delete multiple choice question with
 		| Key  | Value                          |
 		| name | Soru - MULTIPLE CHOICE By ANIL |
+
+Scenario: 21_instructor_add_test_multiple_choice_adding_question_with_document
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given Instructor checks poll question is exist
+		| Key      | Value                     |
+		| Name | TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL |
+	Then instructor adds test multiple choice adding question with document
+		| Key          | Value                          |
+		| Name                | TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL |
+		| Description         | TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL |
+		| Duration            | 25                        |
+		| questionNumber      | 8                        |
+		| points              | 15                        |
+		| choicesNumber       | 4                        |
+		| firstAnswer         | A       |
+		| secondAnswer        | B       |
+		| thirdAnswer         | C       |
+		| fourthAnswer        | D       |
+		| fifthAnswer         | A       |
+		| sixthAnswer         | B       |
+		| seventhAnswer       | C       |
+		| eighthAnswer        | D       |
+    Then Admin deletes newly added test multiple choice adding question with document
+		| Key      | Value                     |
+		| Name | TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL |

@@ -32,7 +32,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 //WebBrowser.Driver.CaptureScreenShot(_scenarioContext.ScenarioInfo.Title);
                 Console.WriteLine("Title:" + ScenarioContext.Current.ScenarioInfo.Title + " is failed.");
             }
-            driver.Quit();
+           // driver.Quit();
         }
         [Given(@"Open Kurumsal Login Page")]
         public void GivenOpenKurumsalLoginPage(){
@@ -88,6 +88,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .goDate(YEAR, MONTH, DAY)
                 .checkLiveIsExist();
         }
+        
         [Then(@"Delete LIVE")]
         public void deleteAddedLive(){
             new HomePage(driver)
@@ -192,9 +193,23 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .submit()
                 .assertLive();
         }
+
+       
         [Then(@"verify start live and delete live with")]
         public void ThenVerifyStartLiveAndDeleteLiveWith(){
             new LivePage(driver, "admin")
+                .goDate(YEAR, MONTH, DAY)
+                .assertStart()
+                .openLiveRecordDetail()
+                .clickDeleteButtonInRecordDetail()
+                .clickAreUSure();
+        }
+
+        [Then(@"student verify start live and delete live with")]
+        public void ThenStudentVerifyStartLiveAndDeleteLiveWith()
+        {
+            new HomePage(driver)
+                .openLIVEpage("student")
                 .goDate(YEAR, MONTH, DAY)
                 .assertStart()
                 .openLiveRecordDetail()
@@ -634,6 +649,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .enterEmailName(dictionary["email"])
                 .enterUserNameName(dictionary["username"])
                 .enterPasswordName(dictionary["password"])
+                .selectIsGuidanceTeacher()
                 .selectGPDRPolicy()
                 .clickSaveButton()
                 .assert();
@@ -852,5 +868,63 @@ namespace VeduBoxUnitTest.StepDefinitions{
                .clickAreUSure()
                .assert();
         }
+
+        [Then(@"instructor adds test multiple choice adding question with document")]
+        public void ThenİnstructorAddsTestMultipleChoiceAddingQuestionWithDocument(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openPoolTestsPage("instructor")
+                .clickAddButton()
+                .enterName(dictionary["Name"])
+                .enterDescription(dictionary["Description"])
+                .enterDuration(Int32.Parse(dictionary["Duration"]))
+                .selectIsPublic()
+                .selectIsOpticalMarker()
+                .selectIsDocument()
+                .selectFile()
+                .enterQuestionNumber(Int32.Parse(dictionary["questionNumber"]))
+                .enterPointsofEach(Int32.Parse(dictionary["points"]))
+                .enterNumberOfChoices(Int32.Parse(dictionary["choicesNumber"]))
+                .enterFirstAnswer(dictionary["firstAnswer"])
+                .enterSecondAnswer(dictionary["secondAnswer"])
+                .enterThirdAnswer(dictionary["thirdAnswer"])
+                .enterFourthAnswer(dictionary["fourthAnswer"])
+                .enterFifthAnswer(dictionary["fifthAnswer"])
+                .enterSixthAnswer(dictionary["sixthAnswer"])
+                .enterSeventhAnswer(dictionary["seventhAnswer"])
+                .enterEighthAnswer(dictionary["eighthAnswer"])
+                 .selectCategory()
+                 .clickSaveButton()
+                 .assert()
+
+            ;
+        }
+
+        [Then(@"Admin deletes newly added test multiple choice adding question with document")]
+        public void ThenAdminDeletesNewlyAddedTestMultipleChoiceAddingQuestionWithDocument(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new PoolTestsPage(driver, "instructor")
+                .searchNewlyAddedPollTestByName(dictionary["Name"])
+                .clickThreePoints()
+                .clickDelete()
+                .clickAreYouSureOK()
+                .assert();
+        }
+
+        [Given(@"Instructor checks poll question is exist")]
+        public void GivenInstructorChecksPollQuestionİsExist(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openPoolTestsPage("instructor")
+                .searchNewlyAddedPollTestByName(dictionary["Name"])
+                .checkTestPoolIsExist(dictionary["Name"]);
+        }
+
+
+
+
     }
 }

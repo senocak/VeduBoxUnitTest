@@ -25,6 +25,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By ROLES = By.CssSelector("a[ng-click='editRolesForUser(teacher)']");
         private static By ROLES_SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div/div/div[2]/button[1]");
         private static By DELETE_MODERATOR = By.CssSelector("a[ng-click='delete(teacher)']");
+        private static By IS_GUIDANCE_TEACHER = By.CssSelector("input[ng-model='teacher.isGuidanceTeacher']");
 
         private static string _user;
         public ModeratorsPage(IWebDriver wd, string user) : base(wd){
@@ -61,6 +62,12 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         public ModeratorsPage selectGPDRPolicy(){
             if (isSelected(GDPR_POLICY) == false)
                 click(GDPR_POLICY);
+            return this;
+        }
+        public ModeratorsPage selectIsGuidanceTeacher()
+        {
+            if (isSelected(IS_GUIDANCE_TEACHER) == false)
+                click(IS_GUIDANCE_TEACHER);
             return this;
         }
         public ModeratorsPage clickSaveButton(){

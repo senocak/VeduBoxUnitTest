@@ -970,12 +970,12 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("15_admin_switch_to_role")]
-        public virtual void _15_Admin_Switch_To_Role()
+        [NUnit.Framework.DescriptionAttribute("11_admin_add_instructor")]
+        public virtual void _11_Admin_Add_İnstructor()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("15_admin_switch_to_role", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("11_admin_add_instructor", null, tagsOfScenario, argumentsOfScenario);
 #line 210
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -1006,86 +1006,86 @@ this.ScenarioInitialize(scenarioInfo);
                             "Key",
                             "Value"});
                 table38.AddRow(new string[] {
-                            "email",
-                            "anil@parent.com"});
+                            "name",
+                            "anil_vedubox_instructor_firstname"});
 #line 213
- testRunner.Given("admin checks parent is exist", ((string)(null)), table38, "Given ");
+ testRunner.Given("admin checks instructor is exist", ((string)(null)), table38, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table39.AddRow(new string[] {
-                            "first_name",
-                            "anil_vedubox_parent_firstname"});
-                table39.AddRow(new string[] {
-                            "last_name",
-                            "anil_vedubox_parent_lastname"});
-                table39.AddRow(new string[] {
-                            "email",
-                            "anil@parent.com"});
-                table39.AddRow(new string[] {
-                            "username",
-                            "anil_parent_com"});
-                table39.AddRow(new string[] {
-                            "password",
-                            "anil_parent_com"});
+                            "name",
+                            "anil_vedubox_branch"});
 #line 216
- testRunner.Then("admin adds parent", ((string)(null)), table39, "Then ");
+ testRunner.Given("admin checks branch is exist", ((string)(null)), table39, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table40.AddRow(new string[] {
-                            "email",
-                            "anil@parent.com"});
+                            "name",
+                            "anil_vedubox_branch"});
                 table40.AddRow(new string[] {
-                            "role1",
-                            "Admin"});
-#line 223
- testRunner.Then("admin adds role to parent", ((string)(null)), table40, "Then ");
-#line hidden
-#line 227
- testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 228
- testRunner.Given("Login as \"custom@anil_parent_com:anil_parent_com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+                            "limit",
+                            "100"});
+#line 219
+ testRunner.Then("admin adds new branch", ((string)(null)), table40, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table41.AddRow(new string[] {
+                            "first_name",
+                            "anil_vedubox_instructor_firstname"});
+                table41.AddRow(new string[] {
+                            "last_name",
+                            "anil_vedubox_instructor_lastname"});
+                table41.AddRow(new string[] {
+                            "branch",
+                            "anil_vedubox_branch"});
+                table41.AddRow(new string[] {
+                            "email",
+                            "anil@instructor.com"});
+                table41.AddRow(new string[] {
+                            "username",
+                            "anil_instructor_com"});
+                table41.AddRow(new string[] {
                             "password",
-                            "anil_parent_com"});
-#line 229
- testRunner.When("custom parent switch to admin", ((string)(null)), table41, "When ");
-#line hidden
-#line 232
- testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 233
- testRunner.Given("Login as \"admin\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+                            "anil_instructor_com"});
+#line 223
+ testRunner.Then("admin adds instructor", ((string)(null)), table41, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table42 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table42.AddRow(new string[] {
-                            "email",
-                            "anil@parent.com"});
+                            "name",
+                            "anil_vedubox_instructor_firstname"});
+#line 231
+   testRunner.Then("admin delete instructor", ((string)(null)), table42, "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table43 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table43.AddRow(new string[] {
+                            "name",
+                            "anil_vedubox_branch"});
 #line 234
- testRunner.Then("admin deletes added parent", ((string)(null)), table42, "Then ");
+ testRunner.Then("admin deletes added branch", ((string)(null)), table43, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("15_1_admin_addes_parent")]
-        public virtual void _15_1_Admin_Addes_Parent()
+        [NUnit.Framework.DescriptionAttribute("15_admin_switch_to_role")]
+        public virtual void _15_Admin_Switch_To_Role()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("15_1_admin_addes_parent", null, tagsOfScenario, argumentsOfScenario);
-#line 238
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("15_admin_switch_to_role", null, tagsOfScenario, argumentsOfScenario);
+#line 241
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1105,50 +1105,159 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 239
+#line 242
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 240
+#line 243
  testRunner.Given("Login as \"admin\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table43 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table43.AddRow(new string[] {
-                            "email",
-                            "anil@parent.com"});
-#line 241
- testRunner.Given("admin checks parent is exist", ((string)(null)), table43, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table44 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table44.AddRow(new string[] {
-                            "first_name",
-                            "anil_vedubox_parent_firstname"});
-                table44.AddRow(new string[] {
-                            "last_name",
-                            "anil_vedubox_parent_lastname"});
-                table44.AddRow(new string[] {
                             "email",
                             "anil@parent.com"});
-                table44.AddRow(new string[] {
-                            "username",
-                            "anil_parent_com"});
-                table44.AddRow(new string[] {
-                            "password",
-                            "anil_parent_com"});
 #line 244
- testRunner.Then("admin adds parent", ((string)(null)), table44, "Then ");
+ testRunner.Given("admin checks parent is exist", ((string)(null)), table44, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table45 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table45.AddRow(new string[] {
+                            "first_name",
+                            "anil_vedubox_parent_firstname"});
+                table45.AddRow(new string[] {
+                            "last_name",
+                            "anil_vedubox_parent_lastname"});
+                table45.AddRow(new string[] {
                             "email",
                             "anil@parent.com"});
-#line 251
- testRunner.Then("admin deletes added parent", ((string)(null)), table45, "Then ");
+                table45.AddRow(new string[] {
+                            "username",
+                            "anil_parent_com"});
+                table45.AddRow(new string[] {
+                            "password",
+                            "anil_parent_com"});
+#line 247
+ testRunner.Then("admin adds parent", ((string)(null)), table45, "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table46 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table46.AddRow(new string[] {
+                            "email",
+                            "anil@parent.com"});
+                table46.AddRow(new string[] {
+                            "role1",
+                            "Admin"});
+#line 254
+ testRunner.Then("admin adds role to parent", ((string)(null)), table46, "Then ");
+#line hidden
+#line 258
+ testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 259
+ testRunner.Given("Login as \"custom@anil_parent_com:anil_parent_com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table47 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table47.AddRow(new string[] {
+                            "password",
+                            "anil_parent_com"});
+#line 260
+ testRunner.When("custom parent switch to admin", ((string)(null)), table47, "When ");
+#line hidden
+#line 263
+ testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 264
+ testRunner.Given("Login as \"admin\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table48 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table48.AddRow(new string[] {
+                            "email",
+                            "anil@parent.com"});
+#line 265
+ testRunner.Then("admin deletes added parent", ((string)(null)), table48, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("15_1_admin_addes_parent")]
+        public virtual void _15_1_Admin_Addes_Parent()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("15_1_admin_addes_parent", null, tagsOfScenario, argumentsOfScenario);
+#line 269
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 270
+ testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 271
+ testRunner.Given("Login as \"admin\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table49 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table49.AddRow(new string[] {
+                            "email",
+                            "anil@parent.com"});
+#line 272
+ testRunner.Given("admin checks parent is exist", ((string)(null)), table49, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table50 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table50.AddRow(new string[] {
+                            "first_name",
+                            "anil_vedubox_parent_firstname"});
+                table50.AddRow(new string[] {
+                            "last_name",
+                            "anil_vedubox_parent_lastname"});
+                table50.AddRow(new string[] {
+                            "email",
+                            "anil@parent.com"});
+                table50.AddRow(new string[] {
+                            "username",
+                            "anil_parent_com"});
+                table50.AddRow(new string[] {
+                            "password",
+                            "anil_parent_com"});
+#line 275
+ testRunner.Then("admin adds parent", ((string)(null)), table50, "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table51 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table51.AddRow(new string[] {
+                            "email",
+                            "anil@parent.com"});
+#line 282
+ testRunner.Then("admin deletes added parent", ((string)(null)), table51, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

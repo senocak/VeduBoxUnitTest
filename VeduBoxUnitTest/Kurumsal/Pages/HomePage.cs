@@ -20,6 +20,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By PARENTS = By.CssSelector("a[title='Parents']");
         private static By POLLS = By.CssSelector("a[title='Polls']");
         private static By POLL_QUESTIONS = By.CssSelector("a[title='Poll Questions']");
+        private static By POLL_TESTS = By.CssSelector("a[title='Test pool']");
 
         private static By USERNAME_LINK = By.CssSelector("span[ng-bind='$root.user.firstName | limitTo: 8']");
         private static By SWITCH_TO_ROLE = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/ul/li[2]/a");
@@ -195,6 +196,21 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             }
             Console.WriteLine(user + ": clicked User page element");
             return new PollQuestionsPage(driver, user);
+        }
+
+        public PoolTestsPage openPoolTestsPage(string user)
+        {
+            _user = user;
+            try
+            {
+                click(POLL_TESTS);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error occured in openPoolTestsPage, user: " + user + ", Error is: " + e.Message);
+            }
+            Console.WriteLine(user + ": clicked PoolTestsPage element");
+            return new PoolTestsPage(driver, user);
         }
         public HomePage assertRoleIs(string role){
             AssertionCustom.assertTextToBePresentInElementLocated(driver, ROLE_TEXT, role, "Element Not Found");

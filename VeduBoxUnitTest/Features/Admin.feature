@@ -206,6 +206,37 @@ Scenario: 10_admin_add_poll
 	Then Admin delete poll question with
 		| Key      | Value                     |
 		| question | Soru - TRUE FALSE By ANIL |
+
+Scenario: 11_admin_add_instructor
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks instructor is exist
+		| Key  | Value                             |
+		| name | anil_vedubox_instructor_firstname |
+	Given admin checks branch is exist
+		| Key   | Value               |
+		| name  | anil_vedubox_branch |
+	Then admin adds new branch
+		| Key   | Value               |
+		| name  | anil_vedubox_branch |
+		| limit | 100                 |
+	Then admin adds instructor
+		| Key        | Value                             |
+		| first_name | anil_vedubox_instructor_firstname |
+		| last_name  | anil_vedubox_instructor_lastname  |
+		| branch     | anil_vedubox_branch               |
+		| email      | anil@instructor.com               |
+		| username   | anil_instructor_com               |
+		| password   | anil_instructor_com               |
+   Then admin delete instructor
+		| Key  | Value                             |
+		| name | anil_vedubox_instructor_firstname |
+	Then admin deletes added branch
+		| Key   | Value               |
+		| name  | anil_vedubox_branch |
+	
+
+
 	
 Scenario: 15_admin_switch_to_role
 	Given Open Kurumsal Login Page

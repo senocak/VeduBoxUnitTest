@@ -109,38 +109,38 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
  testRunner.Given("instructor checks live is exist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table88 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table97 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table88.AddRow(new string[] {
+                table97.AddRow(new string[] {
                             "course_name",
                             "deneme_instructor"});
-                table88.AddRow(new string[] {
+                table97.AddRow(new string[] {
                             "meetingType",
                             "basic"});
-                table88.AddRow(new string[] {
+                table97.AddRow(new string[] {
                             "title",
                             "deneme"});
-                table88.AddRow(new string[] {
+                table97.AddRow(new string[] {
                             "hour",
                             "18"});
-                table88.AddRow(new string[] {
+                table97.AddRow(new string[] {
                             "min",
                             "00"});
-                table88.AddRow(new string[] {
+                table97.AddRow(new string[] {
                             "timezone",
                             "Turkey Time (GMT+3:00)"});
-                table88.AddRow(new string[] {
+                table97.AddRow(new string[] {
                             "duration",
                             "120"});
-                table88.AddRow(new string[] {
+                table97.AddRow(new string[] {
                             "registrationLimit",
                             "50"});
-                table88.AddRow(new string[] {
+                table97.AddRow(new string[] {
                             "description",
                             "Deneme 123"});
 #line 7
- testRunner.Given("instructor adds new live with", ((string)(null)), table88, "Given ");
+ testRunner.Given("instructor adds new live with", ((string)(null)), table97, "Given ");
 #line hidden
 #line 18
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
@@ -197,44 +197,44 @@ this.ScenarioInitialize(scenarioInfo);
 #line 27
  testRunner.Given("Login as \"student\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table89 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table98 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table89.AddRow(new string[] {
+                table98.AddRow(new string[] {
                             "entry",
                             "ÜyelikDönemi08112019"});
-                table89.AddRow(new string[] {
+                table98.AddRow(new string[] {
                             "name",
                             "Ahmet"});
-                table89.AddRow(new string[] {
+                table98.AddRow(new string[] {
                             "surname",
                             "Can"});
-                table89.AddRow(new string[] {
+                table98.AddRow(new string[] {
                             "city",
                             "Adana"});
-                table89.AddRow(new string[] {
+                table98.AddRow(new string[] {
                             "district",
                             "Merkez"});
-                table89.AddRow(new string[] {
+                table98.AddRow(new string[] {
                             "phone",
                             "5246123811"});
-                table89.AddRow(new string[] {
+                table98.AddRow(new string[] {
                             "address",
                             "Süleyman Şah camii yanı. No71"});
-                table89.AddRow(new string[] {
+                table98.AddRow(new string[] {
                             "cardName",
                             "sapdf sdff"});
-                table89.AddRow(new string[] {
+                table98.AddRow(new string[] {
                             "cardNumber",
                             "5528790000000008"});
-                table89.AddRow(new string[] {
+                table98.AddRow(new string[] {
                             "cardDate",
                             "11/22"});
-                table89.AddRow(new string[] {
+                table98.AddRow(new string[] {
                             "cardCVC",
                             "123"});
 #line 28
- testRunner.Then("student purchase course", ((string)(null)), table89, "Then ");
+ testRunner.Then("student purchase course", ((string)(null)), table98, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -273,44 +273,44 @@ this.ScenarioInitialize(scenarioInfo);
 #line 44
  testRunner.Given("Login as \"student\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table90 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table99 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table90.AddRow(new string[] {
+                table99.AddRow(new string[] {
                             "entry",
                             "dolar paket"});
-                table90.AddRow(new string[] {
+                table99.AddRow(new string[] {
                             "name",
                             "Ahmetss"});
-                table90.AddRow(new string[] {
+                table99.AddRow(new string[] {
                             "surname",
                             "Canss"});
-                table90.AddRow(new string[] {
+                table99.AddRow(new string[] {
                             "city",
                             "Adanass"});
-                table90.AddRow(new string[] {
+                table99.AddRow(new string[] {
                             "country",
                             "Merkezss"});
-                table90.AddRow(new string[] {
+                table99.AddRow(new string[] {
                             "phone",
                             "5246123856"});
-                table90.AddRow(new string[] {
+                table99.AddRow(new string[] {
                             "address",
                             "Süleymanss Şah camii yanı. No71"});
-                table90.AddRow(new string[] {
+                table99.AddRow(new string[] {
                             "cardName",
                             "sapdf sdff"});
-                table90.AddRow(new string[] {
+                table99.AddRow(new string[] {
                             "cardNumber",
                             "5528790000000008"});
-                table90.AddRow(new string[] {
+                table99.AddRow(new string[] {
                             "cardDate",
                             "11/22"});
-                table90.AddRow(new string[] {
+                table99.AddRow(new string[] {
                             "cardCVC",
                             "123"});
 #line 45
- testRunner.Then("Student add course package purchase and reflection", ((string)(null)), table90, "Then ");
+ testRunner.Then("Student add course package purchase and reflection", ((string)(null)), table99, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -349,44 +349,44 @@ this.ScenarioInitialize(scenarioInfo);
 #line 61
  testRunner.Given("Login as \"student\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table91 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table100 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
-                table91.AddRow(new string[] {
+                table100.AddRow(new string[] {
                             "entry",
                             "ÜyelikDönemi"});
-                table91.AddRow(new string[] {
+                table100.AddRow(new string[] {
                             "name",
                             "Ahmetgg"});
-                table91.AddRow(new string[] {
+                table100.AddRow(new string[] {
                             "surname",
                             "Cangg"});
-                table91.AddRow(new string[] {
+                table100.AddRow(new string[] {
                             "city",
                             "Adanagg"});
-                table91.AddRow(new string[] {
+                table100.AddRow(new string[] {
                             "country",
                             "Merkezgg"});
-                table91.AddRow(new string[] {
+                table100.AddRow(new string[] {
                             "phone",
                             "5246123843"});
-                table91.AddRow(new string[] {
+                table100.AddRow(new string[] {
                             "address",
                             "Süleymangg Şah camii yanı. No71"});
-                table91.AddRow(new string[] {
+                table100.AddRow(new string[] {
                             "cardName",
                             "sapdf sdff"});
-                table91.AddRow(new string[] {
+                table100.AddRow(new string[] {
                             "cardNumber",
                             "5528790000000008"});
-                table91.AddRow(new string[] {
+                table100.AddRow(new string[] {
                             "cardDate",
                             "11/22"});
-                table91.AddRow(new string[] {
+                table100.AddRow(new string[] {
                             "cardCVC",
                             "123"});
 #line 62
- testRunner.Then("Student make portal shopping both course and course package", ((string)(null)), table91, "Then ");
+ testRunner.Then("Student make portal shopping both course and course package", ((string)(null)), table100, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -507,6 +507,88 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 89
  testRunner.Then("student takes exam", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("9_student_live_start")]
+        public virtual void _9_Student_Live_Start()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("9_student_live_start", null, tagsOfScenario, argumentsOfScenario);
+#line 91
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 92
+ testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 93
+ testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 94
+ testRunner.Given("instructor checks live is exist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table101 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table101.AddRow(new string[] {
+                            "course_name",
+                            "deneme_instructor"});
+                table101.AddRow(new string[] {
+                            "meetingType",
+                            "pro"});
+                table101.AddRow(new string[] {
+                            "title",
+                            "deneme"});
+                table101.AddRow(new string[] {
+                            "hour",
+                            "18"});
+                table101.AddRow(new string[] {
+                            "min",
+                            "00"});
+                table101.AddRow(new string[] {
+                            "timezone",
+                            "Turkey Time (GMT+3:00)"});
+                table101.AddRow(new string[] {
+                            "duration",
+                            "120"});
+                table101.AddRow(new string[] {
+                            "registrationLimit",
+                            "50"});
+                table101.AddRow(new string[] {
+                            "description",
+                            "Deneme 123"});
+#line 95
+    testRunner.Given("instructor adds new live with", ((string)(null)), table101, "Given ");
+#line hidden
+#line 106
+    testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 107
+ testRunner.Given("Login as \"student\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 108
+    testRunner.Then("student verify start live and delete live with", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

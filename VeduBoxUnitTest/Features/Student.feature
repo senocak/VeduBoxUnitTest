@@ -87,3 +87,22 @@ Scenario: 8_student_exam_start_finish_open_ended
 	Given Open Kurumsal Login Page
 	Given Login as "student"
 	Then student takes exam
+
+Scenario: 9_student_live_start
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks live is exist
+    Given instructor adds new live with
+		| Key               | Value                  |
+		| course_name       | deneme_instructor      |
+		| meetingType       | pro                    |
+		| title             | deneme                 |
+		| hour              | 18                     |
+		| min               | 00                     |
+		| timezone          | Turkey Time (GMT+3:00) |
+		| duration          | 120                    |
+		| registrationLimit | 50                     |
+		| description       | Deneme 123             |
+    Given Open Kurumsal Login Page
+	Given Login as "student"
+    Then  student verify start live and delete live with

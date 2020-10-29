@@ -162,6 +162,7 @@
     <Compile Include="Kurumsal\Pages\PaymentPage.cs" />
     <Compile Include="Kurumsal\Pages\PollQuestionsPage.cs" />
     <Compile Include="Kurumsal\Pages\PollsPage.cs" />
+    <Compile Include="Kurumsal\Pages\PoolTestsPage.cs" />
     <Compile Include="Kurumsal\Pages\PortalPage.cs" />
     <Compile Include="Kurumsal\Pages\QuestionsPage.cs" />
     <Compile Include="Kurumsal\Pages\StudentsPage.cs" />

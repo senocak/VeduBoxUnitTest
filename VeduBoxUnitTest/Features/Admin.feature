@@ -81,9 +81,6 @@ Scenario: 4_admin_earnings_payment_control
 Scenario: 5_admin_add_role
 	Given Open Kurumsal Login Page
 	Given Login as "admin"
-	Given admin checks instructor is exist
-		| Key  | Value                             |
-		| name | anil_vedubox_instructor_firstname |
 	Given admin checks branch is exist
 		| Key   | Value               |
 		| name  | anil_vedubox_branch |
@@ -91,6 +88,9 @@ Scenario: 5_admin_add_role
 		| Key   | Value               |
 		| name  | anil_vedubox_branch |
 		| limit | 100                 |
+	Given admin checks instructor is exist
+		| Key  | Value                             |
+		| name | anil_vedubox_instructor_firstname |
 	Then admin adds instructor
 		| Key        | Value                             |
 		| first_name | anil_vedubox_instructor_firstname |
@@ -210,9 +210,6 @@ Scenario: 10_admin_add_poll
 Scenario: 11_admin_add_instructor
 	Given Open Kurumsal Login Page
 	Given Login as "admin"
-	Given admin checks instructor is exist
-		| Key  | Value                             |
-		| name | anil_vedubox_instructor_firstname |
 	Given admin checks branch is exist
 		| Key   | Value               |
 		| name  | anil_vedubox_branch |
@@ -220,6 +217,9 @@ Scenario: 11_admin_add_instructor
 		| Key   | Value               |
 		| name  | anil_vedubox_branch |
 		| limit | 100                 |
+	Given admin checks instructor is exist
+		| Key  | Value                             |
+		| name | anil_vedubox_instructor_firstname |
 	Then admin adds instructor
 		| Key        | Value                             |
 		| first_name | anil_vedubox_instructor_firstname |

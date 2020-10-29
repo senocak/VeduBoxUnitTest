@@ -445,9 +445,9 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table10.AddRow(new string[] {
                             "name",
-                            "anil_vedubox_instructor_firstname"});
+                            "anil_vedubox_branch"});
 #line 84
- testRunner.Given("admin checks instructor is exist", ((string)(null)), table10, "Given ");
+ testRunner.Given("admin checks branch is exist", ((string)(null)), table10, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
@@ -455,20 +455,20 @@ this.ScenarioInitialize(scenarioInfo);
                 table11.AddRow(new string[] {
                             "name",
                             "anil_vedubox_branch"});
+                table11.AddRow(new string[] {
+                            "limit",
+                            "100"});
 #line 87
- testRunner.Given("admin checks branch is exist", ((string)(null)), table11, "Given ");
+ testRunner.Then("admin adds new branch", ((string)(null)), table11, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table12.AddRow(new string[] {
                             "name",
-                            "anil_vedubox_branch"});
-                table12.AddRow(new string[] {
-                            "limit",
-                            "100"});
-#line 90
- testRunner.Then("admin adds new branch", ((string)(null)), table12, "Then ");
+                            "anil_vedubox_instructor_firstname"});
+#line 91
+ testRunner.Given("admin checks instructor is exist", ((string)(null)), table12, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
@@ -1007,9 +1007,9 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table38.AddRow(new string[] {
                             "name",
-                            "anil_vedubox_instructor_firstname"});
+                            "anil_vedubox_branch"});
 #line 213
- testRunner.Given("admin checks instructor is exist", ((string)(null)), table38, "Given ");
+ testRunner.Given("admin checks branch is exist", ((string)(null)), table38, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
@@ -1017,20 +1017,20 @@ this.ScenarioInitialize(scenarioInfo);
                 table39.AddRow(new string[] {
                             "name",
                             "anil_vedubox_branch"});
+                table39.AddRow(new string[] {
+                            "limit",
+                            "100"});
 #line 216
- testRunner.Given("admin checks branch is exist", ((string)(null)), table39, "Given ");
+ testRunner.Then("admin adds new branch", ((string)(null)), table39, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table40.AddRow(new string[] {
                             "name",
-                            "anil_vedubox_branch"});
-                table40.AddRow(new string[] {
-                            "limit",
-                            "100"});
-#line 219
- testRunner.Then("admin adds new branch", ((string)(null)), table40, "Then ");
+                            "anil_vedubox_instructor_firstname"});
+#line 220
+ testRunner.Given("admin checks instructor is exist", ((string)(null)), table40, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",

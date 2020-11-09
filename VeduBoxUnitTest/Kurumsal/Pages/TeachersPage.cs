@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using VeduBoxUnitTest.Assertion;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
-    class ModeratorsPage : Page
+    class TeachersPage : Page
     {
         private static By ADD_BUTTON = By.CssSelector("button[ng-click='select(states.new, null)']");
         private static By FIRST_NAME = By.CssSelector("input[ng-model='teacher.firstName']");
@@ -28,61 +28,61 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By IS_GUIDANCE_TEACHER = By.CssSelector("input[ng-model='teacher.isGuidanceTeacher']");
 
         private static string _user;
-        public ModeratorsPage(IWebDriver wd, string user) : base(wd){
+        public TeachersPage(IWebDriver wd, string user) : base(wd){
             _user = user;
         }
-        public ModeratorsPage clickAddButton(){
+        public TeachersPage clickAddButton(){
             click(ADD_BUTTON);
             return this;
         }
-        public ModeratorsPage enterFirstName(string first_name){
+        public TeachersPage enterFirstName(string first_name){
             type(FIRST_NAME, first_name);
             return this;
         }
-        public ModeratorsPage enterLastName(string last_name){
+        public TeachersPage enterLastName(string last_name){
             type(LAST_NAME, last_name);
             return this;
         }
-        public ModeratorsPage selectBranchName(string last_name){
+        public TeachersPage selectBranchName(string last_name){
             selectDropDown(BRANCH, last_name);
             return this;
         }
-        public ModeratorsPage enterEmailName(string email){
+        public TeachersPage enterEmailName(string email){
             type(EMAIL, email);
             return this;
         }
-        public ModeratorsPage enterUserNameName(string username){
+        public TeachersPage enterUserNameName(string username){
             type(USER_NAME, username);
             return this;
         }
-        public ModeratorsPage enterPasswordName(string password){
+        public TeachersPage enterPasswordName(string password){
             type(PASSWORD, password);
             return this;
         }
-        public ModeratorsPage selectGPDRPolicy(){
+        public TeachersPage selectGPDRPolicy(){
             if (isSelected(GDPR_POLICY) == false)
                 click(GDPR_POLICY);
             return this;
         }
-        public ModeratorsPage selectIsGuidanceTeacher()
+        public TeachersPage selectIsGuidanceTeacher()
         {
             if (isSelected(IS_GUIDANCE_TEACHER) == false)
                 click(IS_GUIDANCE_TEACHER);
             return this;
         }
-        public ModeratorsPage clickSaveButton(){
+        public TeachersPage clickSaveButton(){
             click(SAVE_BUTTON);
             return this;
         }
-        public ModeratorsPage assert(){
+        public TeachersPage assert(){
             AssertionCustom.assertElementVisible("Element Not Found", driver, SUCCESS);
             return this;
         }
-        public ModeratorsPage clickAreYouSure(){
+        public TeachersPage clickAreYouSure(){
             click(ARE_U_SURE_OK);
             return this;
         }
-        public ModeratorsPage searchNewlyAddedModeratorByNameAndDeleteIt(string tag){
+        public TeachersPage searchNewlyAddedModeratorByNameAndDeleteIt(string tag){
             searchNewlyAddedModeratorByName(tag);
             try{
                 clickThreePoints();
@@ -95,20 +95,20 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             assert();
             return this;
         }
-        public ModeratorsPage searchNewlyAddedModeratorByName(string tag){
+        public TeachersPage searchNewlyAddedModeratorByName(string tag){
             type(SEARCH_BOX, tag);
             sleepms(1000);
             return this;
         }
-        public ModeratorsPage clickThreePoints(){
+        public TeachersPage clickThreePoints(){
             click(THREE_POINTS);
             return this;
         }
-        public ModeratorsPage clickRolesInThreePoints(){
+        public TeachersPage clickRolesInThreePoints(){
             click(ROLES);
             return this;
         }
-        public ModeratorsPage selectRole(string role){
+        public TeachersPage selectRole(string role){
             int id = 1;
             if (role == "Admin") id = 1;
             if (role == "Manager") id = 2;
@@ -118,11 +118,11 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             click(By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div/div/div[1]/div[1]/div["+ id + "]/label/input"));
             return this;
         }
-        public ModeratorsPage clickRoleSaveButton(){
+        public TeachersPage clickRoleSaveButton(){
             click(ROLES_SAVE_BUTTON);
             return this;
         }
-        public ModeratorsPage clickDeleteInThreePoints(){
+        public TeachersPage clickDeleteInThreePoints(){
             click(DELETE_MODERATOR);
             return this;
         }

@@ -5,7 +5,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
 {
     class OpenURL : Page
     {
-        private static String DOMAIN = "https://devtest.vedubox.net";
+        private static String DOMAIN = "https://selenium.vedubox.net";
         private static String LOGIN = "/pages/login";
 
         public OpenURL(IWebDriver wd) : base(wd){}

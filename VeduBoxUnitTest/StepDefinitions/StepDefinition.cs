@@ -32,7 +32,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 //WebBrowser.Driver.CaptureScreenShot(_scenarioContext.ScenarioInfo.Title);
                 Console.WriteLine("Title:" + ScenarioContext.Current.ScenarioInfo.Title + " is failed.");
             }
-           driver.Quit();
+           //driver.Quit();
         }
         [Given(@"Open Kurumsal Login Page")]
         public void GivenOpenKurumsalLoginPage(){
@@ -41,13 +41,13 @@ namespace VeduBoxUnitTest.StepDefinitions{
         [Given(@"Login as ""(.*)""")]
         public void WhenLoginAs(string user){
             if (user == "admin"){
-                new LoginPage(driver).enterUsername("anil").enterPassword("123").submit();
+                new LoginPage(driver).enterUsername("anil").enterPassword("12345").submit();
             }else if (user == "instructor"){
-                new LoginPage(driver).enterUsername("anilegitmen").enterPassword("123").submit();
+                new LoginPage(driver).enterUsername("anilegitmen").enterPassword("12345").submit();
             }else if (user == "student"){
-                new LoginPage(driver).enterUsername("anilogrenci").enterPassword("123").submit();
+                new LoginPage(driver).enterUsername("anilogrenci").enterPassword("12345").submit();
             }else if (user == "veli"){
-                new LoginPage(driver).enterUsername("anilveli").enterPassword("123").submit();
+                new LoginPage(driver).enterUsername("anilveli").enterPassword("12345").submit();
             }else{
                 string[] words = user.Split('@');
                 if(words[0] == "custom"){
@@ -103,7 +103,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
         public void adminAddsNewUserWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
-                    .openUserPage(dictionary["user"])
+                    .openStudentsPage(dictionary["user"])
                     .addNew()
                     .setFirstName(dictionary["firstName"])
                     .setLastName(dictionary["lastName"])
@@ -122,13 +122,14 @@ namespace VeduBoxUnitTest.StepDefinitions{
         public void GivenAdminChecksUserİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
-                    .openUserPage("admin")
+                    .openStudentsPage("admin")
                     .searchNewlyAddedUserByEmailAndDeleteIt(dictionary["email"]);
         }
         [Then(@"Delete User")]
         public void deleteUser(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new UserPage(driver, "admin")
+            new HomePage(driver)
+                .openStudentsPage("admin")
                 .searchNewlyAddedUserByEmail(dictionary["email"])
                 .click3Points()
                 .clickDeleteUserButton()
@@ -146,7 +147,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .setTags(dictionary["tags"])
                 .setDescription(dictionary["description"])
                 .selectCategory(dictionary["category"])
-                .selectModerator(dictionary["moderator"])
+                .selectTeacher(dictionary["teacher"])
                 .setCatalog(dictionary["catalog"])
                 .submit()
                 .assert();
@@ -159,14 +160,14 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .searchNewlyAddedCouseByName(dictionary["name"])
                 .deleteAndAssertNewlyAddedCourseIfIsExist();
         }
-        [Then(@"Delete COURSE")]
-        public void deleteCourse(Table table){
+        [Then(@"admin deletes added Course")]
+        public void ThenAdminDeletesAddedCourse(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new CoursesPage(driver, "admin")
+            new HomePage(driver)
+                .openCOURSESpage("admin")
                 .searchNewlyAddedCouseByName(dictionary["name"])
                 .deleteNewlyAddedCourse()
                 .assert();
-            // TODO: Search multiple, delete which one?
         }
         [Given(@"instructor checks live is exist")]
         public void GivenİnstructorChecksLiveİsExist(){
@@ -226,7 +227,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
         public void GivenİnstructorAddsNewUserWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
-                .openStudentPage("instructor")
+                .openStudentsPage("instructor")
                 .addNew()
                 .setFirstName(dictionary["firstName"])
                 .setLastName(dictionary["lastName"])
@@ -640,7 +641,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
         public void ThenAdminAddsİnstructor(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
-                .openModeratorsPage("admin")
+                .openTeachersPage("admin")
                 .clickAddButton()
                 .enterFirstName(dictionary["first_name"])
                 .enterLastName(dictionary["last_name"])
@@ -656,7 +657,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
         [Then(@"admin adds role to instructor")]
         public void ThenAdminAddsRoleToİnstructor(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new ModeratorsPage(driver, "admin")
+            new TeachersPage(driver, "admin")
                 .searchNewlyAddedModeratorByName(dictionary["name"])
                 .clickThreePoints()
                 .clickRolesInThreePoints()
@@ -668,13 +669,13 @@ namespace VeduBoxUnitTest.StepDefinitions{
         public void GivenAdminChecksİnstructorİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
-                .openModeratorsPage("admin")
+                .openTeachersPage("admin")
                 .searchNewlyAddedModeratorByNameAndDeleteIt(dictionary["name"]);
         }
         [Then(@"admin delete instructor")]
         public void ThenAdminDeleteİnstructor(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new ModeratorsPage(driver, "admin")
+            new TeachersPage(driver, "admin")
                 .searchNewlyAddedModeratorByName(dictionary["name"])
                 .clickThreePoints()
                 .clickDeleteInThreePoints()
@@ -893,9 +894,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .enterEighthAnswer(dictionary["eighthAnswer"])
                 .selectCategory()
                 .clickSaveButton()
-                .assert()
-
-            ;
+                .assert();
         }
 
         [Then(@"Admin deletes newly added test multiple choice adding question with document")]
@@ -916,5 +915,53 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .openPoolTestsPage("instructor")
                 .searchNewlyAddedPollTestByNameAndDeleteIt(dictionary["Name"]);
         }
+        [Given(@"admin checks catalog is exist")]
+        public void GivenAdminChecksCatalogİsExist(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openCatalogPage("admin")
+                .searchNewlyAddedCatalogAndDeleteIt(dictionary["name"]);
+        }
+        [Then(@"admin adds new catalog")]
+        public void ThenAdminAddsNewCatalog(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openCatalogPage("instructor")
+                .clickAddNew()
+                .enterName(dictionary["name"])
+                .enterTags(dictionary["tags"])
+                .enterDescription(dictionary["description"])
+                .submit()
+                .assert();
+        }
+        [Then(@"admin adds new catalog subscription to existing catalog")]
+        public void ThenAdminAddsNewCatalogSubscriptionToExistingCatalog(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openCatalogPage("instructor")
+                .searchNewlyAddedCatalog(dictionary["name"])
+                .click3Points()
+                .clickUpdateButton()
+                .clickCatalogSubscriptionAdd_button()
+                .enterCatalogSubscriptionTitle(dictionary["title"])
+                .selectCatalogSubscriptionCurrency(dictionary["currency"])
+                .selectCatalogSubscriptionType(dictionary["type"])
+                .enterCatalogSubscriptionPackageDurationTime(dictionary["duration_time"])
+                .enterCatalogSubscriptionPackageDurationType(dictionary["duration_type"])
+                .clickCatalogSubscriptionSaveButton()
+                .assert();
+        }
+        [Given(@"admin deletes added catalog")]
+        public void GivenAdminDeletesAddedCatalog(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openCatalogPage("instructor")
+                .searchNewlyAddedCatalog(dictionary["name"])
+                .click3Points()
+                .clickDeleteUserButton()
+                .clickAreUSure()
+                .assert();
+        }
+
     }
 }

@@ -14,7 +14,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By DESCRIPTION = By.CssSelector("div[ng-model='html']");
         private static By CATEGORY_ADMIN = By.CssSelector("select[ng-model='course.categoryId']");
         private static By CATEGORY_INSTRUCTOR = By.CssSelector("select[ng-model='courseAndPackage.categoryId']");
-        private static By MODERATOR = By.CssSelector("select[ng-model='course.teacherUserId']");
+        private static By TEACHER = By.CssSelector("select[ng-model='course.teacherUserId']");
         private static By CATALOG= By.CssSelector("select[ng-model='course.teacherUserId']");
         private static By SUBMIT_ADMIN = By.CssSelector("button[type='submit']:nth-child(1)");
         private static By SUBMIT_INSTRUCTOR = By.CssSelector("button[ng-disabled='courseAndPackageForm.$invalid']");
@@ -88,8 +88,8 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
                 selectDropDown(CATEGORY_INSTRUCTOR, catetoryName);
             return this;
         }
-        public CoursesPage selectModerator(string moderatorName){
-            selectDropDown(MODERATOR, moderatorName);
+        public CoursesPage selectTeacher(string teacherName){
+            selectDropDown(TEACHER, teacherName);
             return this;
         }
         public CoursesPage setCatalog(string catalogNames){

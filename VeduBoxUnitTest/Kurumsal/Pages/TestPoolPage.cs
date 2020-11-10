@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 using VeduBoxUnitTest.Assertion;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
-    class PoolTestsPage : Page{
+    class TestPoolPage : Page{
         private static string _user;
         private static By ADD_BUTTON = By.XPath("(//button[@ui-sref='veduBox.testExam.tests.new'])[1]");
         private static By NAME = By.CssSelector("input[ng-model='test.name']");
@@ -23,6 +23,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By NUMBER_OF_TESTQUESTIONS = By.CssSelector("input[ng-model='test.numberOfTestQuestions']");
         private static By EACH_POINT = By.CssSelector("input[ng-model='test.eachQuestionPoint']");
         private static By NUMBER_OF_CHOICES = By.CssSelector("input[ng-model='test.numberOfQuestionChoices']");
+        private static By IS_RETURN_BETWEEN_QUESTIONS = By.CssSelector("input[ng-model='test.isReturnEnabled']");
         private static By FIRST_ANSWER = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div/div[2]/div/div[1]/div/div[1]/div/div[16]/div[1]/input");
         private static By SECOND_ANSWER = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div/div[2]/div/div[1]/div/div[1]/div/div[16]/div[2]/input");
         private static By THIRD_ANSWER = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div/div[2]/div/div[1]/div/div[1]/div/div[16]/div[3]/input");
@@ -31,140 +32,159 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By SIXTH_ANSWER = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div/div[2]/div/div[1]/div/div[1]/div/div[16]/div[6]/input");
         private static By SEVENTH_ANSWER = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div/div[2]/div/div[1]/div/div[1]/div/div[16]/div[7]/input");
         private static By EIGHTH_ANSWER = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div/div[2]/div/div[1]/div/div[1]/div/div[16]/div[8]/input");
-        private static By CATEGORY = By.XPath("//a[@class='jstree-anchor'][contains(text(),'BurakTestKategori')]");
+        private static By NEXT_BUTTON = By.XPath("//*[@id='mainSection']/div/div/div[3]/div/div/div[2]/div/div[2]/div/div/button[4]");
+        private static By SEARCH_QUESTION_INPUT = By.XPath("//*[@id='step2']/div[2]/div[1]/div/div[1]/div[2]/div[6]/input");
         private static By SAVE_BUTTON = By.CssSelector("button[ng-click='save()']");
         private static By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
         private static By SEARCH_BOX = By.CssSelector("input.form-control.vedu-search");
         private static By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
         private static By DELETE_POLLTEST = By.CssSelector("a[ng-click='delete(test.testId)']");
+        private static By SET_BUTTON = By.CssSelector("button[ng-click='setSelectedQuestions(question)']");
         private static By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
-        public PoolTestsPage(IWebDriver wd, string user) : base(wd){
+        public TestPoolPage(IWebDriver wd, string user) : base(wd){
             _user = user;
         }
-        public PoolTestsPage clickAddButton(){
+        public TestPoolPage clickAddButton(){
             click(ADD_BUTTON);
             return this;
         }
-        public PoolTestsPage enterName(string Name){
+        public TestPoolPage enterName(string Name){
             type(NAME, Name);
             return this;
         }
-        public PoolTestsPage enterDescription(string Description){
+        public TestPoolPage enterDescription(string Description){
             type(DESCRIPTION, Description);
             return this;
         }
-        public PoolTestsPage enterDuration(int Duration){
+        public TestPoolPage enterDuration(int Duration){
             type(DURATION, Duration);
             return this;
         }
-        public PoolTestsPage selectIsPublic(){
+        public TestPoolPage selectIsPublic(){
             if (isSelected(IS_PUBLIC) == false)
                 click(IS_PUBLIC);
             return this;
         }
-        public PoolTestsPage selectIsOpticalMarker(){
+        public TestPoolPage selectIsOpticalMarker(){
             if (isSelected(OPTICAL_MARKER) == false)
                 click(OPTICAL_MARKER);
             return this;
         }
-        public PoolTestsPage selectIsDocument(){
+        public TestPoolPage selectIsDocument(){
             if (isSelected(IS_DOCUMENT) == false)
                 click(IS_DOCUMENT);
             return this;
         }
-        public PoolTestsPage selectFile(){
+        public TestPoolPage clickSetButton(){
+            click(SET_BUTTON);
+            return this;
+        }
+        public TestPoolPage selectFile(){
             type(
                 CHOOSE_FILE,
                 Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Docs\\file.png"))
             );
             return this;
         }
-        public PoolTestsPage selectIsShuffle(){
+        public TestPoolPage selectIsShuffle(){
             if (isSelected(IS_SHUFFLE) == false)
                 click(IS_SHUFFLE);
             return this;
         }
-        public PoolTestsPage enterQuestionNumber(int questionNumber){
+        public TestPoolPage enterQuestionNumber(int questionNumber){
             type(NUMBER_OF_TESTQUESTIONS, questionNumber);
             return this;
         }
-        public PoolTestsPage enterPointsofEach(int points){
+        public TestPoolPage enterPointsofEach(int points){
             type(EACH_POINT, points);
             return this;
         }
-
-        public PoolTestsPage enterNumberOfChoices(int choicesNumber){
+        public TestPoolPage clickIsReturnBetweenQuestions(){
+            if (isSelected(IS_RETURN_BETWEEN_QUESTIONS) == false)
+                click(IS_RETURN_BETWEEN_QUESTIONS);
+            return this;
+        }
+        public TestPoolPage enterNumberOfChoices(int choicesNumber){
             type(NUMBER_OF_CHOICES, choicesNumber);
             return this;
         }
-        public PoolTestsPage enterFirstAnswer(string firstAnswer) {
+        public TestPoolPage enterFirstAnswer(string firstAnswer) {
             type(FIRST_ANSWER, firstAnswer);
             return this;
         }
-        public PoolTestsPage enterSecondAnswer(string secondAnswer){
+        public TestPoolPage enterSecondAnswer(string secondAnswer){
             type(SECOND_ANSWER, secondAnswer);
             return this;
         }
-        public PoolTestsPage enterThirdAnswer(string thirdAnswer){
+        public TestPoolPage enterThirdAnswer(string thirdAnswer){
             type(THIRD_ANSWER, thirdAnswer);
             return this;
         }
-        public PoolTestsPage enterFourthAnswer(string fourthAnswer){
+        public TestPoolPage enterFourthAnswer(string fourthAnswer){
             type(FOURTH_ANSWER, fourthAnswer);
             return this;
         }
-        public PoolTestsPage enterFifthAnswer(string fifthAnswer){
+        public TestPoolPage enterFifthAnswer(string fifthAnswer){
             type(FIFTH_ANSWER, fifthAnswer);
             return this;
         }
-        public PoolTestsPage enterSixthAnswer(string sixthAnswer){
+        public TestPoolPage enterSixthAnswer(string sixthAnswer){
             type(SIXTH_ANSWER, sixthAnswer);
             return this;
         }
-        public PoolTestsPage enterSeventhAnswer(string seventhAnswer){
+        public TestPoolPage enterSeventhAnswer(string seventhAnswer){
             type(SEVENTH_ANSWER, seventhAnswer);
             return this;
         }
-        public PoolTestsPage enterEighthAnswer(string eighthAnswer){
+        public TestPoolPage enterEighthAnswer(string eighthAnswer){
             type(EIGHTH_ANSWER, eighthAnswer);
             return this;
         }
-        public PoolTestsPage selectCategory(){
-            click(CATEGORY);
+        public TestPoolPage selectTestCategory(string testCategories){
+            string[] names = testCategories.Split(',');
+            foreach (var name in names){
+                click(By.XPath("//a[contains(text(), '" + name + "')]"));
+            }
             return this;
         }
-        public PoolTestsPage clickSaveButton(){
+        public TestPoolPage clickSaveButton(){
             click(SAVE_BUTTON);
             return this;
         }
-        public PoolTestsPage assert(){
+        public TestPoolPage assert(){
             AssertionCustom.assertElementVisible("Element Not Found", driver, SUCCESS);
             return this;
         }
-        public PoolTestsPage searchNewlyAddedPollTestByName(string Name){
+        public TestPoolPage enterQuestionName(string name){
+            type(SEARCH_QUESTION_INPUT, name);
+            return this;
+        }
+        public TestPoolPage searchNewlyAddedPollTestByName(string Name){
             type(SEARCH_BOX, Name);
             sleepms(1000);
             return this;
         }
-        public PoolTestsPage clickThreePoints(){
+        public TestPoolPage clickThreePoints(){
             click(THREE_POINTS);
             return this;
         }
-        public PoolTestsPage clickDelete()
-        {
-
+        public TestPoolPage clickNextButton(){
+            click(NEXT_BUTTON);
+            return this;
+        }
+        public TestPoolPage clickDeleteTest(){
             click(DELETE_POLLTEST);
             return this;
         }
-        public PoolTestsPage clickAreYouSureOK(){
+        public TestPoolPage clickAreUSure(){
             click(ARE_U_SURE_OK);
             return this;
         }
-        public PoolTestsPage clearSearchBox(){
+        public TestPoolPage clearSearchBox(){
             clear(SEARCH_BOX);
             return this;
         }
-        public PoolTestsPage searchNewlyAddedPollTestByNameAndDeleteIt(string Name){
+        public TestPoolPage searchNewlyAddedPollTestByNameAndDeleteIt(string Name){
             searchNewlyAddedPollTestByName(Name);
             try{
                 clickThreePoints();
@@ -172,8 +192,8 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
                 Console.WriteLine("Error:" + e.Message);
                 return null;
             }
-            clickDelete();
-            clickAreYouSureOK();
+            clickDeleteTest();
+            clickAreUSure();
             assert();
             return this;
         }

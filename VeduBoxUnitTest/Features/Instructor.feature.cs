@@ -114,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table62.AddRow(new string[] {
                             "course_name",
-                            "deneme_instructor"});
+                            "deneme_admin"});
                 table62.AddRow(new string[] {
                             "meetingType",
                             "pro"});
@@ -190,7 +190,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table63.AddRow(new string[] {
                             "course_name",
-                            "deneme_instructor"});
+                            "deneme_admin"});
                 table63.AddRow(new string[] {
                             "meetingType",
                             "pro"});
@@ -226,12 +226,12 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("3_instructor_add_user")]
-        public virtual void _3_İnstructor_Add_User()
+        [NUnit.Framework.DescriptionAttribute("3_instructor_add_student")]
+        public virtual void _3_İnstructor_Add_Student()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("3_instructor_add_user", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("3_instructor_add_student", null, tagsOfScenario, argumentsOfScenario);
 #line 37
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -263,9 +263,9 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table64.AddRow(new string[] {
                             "email",
-                            "admin_deneme@anil.com"});
+                            "anil_instructor_student@anil.com"});
 #line 40
- testRunner.Given("instructor checks user is exist", ((string)(null)), table64, "Given ");
+ testRunner.Given("instructor checks student is exist", ((string)(null)), table64, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table65 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
@@ -278,10 +278,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "deneme_user_last"});
                 table65.AddRow(new string[] {
                             "branch",
-                            "Merkez"});
+                            "Merkez/Center"});
                 table65.AddRow(new string[] {
                             "email",
-                            "admin_deneme@anil.com"});
+                            "anil_instructor_student@anil.com"});
                 table65.AddRow(new string[] {
                             "userName",
                             "admin_deneme"});
@@ -290,18 +290,18 @@ this.ScenarioInitialize(scenarioInfo);
                             "admin_deneme_pass"});
                 table65.AddRow(new string[] {
                             "catalog",
-                            "deneme_instructor"});
+                            "deneme_admin"});
 #line 43
- testRunner.Given("instructor adds new user with", ((string)(null)), table65, "Given ");
+ testRunner.Given("instructor adds new student with", ((string)(null)), table65, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table66 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table66.AddRow(new string[] {
                             "email",
-                            "admin_deneme@anil.com"});
+                            "anil_instructor_student@anil.com"});
 #line 52
- testRunner.Then("instructor delete User", ((string)(null)), table66, "Then ");
+ testRunner.Then("instructor delete student", ((string)(null)), table66, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -345,7 +345,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table67.AddRow(new string[] {
                             "name",
-                            "project management"});
+                            "anil_vedubox_course_instructor"});
 #line 59
  testRunner.Given("instructor checks course is exist", ((string)(null)), table67, "Given ");
 #line hidden
@@ -354,10 +354,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table68.AddRow(new string[] {
                             "name",
-                            "project management"});
+                            "anil_vedubox_course_instructor"});
                 table68.AddRow(new string[] {
                             "category",
-                            "DevTest"});
+                            "selenium"});
 #line 62
  testRunner.Given("instructor adds new course with", ((string)(null)), table68, "Given ");
 #line hidden
@@ -366,7 +366,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table69.AddRow(new string[] {
                             "name",
-                            "project management"});
+                            "anil_vedubox_course_instructor"});
 #line 66
  testRunner.Then("instructor delete course", ((string)(null)), table69, "Then ");
 #line hidden
@@ -412,7 +412,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table70.AddRow(new string[] {
                             "name",
-                            "project management"});
+                            "anil_vedubox_course_instructor"});
 #line 73
  testRunner.Given("instructor checks course is exist", ((string)(null)), table70, "Given ");
 #line hidden
@@ -421,10 +421,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table71.AddRow(new string[] {
                             "name",
-                            "project management"});
+                            "anil_vedubox_course_instructor"});
                 table71.AddRow(new string[] {
                             "category",
-                            "DevTest"});
+                            "selenium"});
 #line 76
  testRunner.Given("instructor adds new course with", ((string)(null)), table71, "Given ");
 #line hidden
@@ -433,7 +433,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table72.AddRow(new string[] {
                             "name",
-                            "project management"});
+                            "anil_vedubox_course_instructor"});
                 table72.AddRow(new string[] {
                             "title",
                             "hello world"});
@@ -445,7 +445,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table73.AddRow(new string[] {
                             "name",
-                            "project management"});
+                            "anil_vedubox_course_instructor"});
 #line 84
  testRunner.Then("instructor delete course", ((string)(null)), table73, "Then ");
 #line hidden
@@ -494,7 +494,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table74.AddRow(new string[] {
                             "course_name",
-                            "deneme_instructor"});
+                            "deneme_admin"});
                 table74.AddRow(new string[] {
                             "meetingType",
                             "webinar"});
@@ -591,7 +591,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table76.AddRow(new string[] {
                             "name",
-                            "project management"});
+                            "anil_vedubox_course"});
 #line 116
  testRunner.Given("instructor checks course is exist", ((string)(null)), table76, "Given ");
 #line hidden
@@ -600,10 +600,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table77.AddRow(new string[] {
                             "name",
-                            "project management"});
+                            "anil_vedubox_course"});
                 table77.AddRow(new string[] {
                             "category",
-                            "DevTest"});
+                            "selenium"});
 #line 119
  testRunner.Given("instructor adds new course with", ((string)(null)), table77, "Given ");
 #line hidden
@@ -611,11 +611,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "Key",
                             "Value"});
                 table78.AddRow(new string[] {
-                            "name",
-                            "project management"});
+                            "course",
+                            "anil_vedubox_course"});
                 table78.AddRow(new string[] {
                             "title",
-                            "hello world"});
+                            "anil_vedubox_subject"});
 #line 123
  testRunner.Given("instructor adds subject with", ((string)(null)), table78, "Given ");
 #line hidden
@@ -623,14 +623,14 @@ this.ScenarioInitialize(scenarioInfo);
                             "Key",
                             "Value"});
                 table79.AddRow(new string[] {
-                            "name",
-                            "project management"});
+                            "course",
+                            "anil_vedubox_course"});
                 table79.AddRow(new string[] {
                             "title",
-                            "Döküman Ekleme"});
+                            "anil_vedubox_file_to_subject"});
                 table79.AddRow(new string[] {
                             "desc",
-                            "Test"});
+                            "anil_vedubox_file_desc"});
 #line 127
  testRunner.Given("instructor adds file source with", ((string)(null)), table79, "Given ");
 #line hidden
@@ -639,7 +639,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table80.AddRow(new string[] {
                             "name",
-                            "project management"});
+                            "anil_vedubox_course"});
 #line 132
  testRunner.Then("instructor delete course", ((string)(null)), table80, "Then ");
 #line hidden
@@ -685,7 +685,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table81.AddRow(new string[] {
                             "name",
-                            "project management"});
+                            "anil_vedubox_course"});
 #line 139
  testRunner.Given("instructor checks course is exist", ((string)(null)), table81, "Given ");
 #line hidden
@@ -694,10 +694,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table82.AddRow(new string[] {
                             "name",
-                            "project management"});
+                            "anil_vedubox_course"});
                 table82.AddRow(new string[] {
                             "category",
-                            "DevTest"});
+                            "selenium"});
 #line 142
  testRunner.Given("instructor adds new course with", ((string)(null)), table82, "Given ");
 #line hidden
@@ -705,11 +705,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "Key",
                             "Value"});
                 table83.AddRow(new string[] {
-                            "name",
-                            "project management"});
+                            "course",
+                            "anil_vedubox_course"});
                 table83.AddRow(new string[] {
                             "title",
-                            "hello world"});
+                            "anil_vedubox_subject"});
 #line 146
  testRunner.Given("instructor adds subject with", ((string)(null)), table83, "Given ");
 #line hidden
@@ -717,14 +717,14 @@ this.ScenarioInitialize(scenarioInfo);
                             "Key",
                             "Value"});
                 table84.AddRow(new string[] {
-                            "name",
-                            "project management"});
+                            "course",
+                            "anil_vedubox_course"});
                 table84.AddRow(new string[] {
                             "title",
-                            "Döküman Ekleme"});
+                            "anil_vedubox_video_to_subject"});
                 table84.AddRow(new string[] {
                             "desc",
-                            "Test"});
+                            "anil_vedubox_video_desc"});
 #line 150
  testRunner.Given("instructor adds video source with", ((string)(null)), table84, "Given ");
 #line hidden
@@ -733,7 +733,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table85.AddRow(new string[] {
                             "name",
-                            "project management"});
+                            "anil_vedubox_course"});
 #line 155
  testRunner.Then("instructor delete course", ((string)(null)), table85, "Then ");
 #line hidden
@@ -779,7 +779,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table86.AddRow(new string[] {
                             "name",
-                            "project management"});
+                            "anil_vedubox_course"});
 #line 162
  testRunner.Given("instructor checks course is exist", ((string)(null)), table86, "Given ");
 #line hidden
@@ -788,10 +788,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table87.AddRow(new string[] {
                             "name",
-                            "project management"});
+                            "anil_vedubox_course"});
                 table87.AddRow(new string[] {
                             "category",
-                            "DevTest"});
+                            "selenium"});
 #line 165
  testRunner.Given("instructor adds new course with", ((string)(null)), table87, "Given ");
 #line hidden
@@ -799,11 +799,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "Key",
                             "Value"});
                 table88.AddRow(new string[] {
-                            "name",
-                            "project management"});
+                            "course",
+                            "anil_vedubox_course"});
                 table88.AddRow(new string[] {
                             "title",
-                            "hello world"});
+                            "anil_vedubox_subject"});
 #line 169
  testRunner.Given("instructor adds subject with", ((string)(null)), table88, "Given ");
 #line hidden
@@ -811,14 +811,14 @@ this.ScenarioInitialize(scenarioInfo);
                             "Key",
                             "Value"});
                 table89.AddRow(new string[] {
-                            "name",
-                            "project management"});
+                            "course",
+                            "anil_vedubox_course"});
                 table89.AddRow(new string[] {
                             "title",
-                            "Video Ekleme (Vimeo ID ile)"});
+                            "anil_vedubox_video_to_subject_vimeo_id"});
                 table89.AddRow(new string[] {
                             "desc",
-                            "Test"});
+                            "anil_vedubox_video_desc"});
                 table89.AddRow(new string[] {
                             "id",
                             "444883013"});
@@ -830,7 +830,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table90.AddRow(new string[] {
                             "name",
-                            "project management"});
+                            "anil_vedubox_course"});
 #line 179
  testRunner.Then("instructor delete course", ((string)(null)), table90, "Then ");
 #line hidden
@@ -903,7 +903,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "D Şıkkı"});
                 table92.AddRow(new string[] {
                             "TestCategory",
-                            "EğitmenBurakTestKategori"});
+                            "EğitmenAnilTestKategori"});
 #line 189
  testRunner.Given("instructor adds multiple choice question with", ((string)(null)), table92, "Given ");
 #line hidden
@@ -914,7 +914,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "name",
                             "Soru - MULTIPLE CHOICE By ANIL"});
 #line 198
- testRunner.Then("instructor delete multiple choice question with", ((string)(null)), table93, "Then ");
+ testRunner.Then("instructor deletes question with", ((string)(null)), table93, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -976,7 +976,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "False"});
                 table95.AddRow(new string[] {
                             "TestCategory",
-                            "EğitmenBurakTestKategori"});
+                            "EğitmenAnilTestKategori"});
 #line 208
  testRunner.Given("instructor adds true false question with", ((string)(null)), table95, "Given ");
 #line hidden
@@ -987,7 +987,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "name",
                             "Soru - TRUE FALSE By ANIL"});
 #line 214
- testRunner.Then("instructor delete multiple choice question with", ((string)(null)), table96, "Then ");
+ testRunner.Then("instructor deletes question with", ((string)(null)), table96, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -1046,7 +1046,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "45"});
                 table98.AddRow(new string[] {
                             "TestCategory",
-                            "EğitmenBurakTestKategori"});
+                            "EğitmenAnilTestKategori"});
 #line 224
  testRunner.Given("instructor adds open_ended question with", ((string)(null)), table98, "Given ");
 #line hidden
@@ -1057,7 +1057,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "name",
                             "Soru - open ended By ANIL"});
 #line 229
- testRunner.Then("instructor delete multiple choice question with", ((string)(null)), table99, "Then ");
+ testRunner.Then("instructor deletes question with", ((string)(null)), table99, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -1100,64 +1100,82 @@ this.ScenarioInitialize(scenarioInfo);
                             "Key",
                             "Value"});
                 table100.AddRow(new string[] {
-                            "question",
+                            "name",
                             "Soru - MULTIPLE CHOICE By ANIL"});
-                table100.AddRow(new string[] {
-                            "point",
-                            "25"});
-                table100.AddRow(new string[] {
-                            "choiceA",
-                            "A Şıkkı"});
-                table100.AddRow(new string[] {
-                            "choiceB",
-                            "B Şıkkı"});
-                table100.AddRow(new string[] {
-                            "choiceC",
-                            "C Şıkkı"});
-                table100.AddRow(new string[] {
-                            "choiceD",
-                            "D Şıkkı"});
-                table100.AddRow(new string[] {
-                            "TestCategory",
-                            "EğitmenBurakTestKategori"});
 #line 236
- testRunner.Given("instructor adds multiple choice question with", ((string)(null)), table100, "Given ");
+ testRunner.Given("instructor checks question is exist", ((string)(null)), table100, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table101 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table101.AddRow(new string[] {
-                            "name",
-                            "new test added by ANIL"});
-                table101.AddRow(new string[] {
-                            "time",
-                            "45"});
-                table101.AddRow(new string[] {
-                            "TestCategory",
-                            "EğitmenBurakTestKategori"});
-                table101.AddRow(new string[] {
                             "question",
                             "Soru - MULTIPLE CHOICE By ANIL"});
-#line 245
- testRunner.Given("instructor adds tests with", ((string)(null)), table101, "Given ");
+                table101.AddRow(new string[] {
+                            "point",
+                            "25"});
+                table101.AddRow(new string[] {
+                            "choiceA",
+                            "A Şıkkı"});
+                table101.AddRow(new string[] {
+                            "choiceB",
+                            "B Şıkkı"});
+                table101.AddRow(new string[] {
+                            "choiceC",
+                            "C Şıkkı"});
+                table101.AddRow(new string[] {
+                            "choiceD",
+                            "D Şıkkı"});
+                table101.AddRow(new string[] {
+                            "TestCategory",
+                            "EğitmenAnilTestKategori"});
+#line 239
+ testRunner.Given("instructor adds multiple choice question with", ((string)(null)), table101, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table102 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table102.AddRow(new string[] {
                             "name",
-                            "new test added by ANIL"});
-#line 251
- testRunner.Given("instructor delete tests with", ((string)(null)), table102, "Given ");
+                            "Soru - MULTIPLE CHOICE By ANIL"});
+#line 248
+ testRunner.Given("instructor checks test poll question is exist", ((string)(null)), table102, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table103 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table103.AddRow(new string[] {
                             "name",
+                            "anil_vedubox_test"});
+                table103.AddRow(new string[] {
+                            "time",
+                            "45"});
+                table103.AddRow(new string[] {
+                            "TestCategory",
+                            "EğitmenAnilTestKategori"});
+                table103.AddRow(new string[] {
+                            "question",
                             "Soru - MULTIPLE CHOICE By ANIL"});
-#line 254
- testRunner.Then("instructor delete multiple choice question with", ((string)(null)), table103, "Then ");
+#line 251
+ testRunner.Given("instructor adds test pool multiple choice with", ((string)(null)), table103, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table104 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table104.AddRow(new string[] {
+                            "name",
+                            "anil_vedubox_test"});
+#line 257
+ testRunner.Given("instructor delete tests with", ((string)(null)), table104, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table105 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table105.AddRow(new string[] {
+                            "name",
+                            "Soru - MULTIPLE CHOICE By ANIL"});
+#line 260
+ testRunner.Then("instructor deletes question with", ((string)(null)), table105, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -1170,7 +1188,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("21_instructor_add_test_multiple_choice_adding_question_with_document", null, tagsOfScenario, argumentsOfScenario);
-#line 258
+#line 264
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1190,77 +1208,80 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 259
+#line 265
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 260
+#line 266
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table104 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table104.AddRow(new string[] {
-                            "Name",
-                            "TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL"});
-#line 261
- testRunner.Given("Instructor checks poll question is exist", ((string)(null)), table104, "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table105 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Key",
-                            "Value"});
-                table105.AddRow(new string[] {
-                            "Name",
-                            "TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL"});
-                table105.AddRow(new string[] {
-                            "Description",
-                            "TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL"});
-                table105.AddRow(new string[] {
-                            "Duration",
-                            "25"});
-                table105.AddRow(new string[] {
-                            "questionNumber",
-                            "8"});
-                table105.AddRow(new string[] {
-                            "points",
-                            "15"});
-                table105.AddRow(new string[] {
-                            "choicesNumber",
-                            "4"});
-                table105.AddRow(new string[] {
-                            "firstAnswer",
-                            "A"});
-                table105.AddRow(new string[] {
-                            "secondAnswer",
-                            "B"});
-                table105.AddRow(new string[] {
-                            "thirdAnswer",
-                            "C"});
-                table105.AddRow(new string[] {
-                            "fourthAnswer",
-                            "D"});
-                table105.AddRow(new string[] {
-                            "fifthAnswer",
-                            "A"});
-                table105.AddRow(new string[] {
-                            "sixthAnswer",
-                            "B"});
-                table105.AddRow(new string[] {
-                            "seventhAnswer",
-                            "C"});
-                table105.AddRow(new string[] {
-                            "eighthAnswer",
-                            "D"});
-#line 264
- testRunner.Then("instructor adds test multiple choice adding question with document", ((string)(null)), table105, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table106 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table106.AddRow(new string[] {
-                            "Name",
+                            "name",
                             "TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL"});
-#line 280
-    testRunner.Then("Admin deletes newly added test multiple choice adding question with document", ((string)(null)), table106, "Then ");
+#line 267
+ testRunner.Given("instructor checks test poll question is exist", ((string)(null)), table106, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table107 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table107.AddRow(new string[] {
+                            "Name",
+                            "anil_vedubox_test"});
+                table107.AddRow(new string[] {
+                            "Description",
+                            "TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL"});
+                table107.AddRow(new string[] {
+                            "Duration",
+                            "25"});
+                table107.AddRow(new string[] {
+                            "questionNumber",
+                            "8"});
+                table107.AddRow(new string[] {
+                            "points",
+                            "15"});
+                table107.AddRow(new string[] {
+                            "choicesNumber",
+                            "4"});
+                table107.AddRow(new string[] {
+                            "firstAnswer",
+                            "A"});
+                table107.AddRow(new string[] {
+                            "secondAnswer",
+                            "B"});
+                table107.AddRow(new string[] {
+                            "thirdAnswer",
+                            "C"});
+                table107.AddRow(new string[] {
+                            "fourthAnswer",
+                            "D"});
+                table107.AddRow(new string[] {
+                            "fifthAnswer",
+                            "A"});
+                table107.AddRow(new string[] {
+                            "sixthAnswer",
+                            "B"});
+                table107.AddRow(new string[] {
+                            "seventhAnswer",
+                            "C"});
+                table107.AddRow(new string[] {
+                            "eighthAnswer",
+                            "D"});
+                table107.AddRow(new string[] {
+                            "TestCategory",
+                            "EğitmenAnilTestKategori"});
+#line 270
+ testRunner.Then("instructor adds test pool multiple choice with document", ((string)(null)), table107, "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table108 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table108.AddRow(new string[] {
+                            "name",
+                            "anil_vedubox_test"});
+#line 287
+ testRunner.Given("instructor delete tests with", ((string)(null)), table108, "Given ");
 #line hidden
             }
             this.ScenarioCleanup();

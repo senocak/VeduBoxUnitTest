@@ -10,7 +10,8 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
     class StudentsPage : Page{
         private static string _user;
 
-        private static By ADD_NEW = By.CssSelector("button[ui-sref='veduBox.admin.students.new']");
+        private static By ADMIN_ADD_NEW = By.CssSelector("button[ui-sref='veduBox.admin.students.new']");
+        private static By INSTRUCTOR_ADD_NEW = By.CssSelector("button[ui-sref='veduBox.teacher.students.new']");
         private static By FIRSTNAME = By.CssSelector("input[ng-model='student.firstName']");
         private static By LASTNAME = By.CssSelector("input[ng-model='student.lastName']");
         private static By BRANCH = By.CssSelector("select[ng-model='student.branchId']");
@@ -31,7 +32,11 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             _user = user;
         }
         public StudentsPage addNew(){
-            click(ADD_NEW);
+            if(_user == "admin"){
+                click(ADMIN_ADD_NEW);
+            }else if(_user == "instructor"){
+                click(INSTRUCTOR_ADD_NEW);
+            }
             return this;
         }
         public StudentsPage setFirstName(string firstName){

@@ -6,7 +6,7 @@ Scenario: 1_instructor_add_live
 	Given instructor checks live is exist
 	Given instructor adds new live with
 		| Key               | Value                  |
-		| course_name       | deneme_admin           |
+		| course_name       | default_course1        |
 		| meetingType       | pro                    |
 		| title             | deneme                 |
 		| hour              | 18                     |
@@ -23,7 +23,7 @@ Scenario: 2_instructor_live_start
 	Given instructor checks live is exist
 	Given instructor adds new live with
 		| Key               | Value                  |
-		| course_name       | deneme_admin           |
+		| course_name       | default_course1        |
 		| meetingType       | pro                    |
 		| title             | deneme                 |
 		| hour              | 18                     |
@@ -44,11 +44,11 @@ Scenario: 3_instructor_add_student
 		| Key       | Value                 |
 		| firstName | deneme_user_first     |
 		| lastName  | deneme_user_last      |
-		| branch    | Merkez/Center         |
+		| branch    | defaultBranch1        |
 		| email     | anil_instructor_student@anil.com |
 		| userName  | admin_deneme          |
 		| password  | admin_deneme_pass     |
-		| catalog   | deneme_admin          |
+		| catalog   | default_course1       |
 	Then instructor delete student
 		| Key   | Value                 |
 		| email | anil_instructor_student@anil.com |
@@ -62,7 +62,7 @@ Scenario: 4_instructor_add_course
 	Given instructor adds new course with
 		| Key      | Value                          |
 		| name     | anil_vedubox_course_instructor |
-		| category | selenium                       |
+		| category | defaultCategory1               |
 	Then instructor delete course
 		| Key  | Value                          |
 		| name | anil_vedubox_course_instructor |
@@ -76,7 +76,7 @@ Scenario: 5_instructor_add_subject
 	Given instructor adds new course with
 		| Key      | Value                          |
 		| name     | anil_vedubox_course_instructor |
-		| category | selenium                       |
+		| category | defaultCategory1               |
 	Given instructor adds subject with
 		| Key   | Value                          |
 		| name  | anil_vedubox_course_instructor |
@@ -91,7 +91,7 @@ Scenario: 6_instructor_add_webinar_join_webinar
 	Given instructor checks live is exist
 	Given instructor adds new webinar with
 		| Key               | Value                  |
-		| course_name       | deneme_admin           |
+		| course_name       | default_course1        |
 		| meetingType       | webinar                |
 		| title             | deneme                 |
 		| hour              | 18                     |
@@ -119,7 +119,7 @@ Scenario: 7_instructor_add_content_as_document
 	Given instructor adds new course with
 		| Key      | Value               |
 		| name     | anil_vedubox_course |
-		| category | selenium            |
+		| category | defaultCategory1    |
 	Given instructor adds subject with
 		| Key    | Value                |
 		| course | anil_vedubox_course  |
@@ -142,7 +142,7 @@ Scenario: 8_instrcutor_add_content_as_video
 	Given instructor adds new course with
 		| Key      | Value               |
 		| name     | anil_vedubox_course |
-		| category | selenium            |
+		| category | defaultCategory1    |
 	Given instructor adds subject with
 		| Key    | Value                |
 		| course | anil_vedubox_course  |
@@ -165,7 +165,7 @@ Scenario: 9_instructor_add_content_as_video_with_vimeo
 	Given instructor adds new course with
 		| Key      | Value               |
 		| name     | anil_vedubox_course |
-		| category | selenium            |
+		| category | defaultCategory1    |
 	Given instructor adds subject with
 		| Key    | Value                |
 		| course | anil_vedubox_course  |
@@ -194,7 +194,7 @@ Scenario: 12_instructor_add_question_multiple_choice
 		| choiceB      | B Şıkkı                        |
 		| choiceC      | C Şıkkı                        |
 		| choiceD      | D Şıkkı                        |
-		| TestCategory | EğitmenAnilTestKategori        |
+		| TestCategory | DefaultTestCategory1           |
 	Then instructor deletes question with
 		| Key  | Value                          |
 		| name | Soru - MULTIPLE CHOICE By ANIL |
@@ -210,7 +210,7 @@ Scenario: 13_instructor_add_question_true_false
 		| question     | Soru - TRUE FALSE By ANIL |
 		| point        | 35                        |
 		| answer       | False                     |
-		| TestCategory | EğitmenAnilTestKategori   |
+		| TestCategory | DefaultTestCategory1      |
 	Then instructor deletes question with
 		| Key  | Value                     |
 		| name | Soru - TRUE FALSE By ANIL |
@@ -225,7 +225,7 @@ Scenario: 14_instructor_add_question_open_ended
 		| Key          | Value                     |
 		| question     | Soru - open ended By ANIL |
 		| point        | 45                        |
-		| TestCategory | EğitmenAnilTestKategori   |
+		| TestCategory | DefaultTestCategory1      |
 	Then instructor deletes question with
 		| Key  | Value                     |
 		| name | Soru - open ended By ANIL |
@@ -244,7 +244,7 @@ Scenario: 20_instructor_add_test_multiple_choice
 		| choiceB      | B Şıkkı                        |
 		| choiceC      | C Şıkkı                        |
 		| choiceD      | D Şıkkı                        |
-		| TestCategory | EğitmenAnilTestKategori        |
+		| TestCategory | DefaultTestCategory1           |
 	Given instructor checks test poll question is exist
 		| Key  | Value                          |
 		| name | Soru - MULTIPLE CHOICE By ANIL |
@@ -252,7 +252,7 @@ Scenario: 20_instructor_add_test_multiple_choice
 		| Key          | Value                          |
 		| name         | anil_vedubox_test              |
 		| time         | 45                             |
-		| TestCategory | EğitmenAnilTestKategori        |
+		| TestCategory | DefaultTestCategory1           |
 		| question     | Soru - MULTIPLE CHOICE By ANIL |
 	Given instructor delete tests with
 		| Key  | Value             |
@@ -283,7 +283,25 @@ Scenario: 21_instructor_add_test_multiple_choice_adding_question_with_document
 		| sixthAnswer    | B                                            |
 		| seventhAnswer  | C                                            |
 		| eighthAnswer   | D                                            |
-		| TestCategory   | EğitmenAnilTestKategori                      |
+		| TestCategory   | DefaultTestCategory1                         |
 	Given instructor delete tests with
 		| Key  | Value             |
 		| name | anil_vedubox_test |
+
+
+
+Scenario: 0_instructor_add_exam_with_default_params
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks exam is exist
+		| Key  | Value                |
+		| name | anil_instructor_exam |
+	Then instructor adds exam with document
+		| Key         | Value                                                                           |
+		| name        | anil_instructor_exam_name                                                       |
+		| description | anil_instructor_exam_description                                                |
+		| catalogs    | Default Katalog 1,Default Katalog 2                                             |
+		| tests       | Default Multiple Choice Test1,Default True False Test1,Default Open Ended Test1 |
+	Given instructor delete exam with
+		| Key  | Value                |
+		| name | anil_instructor_exam |

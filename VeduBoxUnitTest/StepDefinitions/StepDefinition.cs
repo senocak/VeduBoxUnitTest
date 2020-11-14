@@ -41,13 +41,13 @@ namespace VeduBoxUnitTest.StepDefinitions{
         [Given(@"Login as ""(.*)""")]
         public void WhenLoginAs(string user){
             if (user == "admin"){
-                new LoginPage(driver).enterUsername("anil").enterPassword("12345").submit();
+                new LoginPage(driver).enterUsername("defaultadmin").enterPassword("12345").submit();
             }else if (user == "instructor"){
-                new LoginPage(driver).enterUsername("anilegitmen").enterPassword("12345").submit();
+                new LoginPage(driver).enterUsername("defaultinstructor").enterPassword("12345").submit();
             }else if (user == "student"){
-                new LoginPage(driver).enterUsername("anilogrenci").enterPassword("12345").submit();
+                new LoginPage(driver).enterUsername("defaultstudent").enterPassword("12345").submit();
             }else if (user == "veli"){
-                new LoginPage(driver).enterUsername("anilveli").enterPassword("12345").submit();
+                new LoginPage(driver).enterUsername("defaultparent").enterPassword("12345").submit();
             }else{
                 string[] words = user.Split('@');
                 if(words[0] == "custom"){
@@ -88,7 +88,6 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .goDate(YEAR, MONTH, DAY)
                 .checkLiveIsExist();
         }
-        
         [Then(@"Delete LIVE")]
         public void deleteAddedLive(){
             new HomePage(driver)
@@ -346,19 +345,16 @@ namespace VeduBoxUnitTest.StepDefinitions{
         }
         [Then(@"student takes exam")]
         public void ThenStudentTakesExam(){
-
             new HomePage(driver)
                 .openExamPage("student")
                 .getFirstExam()
                 .clickStartExamButton()
                 .clickFinishExamButton()
-                .clickAreYouSure()
+                .clickAreUSure()
                 .assert();
         }
-
         [Then(@"student purchase course")]
-        public void ThenStudentPurchaseCourse(Table table)
-        {
+        public void ThenStudentPurchaseCourse(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
                 .openPortalPage("student")
@@ -421,7 +417,10 @@ namespace VeduBoxUnitTest.StepDefinitions{
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
                 .openPortalPage("student")
-            // .searchEntry(dictionary["entry"])
+                .searchEntry(dictionary["course"])
+                .addtoCart()
+                .clickCoursesPackages()
+                .searchEntry(dictionary["coursePackage"])
                 .addtoCart()
                 //TO DO //add cart seçeneği courses package için eklenmeli
                 .goToCart()
@@ -957,6 +956,37 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .searchNewlyAddedCatalog(dictionary["name"])
                 .click3Points()
                 .clickDeleteUserButton()
+                .clickAreUSure()
+                .assert();
+        }
+        [Given(@"instructor checks exam is exist")]
+        public void GivenİnstructorChecksExamİsExist(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openExamPage("instructor")
+                .searchNewlyAddedExamAndDelete(dictionary["name"]);
+        }
+        [Then(@"instructor adds exam with document")]
+        public void ThenİnstructorAddsExamWithDocument(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openExamPage("instructor")
+                .clickAddNew()
+                .enterName(dictionary["name"])
+                .enterDescription(dictionary["description"])
+                .selectCatalogs(dictionary["catalogs"])
+                .clickNextButton()
+                .setTests(dictionary["tests"])
+                .clickSaveButton();
+        }
+        [Given(@"instructor delete exam with")]
+        public void GivenİnstructorDeleteExamWith(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openExamPage("instructor")
+                .searchNewlyAddedExam(dictionary["name"])
+                .click3Points()
+                .clickDeleteExamButton()
                 .clickAreUSure()
                 .assert();
         }

@@ -167,7 +167,6 @@
     <Compile Include="Kurumsal\Pages\PortalPage.cs" />
     <Compile Include="Kurumsal\Pages\QuestionsPage.cs" />
     <Compile Include="Kurumsal\Pages\StudentsPage.cs" />
-    <Compile Include="Kurumsal\Pages\UserPage.cs" />
     <Compile Include="Kurumsal\Pages\WebinarPage.cs" />
     <Compile Include="StepDefinitions\StepDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

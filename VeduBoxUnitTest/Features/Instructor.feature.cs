@@ -114,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table62.AddRow(new string[] {
                             "course_name",
-                            "deneme_admin"});
+                            "default_course1"});
                 table62.AddRow(new string[] {
                             "meetingType",
                             "pro"});
@@ -190,7 +190,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table63.AddRow(new string[] {
                             "course_name",
-                            "deneme_admin"});
+                            "default_course1"});
                 table63.AddRow(new string[] {
                             "meetingType",
                             "pro"});
@@ -278,7 +278,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "deneme_user_last"});
                 table65.AddRow(new string[] {
                             "branch",
-                            "Merkez/Center"});
+                            "defaultBranch1"});
                 table65.AddRow(new string[] {
                             "email",
                             "anil_instructor_student@anil.com"});
@@ -290,7 +290,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "admin_deneme_pass"});
                 table65.AddRow(new string[] {
                             "catalog",
-                            "deneme_admin"});
+                            "default_course1"});
 #line 43
  testRunner.Given("instructor adds new student with", ((string)(null)), table65, "Given ");
 #line hidden
@@ -357,7 +357,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "anil_vedubox_course_instructor"});
                 table68.AddRow(new string[] {
                             "category",
-                            "selenium"});
+                            "defaultCategory1"});
 #line 62
  testRunner.Given("instructor adds new course with", ((string)(null)), table68, "Given ");
 #line hidden
@@ -424,7 +424,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "anil_vedubox_course_instructor"});
                 table71.AddRow(new string[] {
                             "category",
-                            "selenium"});
+                            "defaultCategory1"});
 #line 76
  testRunner.Given("instructor adds new course with", ((string)(null)), table71, "Given ");
 #line hidden
@@ -494,7 +494,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table74.AddRow(new string[] {
                             "course_name",
-                            "deneme_admin"});
+                            "default_course1"});
                 table74.AddRow(new string[] {
                             "meetingType",
                             "webinar"});
@@ -603,7 +603,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "anil_vedubox_course"});
                 table77.AddRow(new string[] {
                             "category",
-                            "selenium"});
+                            "defaultCategory1"});
 #line 119
  testRunner.Given("instructor adds new course with", ((string)(null)), table77, "Given ");
 #line hidden
@@ -697,7 +697,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "anil_vedubox_course"});
                 table82.AddRow(new string[] {
                             "category",
-                            "selenium"});
+                            "defaultCategory1"});
 #line 142
  testRunner.Given("instructor adds new course with", ((string)(null)), table82, "Given ");
 #line hidden
@@ -791,7 +791,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "anil_vedubox_course"});
                 table87.AddRow(new string[] {
                             "category",
-                            "selenium"});
+                            "defaultCategory1"});
 #line 165
  testRunner.Given("instructor adds new course with", ((string)(null)), table87, "Given ");
 #line hidden
@@ -903,7 +903,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "D Şıkkı"});
                 table92.AddRow(new string[] {
                             "TestCategory",
-                            "EğitmenAnilTestKategori"});
+                            "DefaultTestCategory1"});
 #line 189
  testRunner.Given("instructor adds multiple choice question with", ((string)(null)), table92, "Given ");
 #line hidden
@@ -976,7 +976,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "False"});
                 table95.AddRow(new string[] {
                             "TestCategory",
-                            "EğitmenAnilTestKategori"});
+                            "DefaultTestCategory1"});
 #line 208
  testRunner.Given("instructor adds true false question with", ((string)(null)), table95, "Given ");
 #line hidden
@@ -1046,7 +1046,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "45"});
                 table98.AddRow(new string[] {
                             "TestCategory",
-                            "EğitmenAnilTestKategori"});
+                            "DefaultTestCategory1"});
 #line 224
  testRunner.Given("instructor adds open_ended question with", ((string)(null)), table98, "Given ");
 #line hidden
@@ -1128,7 +1128,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "D Şıkkı"});
                 table101.AddRow(new string[] {
                             "TestCategory",
-                            "EğitmenAnilTestKategori"});
+                            "DefaultTestCategory1"});
 #line 239
  testRunner.Given("instructor adds multiple choice question with", ((string)(null)), table101, "Given ");
 #line hidden
@@ -1152,7 +1152,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "45"});
                 table103.AddRow(new string[] {
                             "TestCategory",
-                            "EğitmenAnilTestKategori"});
+                            "DefaultTestCategory1"});
                 table103.AddRow(new string[] {
                             "question",
                             "Soru - MULTIPLE CHOICE By ANIL"});
@@ -1270,7 +1270,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "D"});
                 table107.AddRow(new string[] {
                             "TestCategory",
-                            "EğitmenAnilTestKategori"});
+                            "DefaultTestCategory1"});
 #line 270
  testRunner.Then("instructor adds test pool multiple choice with document", ((string)(null)), table107, "Then ");
 #line hidden
@@ -1282,6 +1282,79 @@ this.ScenarioInitialize(scenarioInfo);
                             "anil_vedubox_test"});
 #line 287
  testRunner.Given("instructor delete tests with", ((string)(null)), table108, "Given ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("0_instructor_add_exam_with_default_params")]
+        public virtual void _0_İnstructor_Add_Exam_With_Default_Params()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("0_instructor_add_exam_with_default_params", null, tagsOfScenario, argumentsOfScenario);
+#line 293
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 294
+ testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 295
+ testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table109 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table109.AddRow(new string[] {
+                            "name",
+                            "anil_instructor_exam"});
+#line 296
+ testRunner.Given("instructor checks exam is exist", ((string)(null)), table109, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table110 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table110.AddRow(new string[] {
+                            "name",
+                            "anil_instructor_exam_name"});
+                table110.AddRow(new string[] {
+                            "description",
+                            "anil_instructor_exam_description"});
+                table110.AddRow(new string[] {
+                            "catalogs",
+                            "Default Katalog 1,Default Katalog 2"});
+                table110.AddRow(new string[] {
+                            "tests",
+                            "Default Multiple Choice Test1,Default True False Test1,Default Open Ended Test1"});
+#line 299
+ testRunner.Then("instructor adds exam with document", ((string)(null)), table110, "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table111 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table111.AddRow(new string[] {
+                            "name",
+                            "anil_instructor_exam"});
+#line 305
+ testRunner.Given("instructor delete exam with", ((string)(null)), table111, "Given ");
 #line hidden
             }
             this.ScenarioCleanup();

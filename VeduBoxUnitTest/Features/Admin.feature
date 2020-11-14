@@ -6,7 +6,7 @@ Scenario: 1_admin_create_live
 	Given admin checks live is exist
 	Given admin adds new live with
 		| Key               | Value                  |
-		| course_name       | deneme_admin           |
+		| course_name       | default_course1        |
 		| meetingType       | pro                    |
 		| title             | deneme                 |
 		| hour              | 18                     |
@@ -38,7 +38,7 @@ Scenario: 2_admin_add_user
 		| name        | anil_vedubox_catalog |
 		| tags        | anil,senocak,catalog |
 		| description | Catalog Description  |
-		| category    | selenium             |
+		| category    | defaultCategory1     |
 		| teacher     | Anil Senocak         |
 	Then admin adds new catalog subscription to existing catalog
 		| Key           | Value                             |
@@ -80,7 +80,7 @@ Scenario: 3_admin_create_course
 		| name        | anil_vedubox_catalog |
 		| tags        | anil,senocak,catalog |
 		| description | Catalog Description  |
-		| category    | selenium             |
+		| category    | defaultCategory1     |
 		| teacher     | Anil Senocak         |
 	Given admin checks course is exist
 		| Key  | Value               |
@@ -90,7 +90,7 @@ Scenario: 3_admin_create_course
 		| name        | anil_vedubox_course  |
 		| tags        | anil,vedubox,course  |
 		| description | Anil Vedubox Course  |
-		| category    | selenium             |
+		| category    | defaultCategory1     |
 		| teacher     | Anil Senocak         |
 		| catalog     | anil_vedubox_catalog |
 	Given admin deletes added catalog
@@ -105,7 +105,7 @@ Scenario: 4_admin_earnings_payment_control
 	Given Login as "student"
 	Then student purchase course
 		| Key        | Value                         |
-		| entry      | ÜyelikDönemi08112019          |
+		| entry      | Default Course1               |
 		| name       | Ahmet1234                     |
 		| surname    | Can                           |
 		| city       | Adana                         |

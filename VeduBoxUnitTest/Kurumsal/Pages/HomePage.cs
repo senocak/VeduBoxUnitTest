@@ -83,6 +83,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             }catch (Exception e){
                 Console.WriteLine("Error occured in openExamPage, user: " + user + ", Error is: " + e.Message);
             }
+            Console.WriteLine("asdddddddddddddddddddd");
             Console.WriteLine(user + ": clicked Exam page element");
             return new ExamPage(driver, user);
         }

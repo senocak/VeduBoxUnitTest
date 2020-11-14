@@ -114,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table1.AddRow(new string[] {
                             "course_name",
-                            "deneme_admin"});
+                            "default_course1"});
                 table1.AddRow(new string[] {
                             "meetingType",
                             "pro"});
@@ -235,7 +235,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Catalog Description"});
                 table6.AddRow(new string[] {
                             "category",
-                            "selenium"});
+                            "defaultCategory1"});
                 table6.AddRow(new string[] {
                             "teacher",
                             "Anil Senocak"});
@@ -386,7 +386,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Catalog Description"});
                 table13.AddRow(new string[] {
                             "category",
-                            "selenium"});
+                            "defaultCategory1"});
                 table13.AddRow(new string[] {
                             "teacher",
                             "Anil Senocak"});
@@ -416,7 +416,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Anil Vedubox Course"});
                 table15.AddRow(new string[] {
                             "category",
-                            "selenium"});
+                            "defaultCategory1"});
                 table15.AddRow(new string[] {
                             "teacher",
                             "Anil Senocak"});
@@ -486,7 +486,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table18.AddRow(new string[] {
                             "entry",
-                            "ÜyelikDönemi08112019"});
+                            "Default Course1"});
                 table18.AddRow(new string[] {
                             "name",
                             "Ahmet1234"});

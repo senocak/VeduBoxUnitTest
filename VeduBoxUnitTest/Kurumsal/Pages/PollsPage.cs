@@ -55,13 +55,13 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             if (year < 2020){
                 for (int i = 2020; i > year; i--){
                     Console.WriteLine("year is older than 2020 so is going to " + year);
-                    click(By.XPath("(//button[@ng-click='move(-1)'])[1]"));
+                    click(By.XPath("(//button[@ng-click='move(-1)'])[2]"));
                 }
             }
             if (year > 2020){
                 for (int i = 2020; i < year; i++){
                     Console.WriteLine("year is newer than 2020 so is going to " + year);
-                    click(By.XPath("(//button[@ng-click='move(-1)'])[1]"));
+                    click(By.XPath("(//button[@ng-click='move(1)'])[2]"));
                 }
             }
             click(By.XPath("//span[contains(text(),'" + month + "')]"));

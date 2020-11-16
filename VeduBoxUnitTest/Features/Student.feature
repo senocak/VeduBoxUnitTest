@@ -6,7 +6,7 @@ Scenario: 1_student_live_register
 	Given instructor checks live is exist
 	Given instructor adds new live with
 		| Key               | Value                  |
-		| course_name       | default_course1        |
+		| course_name       | defaultCourse1        |
 		| meetingType       | basic                  |
 		| title             | deneme                 |
 		| hour              | 18                     |
@@ -81,11 +81,11 @@ Scenario: 6_student_exam_start_finish_multiple_choice
 		| Key  | Value                |
 		| name | anil_instructor_exam |
 	Then instructor adds exam with document
-		| Key         | Value                               |
-		| name        | anil_instructor_exam_name           |
-		| description | anil_instructor_exam_description    |
-		| catalogs    | Default Katalog 1,Default Katalog 2 |
-		| tests       | Default Multiple Choice Test1       |
+		| Key         | Value                            |
+		| name        | anil_instructor_exam_name        |
+		| description | anil_instructor_exam_description |
+		| catalogs    | defaultKatalog1,defaultKatalog2  |
+		| tests       | Default Multiple Choice Test1    |
 	Given Open Kurumsal Login Page
 	Given Login as "student"
 	Then student takes exam
@@ -102,11 +102,11 @@ Scenario: 7_student_exam_start_finish_mixed
 		| Key  | Value                |
 		| name | anil_instructor_exam |
 	Then instructor adds exam with document
-		| Key         | Value                               |
-		| name        | anil_instructor_exam_name           |
-		| description | anil_instructor_exam_description    |
-		| catalogs    | Default Katalog 1,Default Katalog 2 |
-		| tests       | Default Multiple Choice Test1       |
+		| Key         | Value                            |
+		| name        | anil_instructor_exam_name        |
+		| description | anil_instructor_exam_description |
+		| catalogs    | defaultKatalog1,defaultKatalog2  |
+		| tests       | Default Multiple Choice Test1    |
 	Given Open Kurumsal Login Page
 	Given Login as "student"
 	Then student takes exam
@@ -123,11 +123,11 @@ Scenario: 8_student_exam_start_finish_open_ended
 		| Key  | Value                |
 		| name | anil_instructor_exam |
 	Then instructor adds exam with document
-		| Key         | Value                               |
-		| name        | anil_instructor_exam_name           |
-		| description | anil_instructor_exam_description    |
-		| catalogs    | Default Katalog 1,Default Katalog 2 |
-		| tests       | Default Open Ended Test1            |
+		| Key         | Value                            |
+		| name        | anil_instructor_exam_name        |
+		| description | anil_instructor_exam_description |
+		| catalogs    | defaultKatalog1,defaultKatalog2  |
+		| tests       | Default Open Ended Test1         |
 	Given Open Kurumsal Login Page
 	Given Login as "student"
 	Then student takes exam
@@ -143,7 +143,7 @@ Scenario: 9_student_live_start
 	Given instructor checks live is exist
     Given instructor adds new live with
 		| Key               | Value                  |
-		| course_name       | default_course1        |
+		| course_name       | defaultCourse1         |
 		| meetingType       | pro                    |
 		| title             | deneme                 |
 		| hour              | 18                     |

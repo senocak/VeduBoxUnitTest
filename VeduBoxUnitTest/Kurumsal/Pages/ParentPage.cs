@@ -24,6 +24,12 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
         private static By SAVE_BUTTON = By.CssSelector("button[type='submit'][form='parentForm']");
         private static By ROLES_BUTTON = By.CssSelector("a[ng-click='editRolesForUser(parent)']");
         private static By ROLES_SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div/div/div[2]/button[1]");
+        private static By ADD_ANOTHER_CHILD = By.CssSelector("span[ng-click='children.push(children.length)']");
+        private static By FIRST_BRANCH = By.CssSelector("select[ng-model='childrenBranchIds[child]']");
+        private static By FIRST_STUDENTS = By.CssSelector("select[ng-model='childrenIds[child]']");
+        private static By SECOND_BRANCH = By.XPath("(//select[@ng-model='childrenBranchIds[child]'])[2]");
+        private static By SECOND_STUDENTS = By.XPath("(//select[@ng-model='childrenIds[child]'])[2]");
+        private static By GENERATE = By.CssSelector("button[ng-click='generateRandomPassword()']");
 
 
         private static string _user;
@@ -76,6 +82,35 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
             type(INPUT_LAST_NAME, last_name);
             return this;
         }
+        public ParentPage clickAnotherChildButton()
+        {
+            click(ADD_ANOTHER_CHILD);
+            return this;
+        }
+
+        public ParentPage selectFirstBranchName(string firstBranchName)
+        {
+            selectDropDown(FIRST_BRANCH, firstBranchName);
+            return this;
+        }
+
+        public ParentPage selectFirstStudents(string firstStudents)
+        {
+            selectDropDown(FIRST_STUDENTS, firstStudents);
+            return this;
+        }
+
+        public ParentPage selectSecondBranchName(string secondBranchName)
+        {
+            selectDropDown(SECOND_BRANCH, secondBranchName);
+            return this;
+        }
+
+        public ParentPage selectSecondStudents(string secondStudents)
+        {
+            selectDropDown(SECOND_STUDENTS, secondStudents);
+            return this;
+        }
         public ParentPage enterEmail(string email){
             type(INPUT_EMAIL, email);
             return this;
@@ -86,6 +121,11 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
         }
         public ParentPage enterPassword(string password){
             type(INPUT_PASSWORD, password);
+            return this;
+        }
+        public ParentPage clickGenerate()
+        {
+            click(GENERATE);
             return this;
         }
         public ParentPage selectGPDR(){

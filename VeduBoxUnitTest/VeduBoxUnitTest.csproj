@@ -147,6 +147,7 @@
     <Compile Include="Features\Admin.feature.cs" />
     <Compile Include="Features\Instructor.feature.cs" />
     <Compile Include="Features\Student.feature.cs" />
+    <Compile Include="Kurumsal\Pages\AdminsPage.cs" />
     <Compile Include="Kurumsal\Pages\AnnouncementsPage.cs" />
     <Compile Include="Kurumsal\Pages\BranchPage.cs" />
     <Compile Include="Kurumsal\Pages\CatalogPage.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Kurumsal\Pages\HomePage.cs" />
     <Compile Include="Kurumsal\Pages\LivePage.cs" />
     <Compile Include="Kurumsal\Pages\LoginPage.cs" />
+    <Compile Include="Kurumsal\Pages\ManagersPage.cs" />
     <Compile Include="Kurumsal\Pages\TeachersPage.cs" />
     <Compile Include="Kurumsal\Pages\OpenURL.cs" />
     <Compile Include="Kurumsal\Pages\Page.cs" />

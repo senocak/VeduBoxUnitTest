@@ -22,6 +22,8 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By POLL_QUESTIONS = By.CssSelector("a[title='Poll Questions']");
         private static By TESTS_POOL = By.CssSelector("a[title='Test pool']");
         private static By CATALOG = By.CssSelector("a[title='Catalogs']");
+        private static By ADMINS = By.CssSelector("a[title='Admins']");
+        private static By MANAGERS = By.CssSelector("a[title='Managers']");
 
         private static By USERNAME_LINK = By.CssSelector("span[ng-bind='$root.user.firstName | limitTo: 8']");
         private static By SWITCH_TO_ROLE = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/ul/li[2]/a");
@@ -51,6 +53,34 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             }
             Console.WriteLine(user + ": clicked Live page element");
             return new LivePage(driver, user);
+        }
+        public AdminsPage openADMINSpage(string user)
+        {
+            _user = user;
+            try
+            {
+                click(ADMINS);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error occured in openADMINSpage, user: " + user + ", Error is: " + e.Message);
+            }
+            Console.WriteLine(user + ": clicked openADMINSpage element");
+            return new AdminsPage(driver, user);
+        }
+        public ManagersPage openManagersPage(string user)
+        {
+            _user = user;
+            try
+            {
+                click(MANAGERS);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error occured in openManagersPage, user: " + user + ", Error is: " + e.Message);
+            }
+            Console.WriteLine(user + ": clicked openManagersPage element");
+            return new ManagersPage(driver, user);
         }
         public CoursesPage openCOURSESpage(string user){
             _user = user;

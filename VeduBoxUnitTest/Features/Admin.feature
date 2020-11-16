@@ -6,7 +6,7 @@ Scenario: 1_admin_create_live
 	Given admin checks live is exist
 	Given admin adds new live with
 		| Key               | Value                  |
-		| course_name       | default_course1        |
+		| course_name       | defaultCourse1         |
 		| meetingType       | pro                    |
 		| title             | deneme                 |
 		| hour              | 18                     |
@@ -23,79 +23,36 @@ Scenario: 2_admin_add_user
 	Given admin checks user is exist
 		| Key   | Value                 |
 		| email | admin_deneme@anil.com |
-	Given admin checks branch is exist
-		| Key   | Value               |
-		| name  | anil_vedubox_branch |
-	Then admin adds new branch
-		| Key   | Value               |
-		| name  | anil_vedubox_branch |
-		| limit | 100                 |
-	Given admin checks catalog is exist
-		| Key   | Value               |
-		| name  | anil_vedubox_catalog|
-	Then admin adds new catalog
-		| Key         | Value                |
-		| name        | anil_vedubox_catalog |
-		| tags        | anil,senocak,catalog |
-		| description | Catalog Description  |
-		| category    | defaultCategory1     |
-		| teacher     | Anil Senocak         |
-	Then admin adds new catalog subscription to existing catalog
-		| Key           | Value                             |
-		| name          | anil_vedubox_catalog              |
-		| title         | anil_vedubox_catalog_subscription |
-		| currency      | TL                                |
-		| type          | Permanent                         |
-		| duration_time | 100                               |
-		| duration_type | Year                              |
 	Given admin adds new user with
 		| Key         | Value                 |
 		| user        | admin                 |
 		| firstName   | deneme_user_first     |
 		| lastName    | deneme_user_last      |
-		| branch      | anil_vedubox_branch   |
+		| branch      | defaultBranch1        |
 		| email       | admin_deneme@anil.com |
 		| userName    | admin_deneme          |
 		| password    | admin_deneme_pass     |
-		| catalog     | anil_vedubox_catalog  |
+		| catalog     | defaultKatalog1       |
 		| description | Deneme 123            |
-	Given admin deletes added catalog
-		| Key   | Value               |
-		| name  | anil_vedubox_catalog|
-	Then Delete User
+    Then Delete User
 		| Key   | Value                 |
 		| email | admin_deneme@anil.com |
-	Then admin deletes added branch
-		| Key   | Value               |
-		| name  | anil_vedubox_branch |
+	
 
 Scenario: 3_admin_create_course
 	Given Open Kurumsal Login Page
 	Given Login as "admin"
-	Given admin checks catalog is exist
-		| Key   | Value               |
-		| name  | anil_vedubox_catalog|
-	Then admin adds new catalog
-		| Key         | Value                |
-		| name        | anil_vedubox_catalog |
-		| tags        | anil,senocak,catalog |
-		| description | Catalog Description  |
-		| category    | defaultCategory1     |
-		| teacher     | Anil Senocak         |
 	Given admin checks course is exist
 		| Key  | Value               |
 		| name | anil_vedubox_course |
 	Given admin adds new course with
-		| Key         | Value                |
-		| name        | anil_vedubox_course  |
-		| tags        | anil,vedubox,course  |
-		| description | Anil Vedubox Course  |
-		| category    | defaultCategory1     |
-		| teacher     | Anil Senocak         |
-		| catalog     | anil_vedubox_catalog |
-	Given admin deletes added catalog
-		| Key   | Value               |
-		| name  | anil_vedubox_catalog|
+		| Key         | Value               |
+		| name        | anil_vedubox_course |
+		| tags        | anil,vedubox,course |
+		| description | Anil Vedubox Course |
+		| category    | defaultCategory1    |
+		| teacher     | Anil Senocak        |
+		| catalog     | defaultKatalog1     |
 	Then admin deletes added Course
 		| Key  | Value              |
 		| name | anil_vedubox_course|
@@ -125,13 +82,6 @@ Scenario: 4_admin_earnings_payment_control
 Scenario: 5_admin_add_role
 	Given Open Kurumsal Login Page
 	Given Login as "admin"
-	Given admin checks branch is exist
-		| Key   | Value               |
-		| name  | anil_vedubox_branch |
-	Then admin adds new branch
-		| Key   | Value               |
-		| name  | anil_vedubox_branch |
-		| limit | 100                 |
 	Given admin checks instructor is exist
 		| Key  | Value                             |
 		| name | anil_vedubox_instructor_firstname |
@@ -139,7 +89,7 @@ Scenario: 5_admin_add_role
 		| Key        | Value                             |
 		| first_name | anil_vedubox_instructor_firstname |
 		| last_name  | anil_vedubox_instructor_lastname  |
-		| branch     | anil_vedubox_branch               |
+		| branch     | defaultBranch1               |
 		| email      | anil@instructor.com               |
 		| username   | anil_instructor_com               |
 		| password   | anil_instructor_com               |
@@ -151,9 +101,6 @@ Scenario: 5_admin_add_role
 	Then admin delete instructor
 		| Key  | Value                             |
 		| name | anil_vedubox_instructor_firstname |
-	Then admin deletes added branch
-		| Key   | Value               |
-		| name  | anil_vedubox_branch |
 	
 Scenario: 5_1_admin_add_branch
 	Given Open Kurumsal Login Page
@@ -229,38 +176,23 @@ Scenario: 9_admin_add_poll_auestion_true_false
 Scenario: 10_admin_add_poll
 	Given Open Kurumsal Login Page
 	Given Login as "admin"
-	Given Admin checks poll question is exist
-		| Key      | Value                     |
-		| question | Soru - TRUE FALSE By ANIL |
-	Given Admin adds true false question with
-		| Key      | Value                     |
-		| question | Soru - TRUE FALSE By ANIL |
 	Given Admin checks poll is exist
 		| Key  | Value             |
 		| Name | New Anket by Anil |
 	Then Admin adds poll
-		| Key          | Value                     |
-		| Name         | New Anket by Anil         |
-		| Description  | Deneme Anket by Anil      |
-		| RepeatNumber | 3                         |
-		| question     | Soru - TRUE FALSE By ANIL |
+		| Key          | Value                         |
+		| Name         | New Anket by Anil             |
+		| Description  | Deneme Anket by Anil          |
+		| RepeatNumber | 3                             |
+		| question     | DefaultTrueFalsePoolQuestion1 |
 	Then Admin deletes Newly added polls
 		| Key  | Value             |
 		| Name | New Anket by Anil |
-	Then Admin delete poll question with
-		| Key      | Value                     |
-		| question | Soru - TRUE FALSE By ANIL |
+	
 
 Scenario: 11_admin_add_instructor
 	Given Open Kurumsal Login Page
 	Given Login as "admin"
-	Given admin checks branch is exist
-		| Key   | Value               |
-		| name  | anil_vedubox_branch |
-	Then admin adds new branch
-		| Key   | Value               |
-		| name  | anil_vedubox_branch |
-		| limit | 100                 |
 	Given admin checks instructor is exist
 		| Key  | Value                             |
 		| name | anil_vedubox_instructor_firstname |
@@ -268,16 +200,72 @@ Scenario: 11_admin_add_instructor
 		| Key        | Value                             |
 		| first_name | anil_vedubox_instructor_firstname |
 		| last_name  | anil_vedubox_instructor_lastname  |
-		| branch     | anil_vedubox_branch               |
+		| branch     | defaultBranch1                    |
 		| email      | anil@instructor.com               |
 		| username   | anil_instructor_com               |
 		| password   | anil_instructor_com               |
    Then admin delete instructor
 		| Key  | Value                             |
 		| name | anil_vedubox_instructor_firstname |
-	Then admin deletes added branch
-		| Key   | Value               |
-		| name  | anil_vedubox_branch |
+	
+
+Scenario: 12_admin_add_admin
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks admin is exist
+		| Key  | Value                             |
+		| name | anil_vedubox_admin_firstname      |
+	Then admin adds admin
+		| Key        | Value                        |
+		| first_name | anil_vedubox_admin_firstname |
+		| last_name  | anil_vedubox_admin_lastname  |
+		| email      | anil@admin.com               |
+		| username   | anil_admin_com               |
+		| password   | anil_admin_com               |
+   Then admin delete admin
+		| Key  | Value                        |
+		| name | anil_vedubox_admin_firstname |
+
+Scenario: 13_admin_add_manager
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks manager is exist
+		| Key  | Value                          |
+		| name | anil_vedubox_manager_firstname |
+	Then admin adds manager
+		| Key        | Value                          |
+		| first_name | anil_vedubox_manager_firstname |
+		| last_name  | anil_vedubox_manager_lastname  |
+		| branchName | defaultBranch1                 |
+		| email      | anil@manager.com               |
+		| username   | anil_manager_com               |
+		| password   | anil_manager_com               |
+   Then admin delete manager
+		| Key  | Value                          |
+		| name | anil_vedubox_manager_firstname |
+
+Scenario: 14_admin_addes_parent
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks parent is exist
+		| Key   | Value           |
+		| email | anil@parent.com |
+	Then admin adds parent
+		| Key              | Value                           |
+		| first_name       | anil_vedubox_parent_firstname   |
+		| last_name        | anil_vedubox_parent_lastname    |
+		| firstBranchName  | defaultBranch1                  |
+		| firstStudents    | defaultStudent1 defaultStudent1 |
+		| secondBranchName | defaultBranch1                  |
+		| secondStudents   | defaultStudent1 defaultStudent1 |
+		| email            | anil@parent.com                 |
+		| username         | anil_parent_com                 |
+		| password         | anil_parent_com                 |
+	Then admin deletes added parent
+		| Key   | Value           |
+		| email | anil@parent.com |
+    
+
 	
 Scenario: 15_admin_switch_to_role
 	Given Open Kurumsal Login Page
@@ -286,12 +274,16 @@ Scenario: 15_admin_switch_to_role
 		| Key   | Value           |
 		| email | anil@parent.com |
 	Then admin adds parent
-		| Key        | Value                         |
-		| first_name | anil_vedubox_parent_firstname |
-		| last_name  | anil_vedubox_parent_lastname  |
-		| email      | anil@parent.com               |
-		| username   | anil_parent_com               |
-		| password   | anil_parent_com               |
+		| Key              | Value                           |
+		| first_name       | anil_vedubox_parent_firstname   |
+		| last_name        | anil_vedubox_parent_lastname    |
+		| firstBranchName  | defaultBranch1                  |
+		| firstStudents    | defaultStudent1 defaultStudent1 |
+		| secondBranchName | defaultBranch1                  |
+		| secondStudents   | defaultStudent1 defaultStudent1 |
+		| email            | anil@parent.com                 |
+		| username         | anil_parent_com                 |
+		| password         | anil_parent_com                 |
 	Then admin adds role to parent
 		| Key   | Value           |
 		| email | anil@parent.com |
@@ -306,20 +298,29 @@ Scenario: 15_admin_switch_to_role
 	Then admin deletes added parent
 		| Key   | Value           |
 		| email | anil@parent.com |
-	 
-Scenario: 15_1_admin_addes_parent
+
+Scenario: 0_admin_add_catalog
 	Given Open Kurumsal Login Page
 	Given Login as "admin"
-	Given admin checks parent is exist
-		| Key   | Value           |
-		| email | anil@parent.com |
-	Then admin adds parent
-		| Key        | Value                         |
-		| first_name | anil_vedubox_parent_firstname |
-		| last_name  | anil_vedubox_parent_lastname  |
-		| email      | anil@parent.com               |
-		| username   | anil_parent_com               |
-		| password   | anil_parent_com               |
-	Then admin deletes added parent
-		| Key   | Value           |
-		| email | anil@parent.com |
+	Given admin checks catalog is exist
+		| Key   | Value               |
+		| name  | anil_vedubox_catalog|
+	Then admin adds new catalog
+		| Key         | Value                |
+		| name        | anil_vedubox_catalog |
+		| tags        | anil,senocak,catalog |
+		| description | Catalog Description  |
+		| category    | defaultCategory1     |
+		| teacher     | Anil Senocak         |
+	Then admin adds new catalog subscription to existing catalog
+		| Key           | Value                             |
+		| name          | anil_vedubox_catalog              |
+		| title         | anil_vedubox_catalog_subscription |
+		| currency      | TL                                |
+		| type          | Permanent                         |
+		| duration_time | 100                               |
+		| duration_type | Year                              |
+	Given admin deletes added catalog
+		| Key   | Value               |
+		| name  | anil_vedubox_catalog|
+	

@@ -729,16 +729,24 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .searchNewlyAddedParentAndDeleteIt(dictionary["email"]);
         }
         [Then(@"admin adds parent")]
-        public void ThenAdminAddsParent(Table table){
+        public void ThenAdminAddsParent(Table table)
+        {
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
                 .openParentPage("admin")
                 .clickAddButton()
                 .enterFirstName(dictionary["first_name"])
                 .enterLastName(dictionary["last_name"])
+                .clickAnotherChildButton()
+                .selectFirstBranchName(dictionary["firstBranchName"])
+                .selectFirstStudents(dictionary["firstStudents"])
+                .clickAnotherChildButton()
+                .selectSecondBranchName(dictionary["secondBranchName"])
+                .selectSecondStudents(dictionary["secondStudents"])
                 .enterEmail(dictionary["email"])
                 .enterUserName(dictionary["username"])
                 .enterPassword(dictionary["password"])
+                .clickGenerate()
                 .selectGPDR()
                 .clickSaveButton()
                 .assert();
@@ -990,6 +998,83 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .clickAreUSure()
                 .assert();
         }
+        [Given(@"admin checks admin is exist")]
+        public void GivenAdminChecksAdminİsExist(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openADMINSpage("admin")
+                .searchNewlyAddedAdminByNameAndDeleteIt(dictionary["name"]);
+
+        }
+        [Then(@"admin adds admin")]
+        public void ThenAdminAddsAdmin(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                 .openADMINSpage("admin")
+                 .clickAddButton()
+                 .enterFirstName(dictionary["first_name"])
+                 .enterLastName(dictionary["last_name"])
+                 .enterEmail(dictionary["email"])
+                 .enterUserName(dictionary["username"])
+                 .enterPassword(dictionary["password"])
+                 .clickGenerate()
+                 .selectGPDR()
+                 .clickSaveButton()
+                 .assert();
+        }
+        [Then(@"admin delete admin")]
+        public void ThenAdminDeleteAdmin(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new AdminsPage(driver, "admin")
+                .searchNewlyAddedAdminByName(dictionary["name"])
+                .click3Points()
+                .clickDeleteButton()
+                .clickAreUSure()
+                .assert();
+        }
+
+        [Given(@"admin checks manager is exist")]
+        public void GivenAdminChecksManagerİsExist(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openManagersPage("admin")
+                .searchNewlyAddedManagerByNameAndDeleteIt(dictionary["name"]);
+
+        }
+        [Then(@"admin adds manager")]
+        public void ThenAdminAddsManager(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                 .openManagersPage("admin")
+                 .clickAddButton()
+                 .enterFirstName(dictionary["first_name"])
+                 .enterLastName(dictionary["last_name"])
+                 .selectBranchName(dictionary["branchName"])
+                 .enterEmail(dictionary["email"])
+                 .enterUserName(dictionary["username"])
+                 .enterPassword(dictionary["password"])
+                 .clickGenerate()
+                 .selectGPDR()
+                 .clickSaveButton()
+                 .assert();
+        }
+        [Then(@"admin delete manager")]
+        public void ThenAdminDeleteManager(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new ManagersPage(driver, "admin")
+                .searchNewlyAddedManagerByName(dictionary["name"])
+                .click3Points()
+                .clickDeleteButton()
+                .clickAreUSure()
+                .assert();
+        }
+
 
     }
 }

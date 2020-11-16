@@ -6,7 +6,7 @@ Scenario: 1_instructor_add_live
 	Given instructor checks live is exist
 	Given instructor adds new live with
 		| Key               | Value                  |
-		| course_name       | default_course1        |
+		| course_name       | defaultCourse1        |
 		| meetingType       | pro                    |
 		| title             | deneme                 |
 		| hour              | 18                     |
@@ -23,7 +23,7 @@ Scenario: 2_instructor_live_start
 	Given instructor checks live is exist
 	Given instructor adds new live with
 		| Key               | Value                  |
-		| course_name       | default_course1        |
+		| course_name       | defaultCourse1        |
 		| meetingType       | pro                    |
 		| title             | deneme                 |
 		| hour              | 18                     |
@@ -41,14 +41,14 @@ Scenario: 3_instructor_add_student
 		| Key   | Value                 |
 		| email | anil_instructor_student@anil.com |
 	Given instructor adds new student with
-		| Key       | Value                 |
-		| firstName | deneme_user_first     |
-		| lastName  | deneme_user_last      |
-		| branch    | defaultBranch1        |
+		| Key       | Value                            |
+		| firstName | deneme_user_first                |
+		| lastName  | deneme_user_last                 |
+		| branch    | defaultBranch1                   |
 		| email     | anil_instructor_student@anil.com |
-		| userName  | admin_deneme          |
-		| password  | admin_deneme_pass     |
-		| catalog   | default_course1       |
+		| userName  | admin_deneme                     |
+		| password  | admin_deneme_pass                |
+		| catalog   | defaultCatalog1                  |
 	Then instructor delete student
 		| Key   | Value                 |
 		| email | anil_instructor_student@anil.com |
@@ -91,7 +91,7 @@ Scenario: 6_instructor_add_webinar_join_webinar
 	Given instructor checks live is exist
 	Given instructor adds new webinar with
 		| Key               | Value                  |
-		| course_name       | default_course1        |
+		| course_name       | defaultCourse1         |
 		| meetingType       | webinar                |
 		| title             | deneme                 |
 		| hour              | 18                     |
@@ -230,65 +230,49 @@ Scenario: 14_instructor_add_question_open_ended
 		| Key  | Value                     |
 		| name | Soru - open ended By ANIL |
 	
-Scenario: 20_instructor_add_test_multiple_choice
+Scenario: 20_instructor_add_test_pool_multiple_choice
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
-	Given instructor checks question is exist
-		| Key  | Value                          |
-		| name | Soru - MULTIPLE CHOICE By ANIL |
-	Given instructor adds multiple choice question with
-		| Key          | Value                          |
-		| question     | Soru - MULTIPLE CHOICE By ANIL |
-		| point        | 25                             |
-		| choiceA      | A Şıkkı                        |
-		| choiceB      | B Şıkkı                        |
-		| choiceC      | C Şıkkı                        |
-		| choiceD      | D Şıkkı                        |
-		| TestCategory | DefaultTestCategory1           |
 	Given instructor checks test poll question is exist
-		| Key  | Value                          |
-		| name | Soru - MULTIPLE CHOICE By ANIL |
+		| Key  | Value                                  |
+		| name | anil_vedubox_test_pool_multiple_choice |
 	Given instructor adds test pool multiple choice with
-		| Key          | Value                          |
-		| name         | anil_vedubox_test              |
-		| time         | 45                             |
-		| TestCategory | DefaultTestCategory1           |
-		| question     | Soru - MULTIPLE CHOICE By ANIL |
+		| Key          | Value                                  |
+		| name         | anil_vedubox_test_pool_multiple_choice |
+		| time         | 45                                     |
+		| TestCategory | DefaultTestCategory1                   |
+		| question     | Default Multiple Choice Question1      |
 	Given instructor delete tests with
-		| Key  | Value             |
-		| name | anil_vedubox_test |
-	Then instructor deletes question with
-		| Key  | Value                          |
-		| name | Soru - MULTIPLE CHOICE By ANIL |
+		| Key  | Value                                  |
+		| name | anil_vedubox_test_pool_multiple_choice |
+	
 
 Scenario: 21_instructor_add_test_multiple_choice_adding_question_with_document
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
 	Given instructor checks test poll question is exist
-		| Key  | Value                                        |
-		| name | TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL |
+		| Key  | Value                                                |
+		| name | anil_vedubox_test_pool_multiple_choice_with_document |
 	Then instructor adds test pool multiple choice with document
-		| Key            | Value                                        |
-		| Name           | anil_vedubox_test                            |
-		| Description    | TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL |
-		| Duration       | 25                                           |
-		| questionNumber | 8                                            |
-		| points         | 15                                           |
-		| choicesNumber  | 4                                            |
-		| firstAnswer    | A                                            |
-		| secondAnswer   | B                                            |
-		| thirdAnswer    | C                                            |
-		| fourthAnswer   | D                                            |
-		| fifthAnswer    | A                                            |
-		| sixthAnswer    | B                                            |
-		| seventhAnswer  | C                                            |
-		| eighthAnswer   | D                                            |
-		| TestCategory   | DefaultTestCategory1                         |
+		| Key            | Value                                                |
+		| Name           | anil_vedubox_test_pool_multiple_choice_with_document |
+		| Description    | TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL         |
+		| Duration       | 25                                                   |
+		| questionNumber | 8                                                    |
+		| points         | 15                                                   |
+		| choicesNumber  | 4                                                    |
+		| firstAnswer    | A                                                    |
+		| secondAnswer   | B                                                    |
+		| thirdAnswer    | C                                                    |
+		| fourthAnswer   | D                                                    |
+		| fifthAnswer    | A                                                    |
+		| sixthAnswer    | B                                                    |
+		| seventhAnswer  | C                                                    |
+		| eighthAnswer   | D                                                    |
+		| TestCategory   | DefaultTestCategory1                                 |
 	Given instructor delete tests with
-		| Key  | Value             |
-		| name | anil_vedubox_test |
-
-
+		| Key  | Value                                                |
+		| name | anil_vedubox_test_pool_multiple_choice_with_document |
 
 Scenario: 0_instructor_add_exam_with_default_params
 	Given Open Kurumsal Login Page
@@ -300,7 +284,7 @@ Scenario: 0_instructor_add_exam_with_default_params
 		| Key         | Value                                                                           |
 		| name        | anil_instructor_exam_name                                                       |
 		| description | anil_instructor_exam_description                                                |
-		| catalogs    | Default Katalog 1,Default Katalog 2                                             |
+		| catalogs    | defaultKatalog1,defaultKatalog2                                             |
 		| tests       | Default Multiple Choice Test1,Default True False Test1,Default Open Ended Test1 |
 	Given instructor delete exam with
 		| Key  | Value                |

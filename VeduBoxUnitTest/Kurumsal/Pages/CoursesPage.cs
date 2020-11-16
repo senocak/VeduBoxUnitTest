@@ -14,7 +14,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By DESCRIPTION = By.CssSelector("div[ng-model='html']");
         private static By CATEGORY_ADMIN = By.CssSelector("select[ng-model='course.categoryId']");
         private static By CATEGORY_INSTRUCTOR = By.CssSelector("select[ng-model='courseAndPackage.categoryId']");
-        private static By MODERATOR = By.CssSelector("select[ng-model='course.teacherUserId']");
+        private static By TEACHER = By.CssSelector("select[ng-model='course.teacherUserId']");
         private static By CATALOG= By.CssSelector("select[ng-model='course.teacherUserId']");
         private static By SUBMIT_ADMIN = By.CssSelector("button[type='submit']:nth-child(1)");
         private static By SUBMIT_INSTRUCTOR = By.CssSelector("button[ng-disabled='courseAndPackageForm.$invalid']");
@@ -88,8 +88,8 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
                 selectDropDown(CATEGORY_INSTRUCTOR, catetoryName);
             return this;
         }
-        public CoursesPage selectModerator(string moderatorName){
-            selectDropDown(MODERATOR, moderatorName);
+        public CoursesPage selectTeacher(string teacherName){
+            selectDropDown(TEACHER, teacherName);
             return this;
         }
         public CoursesPage setCatalog(string catalogNames){
@@ -128,17 +128,17 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             if (_user == "admin"){
                 click(THREE_POINTS);
                 click(DELETE_COURSE);
-            }else if (_user == "instructor")
+            }else if (_user == "instructor"){
                 click(DELETE_COURSE_INSTRUCTOR);
+            }
             click(ARE_U_SURE_OK);
             return this;
         }
-        public CoursesPage openCourseDetail(){
+        public CoursesPage openCourseDetail(string name){
             try {
-                click(LINK_PROJET_MANAGEMENT);
-                Console.WriteLine("Clicked JAVA course in Courses Page");
-            }
-            catch (Exception e) {
+                click(By.XPath("//div[contains(text(), '" + name + "')]"));
+                Console.WriteLine("Clicked "+ name + " course in Courses Page");
+            }catch (Exception e) {
                 Console.WriteLine("Error occured during opening Course Detail. Error is : " + e);
             }
             return this;
@@ -279,6 +279,10 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             return this;
         }
         public CoursesPage clickCourseVideoSubmit(){
+            click(RESOURCE_VIDEO_SUBMIT);
+            return this;
+        }
+        public CoursesPage clickCourseExistingVideoSubmit(){
             click(RESOURCE_VIDEO_EXISTING_SUBMIT);
             return this;
         }

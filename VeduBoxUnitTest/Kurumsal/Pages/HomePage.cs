@@ -7,20 +7,21 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
     class HomePage : Page{
         private static By LIVE = By.CssSelector("a[title='Live']");
         private static By COURSES = By.CssSelector("a[title='Courses']");
-        private static By USERS = By.CssSelector("a[title='Users']");
+        private static By MY_COURSES = By.CssSelector("a[title='My Courses']");
         private static By STUDENTS = By.CssSelector("a[title='Students']");
         private static By EXAM = By.CssSelector("a[title='Exams']");
         private static By PORTAL = By.CssSelector("a[title='Portal']");
         private static By EARNINGS = By.CssSelector("a[title='Earnings']");
         private static By QUESTIONS = By.CssSelector("a[title='Question pool']");
-        private static By TESTS = By.CssSelector("a[title='Test pool']");
         private static By BRANCH = By.CssSelector("a[title='Branches']");
         private static By MODERATORS = By.CssSelector("a[title='Moderators']");
+        private static By TEACHERS = By.CssSelector("a[title='Teachers']");
         private static By ANNOUNCEMENTS = By.CssSelector("a[title='Announcements']");
         private static By PARENTS = By.CssSelector("a[title='Parents']");
         private static By POLLS = By.CssSelector("a[title='Polls']");
         private static By POLL_QUESTIONS = By.CssSelector("a[title='Poll Questions']");
-        private static By POLL_TESTS = By.CssSelector("a[title='Test pool']");
+        private static By TESTS_POOL = By.CssSelector("a[title='Test pool']");
+        private static By CATALOG = By.CssSelector("a[title='Catalogs']");
 
         private static By USERNAME_LINK = By.CssSelector("span[ng-bind='$root.user.firstName | limitTo: 8']");
         private static By SWITCH_TO_ROLE = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/ul/li[2]/a");
@@ -54,27 +55,18 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         public CoursesPage openCOURSESpage(string user){
             _user = user;
             try{
-                click(COURSES);
+                if(_user == "admin"){
+                    click(COURSES);
+                }else if (_user == "instructor"){
+                    click(MY_COURSES);
+                }
             }catch (Exception e){
                 Console.WriteLine("Error occured in openCOURSESpage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked Courses page element");
             return new CoursesPage(driver, user);
         }
-        public UserPage openUserPage(string user){
-            _user = user;
-            try{
-                if(_user == "admin")
-                    click(USERS);
-                else if(_user == "instructor")
-                    click(STUDENTS);
-            }catch (Exception e){
-                Console.WriteLine("Error occured in openUserPage, user: " + user + ", Error is: " + e.Message);
-            }
-            Console.WriteLine(user + ": clicked User page element");
-            return new UserPage(driver, user);
-        }
-        public StudentsPage openStudentPage(string user){
+        public StudentsPage openStudentsPage(string user){
             _user = user;
             try{
                 click(STUDENTS);
@@ -91,6 +83,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             }catch (Exception e){
                 Console.WriteLine("Error occured in openExamPage, user: " + user + ", Error is: " + e.Message);
             }
+            Console.WriteLine("asdddddddddddddddddddd");
             Console.WriteLine(user + ": clicked Exam page element");
             return new ExamPage(driver, user);
         }
@@ -108,9 +101,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             _user = user;
             try{
                 click(EARNINGS);
-            }
-            catch (Exception e)
-            {
+            }catch (Exception e){
                 Console.WriteLine("Error occured in openEarningsPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked EARNINGS page element");
@@ -126,16 +117,6 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             Console.WriteLine(user + ": clicked QUESTIONS page element");
             return new QuestionsPage(driver, user);
         }
-        public TestsPage openTestsPage(string user){
-            _user = user;
-            try{
-                click(TESTS);
-            }catch (Exception e){
-                Console.WriteLine("Error occured in TestsPage, user: " + user + ", Error is: " + e.Message);
-            }
-            Console.WriteLine(user + ": clicked TESTS page element");
-            return new TestsPage(driver, user);
-        }
         public BranchPage openBranchPage(string user){
             _user = user;
             try{
@@ -146,15 +127,15 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             Console.WriteLine(user + ": clicked Branch page element");
             return new BranchPage(driver, user);
         }
-        public ModeratorsPage openModeratorsPage(string user){
+        public TeachersPage openTeachersPage(string user){
             _user = user;
             try{
-                click(MODERATORS);
+                click(TEACHERS);
             }catch (Exception e){
                 Console.WriteLine("Error occured in ModeratorsPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked Moderators page element");
-            return new ModeratorsPage(driver, user);
+            return new TeachersPage(driver, user);
         }
         public AnnouncementsPage openAnnouncementsPage(string user){
             _user = user;
@@ -186,7 +167,6 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             Console.WriteLine(user + ": clicked User page element");
             return new PollsPage(driver, user);
         }
-
         public PollQuestionsPage openPollQuestionsPage(string user){
             _user = user;
             try{
@@ -197,20 +177,25 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             Console.WriteLine(user + ": clicked User page element");
             return new PollQuestionsPage(driver, user);
         }
-
-        public PoolTestsPage openPoolTestsPage(string user)
-        {
+        public TestPoolPage openTestPoolPage(string user){
             _user = user;
-            try
-            {
-                click(POLL_TESTS);
+            try{
+                click(TESTS_POOL);
+            }catch (Exception e){
+                Console.WriteLine("Error occured in openTestPoolPage, user: " + user + ", Error is: " + e.Message);
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error occured in openPoolTestsPage, user: " + user + ", Error is: " + e.Message);
+            Console.WriteLine(user + ": clicked TestPoolPage element");
+            return new TestPoolPage(driver, user);
+        }
+        public CatalogPage openCatalogPage(string user){
+            _user = user;
+            try{
+                click(CATALOG);
+            }catch (Exception e){
+                Console.WriteLine("Error occured in openCatalogPage, user: " + user + ", Error is: " + e.Message);
             }
-            Console.WriteLine(user + ": clicked PoolTestsPage element");
-            return new PoolTestsPage(driver, user);
+            Console.WriteLine(user + ": clicked openCatalogPage element");
+            return new CatalogPage(driver, user);
         }
         public HomePage assertRoleIs(string role){
             AssertionCustom.assertTextToBePresentInElementLocated(driver, ROLE_TEXT, role, "Element Not Found");

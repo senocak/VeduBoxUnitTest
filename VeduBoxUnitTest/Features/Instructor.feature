@@ -6,7 +6,7 @@ Scenario: 1_instructor_add_live
 	Given instructor checks live is exist
 	Given instructor adds new live with
 		| Key               | Value                  |
-		| course_name       | deneme_instructor      |
+		| course_name       | default_course1        |
 		| meetingType       | pro                    |
 		| title             | deneme                 |
 		| hour              | 18                     |
@@ -23,7 +23,7 @@ Scenario: 2_instructor_live_start
 	Given instructor checks live is exist
 	Given instructor adds new live with
 		| Key               | Value                  |
-		| course_name       | deneme_instructor      |
+		| course_name       | default_course1        |
 		| meetingType       | pro                    |
 		| title             | deneme                 |
 		| hour              | 18                     |
@@ -34,56 +34,56 @@ Scenario: 2_instructor_live_start
 		| description       | Deneme 123             |
 	Then verify start live and delete live with
 
-Scenario: 3_instructor_add_user
+Scenario: 3_instructor_add_student
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
-	Given instructor checks user is exist
+	Given instructor checks student is exist
 		| Key   | Value                 |
-		| email | admin_deneme@anil.com |
-	Given instructor adds new user with
+		| email | anil_instructor_student@anil.com |
+	Given instructor adds new student with
 		| Key       | Value                 |
 		| firstName | deneme_user_first     |
 		| lastName  | deneme_user_last      |
-		| branch    | Merkez                |
-		| email     | admin_deneme@anil.com |
+		| branch    | defaultBranch1        |
+		| email     | anil_instructor_student@anil.com |
 		| userName  | admin_deneme          |
 		| password  | admin_deneme_pass     |
-		| catalog   | deneme_instructor     |
-	Then instructor delete User
+		| catalog   | default_course1       |
+	Then instructor delete student
 		| Key   | Value                 |
-		| email | admin_deneme@anil.com |
+		| email | anil_instructor_student@anil.com |
 
 Scenario: 4_instructor_add_course
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
 	Given instructor checks course is exist
-		| Key  | Value              |
-		| name | project management |
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
 	Given instructor adds new course with
-		| Key      | Value              |
-		| name     | project management |
-		| category | DevTest            |
+		| Key      | Value                          |
+		| name     | anil_vedubox_course_instructor |
+		| category | defaultCategory1               |
 	Then instructor delete course
-		| Key  | Value              |
-		| name | project management |
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
 
 Scenario: 5_instructor_add_subject
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
 	Given instructor checks course is exist
-		| Key  | Value              |
-		| name | project management |
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
 	Given instructor adds new course with
-		| Key      | Value              |
-		| name     | project management |
-		| category | DevTest            |
+		| Key      | Value                          |
+		| name     | anil_vedubox_course_instructor |
+		| category | defaultCategory1               |
 	Given instructor adds subject with
-		| Key   | Value              |
-		| name  | project management |
-		| title | hello world        |
+		| Key   | Value                          |
+		| name  | anil_vedubox_course_instructor |
+		| title | hello world                    |
 	Then instructor delete course
-		| Key  | Value              |
-		| name | project management |
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
 
 Scenario: 6_instructor_add_webinar_join_webinar
 	Given Open Kurumsal Login Page
@@ -91,7 +91,7 @@ Scenario: 6_instructor_add_webinar_join_webinar
 	Given instructor checks live is exist
 	Given instructor adds new webinar with
 		| Key               | Value                  |
-		| course_name       | deneme_instructor      |
+		| course_name       | default_course1        |
 		| meetingType       | webinar                |
 		| title             | deneme                 |
 		| hour              | 18                     |
@@ -114,71 +114,71 @@ Scenario: 7_instructor_add_content_as_document
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
 	Given instructor checks course is exist
-		| Key  | Value              |
-		| name | project management |
+		| Key  | Value               |
+		| name | anil_vedubox_course |
 	Given instructor adds new course with
-		| Key      | Value              |
-		| name     | project management |
-		| category | DevTest            |
+		| Key      | Value               |
+		| name     | anil_vedubox_course |
+		| category | defaultCategory1    |
 	Given instructor adds subject with
-		| Key   | Value              |
-		| name  | project management |
-		| title | hello world        |
+		| Key    | Value                |
+		| course | anil_vedubox_course  |
+		| title  | anil_vedubox_subject |
 	Given instructor adds file source with
-		| Key   | Value              |
-		| name  | project management |
-		| title | Döküman Ekleme     |
-		| desc  | Test               |
+		| Key    | Value                        |
+		| course | anil_vedubox_course          |
+		| title  | anil_vedubox_file_to_subject |
+		| desc   | anil_vedubox_file_desc       |
 	Then instructor delete course
-		| Key  | Value              |
-		| name | project management |
+		| Key  | Value               |
+		| name | anil_vedubox_course |
 	 
 Scenario: 8_instrcutor_add_content_as_video
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
 	Given instructor checks course is exist
-		| Key  | Value              |
-		| name | project management |
+		| Key  | Value               |
+		| name | anil_vedubox_course |
 	Given instructor adds new course with
-		| Key      | Value              |
-		| name     | project management |
-		| category | DevTest            |
+		| Key      | Value               |
+		| name     | anil_vedubox_course |
+		| category | defaultCategory1    |
 	Given instructor adds subject with
-		| Key   | Value              |
-		| name  | project management |
-		| title | hello world        |
+		| Key    | Value                |
+		| course | anil_vedubox_course  |
+		| title  | anil_vedubox_subject |
 	Given instructor adds video source with
-		| Key   | Value              |
-		| name  | project management |
-		| title | Döküman Ekleme     |
-		| desc  | Test               |
+		| Key    | Value                         |
+		| course | anil_vedubox_course           |
+		| title  | anil_vedubox_video_to_subject |
+		| desc   | anil_vedubox_video_desc       |
 	Then instructor delete course
-		| Key  | Value              |
-		| name | project management |
+		| Key  | Value               |
+		| name | anil_vedubox_course |
 	 
 Scenario: 9_instructor_add_content_as_video_with_vimeo
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
 	Given instructor checks course is exist
-		| Key  | Value              |
-		| name | project management |
+		| Key  | Value               |
+		| name | anil_vedubox_course |
 	Given instructor adds new course with
-		| Key      | Value              |
-		| name     | project management |
-		| category | DevTest            |
+		| Key      | Value               |
+		| name     | anil_vedubox_course |
+		| category | defaultCategory1    |
 	Given instructor adds subject with
-		| Key   | Value              |
-		| name  | project management |
-		| title | hello world        |
+		| Key    | Value                |
+		| course | anil_vedubox_course  |
+		| title  | anil_vedubox_subject |
 	Given instructor adds video with vimeo
-		| Key   | Value                       |
-		| name  | project management          |
-		| title | Video Ekleme (Vimeo ID ile) |
-		| desc  | Test                        |
-		| id    | 444883013                   |
+		| Key    | Value                                  |
+		| course | anil_vedubox_course                    |
+		| title  | anil_vedubox_video_to_subject_vimeo_id |
+		| desc   | anil_vedubox_video_desc                |
+		| id     | 444883013                              |
 	Then instructor delete course
-		| Key  | Value              |
-		| name | project management |
+		| Key  | Value               |
+		| name | anil_vedubox_course |
 	 
 Scenario: 12_instructor_add_question_multiple_choice
 	Given Open Kurumsal Login Page
@@ -194,8 +194,8 @@ Scenario: 12_instructor_add_question_multiple_choice
 		| choiceB      | B Şıkkı                        |
 		| choiceC      | C Şıkkı                        |
 		| choiceD      | D Şıkkı                        |
-		| TestCategory | EğitmenBurakTestKategori       |
-	Then instructor delete multiple choice question with
+		| TestCategory | DefaultTestCategory1           |
+	Then instructor deletes question with
 		| Key  | Value                          |
 		| name | Soru - MULTIPLE CHOICE By ANIL |
 
@@ -210,8 +210,8 @@ Scenario: 13_instructor_add_question_true_false
 		| question     | Soru - TRUE FALSE By ANIL |
 		| point        | 35                        |
 		| answer       | False                     |
-		| TestCategory | EğitmenBurakTestKategori  |
-	Then instructor delete multiple choice question with
+		| TestCategory | DefaultTestCategory1      |
+	Then instructor deletes question with
 		| Key  | Value                     |
 		| name | Soru - TRUE FALSE By ANIL |
 	
@@ -225,14 +225,17 @@ Scenario: 14_instructor_add_question_open_ended
 		| Key          | Value                     |
 		| question     | Soru - open ended By ANIL |
 		| point        | 45                        |
-		| TestCategory | EğitmenBurakTestKategori  |
-	Then instructor delete multiple choice question with
+		| TestCategory | DefaultTestCategory1      |
+	Then instructor deletes question with
 		| Key  | Value                     |
 		| name | Soru - open ended By ANIL |
 	
 Scenario: 20_instructor_add_test_multiple_choice
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
+	Given instructor checks question is exist
+		| Key  | Value                          |
+		| name | Soru - MULTIPLE CHOICE By ANIL |
 	Given instructor adds multiple choice question with
 		| Key          | Value                          |
 		| question     | Soru - MULTIPLE CHOICE By ANIL |
@@ -241,29 +244,32 @@ Scenario: 20_instructor_add_test_multiple_choice
 		| choiceB      | B Şıkkı                        |
 		| choiceC      | C Şıkkı                        |
 		| choiceD      | D Şıkkı                        |
-		| TestCategory | EğitmenBurakTestKategori       |
-	Given instructor adds tests with
+		| TestCategory | DefaultTestCategory1           |
+	Given instructor checks test poll question is exist
+		| Key  | Value                          |
+		| name | Soru - MULTIPLE CHOICE By ANIL |
+	Given instructor adds test pool multiple choice with
 		| Key          | Value                          |
-		| name         | new test added by ANIL         |
+		| name         | anil_vedubox_test              |
 		| time         | 45                             |
-		| TestCategory | EğitmenBurakTestKategori       |
+		| TestCategory | DefaultTestCategory1           |
 		| question     | Soru - MULTIPLE CHOICE By ANIL |
 	Given instructor delete tests with
-		| Key  | Value                  |
-		| name | new test added by ANIL |
-	Then instructor delete multiple choice question with
+		| Key  | Value             |
+		| name | anil_vedubox_test |
+	Then instructor deletes question with
 		| Key  | Value                          |
 		| name | Soru - MULTIPLE CHOICE By ANIL |
 
 Scenario: 21_instructor_add_test_multiple_choice_adding_question_with_document
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
-	Given Instructor checks poll question is exist
+	Given instructor checks test poll question is exist
 		| Key  | Value                                        |
-		| Name | TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL |
-	Then instructor adds test multiple choice adding question with document
+		| name | TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL |
+	Then instructor adds test pool multiple choice with document
 		| Key            | Value                                        |
-		| Name           | TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL |
+		| Name           | anil_vedubox_test                            |
 		| Description    | TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL |
 		| Duration       | 25                                           |
 		| questionNumber | 8                                            |
@@ -277,6 +283,25 @@ Scenario: 21_instructor_add_test_multiple_choice_adding_question_with_document
 		| sixthAnswer    | B                                            |
 		| seventhAnswer  | C                                            |
 		| eighthAnswer   | D                                            |
-    Then Admin deletes newly added test multiple choice adding question with document
-		| Key  | Value                                        |
-		| Name | TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL |
+		| TestCategory   | DefaultTestCategory1                         |
+	Given instructor delete tests with
+		| Key  | Value             |
+		| name | anil_vedubox_test |
+
+
+
+Scenario: 0_instructor_add_exam_with_default_params
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks exam is exist
+		| Key  | Value                |
+		| name | anil_instructor_exam |
+	Then instructor adds exam with document
+		| Key         | Value                                                                           |
+		| name        | anil_instructor_exam_name                                                       |
+		| description | anil_instructor_exam_description                                                |
+		| catalogs    | Default Katalog 1,Default Katalog 2                                             |
+		| tests       | Default Multiple Choice Test1,Default True False Test1,Default Open Ended Test1 |
+	Given instructor delete exam with
+		| Key  | Value                |
+		| name | anil_instructor_exam |

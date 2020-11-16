@@ -78,7 +78,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
             click(INPUT_END_DATE);
             selectDropDown(By.CssSelector("select[data-handler='selectMonth']"), DateTime.Now.AddDays(60).ToString("MMM"));
             selectDropDown(By.CssSelector("select[data-handler='selectYear']"), DateTime.Now.AddDays(60).ToString("yyyy"));
-            click(By.XPath("(//a[@class='ui-state-default'][contains(text(), '" + DateTime.Now.AddDays(60).ToString("dd") + "')])[1]"));
+            click(By.XPath("(//a[@class='ui-state-default'][contains(text(), '" + DateTime.Now.AddDays(60).ToString("%d") + "')])[1]"));
             return this;
         }
         public AnnouncementsPage clickSaveButton(){

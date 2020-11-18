@@ -1241,7 +1241,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("15_admin_switch_to_role", null, tagsOfScenario, argumentsOfScenario);
-#line 270
+#line 268
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1261,10 +1261,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 271
+#line 269
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 272
+#line 270
  testRunner.Given("Login as \"admin\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table44 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1273,7 +1273,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table44.AddRow(new string[] {
                             "email",
                             "anil@parent.com"});
-#line 273
+#line 271
  testRunner.Given("admin checks parent is exist", ((string)(null)), table44, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table45 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1306,7 +1306,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table45.AddRow(new string[] {
                             "password",
                             "anil_parent_com"});
-#line 276
+#line 274
  testRunner.Then("admin adds parent", ((string)(null)), table45, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table46 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1318,13 +1318,13 @@ this.ScenarioInitialize(scenarioInfo);
                 table46.AddRow(new string[] {
                             "role1",
                             "Admin"});
-#line 287
+#line 285
  testRunner.Then("admin adds role to parent", ((string)(null)), table46, "Then ");
 #line hidden
-#line 291
+#line 289
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 292
+#line 290
  testRunner.Given("Login as \"custom@anil_parent_com:anil_parent_com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table47 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1333,13 +1333,13 @@ this.ScenarioInitialize(scenarioInfo);
                 table47.AddRow(new string[] {
                             "password",
                             "anil_parent_com"});
-#line 293
+#line 291
  testRunner.When("custom parent switch to admin", ((string)(null)), table47, "When ");
 #line hidden
-#line 296
+#line 294
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 297
+#line 295
  testRunner.Given("Login as \"admin\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table48 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1348,7 +1348,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table48.AddRow(new string[] {
                             "email",
                             "anil@parent.com"});
-#line 298
+#line 296
  testRunner.Then("admin deletes added parent", ((string)(null)), table48, "Then ");
 #line hidden
             }
@@ -1362,7 +1362,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("0_admin_add_catalog", null, tagsOfScenario, argumentsOfScenario);
-#line 302
+#line 300
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1382,10 +1382,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 303
+#line 301
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 304
+#line 302
  testRunner.Given("Login as \"admin\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table49 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1394,7 +1394,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table49.AddRow(new string[] {
                             "name",
                             "anil_vedubox_catalog"});
-#line 305
+#line 303
  testRunner.Given("admin checks catalog is exist", ((string)(null)), table49, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table50 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1415,7 +1415,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table50.AddRow(new string[] {
                             "teacher",
                             "Anil Senocak"});
-#line 308
+#line 306
  testRunner.Then("admin adds new catalog", ((string)(null)), table50, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table51 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1439,7 +1439,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table51.AddRow(new string[] {
                             "duration_type",
                             "Year"});
-#line 315
+#line 313
  testRunner.Then("admin adds new catalog subscription to existing catalog", ((string)(null)), table51, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table52 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1448,7 +1448,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table52.AddRow(new string[] {
                             "name",
                             "anil_vedubox_catalog"});
-#line 323
+#line 321
  testRunner.Given("admin deletes added catalog", ((string)(null)), table52, "Given ");
 #line hidden
             }

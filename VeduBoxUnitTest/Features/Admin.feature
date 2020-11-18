@@ -264,8 +264,6 @@ Scenario: 14_admin_addes_parent
 	Then admin deletes added parent
 		| Key   | Value           |
 		| email | anil@parent.com |
-    
-
 	
 Scenario: 15_admin_switch_to_role
 	Given Open Kurumsal Login Page

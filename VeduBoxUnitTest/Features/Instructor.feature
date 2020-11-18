@@ -306,7 +306,6 @@ Scenario: 20_instructor_add_test_pool_multiple_choice
 	Given instructor delete tests with
 		| Key  | Value                                  |
 		| name | anil_vedubox_test_pool_multiple_choice |
-	
 
 Scenario: 21_instructor_add_test_multiple_choice_adding_question_with_document
 	Given Open Kurumsal Login Page

@@ -798,7 +798,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .enterEmail(dictionary["email"])
                 .enterUserName(dictionary["username"])
                 .enterPassword(dictionary["password"])
-                .clickGenerate()
+                //.clickGenerate()
                 .selectGPDR()
                 .clickSaveButton()
                 .assert();

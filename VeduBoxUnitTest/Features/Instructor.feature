@@ -316,8 +316,7 @@ Scenario: 21_instructor_add_test_multiple_choice_adding_question_with_document
 		| name | anil_vedubox_test_pool_multiple_choice_with_document |
 	Then instructor adds test pool multiple choice with document
 		| Key            | Value                                                |
-		| Name           | anil_vedubox_test_pool_multiple_choice_with_document |
-		| Description    | TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL         |
+		| name           | anil_vedubox_test_pool_multiple_choice_with_document |
 		| Duration       | 25                                                   |
 		| questionNumber | 8                                                    |
 		| points         | 15                                                   |
@@ -334,6 +333,22 @@ Scenario: 21_instructor_add_test_multiple_choice_adding_question_with_document
 	Given instructor delete tests with
 		| Key  | Value                                                |
 		| name | anil_vedubox_test_pool_multiple_choice_with_document |
+
+Scenario: 22_instructor_add_test_poll_open_ended
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks test poll question is exist
+		| Key  | Value                             |
+		| name | anil_vedubox_test_pool_open_ended |
+	Given instructor adds test pool open ended with
+		| Key          | Value                             |
+		| name         | anil_vedubox_test_pool_open_ended |
+		| time         | 45                                |
+		| TestCategory | DefaultTestCategory1              |
+		| question     | Default Open Ended Question1      |
+	Given instructor delete tests with
+		| Key  | Value                             |
+		| name | anil_vedubox_test_pool_open_ended |
 
 Scenario: 0_instructor_add_exam_with_default_params
 	Given Open Kurumsal Login Page

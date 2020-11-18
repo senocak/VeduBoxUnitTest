@@ -938,30 +938,46 @@ namespace VeduBoxUnitTest.StepDefinitions{
         public void ThenİnstructorAddsTestPoolMultipleChoiceWithDocument(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
-                .openTestPoolPage("instructor")
-                .clickAddButton()
-                .enterName(dictionary["Name"])
-                .enterDescription(dictionary["Description"])
-                .enterDuration(Int32.Parse(dictionary["Duration"]))
-                .selectIsPublic()
-                .selectIsOpticalMarker()
-                .selectIsDocument()
-                .selectFile()
-                .enterQuestionNumber(Int32.Parse(dictionary["questionNumber"]))
-                .enterPointsofEach(Int32.Parse(dictionary["points"]))
-                .enterNumberOfChoices(Int32.Parse(dictionary["choicesNumber"]))
-                .enterFirstAnswer(dictionary["firstAnswer"])
-                .enterSecondAnswer(dictionary["secondAnswer"])
-                .enterThirdAnswer(dictionary["thirdAnswer"])
-                .enterFourthAnswer(dictionary["fourthAnswer"])
-                .enterFifthAnswer(dictionary["fifthAnswer"])
-                .enterSixthAnswer(dictionary["sixthAnswer"])
-                .enterSeventhAnswer(dictionary["seventhAnswer"])
-                .enterEighthAnswer(dictionary["eighthAnswer"])
-                .selectTestCategory(dictionary["TestCategory"])
-                .clickSaveButton()
-                .assert();
+                    .openTestPoolPage("instructor")
+                    .clickAddButton()
+                    .enterName(dictionary["name"])
+                    //.enterDescription(dictionary["description"])
+                    .enterDuration(Int32.Parse(dictionary["Duration"]))
+                    .selectIsPublic()
+                    .selectIsOpticalMarker()
+                    .selectIsDocument()
+                    .selectFile()
+                    .enterQuestionNumber(Int32.Parse(dictionary["questionNumber"]))
+                    .enterPointsofEach(Int32.Parse(dictionary["points"]))
+                    .enterNumberOfChoices(Int32.Parse(dictionary["choicesNumber"]))
+                    .enterFirstAnswer(dictionary["firstAnswer"])
+                    .enterSecondAnswer(dictionary["secondAnswer"])
+                    .enterThirdAnswer(dictionary["thirdAnswer"])
+                    .enterFourthAnswer(dictionary["fourthAnswer"])
+                    .enterFifthAnswer(dictionary["fifthAnswer"])
+                    .enterSixthAnswer(dictionary["sixthAnswer"])
+                    .enterSeventhAnswer(dictionary["seventhAnswer"])
+                    .enterEighthAnswer(dictionary["eighthAnswer"])
+                    .selectTestCategory(dictionary["TestCategory"])
+                    .clickSaveButton()
+                    .assert();
         }
+        [Given(@"instructor adds test pool open ended with")]
+        public void GivenİnstructorAddsTestPoolOpenEndedWith(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                    .openTestPoolPage("instructor")
+                    .clickAddButton()
+                    .enterName(dictionary["name"])
+                    .selectIsPublic()
+                    .selectTestCategory(dictionary["TestCategory"])
+                    .clickNextButton()
+                    .enterQuestionName(dictionary["question"])
+                    .clickSetButton()
+                    .clickSaveButton()
+                    .assert();
+        }
+
         [Then(@"Admin deletes newly added test multiple choice adding question with document")]
         public void ThenAdminDeletesNewlyAddedTestMultipleChoiceAddingQuestionWithDocument(Table table){
             var dictionary = TableExtensions.ToDictionary(table);

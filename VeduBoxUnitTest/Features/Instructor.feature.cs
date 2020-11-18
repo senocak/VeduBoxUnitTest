@@ -1104,7 +1104,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("12_instructor_add_question_multiple_choice", null, tagsOfScenario, argumentsOfScenario);
-#line 245
+#line 244
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1124,10 +1124,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 246
+#line 245
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 247
+#line 246
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table95 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1136,7 +1136,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table95.AddRow(new string[] {
                             "name",
                             "Soru - MULTIPLE CHOICE By ANIL"});
-#line 248
+#line 247
  testRunner.Given("instructor checks question is exist", ((string)(null)), table95, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table96 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1163,7 +1163,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table96.AddRow(new string[] {
                             "TestCategory",
                             "DefaultTestCategory1"});
-#line 251
+#line 250
  testRunner.Given("instructor adds multiple choice question with", ((string)(null)), table96, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table97 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1172,7 +1172,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table97.AddRow(new string[] {
                             "name",
                             "Soru - MULTIPLE CHOICE By ANIL"});
-#line 260
+#line 259
  testRunner.Then("instructor deletes question with", ((string)(null)), table97, "Then ");
 #line hidden
             }
@@ -1186,7 +1186,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("13_instructor_add_question_true_false", null, tagsOfScenario, argumentsOfScenario);
-#line 264
+#line 263
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1206,10 +1206,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 265
+#line 264
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 266
+#line 265
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table98 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1218,7 +1218,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table98.AddRow(new string[] {
                             "name",
                             "Soru - TRUE FALSE By ANIL"});
-#line 267
+#line 266
  testRunner.Given("instructor checks question is exist", ((string)(null)), table98, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table99 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1236,7 +1236,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table99.AddRow(new string[] {
                             "TestCategory",
                             "DefaultTestCategory1"});
-#line 270
+#line 269
  testRunner.Given("instructor adds true false question with", ((string)(null)), table99, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table100 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1245,7 +1245,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table100.AddRow(new string[] {
                             "name",
                             "Soru - TRUE FALSE By ANIL"});
-#line 276
+#line 275
  testRunner.Then("instructor deletes question with", ((string)(null)), table100, "Then ");
 #line hidden
             }
@@ -1259,7 +1259,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("14_instructor_add_question_open_ended", null, tagsOfScenario, argumentsOfScenario);
-#line 280
+#line 279
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1279,10 +1279,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 281
+#line 280
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 282
+#line 281
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table101 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1291,7 +1291,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table101.AddRow(new string[] {
                             "name",
                             "Soru - open ended By ANIL"});
-#line 283
+#line 282
  testRunner.Given("instructor checks question is exist", ((string)(null)), table101, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table102 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1306,7 +1306,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table102.AddRow(new string[] {
                             "TestCategory",
                             "DefaultTestCategory1"});
-#line 286
+#line 285
  testRunner.Given("instructor adds open_ended question with", ((string)(null)), table102, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table103 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1315,7 +1315,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table103.AddRow(new string[] {
                             "name",
                             "Soru - open ended By ANIL"});
-#line 291
+#line 290
  testRunner.Then("instructor deletes question with", ((string)(null)), table103, "Then ");
 #line hidden
             }
@@ -1329,7 +1329,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("20_instructor_add_test_pool_multiple_choice", null, tagsOfScenario, argumentsOfScenario);
-#line 295
+#line 294
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1349,10 +1349,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 296
+#line 295
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 297
+#line 296
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table104 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1361,7 +1361,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table104.AddRow(new string[] {
                             "name",
                             "anil_vedubox_test_pool_multiple_choice"});
-#line 298
+#line 297
  testRunner.Given("instructor checks test poll question is exist", ((string)(null)), table104, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table105 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1379,7 +1379,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table105.AddRow(new string[] {
                             "question",
                             "Default Multiple Choice Question1"});
-#line 301
+#line 300
  testRunner.Given("instructor adds test pool multiple choice with", ((string)(null)), table105, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table106 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1388,7 +1388,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table106.AddRow(new string[] {
                             "name",
                             "anil_vedubox_test_pool_multiple_choice"});
-#line 307
+#line 306
  testRunner.Given("instructor delete tests with", ((string)(null)), table106, "Given ");
 #line hidden
             }
@@ -1402,7 +1402,7 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("21_instructor_add_test_multiple_choice_adding_question_with_document", null, tagsOfScenario, argumentsOfScenario);
-#line 312
+#line 311
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1422,10 +1422,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 313
+#line 312
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 314
+#line 313
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table107 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1434,18 +1434,15 @@ this.ScenarioInitialize(scenarioInfo);
                 table107.AddRow(new string[] {
                             "name",
                             "anil_vedubox_test_pool_multiple_choice_with_document"});
-#line 315
+#line 314
  testRunner.Given("instructor checks test poll question is exist", ((string)(null)), table107, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table108 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table108.AddRow(new string[] {
-                            "Name",
+                            "name",
                             "anil_vedubox_test_pool_multiple_choice_with_document"});
-                table108.AddRow(new string[] {
-                            "Description",
-                            "TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL"});
                 table108.AddRow(new string[] {
                             "Duration",
                             "25"});
@@ -1485,7 +1482,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table108.AddRow(new string[] {
                             "TestCategory",
                             "DefaultTestCategory1"});
-#line 318
+#line 317
  testRunner.Then("instructor adds test pool multiple choice with document", ((string)(null)), table108, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table109 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1494,7 +1491,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table109.AddRow(new string[] {
                             "name",
                             "anil_vedubox_test_pool_multiple_choice_with_document"});
-#line 335
+#line 333
  testRunner.Given("instructor delete tests with", ((string)(null)), table109, "Given ");
 #line hidden
             }
@@ -1502,13 +1499,13 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("0_instructor_add_exam_with_default_params")]
-        public virtual void _0_İnstructor_Add_Exam_With_Default_Params()
+        [NUnit.Framework.DescriptionAttribute("22_instructor_add_test_poll_open_ended")]
+        public virtual void _22_İnstructor_Add_Test_Poll_Open_Ended()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("0_instructor_add_exam_with_default_params", null, tagsOfScenario, argumentsOfScenario);
-#line 339
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("22_instructor_add_test_poll_open_ended", null, tagsOfScenario, argumentsOfScenario);
+#line 337
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1528,10 +1525,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 340
+#line 338
  testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 341
+#line 339
  testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table110 = new TechTalk.SpecFlow.Table(new string[] {
@@ -1539,36 +1536,109 @@ this.ScenarioInitialize(scenarioInfo);
                             "Value"});
                 table110.AddRow(new string[] {
                             "name",
-                            "anil_instructor_exam"});
-#line 342
- testRunner.Given("instructor checks exam is exist", ((string)(null)), table110, "Given ");
+                            "anil_vedubox_test_pool_open_ended"});
+#line 340
+ testRunner.Given("instructor checks test poll question is exist", ((string)(null)), table110, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table111 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table111.AddRow(new string[] {
                             "name",
-                            "anil_instructor_exam_name"});
+                            "anil_vedubox_test_pool_open_ended"});
                 table111.AddRow(new string[] {
-                            "description",
-                            "anil_instructor_exam_description"});
+                            "time",
+                            "45"});
                 table111.AddRow(new string[] {
-                            "catalogs",
-                            "defaultKatalog1,defaultKatalog2"});
+                            "TestCategory",
+                            "DefaultTestCategory1"});
                 table111.AddRow(new string[] {
-                            "tests",
-                            "Default Multiple Choice Test1,Default True False Test1,Default Open Ended Test1"});
-#line 345
- testRunner.Then("instructor adds exam with document", ((string)(null)), table111, "Then ");
+                            "question",
+                            "Default Open Ended Question1"});
+#line 343
+ testRunner.Given("instructor adds test pool open ended with", ((string)(null)), table111, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table112 = new TechTalk.SpecFlow.Table(new string[] {
                             "Key",
                             "Value"});
                 table112.AddRow(new string[] {
                             "name",
+                            "anil_vedubox_test_pool_open_ended"});
+#line 349
+ testRunner.Given("instructor delete tests with", ((string)(null)), table112, "Given ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("0_instructor_add_exam_with_default_params")]
+        public virtual void _0_İnstructor_Add_Exam_With_Default_Params()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("0_instructor_add_exam_with_default_params", null, tagsOfScenario, argumentsOfScenario);
+#line 353
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 354
+ testRunner.Given("Open Kurumsal Login Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 355
+ testRunner.Given("Login as \"instructor\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table113 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table113.AddRow(new string[] {
+                            "name",
                             "anil_instructor_exam"});
-#line 351
- testRunner.Given("instructor delete exam with", ((string)(null)), table112, "Given ");
+#line 356
+ testRunner.Given("instructor checks exam is exist", ((string)(null)), table113, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table114 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table114.AddRow(new string[] {
+                            "name",
+                            "anil_instructor_exam_name"});
+                table114.AddRow(new string[] {
+                            "description",
+                            "anil_instructor_exam_description"});
+                table114.AddRow(new string[] {
+                            "catalogs",
+                            "defaultKatalog1,defaultKatalog2"});
+                table114.AddRow(new string[] {
+                            "tests",
+                            "Default Multiple Choice Test1,Default True False Test1,Default Open Ended Test1"});
+#line 359
+ testRunner.Then("instructor adds exam with document", ((string)(null)), table114, "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table115 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table115.AddRow(new string[] {
+                            "name",
+                            "anil_instructor_exam"});
+#line 365
+ testRunner.Given("instructor delete exam with", ((string)(null)), table115, "Given ");
 #line hidden
             }
             this.ScenarioCleanup();

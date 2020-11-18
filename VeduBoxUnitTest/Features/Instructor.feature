@@ -179,6 +179,67 @@ Scenario: 9_instructor_add_content_as_video_with_vimeo
 	Then instructor delete course
 		| Key  | Value               |
 		| name | anil_vedubox_course |
+
+Scenario: 10_instructor_add_content_as_link
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks course is exist
+		| Key  | Value               |
+		| name | anil_vedubox_course |
+	Given instructor adds new course with
+		| Key      | Value               |
+		| name     | anil_vedubox_course |
+		| category | defaultCategory1    |
+	Given instructor adds subject with
+		| Key    | Value                |
+		| course | anil_vedubox_course  |
+		| title  | anil_vedubox_subject |
+	Given instructor adds content as link
+		| Key    | Value                                     |
+		| course | anil_vedubox_course                       |
+		| title  | anil_vedubox_course_content_as_link_title |
+		| desc   | anil_vedubox_course_content_as_link_desc  |
+		| link   | https://mail.google.com/mail/u/1/#inbox   |
+	Then instructor delete course
+		| Key  | Value               |
+		| name | anil_vedubox_course |
+
+Scenario: 11_instructor_add_content_as_embed_code
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks course is exist
+		| Key  | Value               |
+		| name | anil_vedubox_course |
+	Given instructor adds new course with
+		| Key      | Value               |
+		| name     | anil_vedubox_course |
+		| category | defaultCategory1    |
+	Given instructor adds subject with
+		| Key    | Value                |
+		| course | anil_vedubox_course  |
+		| title  | anil_vedubox_subject |
+	Given instructor adds content as embed code
+		| Key        | Value                                                                                       |
+		| course     | anil_vedubox_course                                                                         |
+		| title      | anil_vedubox_course_content_as_embed_code_title                                             |
+		| desc       | anil_vedubox_course_content_as_embed_code_desc                                              |
+		| embed_code | <iframe width="1280" height="968" src="https://www.youtube.com/embed/ZzBDAtbcFvM"></iframe> |
+	Then instructor delete course
+		| Key  | Value               |
+		| name | anil_vedubox_course |
+	 
+Scenario: 19_instructor_add_question_batch_question_from_excel
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks question is exist
+		| Key  | Value                            |
+		| name | anil_vedubox_question_from_excel |
+	Given instructor batch create question with
+		| Key          | Value                |
+		| TestCategory | DefaultTestCategory1 |
+	Then instructor deletes question with
+		| Key  | Value                            |
+		| name | anil_vedubox_question_from_excel |
 	 
 Scenario: 12_instructor_add_question_multiple_choice
 	Given Open Kurumsal Login Page
@@ -284,7 +345,7 @@ Scenario: 0_instructor_add_exam_with_default_params
 		| Key         | Value                                                                           |
 		| name        | anil_instructor_exam_name                                                       |
 		| description | anil_instructor_exam_description                                                |
-		| catalogs    | defaultKatalog1,defaultKatalog2                                             |
+		| catalogs    | defaultKatalog1,defaultKatalog2                                                 |
 		| tests       | Default Multiple Choice Test1,Default True False Test1,Default Open Ended Test1 |
 	Given instructor delete exam with
 		| Key  | Value                |

@@ -511,6 +511,44 @@ namespace VeduBoxUnitTest.StepDefinitions{
                     .assert();
             new HomePage(driver).openCOURSESpage("instructor");
         }
+        [Given(@"instructor adds content as link")]
+        public void GivenİnstructorAddsContentAsLink(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(driver, "instructor")
+                    .searchNewlyAddedCouseByName(dictionary["course"])
+                    .openCourseDetail(dictionary["course"])
+                    .openCourseUpdate()
+                    .addResource()
+                    .clickResourceTypeLink()
+                    .clickOkAfterType()
+                    .enterResourceTitle(dictionary["title"])
+                    .setDescription(dictionary["desc"])
+                    .enterLink(dictionary["link"])
+                    .selectVideoUserReview()
+                    .clickResourceLinkSave()
+                    .assert();
+            new HomePage(driver).openCOURSESpage("instructor");
+        }
+        [Given(@"instructor adds content as embed code")]
+        public void GivenİnstructorAddsContentAsEmbedCode(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(driver, "instructor")
+                    .searchNewlyAddedCouseByName(dictionary["course"])
+                    .openCourseDetail(dictionary["course"])
+                    .openCourseUpdate()
+                    .addResource()
+                    .clickResourceTypeEmbedCode()
+                    .clickOkAfterType()
+                    .enterResourceTitle(dictionary["title"])
+                    .setDescription(dictionary["desc"])
+                    .enterEmbedCode(dictionary["embed_code"])
+                    .selectVideoUserReview()
+                    .clickResourceLinkSave()
+                    .assert();
+            new HomePage(driver).openCOURSESpage("instructor");
+        }
+
+
         [Given(@"instructor checks question is exist")]
         public void GivenInstructorChecksMultipleChoiceQuestionİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
@@ -547,6 +585,20 @@ namespace VeduBoxUnitTest.StepDefinitions{
                     .clickDeleteSingleQuestionPopup()
                     .assert();
         }
+        [Given(@"instructor batch create question with")]
+        public void GivenİnstructorBatchCreateQuestionWith(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new QuestionsPage(driver, "instructor")
+                    .clickBatchCreateButton()
+                    .enterExcelFile()
+                    .selectTestCategory(dictionary["TestCategory"])
+                    .clickUploadExcelButton()
+                    .clickQuestionListAcceptButton()
+                    .refreshPage()
+                    ;
+            new HomePage(driver).openQuestionsPage("instructor");
+        }
+
         [Given(@"instructor adds true false question with")]
         public void GivenİnstructorAddsTrueFalseQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);

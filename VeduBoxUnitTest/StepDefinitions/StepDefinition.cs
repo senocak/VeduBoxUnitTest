@@ -998,6 +998,36 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .clickAreUSure()
                 .assert();
         }
+        [Then(@"instructor adds exam with multiple choice")]
+        public void ThenİnstructorAddsExamWithMultipleChoice(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openExamPage("instructor")
+                .clickAddNew()
+                .enterName(dictionary["name"])
+                .enterDescription(dictionary["description"])
+                .enterRepeatNumber(Int32.Parse(dictionary["repeatNumber"]))
+                .selectCatalogs(dictionary["catalogs"])
+                .clickNextButton()
+                .setTests(dictionary["tests"])
+                .clickSaveButton();
+        }
+        [Then(@"instructor adds exam with open ended")]
+        public void ThenİnstructorAddsExamWithOpenEnded(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openExamPage("instructor")
+                .clickAddNew()
+                .enterName(dictionary["name"])
+                .enterDescription(dictionary["description"])
+                .enterRepeatNumber(Int32.Parse(dictionary["repeatNumber"]))
+                .selectCatalogs(dictionary["catalogs"])
+                .clickNextButton()
+                .setTests(dictionary["tests"])
+                .clickSaveButton();
+        }
         [Given(@"admin checks admin is exist")]
         public void GivenAdminChecksAdminİsExist(Table table)
         {
@@ -1073,6 +1103,47 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .clickDeleteButton()
                 .clickAreUSure()
                 .assert();
+        }
+
+        [Given(@"student adds new Q&A")]
+        public void GivenStudentAddsNewQA(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openQuestionsAndAnswersPage("student")
+                .clickNewTicket()
+                .SelectCourse(dictionary["courseName"])
+                .enterSubject(dictionary["subject"])
+                .enterMessage(dictionary["message"])
+                .clickNextButton()
+                //.selectFile()
+                .clickSendButton()
+                .assert();
+        }
+        [Given(@"instructor checks Q&A is exist")]
+        public void GivenİnstructorChecksQuestionsAndAnswerİsExist()
+        {
+            new HomePage(driver)
+                .openQuestionsAndAnswersPage("instructor")
+                .checkQuestionIsExist();
+        }
+        [Then(@"instructor answers the question")]
+        public void GivenInstructorAnswersTheQuestion(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openQuestionsAndAnswersPage("instructor")
+                .openViewDetail()
+                .enterAnswer(dictionary["answer"])
+                // .selectFile()
+                .clickReplyButton();
+        }
+        [Then(@"instructor deletes new Q&A")]
+        public void GivenİnstructorDeletesNewAddedQuestion()
+        {
+            new HomePage(driver)
+                .openQuestionsAndAnswersPage("instructor")
+                .deleteNewAddedQuestions();
         }
 
 

@@ -155,3 +155,20 @@ Scenario: 9_student_live_start
     Given Open Kurumsal Login Page
 	Given Login as "student"
     Then  student verify start live and delete live with
+
+Scenario: 11_student_add_Question_And_Answer
+	#Given Open Kurumsal Login Page
+	#Given Login as "instructor"
+	#Given instructor checks Q&A is exist
+	Given Open Kurumsal Login Page
+	Given Login as "student"
+    Given student adds new Q&A
+		| Key         | Value                    |
+		| courseName  | defaultCourse2 (Anil Senocak)           |
+		| subject     | defaultQuestionAndAnswer |
+		| message     | defaultQuestionAndAnswerMessage |
+    Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Then instructor deletes new Q&A
+   
+

@@ -24,6 +24,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By CATALOG = By.CssSelector("a[title='Catalogs']");
         private static By ADMINS = By.CssSelector("a[title='Admins']");
         private static By MANAGERS = By.CssSelector("a[title='Managers']");
+        private static By QUESTIONSANSWERS = By.CssSelector("a[title='Q&A']");
 
         private static By USERNAME_LINK = By.CssSelector("span[ng-bind='$root.user.firstName | limitTo: 8']");
         private static By SWITCH_TO_ROLE = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/ul/li[2]/a");
@@ -81,6 +82,20 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             }
             Console.WriteLine(user + ": clicked openManagersPage element");
             return new ManagersPage(driver, user);
+        }
+        public QuestionsAndAnswersPage openQuestionsAndAnswersPage(string user)
+        {
+            _user = user;
+            try
+            {
+                click(QUESTIONSANSWERS);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error occured in openQuestionsAndAnswersPage, user: " + user + ", Error is: " + e.Message);
+            }
+            Console.WriteLine(user + ": clicked openQuestionsAndAnswersPage element");
+            return new QuestionsAndAnswersPage(driver, user);
         }
         public CoursesPage openCOURSESpage(string user){
             _user = user;

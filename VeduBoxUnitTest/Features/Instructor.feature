@@ -6,7 +6,7 @@ Scenario: 1_instructor_add_live
 	Given instructor checks live is exist
 	Given instructor adds new live with
 		| Key               | Value                  |
-		| course_name       | defaultCourse1        |
+		| course_name       | defaultCourse1         |
 		| meetingType       | pro                    |
 		| title             | deneme                 |
 		| hour              | 18                     |
@@ -227,7 +227,7 @@ Scenario: 11_instructor_add_content_as_embed_code
 	Then instructor delete course
 		| Key  | Value               |
 		| name | anil_vedubox_course |
-	 
+
 Scenario: 19_instructor_add_question_batch_question_from_excel
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
@@ -240,7 +240,7 @@ Scenario: 19_instructor_add_question_batch_question_from_excel
 	Then instructor deletes question with
 		| Key  | Value                            |
 		| name | anil_vedubox_question_from_excel |
-	 
+
 Scenario: 12_instructor_add_question_multiple_choice
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
@@ -332,6 +332,75 @@ Scenario: 21_instructor_add_test_multiple_choice_adding_question_with_document
 	Given instructor delete tests with
 		| Key  | Value                                                |
 		| name | anil_vedubox_test_pool_multiple_choice_with_document |
+
+Scenario: 23_instructor_add_exam_multiple_choice
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks exam is exist
+		| Key  | Value                |
+		| name | anil_instructor_exam_multiple_choice |
+	Then instructor adds exam with multiple choice
+		| Key          | Value                                            |
+		| name         | anil_instructor_exam_multiple_choice_name        |
+		| description  | anil_instructor_exam_multiple_choice_description |
+		| repeatNumber | 3                                                |
+		| catalogs     | defaultKatalog1                                  |
+		| tests        | Default Multiple Choice Test1                    |
+	Given instructor delete exam with
+		| Key  | Value                                |
+		| name | anil_instructor_exam_multiple_choice |
+
+Scenario: 24_instructor_add_exam_multiple_choice_with_pdf
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks exam is exist
+		| Key  | Value                |
+		| name | anil_instructor_exam_multiple_choice_with_pdf |
+	Then instructor adds exam with multiple choice
+		| Key          | Value                                                     |
+		| name         | anil_instructor_exam_multiple_choice_with_pdf_name        |
+		| description  | anil_instructor_exam_multiple_choice_with_pdf_description |
+		| repeatNumber | 5                                                         |
+		| catalogs     | defaultKatalog1                                           |
+		| tests        | Default Multiple Choice With Pdf Test1                    |
+	Given instructor delete exam with
+		| Key  | Value                                         |
+		| name | anil_instructor_exam_multiple_choice_with_pdf |
+
+Scenario: 25_instructor_add_exam_open_ended
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks exam is exist
+		| Key  | Value                |
+		| name | anil_instructor_exam_open_ended |
+	Then instructor adds exam with open ended
+		| Key          | Value                                       |
+		| name         | anil_instructor_exam_open_ended_name        |
+		| description  | anil_instructor_exam_open_ended_description |
+		| repeatNumber | 2                                           |
+		| catalogs     | defaultKatalog1                             |
+		| tests        | Default Open Ended Test1                    |
+	Given instructor delete exam with
+		| Key  | Value                           |
+		| name | anil_instructor_exam_open_ended |
+
+Scenario: 26_instructor_answers_Question_And_Answer
+    #Given Open Kurumsal Login Page
+	#Given Login as "instructor"
+	#Given instructor checks Q&A is exist
+	Given Open Kurumsal Login Page
+	Given Login as "student"
+    Given student adds new Q&A
+		| Key         | Value                    |
+		| courseName  | defaultCourse2 (Anil Senocak)           |
+		| subject     | defaultQuestionAndAnswer |
+		| message     | defaultQuestionAndAnswerMessage |
+    Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Then  instructor answers the question
+	| Key         | Value                    |
+	| answer  | anil answer the question          |
+	Then instructor deletes new Q&A
 
 Scenario: 22_instructor_add_test_poll_open_ended
 	Given Open Kurumsal Login Page

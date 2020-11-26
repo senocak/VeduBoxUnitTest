@@ -1,16 +1,21 @@
 ﻿using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VeduBoxUnitTest.Assertion;
+using OpenQA.Selenium.Support.Extensions;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class QuestionsPage : Page{
 
         private static string _user;
+        private IWebDriver _driver;
+        private IJavaScriptExecutor _js;
         private static By ADD_NEW_QUESTION_BUTTON = By.CssSelector("button[ui-sref='veduBox.testExam.questions.new']");
+        private static By BATCH_CREATE_QUESTION_BUTTON = By.CssSelector("button[ui-sref='veduBox.testExam.questions.batchCreate']");
         private static By QUESTION_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
         private static By POINT_INPUT = By.Id("teacherQuesPoolPoint");
         private static By DELETE_CHOICE_5 = By.XPath("(//*[@id='teacherQuesPoolChoiceAnsDel'])[5]");
@@ -29,12 +34,41 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By QUESTION_TYPE = By.Id("teacherQuesPoolTypeQues");
         private static By ANSWER_TRUE = By.XPath("(//*[@id='teacherQuesPoolChoiceCorrectAns'])[1]");
         private static By ANSWER_FALSE = By.XPath("(//*[@id='teacherQuesPoolChoiceCorrectAns'])[2]");
+        private static By BATCH_FILE_INPUT = By.Id("html_btn");
+        private static By UPLOAD_EXCEL_BUTTON = By.CssSelector("button[ng-click='uploadFile()']");
+        private static By QUESTION_LIST_ACCEPT_BUTTON = By.CssSelector("a[ng-click='accept()']");
 
         public QuestionsPage(IWebDriver wd, string user) : base(wd) {
             _user = user;
+            _driver = wd;
+            _js = (IJavaScriptExecutor)_driver;
         }
         public QuestionsPage clickAddNewButton(){
             click(ADD_NEW_QUESTION_BUTTON);
+            return this;
+        }
+        public QuestionsPage enterExcelFile(){
+            _js.ExecuteScript("document.getElementById('html_btn').style.display = 'block';");
+            type(
+                BATCH_FILE_INPUT,
+                Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Docs\\soru_yukleme_excel.xlsx"))
+            );
+            return this;
+        }
+        public QuestionsPage clickUploadExcelButton() {
+            click(UPLOAD_EXCEL_BUTTON);
+            return this;
+        }
+        public QuestionsPage clickBatchCreateButton(){
+            click(BATCH_CREATE_QUESTION_BUTTON);
+            return this;
+        }
+        public QuestionsPage clickQuestionListAcceptButton(){
+            click(QUESTION_LIST_ACCEPT_BUTTON);
+            return this;
+        }
+        public QuestionsPage refreshPage(){
+            _driver.Navigate().Refresh();
             return this;
         }
         public QuestionsPage typeQuestionInput(string question){

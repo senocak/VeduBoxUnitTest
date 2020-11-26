@@ -177,6 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Docs\soru_yukleme_ornek_excel.xlsx" />
     <None Include="Features\Admin.feature" />
     <None Include="Features\Instructor.feature" />
     <None Include="Features\Student.feature" />

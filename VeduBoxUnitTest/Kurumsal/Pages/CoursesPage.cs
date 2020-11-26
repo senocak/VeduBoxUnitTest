@@ -39,6 +39,12 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By RESOURCE_REVIEW_CHECK = By.Id("resourceTypeDocReview");
         private static By RESOURCE_SAVE_BUTTON = By.Id("resourceTypeDocFileSave");
         private static By SELECT_RESOURCE_VIDEO = By.Id("rescourceTypeVideo");
+        private static By SELECT_RESOURCE_LINK = By.Id("rescourceTypeLink");
+        private static By INPUT_RESOURCE_LINK = By.CssSelector("input[ng-model='resource.url']");
+        private static By BUTTON_RESOURCE_LINK_SAVE = By.XPath("//*[@id='resourceForm']/div[2]/div/div/button[1]");
+        private static By SELECT_RESOURCE_EMBED_CODE = By.Id("rescourceTypeEmbedCode");
+        private static By INPUT_RESOURCE_EMBED_CODE = By.CssSelector("textarea[ng-model='resource.code']");
+
         private static By RESOURCE_TYPE_DOC_FILE= By.Id("resourceTypeDocFile");
         private static By RESOURCE_TYPE_DOC_VIDEO1 = By.Id("fileVideo");
         private static By RESOURCE_TYPE_DOC_VIDEO2 = By.Id("fileTwo");
@@ -215,6 +221,10 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             type(RESOURCE_DESC, desc);
             return this;
         }
+        public CoursesPage enterEmbedCode(string code){
+            type(INPUT_RESOURCE_EMBED_CODE, code);
+            return this;
+        }
         public CoursesPage selectDownloadable(){
             click(RESOURCE_DOWNLOADABLE_CHECK);
             return this;
@@ -242,6 +252,22 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         }
         public CoursesPage clickResourceTypeVideo(){
             click(SELECT_RESOURCE_VIDEO);
+            return this;
+        }
+        public CoursesPage clickResourceTypeLink(){
+            click(SELECT_RESOURCE_LINK);
+            return this;
+        }
+        public CoursesPage enterLink(string link){
+            type(INPUT_RESOURCE_LINK, link);
+            return this;
+        }
+        public CoursesPage clickResourceLinkSave(){
+            click(BUTTON_RESOURCE_LINK_SAVE);
+            return this;
+        }
+        public CoursesPage clickResourceTypeEmbedCode(){
+            click(SELECT_RESOURCE_EMBED_CODE);
             return this;
         }
         public CoursesPage selectVideo1(){

@@ -6,7 +6,7 @@ Scenario: 1_instructor_add_live
 	Given instructor checks live is exist
 	Given instructor adds new live with
 		| Key               | Value                  |
-		| course_name       | defaultCourse1        |
+		| course_name       | defaultCourse1         |
 		| meetingType       | pro                    |
 		| title             | deneme                 |
 		| hour              | 18                     |
@@ -179,7 +179,68 @@ Scenario: 9_instructor_add_content_as_video_with_vimeo
 	Then instructor delete course
 		| Key  | Value               |
 		| name | anil_vedubox_course |
-	 
+
+Scenario: 10_instructor_add_content_as_link
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks course is exist
+		| Key  | Value               |
+		| name | anil_vedubox_course |
+	Given instructor adds new course with
+		| Key      | Value               |
+		| name     | anil_vedubox_course |
+		| category | defaultCategory1    |
+	Given instructor adds subject with
+		| Key    | Value                |
+		| course | anil_vedubox_course  |
+		| title  | anil_vedubox_subject |
+	Given instructor adds content as link
+		| Key    | Value                                     |
+		| course | anil_vedubox_course                       |
+		| title  | anil_vedubox_course_content_as_link_title |
+		| desc   | anil_vedubox_course_content_as_link_desc  |
+		| link   | https://mail.google.com/mail/u/1/#inbox   |
+	Then instructor delete course
+		| Key  | Value               |
+		| name | anil_vedubox_course |
+
+Scenario: 11_instructor_add_content_as_embed_code
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks course is exist
+		| Key  | Value               |
+		| name | anil_vedubox_course |
+	Given instructor adds new course with
+		| Key      | Value               |
+		| name     | anil_vedubox_course |
+		| category | defaultCategory1    |
+	Given instructor adds subject with
+		| Key    | Value                |
+		| course | anil_vedubox_course  |
+		| title  | anil_vedubox_subject |
+	Given instructor adds content as embed code
+		| Key        | Value                                                                                       |
+		| course     | anil_vedubox_course                                                                         |
+		| title      | anil_vedubox_course_content_as_embed_code_title                                             |
+		| desc       | anil_vedubox_course_content_as_embed_code_desc                                              |
+		| embed_code | <iframe width="1280" height="968" src="https://www.youtube.com/embed/ZzBDAtbcFvM"></iframe> |
+	Then instructor delete course
+		| Key  | Value               |
+		| name | anil_vedubox_course |
+
+Scenario: 19_instructor_add_question_batch_question_from_excel
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks question is exist
+		| Key  | Value                            |
+		| name | anil_vedubox_question_from_excel |
+	Given instructor batch create question with
+		| Key          | Value                |
+		| TestCategory | DefaultTestCategory1 |
+	Then instructor deletes question with
+		| Key  | Value                            |
+		| name | anil_vedubox_question_from_excel |
+
 Scenario: 12_instructor_add_question_multiple_choice
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
@@ -245,7 +306,6 @@ Scenario: 20_instructor_add_test_pool_multiple_choice
 	Given instructor delete tests with
 		| Key  | Value                                  |
 		| name | anil_vedubox_test_pool_multiple_choice |
-	
 
 Scenario: 21_instructor_add_test_multiple_choice_adding_question_with_document
 	Given Open Kurumsal Login Page
@@ -255,8 +315,7 @@ Scenario: 21_instructor_add_test_multiple_choice_adding_question_with_document
 		| name | anil_vedubox_test_pool_multiple_choice_with_document |
 	Then instructor adds test pool multiple choice with document
 		| Key            | Value                                                |
-		| Name           | anil_vedubox_test_pool_multiple_choice_with_document |
-		| Description    | TEST - MULTIPLE CHOICE WITH DOCUMENT By ANIL         |
+		| name           | anil_vedubox_test_pool_multiple_choice_with_document |
 		| Duration       | 25                                                   |
 		| questionNumber | 8                                                    |
 		| points         | 15                                                   |
@@ -342,6 +401,22 @@ Scenario: 26_instructor_answers_Question_And_Answer
 	| Key         | Value                    |
 	| answer  | anil answer the question          |
 	Then instructor deletes new Q&A
+
+Scenario: 22_instructor_add_test_poll_open_ended
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks test poll question is exist
+		| Key  | Value                             |
+		| name | anil_vedubox_test_pool_open_ended |
+	Given instructor adds test pool open ended with
+		| Key          | Value                             |
+		| name         | anil_vedubox_test_pool_open_ended |
+		| time         | 45                                |
+		| TestCategory | DefaultTestCategory1              |
+		| question     | Default Open Ended Question1      |
+	Given instructor delete tests with
+		| Key  | Value                             |
+		| name | anil_vedubox_test_pool_open_ended |
 
 Scenario: 0_instructor_add_exam_with_default_params
 	Given Open Kurumsal Login Page

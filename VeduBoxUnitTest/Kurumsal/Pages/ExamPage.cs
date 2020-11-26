@@ -15,6 +15,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
         private static By SEARCH_TEST_INPUT = By.XPath("//*[@id='step2']/div/div[1]/div/div[1]/div[2]/div[4]/input");
         private static By SET_BUTTON_TEST = By.CssSelector("button[ng-click='setSelectedTests(test)']");
         private static By SAVE_BUTTON = By.CssSelector("button[ng-click='goToStep(3)']");
+        private static By REPEAT_NUMBER = By.CssSelector("input[ng-model='exam.repeatNumber']");
 
         private static By SELECT_FIRST_EXAM = By.XPath("//*[@id='student_my_exam']/div[2]/div/div/div/div[1]/div/div[1]/table/tbody/tr[1]/td[7]/button");
         private static By START_EXAM_BUTTON = By.CssSelector("button[ng-click='gotoStep(2)']");
@@ -79,8 +80,13 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
             type(NAME, name);
             return this;
         }
-        public ExamPage enterDescription(string desc){
-            type(DESCRIPTION, desc);
+        public ExamPage enterDescription(string description){
+            type(DESCRIPTION, description);
+            return this;
+        }
+        public ExamPage enterRepeatNumber(int repeatNumber)
+        {
+            type(REPEAT_NUMBER, repeatNumber);
             return this;
         }
         public ExamPage selectCatalogs(string catalog){

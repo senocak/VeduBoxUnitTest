@@ -69,11 +69,11 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
                     }else{
                         el = ((IWebElement)p);
                     }
-                    try{​​​​
+                    try{
                         Actions actions = new Actions(driver);
                         actions.MoveToElement(el);
                         actions.Perform();
-                    }catch (Exception e){​​​​
+                    }catch(Exception e){
                         Console.WriteLine("Action error is occured during move to element. error is : " + e.Message);
                     }
                     el.Click();

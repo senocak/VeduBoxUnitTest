@@ -3,3 +3,4 @@
 /VeduBoxUnitTest/obj
 /packages
 /.idea
+/VeduBoxUnitTest/Features/*.feature.cs

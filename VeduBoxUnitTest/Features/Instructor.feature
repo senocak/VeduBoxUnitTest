@@ -79,7 +79,7 @@ Scenario: 5_instructor_add_subject
 		| category | defaultCategory1               |
 	Given instructor adds subject with
 		| Key   | Value                          |
-		| name  | anil_vedubox_course_instructor |
+		| course   | anil_vedubox_course_instructor |
 		| title | hello world                    |
 	Then instructor delete course
 		| Key  | Value                          |

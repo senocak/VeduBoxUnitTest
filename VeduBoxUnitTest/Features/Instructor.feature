@@ -48,7 +48,7 @@ Scenario: 3_instructor_add_student
 		| email     | anil_instructor_student@anil.com |
 		| userName  | admin_deneme                     |
 		| password  | admin_deneme_pass                |
-		| catalog   | defaultCatalog1                  |
+		| catalog   | defaultKatalog1                  |
 	Then instructor delete student
 		| Key   | Value                 |
 		| email | anil_instructor_student@anil.com |

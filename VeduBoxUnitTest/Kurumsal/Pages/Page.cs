@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -67,6 +68,13 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
                         el = driver.FindElement((By)(Object)p);
                     }else{
                         el = ((IWebElement)p);
+                    }
+                    try{​​​​
+                        Actions actions = new Actions(driver);
+                        actions.MoveToElement(el);
+                        actions.Perform();
+                    }catch (Exception e){​​​​
+                        Console.WriteLine("Action error is occured during move to element. error is : " + e.Message);
                     }
                     el.Click();
                     return el;

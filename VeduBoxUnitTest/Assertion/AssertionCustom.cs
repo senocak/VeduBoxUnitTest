@@ -18,7 +18,7 @@ namespace VeduBoxUnitTest.Assertion
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.VisibilityOfAllElementsLocatedBy(by));
             } catch (Exception e) {
                 Console.WriteLine("Hata; " + e);
-                Assert.Fail(errorMessage + " (tried for " + EXPECTED_CONDITION_TIMEOUT + " second(s) with 500 milliseconds interval)");
+                Assert.Fail(errorMessage + " (tried for " + EXPECTED_CONDITION_TIMEOUT + " second(s) with 5 seconds interval)");
             }
         }
         public static void assertTextToBePresentInElementLocated(IWebDriver driver, By by, String textExpected, String errorMessage){
@@ -31,7 +31,7 @@ namespace VeduBoxUnitTest.Assertion
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.TextToBePresentInElement(driver.FindElement(by), textExpected));
             }catch (Exception e){
                 Console.WriteLine("Hata; " + e);
-                Assert.Fail(errorMessage + " (tried for " + EXPECTED_CONDITION_TIMEOUT + " second(s) with 500 milliseconds interval)");
+                Assert.Fail(errorMessage + " (tried for " + EXPECTED_CONDITION_TIMEOUT + " second(s) with 5 seconds interval)");
             }
         }
     }

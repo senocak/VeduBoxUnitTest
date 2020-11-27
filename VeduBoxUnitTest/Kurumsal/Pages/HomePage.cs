@@ -27,7 +27,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By QUESTIONSANSWERS = By.CssSelector("a[title='Q&A']");
 
         private static By USERNAME_LINK = By.CssSelector("span[ng-bind='$root.user.firstName | limitTo: 8']");
-        private static By SWITCH_TO_ROLE = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/ul/li[2]/a");
+        private static By SWITCH_TO_ROLE = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/ul/li[3]/a");
         private static By ROLE_MODAL = By.CssSelector("a[ng-click='openSwitchRoleModal(role)']");
         private static By PASSWORD = By.CssSelector("input[ng-model='loginData.password']");
         private static By SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div[2]/button[1]");

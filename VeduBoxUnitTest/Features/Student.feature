@@ -9,8 +9,6 @@ Scenario: 1_student_live_register
 		| course_name       | defaultCourse1        |
 		| meetingType       | basic                  |
 		| title             | deneme                 |
-		| hour              | 18                     |
-		| min               | 00                     |
 		| timezone          | Turkey Time (GMT+3:00) |
 		| duration          | 120                    |
 		| registrationLimit | 50                     |

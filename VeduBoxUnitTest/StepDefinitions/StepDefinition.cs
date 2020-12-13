@@ -10,9 +10,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
     [Binding]
     public class StepDefinitionsCommon{
         private ScenarioContext _scenarioContext;
-        private static Int32 YEAR = 2021;
-        private static string MONTH = "December";
-        private static string DAY = "22";
+
         public StepDefinitionsCommon(ScenarioContext scenarioContext){
             _scenarioContext = scenarioContext;
         }
@@ -32,7 +30,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 //WebBrowser.Driver.CaptureScreenShot(_scenarioContext.ScenarioInfo.Title);
                 Console.WriteLine("Title:" + ScenarioContext.Current.ScenarioInfo.Title + " is failed.");
             }
-           driver.Quit();
+          // driver.Quit();
         }
         [Given(@"Open Kurumsal Login Page")]
         public void GivenOpenKurumsalLoginPage(){
@@ -70,10 +68,10 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .AddNew()
                 .SelectCourse(dictionary["course_name"])
                 .SubmitSelectedCourse()
-                //.setDate(YEAR, MONTH, DAY)
+                .setDate()
                 .selectMeetingType(dictionary["meetingType"])
                 .enterTitle(dictionary["title"])
-                .setTime(dictionary["hour"], dictionary["min"], dictionary["timezone"])
+                .setTime(dictionary["timezone"])
                 .setDuration(Int32.Parse(dictionary["duration"]))
                 .setRegistrationLimit(Int32.Parse(dictionary["registrationLimit"]))
                 .setDescription(dictionary["description"])
@@ -85,7 +83,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
         public void GivenAdminChecksLiveİsExist(){
             new HomePage(driver)
                 .openLIVEpage("admin")
-                .goDate(YEAR, MONTH, DAY)
+                .goDate()
                 .checkLiveIsExist();
         }
         [Then(@"Delete LIVE")]
@@ -172,7 +170,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
         public void GivenİnstructorChecksLiveİsExist(){
             new HomePage(driver)
                 .openLIVEpage("admin")
-                .goDate(YEAR, MONTH, DAY)
+                .goDate()
                 .checkLiveIsExist();
         }
         [Given(@"instructor adds new live with")]
@@ -183,10 +181,10 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .AddNew()
                 .SelectCourse(dictionary["course_name"])
                 .SubmitSelectedCourse()
-               // .setDate(YEAR, MONTH, DAY)
+                .setDate()
                 .selectMeetingType(dictionary["meetingType"])
                 .enterTitle(dictionary["title"])
-                .setTime(dictionary["hour"], dictionary["min"], dictionary["timezone"])
+                .setTime(dictionary["timezone"])
                 .setDuration(Int32.Parse(dictionary["duration"]))
                 .setRegistrationLimit(Int32.Parse(dictionary["registrationLimit"]))
                 .setDescription(dictionary["description"])
@@ -209,7 +207,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
         public void ThenStudentVerifyStartLiveAndDeleteLiveWith(){
             new HomePage(driver)
                 .openLIVEpage("student")
-                .goDate(YEAR, MONTH, DAY)
+                .goDate()
                 .assertStart()
                 .openLiveRecordDetail()
                 .clickDeleteButtonInRecordDetail()
@@ -299,10 +297,10 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .AddNew()
                 .SelectCourse(dictionary["course_name"])
                 .SubmitSelectedCourse()
-                .setDate(YEAR, MONTH, DAY)
+                .setDate()
                 .selectMeetingType(dictionary["meetingType"])
                 .enterTitle(dictionary["title"])
-                .setTime(dictionary["hour"], dictionary["min"], dictionary["timezone"])
+                .setTime(dictionary["timezone"])
                 .setDuration(Int32.Parse(dictionary["duration"]))
                 .setRegistrationLimit(Int32.Parse(dictionary["registrationLimit"]))
                 .setDescription(dictionary["description"])
@@ -329,7 +327,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
         public void ThenİnstructorDeletesWebinarWith(){
             new HomePage(driver).openLIVEpage("instructor");
             new LivePage(driver, "instructor")
-                    .goDate(YEAR, MONTH, DAY)
+                    .goDate()
                     .openLiveRecordDetail()
                     .clickDeleteButtonInRecordDetail()
                     .clickAreUSure()
@@ -339,7 +337,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
         public void ThenStudentRegistersLive(){
             new HomePage(driver)
                 .openLIVEpage("instructor")
-                .goDate(YEAR, MONTH, DAY)
+                .goDate()
                 .studentRegister()
                 .assertLive();
         }
@@ -848,7 +846,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .enterDescription(dictionary["Description"])
                 .enterRepeatNumber(Int32.Parse(dictionary["RepeatNumber"]))
                 .selectIsMandatory()
-                .setDate(YEAR, MONTH, DAY)
+                .setDate()
                 .clickNextButton()
                 .searchQuestion(dictionary["question"])
                 .setSetQuestion()

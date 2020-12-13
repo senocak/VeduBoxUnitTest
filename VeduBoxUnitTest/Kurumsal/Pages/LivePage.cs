@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using System;
+using System.Globalization;
 using System.Linq;
 using VeduBoxUnitTest.Assertion;
 
@@ -31,16 +32,25 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
         private static By LIVE_RECORD = By.Id("liveLesson-sessionShowDetails");
         private static By RECORD_DETAIL_BUTTON = By.Id("liveLesson-sessionLink");
         private static By COPY_BUTTON = By.CssSelector("input[ng-click='copyClicked()']");
+        
 
-        public static string RandomString(int length){
+       public static string RandomString(int length){
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             return new string(Enumerable.Repeat(chars, length).Select(s => s[new Random().Next(s.Length)]).ToArray());
         }
         //private static string titleRandom = RandomString(10);
         //private static string title = "deneme";
         private static string _user;
+        
+        private int year = Int32.Parse(DateTime.Now.ToString("yyyy"));
+        private string month = DateTime.Now.ToString("MM");
+        private string day =DateTime.Now.ToString("dd");
+        private int hour = Int32.Parse(DateTime.Now.ToString("HH"));
+        private static int minute = Int32.Parse(DateTime.Now.ToString("mm"));
         public LivePage(IWebDriver wd, string user) : base(wd){
             _user = user;
+       
+           
         }
         public LivePage AddNew(){
             try{
@@ -84,7 +94,8 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
             click(By.XPath("//*[@id='mainSection']/div/div[2]/div[3]/div/div[3]/div[3]/div[2]/div/div[6]/div/button[1]"));
             return this;
         }
-        public LivePage setDate(int year, string month, string day){
+        public LivePage setDate(){
+
             click(By.CssSelector("button[ng-click='openDatepicker($event,(n-1))']"));
             click(By.XPath("//*[@id='liveLessonForm']/div[1]/div[5]/div[2]/div/p/ul/li/div/table/thead/tr/th[2]/button"));
             if (year < 2020){
@@ -97,6 +108,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
                     click(By.XPath("//*[@id='liveLessonForm']/div[1]/div[5]/div[2]/div/p/ul/li/div/table/thead/tr/th[3]/button"));
                 }
             }
+            var month = DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture);
             click(By.XPath("//span[contains(text(),'" + month + "')]"));
             click(By.XPath("(//span[@class='ng-binding' and contains(text(),'"+day+"')])[2]"));
             sleepms(500);
@@ -183,9 +195,13 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
             return this;
         }
 
-        public LivePage setTime(string hour, string minute, string timeZone){
-            selectDropDown(TIME_HOUR, hour);
-            selectDropDown(TIME_MIN, minute);
+        public LivePage setTime(string timeZone){
+
+            minute = minute + 2; 
+           selectDropDown(TIME_HOUR, hour);
+            Console.WriteLine("hour was setted as : --- " + hour);
+           // selectDropDown(TIME_MIN, minute);
+            Console.WriteLine("minute was setted as : --- " + minute);
             selectDropDown(TIMEZONE, timeZone);
             return this;
         }
@@ -221,7 +237,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
             return this;
         }
 
-        public LivePage goDate(int year, string month, string day){
+        public LivePage goDate(){
             try{
                 click(By.Id("liveLesson-selectDate"));
                 click(By.XPath("/html/body/div[3]/div/section/div/div[2]/div[2]/div[2]/ul/li/div/table/thead/tr[1]/th[2]/button"));
@@ -236,6 +252,8 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
                         click(By.XPath("//*[@id='mainSection']/div/div[2]/div[2]/div[2]/ul/li/div/table/thead/tr[1]/th[3]/button"));
                     }
                 }
+                var month = DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture);
+                Console.WriteLine("month is : ------  " + month + "--------");
                 click(By.XPath("//span[contains(text(),'" + month + "')]"));
                 click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])"));
             }catch(Exception e){

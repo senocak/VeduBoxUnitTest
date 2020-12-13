@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,10 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By DELETE_POLL = By.CssSelector("button[ng-click='delete(poll)']");
         private static By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
         private static By INPUT_QUESTION_LIST_SEARCH = By.XPath("//*[@id='step2']/div[1]/div/div[1]/div[2]/div[4]/input");
+        private int year = Int32.Parse(DateTime.Now.ToString("yyyy"));
+        private string month = DateTime.Now.ToString("MM");
+        private string day = DateTime.Now.ToString("dd");
+       
         public PollsPage(IWebDriver wd, string user) : base(wd){
             _user = user;
         }
@@ -47,7 +52,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
                 click(ISMANDATORY);
             return this;
         }
-        public PollsPage setDate(int year, string month, string day){
+        public PollsPage setDate(){
             click(By.XPath("//*[@id='step1']/div[12]/div/p/span/button/i"));
             Console.WriteLine("date picker was opened");
             click(By.XPath("(//button[@ng-click='toggleMode()'])[2]"));
@@ -64,6 +69,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
                     click(By.XPath("(//button[@ng-click='move(1)'])[2]"));
                 }
             }
+            var month = DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture);
             click(By.XPath("//span[contains(text(),'" + month + "')]"));
             click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[2]"));
             sleepms(500);

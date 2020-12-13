@@ -173,6 +173,7 @@
     <Compile Include="Kurumsal\Pages\WebinarPage.cs" />
     <Compile Include="StepDefinitions\StepDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Dates.cs" />
     <Compile Include="Utils\TableExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

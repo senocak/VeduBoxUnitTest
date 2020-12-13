@@ -183,7 +183,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .AddNew()
                 .SelectCourse(dictionary["course_name"])
                 .SubmitSelectedCourse()
-                .setDate(YEAR, MONTH, DAY)
+               // .setDate(YEAR, MONTH, DAY)
                 .selectMeetingType(dictionary["meetingType"])
                 .enterTitle(dictionary["title"])
                 .setTime(dictionary["hour"], dictionary["min"], dictionary["timezone"])

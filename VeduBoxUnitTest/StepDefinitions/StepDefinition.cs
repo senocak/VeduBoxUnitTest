@@ -9,6 +9,9 @@ namespace VeduBoxUnitTest.StepDefinitions{
     [Binding]
     public class StepDefinitionsCommon{
         private ScenarioContext _scenarioContext;
+        private static readonly int NEXT_YEAR = 2;
+        private static readonly Months NEXT_MONTH = Months.April;
+        private static readonly int NEXT_DAY = 23;
 
         public StepDefinitionsCommon(ScenarioContext scenarioContext){
             _scenarioContext = scenarioContext;
@@ -63,7 +66,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
         public void GivenAdminChecksLiveİsExist(){
             new HomePage(driver)
                 .openLIVEpage("admin")
-                .goDate(2021, "December", "30")
+                .goDate(Utils.Dates.getNextYear(NEXT_YEAR), Utils.Dates.getNextMonth(NEXT_MONTH), Utils.Dates.getNextDay(NEXT_DAY))
                 .checkLiveIsExist();
         }
         [Given(@"admin adds new live with")]
@@ -74,7 +77,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .AddNew()
                 .SelectCourse(dictionary["course_name"])
                 .SubmitSelectedCourse()
-                .setDate(2021, "December", "30")
+                .setDate(Utils.Dates.getNextYear(NEXT_YEAR), Utils.Dates.getNextMonth(NEXT_MONTH), Utils.Dates.getNextDay(NEXT_DAY))
                 .selectMeetingType(dictionary["meetingType"])
                 .enterTitle(dictionary["title"])
                 .setHour()
@@ -90,7 +93,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
         public void adminDeleteAddedLive(){
             new HomePage(driver)
                 .openLIVEpage("admin")
-                .goDate(2021, "December", "30")
+                .goDate(Utils.Dates.getNextYear(NEXT_YEAR), Utils.Dates.getNextMonth(NEXT_MONTH), Utils.Dates.getNextDay(NEXT_DAY))
                 .openLiveRecordDetail()
                 .clickDeleteButtonInRecordDetail()
                 .clickAreUSure()

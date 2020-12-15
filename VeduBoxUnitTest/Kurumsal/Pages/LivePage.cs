@@ -100,27 +100,21 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
             string getCurrentValueOfInputDay = words[0];
 
             try{
+                click(LiveLessonsAddNewModalSelectDatePicker);
+                click(By.XPath("//*[@id='liveLessonForm']/div[1]/div[5]/div[2]/div/p/ul/li/div/table/thead/tr/th[2]/button"));
                 if (year != getCurrentValueOfInputYear){
-                    click(LiveLessonsAddNewModalSelectDatePicker);
-                    click(By.XPath("//*[@id='liveLessonForm']/div[1]/div[5]/div[2]/div/p/ul/li/div/table/thead/tr/th[2]/button"));
-
                     if (year < getCurrentValueOfInputYear){
                         for (int i = getCurrentValueOfInputYear; i > year; i--){
                             click(By.XPath("//*[@id='liveLessonForm']/div[1]/div[5]/div[2]/div/p/ul/li/div/table/thead/tr/th[1]/button"));
                         }
-                    }
-                    if (year > getCurrentValueOfInputYear){
+                    }else{
                         for (int i = getCurrentValueOfInputYear; i < year; i++){
                             click(By.XPath("//*[@id='liveLessonForm']/div[1]/div[5]/div[2]/div/p/ul/li/div/table/thead/tr/th[3]/button"));
                         }
                     }
                 }
-                if (Utils.Dates.getMonthNameByNumber(getCurrentValueOfInputMonth) != month){
-                    click(By.XPath("//span[contains(text(),'" + month + "')]"));
-                }
-                if (getCurrentValueOfInputDay != day){
-                    click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[2]"));
-                }
+                click(By.XPath("//span[contains(text(),'" + month + "')]"));
+                click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[2]"));
             }catch (Exception e){
                 Console.WriteLine("Element not found:" + e);
             }
@@ -254,27 +248,21 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
             string getCurrentValueOfInputDay = words[2];
 
             try{
+                click(LiveLessonSelectDate);
+                click(By.XPath("/html/body/div[3]/div/section/div/div[2]/div[2]/div[2]/ul/li/div/table/thead/tr[1]/th[2]/button"));
                 if (year != getCurrentValueOfInputYear){
-                    click(LiveLessonSelectDate);
-                    click(By.XPath("/html/body/div[3]/div/section/div/div[2]/div[2]/div[2]/ul/li/div/table/thead/tr[1]/th[2]/button"));
-
                     if (year < getCurrentValueOfInputYear){
                         for (int i = getCurrentValueOfInputYear; i > year; i--){
                             click(By.XPath("//*[@id='mainSection']/div/div[2]/div[2]/div[2]/ul/li/div/table/thead/tr[1]/th[1]/button"));
                         }
-                    }
-                    if (year > getCurrentValueOfInputYear){
+                    }else{
                         for (int i = getCurrentValueOfInputYear; i < year; i++){
                             click(By.XPath("//*[@id='mainSection']/div/div[2]/div[2]/div[2]/ul/li/div/table/thead/tr[1]/th[3]/button"));
                         }
                     }
                 }
-                if (Utils.Dates.getMonthNameByNumber(getCurrentValueOfInputMonth) != month){
-                    click(By.XPath("//span[contains(text(),'" + month + "')]"));
-                }
-                if (getCurrentValueOfInputDay != day){
-                    click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])"));
-                }
+                click(By.XPath("//span[contains(text(),'" + month + "')]"));
+                click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])"));
             }catch(Exception e){
                 Console.WriteLine("Element not found:" + e);
             }

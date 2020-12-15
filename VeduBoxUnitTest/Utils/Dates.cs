@@ -21,5 +21,28 @@ namespace VeduBoxUnitTest.Utils{
         public static string getMonthNameByNumber(int number){
             return DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(number);
         }
+        public static int getNextYear(int year = 1){
+            return getCurrentYear() + year;
+        }
+        public static string getNextMonth(Months months = Months.December){
+            return months.ToString();
+        }
+        public static string getNextDay(int day = 22){
+            return day.ToString();
+        }
+    }
+    enum Months{
+        January,
+        February,
+        March,
+        April,
+        May,
+        June,
+        July,
+        August,
+        September,
+        October,
+        November,
+        December
     }
 }

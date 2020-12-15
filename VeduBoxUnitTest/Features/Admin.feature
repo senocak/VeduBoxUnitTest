@@ -1,6 +1,6 @@
 ﻿Feature: Admin
 
-Scenario: 1_admin_create_live
+Scenario: 1_admin_add_live
 	Given Open Kurumsal Login Page
 	Given Login as "admin"
 	Given admin checks live is exist
@@ -9,13 +9,11 @@ Scenario: 1_admin_create_live
 		| course_name       | defaultCourse1         |
 		| meetingType       | pro                    |
 		| title             | deneme                 |
-		| hour              | 18                     |
-		| min               | 00                     |
 		| timezone          | Turkey Time (GMT+3:00) |
 		| duration          | 120                    |
 		| registrationLimit | 50                     |
 		| description       | Deneme 123             |
-	Then Delete LIVE
+	Then admin deletes live
 
 Scenario: 2_admin_add_user
 	Given Open Kurumsal Login Page
@@ -37,7 +35,6 @@ Scenario: 2_admin_add_user
     Then Delete User
 		| Key   | Value                 |
 		| email | admin_deneme@anil.com |
-	
 
 Scenario: 3_admin_create_course
 	Given Open Kurumsal Login Page
@@ -89,7 +86,7 @@ Scenario: 5_admin_add_role
 		| Key        | Value                             |
 		| first_name | anil_vedubox_instructor_firstname |
 		| last_name  | anil_vedubox_instructor_lastname  |
-		| branch     | defaultBranch1               |
+		| branch     | defaultBranch1                    |
 		| email      | anil@instructor.com               |
 		| username   | anil_instructor_com               |
 		| password   | anil_instructor_com               |
@@ -321,4 +318,3 @@ Scenario: 0_admin_add_catalog
 	Given admin deletes added catalog
 		| Key   | Value               |
 		| name  | anil_vedubox_catalog|
-	

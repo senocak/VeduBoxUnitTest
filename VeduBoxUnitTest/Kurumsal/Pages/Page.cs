@@ -1,9 +1,7 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
 using System.Threading;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
@@ -11,7 +9,6 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static int EXPECTED_CONDITION_TIMEOUT = 15;
         private static int EXPECTED_CONDITION_POLLING_INTERVAL = 5;
         private static int USER_WAIT_IN_MS = 1000;
-
         public ILoadableComponent Load(){
             return this;
         }
@@ -34,16 +31,9 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             wait.IgnoreExceptionTypes(typeof(ElementClickInterceptedException));
             wait.IgnoreExceptionTypes(typeof(WebDriverTimeoutException));
             wait.IgnoreExceptionTypes(typeof(ElementNotInteractableException));
-
-           // wait.Message = "Element to be searched not found";
             wait.Until(
                 drv =>{
-                    IWebElement el = null;
-                    if (p is By){
-                        el = driver.FindElement((By)(Object)p);
-                    }else{
-                        el = ((IWebElement)p);
-                    }
+                    IWebElement el = p is By ? driver.FindElement((By)(Object)p) : ((IWebElement)p);
                     el.Clear();
                     el.SendKeys(t.ToString());
                     return el;
@@ -62,13 +52,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             wait.IgnoreExceptionTypes(typeof(WebDriverTimeoutException));
             wait.Until(
                 drv => {
-                    //IWebElement el = p is By ? driver.FindElement((By)(Object)p) : (IWebElement)p;
-                    IWebElement el = null;
-                    if (p is By){
-                        el = driver.FindElement((By)(Object)p);
-                    }else{
-                        el = ((IWebElement)p);
-                    }
+                    IWebElement el = p is By ? driver.FindElement((By)(Object)p) : ((IWebElement)p);
                     try{
                         Actions actions = new Actions(driver);
                         actions.MoveToElement(el);
@@ -83,8 +67,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             sleepms(USER_WAIT_IN_MS);
         }
 
-        public void clear<T>(T p)
-        {
+        public void clear<T>(T p){
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(EXPECTED_CONDITION_TIMEOUT));
             wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
             wait.IgnoreExceptionTypes(typeof(ElementNotVisibleException));
@@ -93,16 +76,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             wait.IgnoreExceptionTypes(typeof(WebDriverTimeoutException));
             wait.Until(
                 drv => {
-                    //IWebElement el = p is By ? driver.FindElement((By)(Object)p) : (IWebElement)p;
-                    IWebElement el = null;
-                    if (p is By)
-                    {
-                        el = driver.FindElement((By)(Object)p);
-                    }
-                    else
-                    {
-                        el = ((IWebElement)p);
-                    }
+                    IWebElement el = p is By ? driver.FindElement((By)(Object)p) : ((IWebElement)p);
                     el.Clear();
                     return el;
                 }
@@ -139,6 +113,19 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         }
         public Boolean isSelected<T>(T t){
             return driver.FindElement((By)(Object)t).Selected;
+        }
+        public string getAttribute<T, P>(T t, P attribute){
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(EXPECTED_CONDITION_TIMEOUT));
+            wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            wait.IgnoreExceptionTypes(typeof(ElementNotVisibleException));
+            wait.IgnoreExceptionTypes(typeof(StaleElementReferenceException));
+            wait.IgnoreExceptionTypes(typeof(ElementClickInterceptedException));
+            wait.IgnoreExceptionTypes(typeof(TimeoutException));
+            return wait.Until(
+                drv => {
+                    return driver.FindElement((By)(Object)t).GetAttribute(attribute.ToString());
+                }
+            );
         }
     }
 }

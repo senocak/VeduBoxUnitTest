@@ -6,7 +6,7 @@ Scenario: 1_student_live_register
 	Given instructor checks live is exist
 	Given instructor adds new live with
 		| Key               | Value                  |
-		| course_name       | defaultCourse1        |
+		| course_name       | defaultCourse1         |
 		| meetingType       | basic                  |
 		| title             | deneme                 |
 		| hour              | 18                     |
@@ -20,7 +20,7 @@ Scenario: 1_student_live_register
 	Then student registers live
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
-	Then Delete LIVE
+	Then instructor deletes live
 	 
 Scenario: 3_student_portal_single_course_purchase_and_reflection
 	Given Open Kurumsal Login Page
@@ -146,15 +146,16 @@ Scenario: 9_student_live_start
 		| course_name       | defaultCourse1         |
 		| meetingType       | pro                    |
 		| title             | deneme                 |
-		| hour              | 18                     |
-		| min               | 00                     |
 		| timezone          | Turkey Time (GMT+3:00) |
 		| duration          | 120                    |
 		| registrationLimit | 50                     |
 		| description       | Deneme 123             |
     Given Open Kurumsal Login Page
 	Given Login as "student"
-    Then  student verify start live and delete live with
+    Then  student verify start live
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Then instructor deletes live
 
 Scenario: 11_student_add_Question_And_Answer
 	#Given Open Kurumsal Login Page
@@ -163,10 +164,10 @@ Scenario: 11_student_add_Question_And_Answer
 	Given Open Kurumsal Login Page
 	Given Login as "student"
     Given student adds new Q&A
-		| Key         | Value                    |
-		| courseName  | defaultCourse2 (Anil Senocak)           |
-		| subject     | defaultQuestionAndAnswer |
-		| message     | defaultQuestionAndAnswerMessage |
+		| Key        | Value                           |
+		| courseName | defaultCourse2 (Anil Senocak)   |
+		| subject    | defaultQuestionAndAnswer        |
+		| message    | defaultQuestionAndAnswerMessage |
     Given Open Kurumsal Login Page
 	Given Login as "instructor"
 	Then instructor deletes new Q&A

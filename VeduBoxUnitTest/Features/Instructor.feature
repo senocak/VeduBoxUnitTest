@@ -9,13 +9,11 @@ Scenario: 1_instructor_add_live
 		| course_name       | defaultCourse1         |
 		| meetingType       | pro                    |
 		| title             | deneme                 |
-		| hour              | 18                     |
-		| min               | 00                     |
 		| timezone          | Turkey Time (GMT+3:00) |
 		| duration          | 120                    |
 		| registrationLimit | 50                     |
 		| description       | Deneme 123             |
-	Then Delete LIVE
+	Then instructor deletes live
 
 Scenario: 2_instructor_live_start
 	Given Open Kurumsal Login Page
@@ -23,7 +21,7 @@ Scenario: 2_instructor_live_start
 	Given instructor checks live is exist
 	Given instructor adds new live with
 		| Key               | Value                  |
-		| course_name       | defaultCourse1        |
+		| course_name       | defaultCourse1         |
 		| meetingType       | pro                    |
 		| title             | deneme                 |
 		| hour              | 18                     |
@@ -38,7 +36,7 @@ Scenario: 3_instructor_add_student
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
 	Given instructor checks student is exist
-		| Key   | Value                 |
+		| Key   | Value                            |
 		| email | anil_instructor_student@anil.com |
 	Given instructor adds new student with
 		| Key       | Value                            |
@@ -50,7 +48,7 @@ Scenario: 3_instructor_add_student
 		| password  | admin_deneme_pass                |
 		| catalog   | defaultKatalog1                  |
 	Then instructor delete student
-		| Key   | Value                 |
+		| Key   | Value                            |
 		| email | anil_instructor_student@anil.com |
 
 Scenario: 4_instructor_add_course
@@ -78,9 +76,9 @@ Scenario: 5_instructor_add_subject
 		| name     | anil_vedubox_course_instructor |
 		| category | defaultCategory1               |
 	Given instructor adds subject with
-		| Key   | Value                          |
-		| course   | anil_vedubox_course_instructor |
-		| title | hello world                    |
+		| Key    | Value                          |
+		| course | anil_vedubox_course_instructor |
+		| title  | hello world                    |
 	Then instructor delete course
 		| Key  | Value                          |
 		| name | anil_vedubox_course_instructor |
@@ -337,7 +335,7 @@ Scenario: 23_instructor_add_exam_multiple_choice
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
 	Given instructor checks exam is exist
-		| Key  | Value                |
+		| Key  | Value                                |
 		| name | anil_instructor_exam_multiple_choice |
 	Then instructor adds exam with multiple choice
 		| Key          | Value                                            |
@@ -354,7 +352,7 @@ Scenario: 24_instructor_add_exam_multiple_choice_with_pdf
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
 	Given instructor checks exam is exist
-		| Key  | Value                |
+		| Key  | Value                                         |
 		| name | anil_instructor_exam_multiple_choice_with_pdf |
 	Then instructor adds exam with multiple choice
 		| Key          | Value                                                     |
@@ -371,7 +369,7 @@ Scenario: 25_instructor_add_exam_open_ended
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
 	Given instructor checks exam is exist
-		| Key  | Value                |
+		| Key  | Value                           |
 		| name | anil_instructor_exam_open_ended |
 	Then instructor adds exam with open ended
 		| Key          | Value                                       |
@@ -391,15 +389,15 @@ Scenario: 26_instructor_answers_Question_And_Answer
 	Given Open Kurumsal Login Page
 	Given Login as "student"
     Given student adds new Q&A
-		| Key         | Value                    |
-		| courseName  | defaultCourse2 (Anil Senocak)           |
-		| subject     | defaultQuestionAndAnswer |
-		| message     | defaultQuestionAndAnswerMessage |
+		| Key        | Value                           |
+		| courseName | defaultCourse2 (Anil Senocak)   |
+		| subject    | defaultQuestionAndAnswer        |
+		| message    | defaultQuestionAndAnswerMessage |
     Given Open Kurumsal Login Page
 	Given Login as "instructor"
 	Then  instructor answers the question
-	| Key         | Value                    |
-	| answer  | anil answer the question          |
+	| Key    | Value                    |
+	| answer | anil answer the question |
 	Then instructor deletes new Q&A
 
 Scenario: 22_instructor_add_test_poll_open_ended

@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using System;
+using System.Globalization;
 using System.Linq;
 using VeduBoxUnitTest.Assertion;
 
@@ -31,14 +32,17 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
         private static By LIVE_RECORD = By.Id("liveLesson-sessionShowDetails");
         private static By RECORD_DETAIL_BUTTON = By.Id("liveLesson-sessionLink");
         private static By COPY_BUTTON = By.CssSelector("input[ng-click='copyClicked()']");
+        private static By LiveLessonSelectDate = By.Id("liveLesson-selectDate");
+        private static By LiveLessonsAddNewModalSelectDate = By.Id("liveLessons-addNewModalSelectDate");
+        private static By LiveLessonsAddNewModalSelectDatePicker = By.CssSelector("button[ng-click='openDatepicker($event,(n-1))']");
 
-        public static string RandomString(int length){
+       public static string RandomString(int length){
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             return new string(Enumerable.Repeat(chars, length).Select(s => s[new Random().Next(s.Length)]).ToArray());
         }
         //private static string titleRandom = RandomString(10);
-        //private static string title = "deneme";
         private static string _user;
+   
         public LivePage(IWebDriver wd, string user) : base(wd){
             _user = user;
         }
@@ -84,35 +88,49 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
             click(By.XPath("//*[@id='mainSection']/div/div[2]/div[3]/div/div[3]/div[3]/div[2]/div/div[6]/div/button[1]"));
             return this;
         }
-        public LivePage setDate(int year, string month, string day){
-            click(By.CssSelector("button[ng-click='openDatepicker($event,(n-1))']"));
-            click(By.XPath("//*[@id='liveLessonForm']/div[1]/div[5]/div[2]/div/p/ul/li/div/table/thead/tr/th[2]/button"));
-            if (year < 2020){
-                for (int i = 2020; i > year; i--){
-                    click(By.XPath("//*[@id='liveLessonForm']/div[1]/div[5]/div[2]/div/p/ul/li/div/table/thead/tr/th[1]/button"));
+        public LivePage setDate(int yearParam = 0, string monthParam = null, string dayParam = null){
+            int year = yearParam == 0 ? Utils.Dates.getCurrentYear() : yearParam;
+            string month = monthParam == null ? Utils.Dates.getCurrentMonth() : monthParam;
+            string day = dayParam == null ? Utils.Dates.getCurrentDay() : dayParam;
+
+            string getCurrentValueOfInput = getAttribute(LiveLessonsAddNewModalSelectDate, "value");
+            string[] words = getCurrentValueOfInput.Split('/');
+            int getCurrentValueOfInputYear = Int32.Parse(words[2]);
+            int getCurrentValueOfInputMonth = Int32.Parse(words[1]);
+            string getCurrentValueOfInputDay = words[0];
+
+            try{
+                if (year != getCurrentValueOfInputYear){
+                    click(LiveLessonsAddNewModalSelectDatePicker);
+                    click(By.XPath("//*[@id='liveLessonForm']/div[1]/div[5]/div[2]/div/p/ul/li/div/table/thead/tr/th[2]/button"));
+
+                    if (year < getCurrentValueOfInputYear){
+                        for (int i = getCurrentValueOfInputYear; i > year; i--){
+                            click(By.XPath("//*[@id='liveLessonForm']/div[1]/div[5]/div[2]/div/p/ul/li/div/table/thead/tr/th[1]/button"));
+                        }
+                    }
+                    if (year > getCurrentValueOfInputYear){
+                        for (int i = getCurrentValueOfInputYear; i < year; i++){
+                            click(By.XPath("//*[@id='liveLessonForm']/div[1]/div[5]/div[2]/div/p/ul/li/div/table/thead/tr/th[3]/button"));
+                        }
+                    }
                 }
-            }
-            if (year > 2020){
-                for (int i = 2020; i < year; i++){
-                    click(By.XPath("//*[@id='liveLessonForm']/div[1]/div[5]/div[2]/div/p/ul/li/div/table/thead/tr/th[3]/button"));
+                if (Utils.Dates.getMonthNameByNumber(getCurrentValueOfInputMonth) != month){
+                    click(By.XPath("//span[contains(text(),'" + month + "')]"));
                 }
+                if (getCurrentValueOfInputDay != day){
+                    click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[2]"));
+                }
+            }catch (Exception e){
+                Console.WriteLine("Element not found:" + e);
             }
-            click(By.XPath("//span[contains(text(),'" + month + "')]"));
-            click(By.XPath("(//span[@class='ng-binding' and contains(text(),'"+day+"')])[2]"));
             sleepms(500);
-            /*
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            //js.ExecuteScript("document.querySelector(\"" + DATE + "\").value='2021-01-01'");
-            js.ExecuteScript("document.querySelector(\""+ DATE +"\").removeAttribute('readonly')");
-            type(By.CssSelector(DATE), "06/01/2019");
-            */
             return this;
         }
 
         public LivePage selectTime(){
             try{
                 click(By.XPath("//*[@id='pageBody']/div[2]/div[2]/div[1]/div[2]/table/tbody/tr[9]/td[3]/a[1]"));
-                Console.WriteLine("Clicked time in Fast Schedule Table page");
             }catch (Exception e){
                 Console.WriteLine("Error occured in adding time to Live record, user: " + _user + ", Error: " + e);
             }
@@ -122,7 +140,6 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
         public LivePage saveScheduleButton(){
             try{
                 click(By.CssSelector("button[ng-click='saveMultiple()']"));
-                Console.WriteLine("Clicked save button in Fast Schedule Table page");
             }catch (Exception e){
                 Console.WriteLine("Error occured in clicking save button to Schedule page, user: " + _user + ", Error: " + e);
             }
@@ -163,12 +180,10 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
         }
         public LivePage openLiveRecordDetail(){
             click(LIVE_RECORD);
-            Console.WriteLine("Clicked opened record details element");
             return this;
         }
         private void clickRECORD_DETAIL_BUTTON(){
             click(RECORD_DETAIL_BUTTON);
-            Console.WriteLine("Clicked Link button in record detail");
         }
         private void clickCopyButton() {
             driver.Url = driver.FindElement(COPY_BUTTON).GetAttribute("ng-click-copy");
@@ -176,17 +191,23 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
         public LivePage assertStart(){
             try{
                 AssertionCustom.assertElementVisible("Element Not Found", driver, By.XPath("//*[@id='mainSection']/div/div[2]/div[3]/div/div[3]/div[3]/div/div/div[6]/button"));
-                Console.WriteLine("Element is clickable");
             }catch (Exception e){
                 Console.WriteLine("Error occured in deleting Live record, user: " + _user + ", Error: " + e);
             }
             return this;
         }
-
-        public LivePage setTime(string hour, string minute, string timeZone){
-            selectDropDown(TIME_HOUR, hour);
-            selectDropDown(TIME_MIN, minute);
+        public LivePage setTimezone(string timeZone){
             selectDropDown(TIMEZONE, timeZone);
+            return this;
+        }
+        public LivePage setHour(string hourParam = null){
+            string hour = hourParam == null ? Utils.Dates.getCurrentHour() : hourParam;
+            selectDropDown(TIME_HOUR, hour);
+            return this;
+        }
+        public LivePage setMinute(string minuteParam = null){
+            string minute = minuteParam == null ? Utils.Dates.getCurrentMinute() : minuteParam;
+            selectDropDown(TIME_MIN, minute);
             return this;
         }
         public LivePage setDuration(int duration){
@@ -221,23 +242,39 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
             return this;
         }
 
-        public LivePage goDate(int year, string month, string day){
-            try{
-                click(By.Id("liveLesson-selectDate"));
-                click(By.XPath("/html/body/div[3]/div/section/div/div[2]/div[2]/div[2]/ul/li/div/table/thead/tr[1]/th[2]/button"));
+        public LivePage goDate(int yearParam = 0, string monthParam = null, string dayParam = null){
+            int year = yearParam == 0 ? Utils.Dates.getCurrentYear() : yearParam;
+            string month = monthParam == null ? Utils.Dates.getCurrentMonth() : monthParam;
+            string day = dayParam == null ? Utils.Dates.getCurrentDay() : dayParam;
 
-                if (year < 2020){
-                    for (int i = 2020; i > year; i--){
-                        click(By.XPath("//*[@id='mainSection']/div/div[2]/div[2]/div[2]/ul/li/div/table/thead/tr[1]/th[1]/button"));
+            string getCurrentValueOfInput = getAttribute(LiveLessonSelectDate, "value");
+            string[] words = getCurrentValueOfInput.Split('-');
+            int getCurrentValueOfInputYear = Int32.Parse(words[0]);
+            int getCurrentValueOfInputMonth = Int32.Parse(words[1]);
+            string getCurrentValueOfInputDay = words[2];
+
+            try{
+                if (year != getCurrentValueOfInputYear){
+                    click(LiveLessonSelectDate);
+                    click(By.XPath("/html/body/div[3]/div/section/div/div[2]/div[2]/div[2]/ul/li/div/table/thead/tr[1]/th[2]/button"));
+
+                    if (year < getCurrentValueOfInputYear){
+                        for (int i = getCurrentValueOfInputYear; i > year; i--){
+                            click(By.XPath("//*[@id='mainSection']/div/div[2]/div[2]/div[2]/ul/li/div/table/thead/tr[1]/th[1]/button"));
+                        }
+                    }
+                    if (year > getCurrentValueOfInputYear){
+                        for (int i = getCurrentValueOfInputYear; i < year; i++){
+                            click(By.XPath("//*[@id='mainSection']/div/div[2]/div[2]/div[2]/ul/li/div/table/thead/tr[1]/th[3]/button"));
+                        }
                     }
                 }
-                if (year > 2020){
-                    for (int i = 2020; i < year; i++){
-                        click(By.XPath("//*[@id='mainSection']/div/div[2]/div[2]/div[2]/ul/li/div/table/thead/tr[1]/th[3]/button"));
-                    }
+                if (Utils.Dates.getMonthNameByNumber(getCurrentValueOfInputMonth) != month){
+                    click(By.XPath("//span[contains(text(),'" + month + "')]"));
                 }
-                click(By.XPath("//span[contains(text(),'" + month + "')]"));
-                click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])"));
+                if (getCurrentValueOfInputDay != day){
+                    click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])"));
+                }
             }catch(Exception e){
                 Console.WriteLine("Element not found:" + e);
             }

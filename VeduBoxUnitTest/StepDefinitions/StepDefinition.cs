@@ -642,8 +642,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .assert();
         }
         [Given(@"instructor adds matching question with")]
-        public void GivenİnstructorAddsMatchingQuestionWith(Table table)
-        {
+        public void GivenİnstructorAddsMatchingQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
                 .openQuestionsPage("instructor")
@@ -651,6 +650,9 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .typeQuestionInput(dictionary["question"])
                 .selectQuestionType("Matching")
                 .enterPoint(Int32.Parse(dictionary["point"]))
+                .enterMatching1(dictionary["matching1"])
+                .enterMatching2(dictionary["matching1"])
+                .delete3thMatchingInput()
                 .clickIsPublic()
                 .clickIsEDITABLE()
                 .selectTestCategory(dictionary["TestCategory"])

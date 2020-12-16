@@ -37,6 +37,9 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By BATCH_FILE_INPUT = By.Id("html_btn");
         private static By UPLOAD_EXCEL_BUTTON = By.CssSelector("button[ng-click='uploadFile()']");
         private static By QUESTION_LIST_ACCEPT_BUTTON = By.CssSelector("a[ng-click='accept()']");
+        private static readonly By MATCHING_INPUT_1 = By.XPath("//*[@id='questionForm']/div[1]/div[12]/div/div/div[2]/div/div[3]/textarea");
+        private static readonly By MATCHING_INPUT_2 = By.XPath("//*[@id='questionForm']/div[1]/div[12]/div/div/div[3]/div/div[3]/textarea");
+        private static readonly By MATCHING_INPUT_3_DELETE_BUTTON = By.XPath("(//*[@id='teacherQuesPoolChoiceAnsDel'])[3]");
 
         public QuestionsPage(IWebDriver wd, string user) : base(wd) {
             _user = user;
@@ -162,5 +165,18 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             click(DELETE_SINGLE_QUESTION_POPUP);
             return this;
         }
+        public QuestionsPage enterMatching1(string value){
+            type(MATCHING_INPUT_1, value);
+            return this;
+        }
+        public QuestionsPage enterMatching2(string value){
+            type(MATCHING_INPUT_2, value);
+            return this;
+        }
+        public QuestionsPage delete3thMatchingInput(){
+            click(MATCHING_INPUT_3_DELETE_BUTTON);
+            return this;
+        }
+        
     }
 }

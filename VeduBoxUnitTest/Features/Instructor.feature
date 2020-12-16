@@ -294,15 +294,17 @@ Scenario: 16_instrcutor_add_question_matching
 	Given Login as "instructor"
 	Given instructor checks question is exist
 		| Key  | Value                   |
-		| name | Soru - matching By ANIL |
+		| name | Soru - MATCHING By ANIL |
 	Given instructor adds matching question with
 		| Key          | Value                   |
-		| question     | Soru - matching By ANIL |
+		| question     | Soru - MATCHING By ANIL |
 		| point        | 45                      |
+		| matching1    | Apple = Elma            |
+		| matching2    | Kalem = Pencil          |
 		| TestCategory | DefaultTestCategory1    |
 	Then instructor deletes question with
 		| Key  | Value                   |
-		| name | Soru - matching By ANIL |
+		| name | Soru - MATCHING By ANIL |
 
 Scenario: 20_instructor_add_test_pool_multiple_choice
 	Given Open Kurumsal Login Page

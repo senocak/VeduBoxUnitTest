@@ -651,7 +651,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .selectQuestionType("Matching")
                 .enterPoint(Int32.Parse(dictionary["point"]))
                 .enterMatching1(dictionary["matching1"])
-                .enterMatching2(dictionary["matching1"])
+                .enterMatching2(dictionary["matching2"])
                 .delete3thMatchingInput()
                 .clickIsPublic()
                 .clickIsEDITABLE()

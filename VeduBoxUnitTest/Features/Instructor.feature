@@ -288,7 +288,22 @@ Scenario: 14_instructor_add_question_open_ended
 	Then instructor deletes question with
 		| Key  | Value                     |
 		| name | Soru - open ended By ANIL |
-	
+
+Scenario: 16_instrcutor_add_question_matching
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks question is exist
+		| Key  | Value                   |
+		| name | Soru - matching By ANIL |
+	Given instructor adds matching question with
+		| Key          | Value                   |
+		| question     | Soru - matching By ANIL |
+		| point        | 45                      |
+		| TestCategory | DefaultTestCategory1    |
+	Then instructor deletes question with
+		| Key  | Value                   |
+		| name | Soru - matching By ANIL |
+
 Scenario: 20_instructor_add_test_pool_multiple_choice
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"

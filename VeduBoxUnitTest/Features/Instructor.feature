@@ -498,3 +498,33 @@ Scenario: 31_instructor_add_poll_question_multiple
 	Then instructor delete poll question with
 		| Key      | Value                                 |
 		| question | Soru - MULTIPLE POLL QUESTION By ANIL |
+		
+Scenario: 32_instructor_add_poll_question_open_ended
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks poll question is exist
+		| Key      | Value                                   |
+		| question | Soru - OPEN ENDED POLL QUESTION By ANIL |
+	Given instructor adds open ended poll question with
+		| Key      | Value                                   |
+		| question | Soru - OPEN ENDED POLL QUESTION By ANIL |
+		| answer1  | Answer 1                                |
+		| answer2  | Answer 2                                |
+		| answer3  | Answer 3                                |
+		| answer4  | Answer 4                                |
+	Then instructor delete poll question with
+		| Key      | Value                                   |
+		| question | Soru - OPEN ENDED POLL QUESTION By ANIL |
+		
+Scenario: 33_instructor_add_poll_question_true_false
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks poll question is exist
+		| Key      | Value                                   |
+		| question | Soru - TRUE FALSE POLL QUESTION By ANIL |
+	Given instructor adds true false poll question with
+		| Key      | Value                                   |
+		| question | Soru - TRUE FALSE POLL QUESTION By ANIL |
+	Then instructor delete poll question with
+		| Key      | Value                                   |
+		| question | Soru - TRUE FALSE POLL QUESTION By ANIL |

@@ -1300,7 +1300,32 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .clickSaveButton()
                 .assert();
         }
-
+        [Given(@"instructor adds open ended poll question with")]
+        public void GivenİnstructorAddsOpenEndedPollQuestionWith(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openPollQuestionsPage("instructor")
+                .clickAddButton()
+                .enterText(dictionary["question"])
+                .selectType("Open-Ended")
+                .clickIsPublic()
+                .clickIsEditable()
+                .clickSaveButton()
+                .assert();
+        }
+        [Given(@"instructor adds true false poll question with")]
+        public void GivenİnstructorAddsTrueFalsePollQuestionWith(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openPollQuestionsPage("instructor")
+                .clickAddButton()
+                .enterText(dictionary["question"])
+                .selectType("True False")
+                .clickIsPublic()
+                .clickIsEditable()
+                .clickSaveButton()
+                .assert();
+        }
         [Then(@"instructor delete poll question with")]
         public void ThenInstructorDeleteMultipleChoiceQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
@@ -1312,7 +1337,5 @@ namespace VeduBoxUnitTest.StepDefinitions{
                .clickAreUSure()
                .assert();
         }
-
-
     }
 }

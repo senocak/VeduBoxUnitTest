@@ -133,7 +133,7 @@ Scenario: 7_admin_add_poll_question_multiple_choice
 	Given Admin checks poll question is exist
 		| Key      | Value                                      |
 		| question | anıl_vedubox_poll_questıon_multıple_choıce |
-	Given Admin adds multiple choice question with
+	Given Admin adds multiple choice poll question with
 		| Key      | Value                                      |
 		| question | anıl_vedubox_poll_questıon_multıple_choıce |
 		| answer1  | Answer 1                                   |
@@ -150,20 +150,20 @@ Scenario: 8_admin_add_poll_question_open_ended
 	Given Admin checks poll question is exist
 		| Key      | Value                                 |
 		| question | anıl_vedubox_poll_questıon_open_ended |
-	Given Admin adds open ended question with
+	Given Admin adds open ended poll question with
 		| Key      | Value                                 |
 		| question | anıl_vedubox_poll_questıon_open_ended |
 	Then Admin delete poll question with
 		| Key      | Value                                 |
 		| question | anıl_vedubox_poll_questıon_open_ended |
 		 
-Scenario: 9_admin_add_poll_auestion_true_false
+Scenario: 9_admin_add_poll_question_true_false
 	Given Open Kurumsal Login Page
 	Given Login as "admin"
 	Given Admin checks poll question is exist
 		| Key      | Value                                 |
 		| question | anıl_vedubox_poll_questıon_true_false |
-	Given Admin adds true false question with
+	Given Admin adds true false poll question with
 		| Key      | Value                                 |
 		| question | anıl_vedubox_poll_questıon_true_false |
 	Then Admin delete poll question with

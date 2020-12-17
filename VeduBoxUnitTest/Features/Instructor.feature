@@ -481,3 +481,20 @@ Scenario: 0_instructor_add_exam_with_default_params
 	Given instructor delete exam with
 		| Key  | Value                |
 		| name | anil_instructor_exam |
+
+Scenario: 31_instructor_add_poll_question_multiple
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks poll question is exist
+		| Key      | Value                                 |
+		| question | Soru - MULTIPLE POLL QUESTION By ANIL |
+	Given instructor adds multiple poll question with
+		| Key      | Value                                 |
+		| question | Soru - MULTIPLE POLL QUESTION By ANIL |
+		| answer1  | Answer 1                              |
+		| answer2  | Answer 2                              |
+		| answer3  | Answer 3                              |
+		| answer4  | Answer 4                              |
+	Then instructor delete poll question with
+		| Key      | Value                                 |
+		| question | Soru - MULTIPLE POLL QUESTION By ANIL |

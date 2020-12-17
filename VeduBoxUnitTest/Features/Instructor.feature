@@ -306,6 +306,21 @@ Scenario: 16_instrcutor_add_question_matching
 		| Key  | Value                   |
 		| name | Soru - MATCHING By ANIL |
 
+Scenario: 17_instructor_add_question_fill_in_the_blanks
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks question is exist
+		| Key  | Value                                 |
+		| name | Soru - FILL IN THE BLANKS By ((ANIL)) |
+	Given instructor adds fill in the blanks question with
+		| Key          | Value                                 |
+		| question     | Soru - FILL IN THE BLANKS By ((ANIL)) |
+		| point        | 20                                    |
+		| TestCategory | DefaultTestCategory1                  |
+	Then instructor deletes question with
+		| Key  | Value                                 |
+		| name | Soru - FILL IN THE BLANKS By ((ANIL)) |
+
 Scenario: 20_instructor_add_test_pool_multiple_choice
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"

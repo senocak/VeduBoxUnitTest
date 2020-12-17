@@ -659,6 +659,26 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .submit()
                 .assert();
         }
+
+        [Given(@"instructor adds fill in the blanks question with")]
+        public void GivenİnstructorAddsFillInTheBlanksQuestionWith(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openQuestionsPage("instructor")
+                .clickAddNewButton()
+                .typeQuestionInput(dictionary["question"])
+                .selectQuestionType("Fill In The Blanks")
+                .enterPoint(Int32.Parse(dictionary["point"]))
+                .clickIsPublic()
+                .clickIsEDITABLE()
+                .selectTestCategory(dictionary["TestCategory"])
+                .submit()
+                .assert();
+        }
+
+        
+
+
         [Given(@"instructor checks test poll question is exist")]
         public void GivenİnstructorChecksTestPollQuestionİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);

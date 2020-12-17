@@ -675,9 +675,24 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .submit()
                 .assert();
         }
-
-        
-
+        [Given(@"instructor adds multiple answer question with")]
+        public void GivenİnstructorAddsMultipleAnswerQuestionWith(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openQuestionsPage("instructor")
+                .clickAddNewButton()
+                .typeQuestionInput(dictionary["question"])
+                .selectQuestionType("Multiple Answer")
+                .enterPoint(Int32.Parse(dictionary["point"]))
+                .answer1ForMultipleChoice(dictionary["answer1"])
+                .answer2ForMultipleChoice(dictionary["answer2"])
+                .answer3ForMultipleChoice(dictionary["answer3"])
+                .clickIsPublic()
+                .clickIsEDITABLE()
+                .selectTestCategory(dictionary["TestCategory"])
+                .submit()
+                .assert();
+        }
 
         [Given(@"instructor checks test poll question is exist")]
         public void GivenİnstructorChecksTestPollQuestionİsExist(Table table){

@@ -40,6 +40,9 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static readonly By MATCHING_INPUT_1 = By.XPath("//*[@id='questionForm']/div[1]/div[12]/div/div/div[2]/div/div[3]/textarea");
         private static readonly By MATCHING_INPUT_2 = By.XPath("//*[@id='questionForm']/div[1]/div[12]/div/div/div[3]/div/div[3]/textarea");
         private static readonly By MATCHING_INPUT_3_DELETE_BUTTON = By.XPath("(//*[@id='teacherQuesPoolChoiceAnsDel'])[3]");
+        private static readonly By MULTIPLE_CHOICE_ANSWER1_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[2]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private static readonly By MULTIPLE_CHOICE_ANSWER2_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[3]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private static readonly By MULTIPLE_CHOICE_ANSWER3_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[4]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
 
         public QuestionsPage(IWebDriver wd, string user) : base(wd) {
             _user = user;
@@ -177,6 +180,19 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             click(MATCHING_INPUT_3_DELETE_BUTTON);
             return this;
         }
+        public QuestionsPage answer1ForMultipleChoice(string answer){
+            type(MULTIPLE_CHOICE_ANSWER1_INPUT, answer);
+            return this;
+        }
+        public QuestionsPage answer2ForMultipleChoice(string answer){
+            type(MULTIPLE_CHOICE_ANSWER2_INPUT, answer);
+            return this;
+        }
+        public QuestionsPage answer3ForMultipleChoice(string answer){
+            type(MULTIPLE_CHOICE_ANSWER3_INPUT, answer);
+            return this;
+        }
+
         
     }
 }

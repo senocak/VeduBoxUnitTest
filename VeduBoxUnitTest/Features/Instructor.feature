@@ -321,6 +321,24 @@ Scenario: 17_instructor_add_question_fill_in_the_blanks
 		| Key  | Value                                 |
 		| name | Soru - FILL IN THE BLANKS By ((ANIL)) |
 
+Scenario: 18_instructor_add_question_multiple_answer
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks question is exist
+		| Key  | Value                          |
+		| name | Soru - MULTIPLE ANSWER By ANIL |
+	Given instructor adds multiple answer question with
+		| Key          | Value                          |
+		| question     | Soru - MULTIPLE ANSWER By ANIL |
+		| point        | 10                             |
+		| answer1      | Correct Answer 1               |
+		| answer2      | Incorrect Answer 2             |
+		| answer3      | Correct Answer 3               |
+		| TestCategory | DefaultTestCategory1           |
+	Then instructor deletes question with
+		| Key  | Value                          |
+		| name | Soru - MULTIPLE ANSWER By ANIL |
+
 Scenario: 20_instructor_add_test_pool_multiple_choice
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"

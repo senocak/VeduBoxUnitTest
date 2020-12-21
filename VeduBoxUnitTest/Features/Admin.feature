@@ -294,6 +294,28 @@ Scenario: 15_admin_switch_to_role
 		| Key   | Value           |
 		| email | anil@parent.com |
 
+Scenario: 19_admin_live_query
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks live is exist
+	Given admin adds new live with
+		| Key               | Value                  |
+		| course_name       | defaultCourse1         |
+		| meetingType       | pro                    |
+		| title             | deneme                 |
+		| timezone          | Turkey Time (GMT+3:00) |
+		| duration          | 120                    |
+		| registrationLimit | 50                     |
+		| description       | Deneme 123             |
+    Then admin query live
+	| Key              | Value          |
+	| startHourParam   | 00             |
+	| startMinuteParam | 00             |
+	| endHourParam     | 23             |
+	| endMinuteParam   | 55             |
+	| courseName       | defaultCourse1 |
+	Then admin deletes live
+
 Scenario: 0_admin_add_catalog
 	Given Open Kurumsal Login Page
 	Given Login as "admin"

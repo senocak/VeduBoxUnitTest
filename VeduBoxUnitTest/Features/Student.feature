@@ -171,5 +171,34 @@ Scenario: 11_student_add_Question_And_Answer
     Given Open Kurumsal Login Page
 	Given Login as "instructor"
 	Then instructor deletes new Q&A
+
+
+Scenario: 13_student_query_live
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks live is exist
+	Given instructor adds new live with
+		| Key               | Value                  |
+		| course_name       | defaultCourse1         |
+		| meetingType       | basic                  |
+		| title             | deneme                 |
+		| hour              | 18                     |
+		| min               | 00                     |
+		| timezone          | Turkey Time (GMT+3:00) |
+		| duration          | 120                    |
+		| registrationLimit | 50                     |
+		| description       | Deneme 123             |
+	Given Open Kurumsal Login Page
+	Given Login as "student"
+	 Then instructor query live
+	| Key              | Value          |
+	| startHourParam   | 00             |
+	| startMinuteParam | 00             |
+	| endHourParam     | 23             |
+	| endMinuteParam   | 55             |
+	| courseName       | defaultCourse1 |
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Then instructor deletes live
    
 

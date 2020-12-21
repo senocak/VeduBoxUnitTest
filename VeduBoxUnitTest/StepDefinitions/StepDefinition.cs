@@ -32,7 +32,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 //WebBrowser.Driver.CaptureScreenShot(_scenarioContext.ScenarioInfo.Title);
                 Console.WriteLine("Title:" + ScenarioContext.Current.ScenarioInfo.Title + " is failed.");
             }
-            driver.Quit();
+           // driver.Quit();
         }
         [Given(@"Open Kurumsal Login Page")]
         public void GivenOpenKurumsalLoginPage(){
@@ -88,6 +88,23 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 //.setTrainer("test eğitmen")
                 .submit()
                 .assertLive();
+        }
+        [Then(@"admin query live")]
+        public void adminQueryAddedLive(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openLIVEpage("admin")
+                .clickQueryButton()
+                .setQueryStartDate(Utils.Dates.getNextYear(NEXT_YEAR), Utils.Dates.getNextMonth(NEXT_MONTH), Utils.Dates.getNextDay(NEXT_DAY))
+                .setQueryEndDate(Utils.Dates.getNextYear(NEXT_YEAR+1), Utils.Dates.getNextMonth(NEXT_MONTH), Utils.Dates.getNextDay(NEXT_DAY))
+                .setQueryStartHour(dictionary["startHourParam"])
+                .setQueryStartMinute(dictionary["startMinuteParam"])
+                .setQueryEndHour(dictionary["endHourParam"])
+                .setQueryEndMinute(dictionary["endMinuteParam"])
+                .clickSearch()
+                .verifyCourseName(dictionary["courseName"])
+                .clickCloseButton();
         }
         [Then(@"admin deletes live")]
         public void adminDeleteAddedLive(){
@@ -206,7 +223,25 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .submit()
                 .assertLive();
         }
-       
+
+        [Then(@"instructor query live")]
+        public void instructorQueryAddedLive(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openLIVEpage("instructor")
+                .clickQueryButton()
+                .setQueryStartDate()
+                .setQueryEndDate()
+                .setQueryStartHour(dictionary["startHourParam"])
+                .setQueryStartMinute(dictionary["startMinuteParam"])
+                .setQueryEndHour(dictionary["endHourParam"])
+                .setQueryEndMinute(dictionary["endMinuteParam"])
+                .clickSearch()
+                .verifyCourseName(dictionary["courseName"])
+                .clickCloseButton();
+        }
+
         [Then(@"verify start live and delete live with")]
         public void ThenVerifyStartLiveAndDeleteLiveWith(){
             new LivePage(driver, "admin")
@@ -659,7 +694,27 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .submit()
                 .assert();
         }
-
+        [Given(@"instructor adds ordering question with")]
+        public void GivenİnstructorAddsOrderingQuestionWith(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openQuestionsPage("instructor")
+                .clickAddNewButton()
+                .typeQuestionInput(dictionary["question"])
+                .enterPoint(Int32.Parse(dictionary["point"]))
+                 .selectQuestionType("Ordering")
+                .enterOrdering1(dictionary["ordering1"])
+                .enterOrdering2(dictionary["ordering2"])
+                .enterOrdering3(dictionary["ordering3"])
+                .clickAddChoice()
+                .enterOrdering4(dictionary["ordering4"])
+                .clickIsPublic()
+                .clickIsEDITABLE()
+                .selectTestCategory(dictionary["TestCategory"])
+                .submit()
+                .assert();
+        }
         [Given(@"instructor adds fill in the blanks question with")]
         public void GivenİnstructorAddsFillInTheBlanksQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);

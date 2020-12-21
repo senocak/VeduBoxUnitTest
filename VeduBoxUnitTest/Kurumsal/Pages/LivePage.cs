@@ -31,7 +31,24 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
         private static By REGISTER = By.Id("liveLesson-sessionStatusRegister");
         private static By LIVE_RECORD = By.Id("liveLesson-sessionShowDetails");
         private static By RECORD_DETAIL_BUTTON = By.Id("liveLesson-sessionLink");
+        private static By QUERY_BUTTON = By.Id("liveLesson-query");
         private static By COPY_BUTTON = By.CssSelector("input[ng-click='copyClicked()']");
+        private static By QUERY_START_DATE_LIVE_LESSONS_ADD_NEW_MODEL_SELECT_DATA = By.XPath("(//input[@id='liveLessons-addNewModalSelectDate'])[1]");
+        private static By QUERY_END_DATE_LIVE_LESSONS_ADD_NEW_MODEL_SELECT_DATA = By.XPath("(//input[@id='liveLessons-addNewModalSelectDate'])[2]");
+        private static By QUERY_START_DATE_OPEN_DATEPICKER = By.CssSelector("button[ng-click*='queryStartDate']");
+        private static By QUERY_END_DATE_OPEN_DATEPICKER = By.CssSelector("button[ng-click*='queryDueDate']");
+        private static By QUERY_START_DATE_CHOOSE_YEAR = By.XPath("(//button[@ng-click='toggleMode()'])[2]");
+        private static By QUERY_END_DATE_CHOOSE_YEAR = By.XPath("(//button[@ng-click='toggleMode()'])[3]");
+        private static By QUERY_START_DATE_GO_PREVIOUS_YEAR = By.XPath("(//button[@ng-click='move(-1)'])[2]");
+        private static By QUERY_END_DATE_GO_PREVIOUS_YEAR = By.XPath("(//button[@ng-click='move(-1)'])[3]");
+        private static By QUERY_START_DATE_GO_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[2]");
+        private static By QUERY_END_DATE_GO_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[3]");
+        private static By QUERY_START_HOUR = By.XPath("(//select[@id='liveLessons-addNewModalTimeHoursSelect'])[1]");
+        private static By QUERY_END_HOUR = By.XPath("(//select[@id='liveLessons-addNewModalTimeHoursSelect'])[2]");
+        private static By QUERY_START_MINUTE = By.XPath("(//select[@id='liveLessons-addNewModalTimeMinutesSelect'])[1]");
+        private static By QUERY_END_MINUTE = By.XPath("(//select[@id='liveLessons-addNewModalTimeMinutesSelect'])[2]");
+        private static By QUERY_SEARCH_BUTTON = By.CssSelector("button[ng-click*='searchLiveLessonsInRange()']");
+        private static By QUERY_CLOSE_BUTTON = By.Id("liveLesson-selectCourseModalCancel");
         private static By LiveLessonSelectDate = By.Id("liveLesson-selectDate");
         private static By LiveLessonsAddNewModalSelectDate = By.Id("liveLessons-addNewModalSelectDate");
         private static By LiveLessonsAddNewModalSelectDatePicker = By.CssSelector("button[ng-click='openDatepicker($event,(n-1))']");
@@ -121,6 +138,150 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
             sleepms(500);
             return this;
         }
+
+        public LivePage setQueryStartDate(int yearParam = 0, string monthParam = null, string dayParam = null)
+        {
+            int year = yearParam == 0 ? Utils.Dates.getCurrentYear() : yearParam;
+            string month = monthParam == null ? Utils.Dates.getCurrentMonth() : monthParam;
+            string day = dayParam == null ? Utils.Dates.getCurrentDay() : dayParam;
+
+            string getCurrentValueOfInput = getAttribute(QUERY_START_DATE_LIVE_LESSONS_ADD_NEW_MODEL_SELECT_DATA, "value");
+            string[] words = getCurrentValueOfInput.Split('/');
+            int getCurrentValueOfInputYear = Int32.Parse(words[2]);
+            int getCurrentValueOfInputMonth = Int32.Parse(words[1]);
+            string getCurrentValueOfInputDay = words[0];
+
+            try
+            {
+                click(QUERY_START_DATE_OPEN_DATEPICKER);
+                Console.WriteLine("clicked start date picker");
+                click(QUERY_START_DATE_CHOOSE_YEAR);
+                Console.WriteLine("clicked start date choose year");
+                if (year != getCurrentValueOfInputYear)
+                {
+                    if (year < getCurrentValueOfInputYear)
+                    {
+                        for (int i = getCurrentValueOfInputYear; i > year; i--)
+                        {
+                            click(QUERY_START_DATE_GO_PREVIOUS_YEAR);
+                          
+                        }
+                    }
+                    else
+                    {
+                        for (int i = getCurrentValueOfInputYear; i < year; i++)
+                        {
+                            click(QUERY_START_DATE_GO_NEXT_YEAR);
+                        
+                        }
+                    }
+                }
+                click(By.XPath("//span[contains(text(),'" + month + "')]"));
+                Console.WriteLine("clicked start date month " + month + " successfully");
+                click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[2]"));
+                Console.WriteLine("clicked start date day " + day + " successfully");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Element not found:" + e);
+            }
+            sleepms(500);
+            return this;
+        }
+
+        public LivePage setQueryEndDate(int yearParam = 0, string monthParam = null, string dayParam = null)
+        {
+            int year = yearParam == 0 ? Utils.Dates.getCurrentYear() : yearParam;
+            string month = monthParam == null ? Utils.Dates.getCurrentMonth() : monthParam;
+            string day = dayParam == null ? Utils.Dates.getCurrentDay() : dayParam;
+
+            string getCurrentValueOfInput = getAttribute(QUERY_END_DATE_LIVE_LESSONS_ADD_NEW_MODEL_SELECT_DATA, "value");
+            string[] words = getCurrentValueOfInput.Split('/');
+            int getCurrentValueOfInputYear = Int32.Parse(words[2]);
+            int getCurrentValueOfInputMonth = Int32.Parse(words[1]);
+            string getCurrentValueOfInputDay = words[0];
+        
+
+            try
+            {
+                click(QUERY_END_DATE_OPEN_DATEPICKER);
+                Console.WriteLine("clicked end date picker");
+                click(QUERY_END_DATE_CHOOSE_YEAR);
+                Console.WriteLine("clicked start date choose year");
+                if (year != getCurrentValueOfInputYear)
+                {
+                    if (year < getCurrentValueOfInputYear)
+                    {
+                        for (int i = getCurrentValueOfInputYear; i > year; i--)
+                        {
+                            click(QUERY_END_DATE_GO_PREVIOUS_YEAR);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = getCurrentValueOfInputYear; i < year; i++)
+                        {
+                            click(QUERY_END_DATE_GO_NEXT_YEAR);
+                            Console.WriteLine("clicked end date go to next year " +i + " times" );
+                        }
+                    }
+                }
+                click(By.XPath("//span[contains(text(),'" + month + "')]"));
+                Console.WriteLine("clicked end date month " + month + " successfully");
+                click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[3]"));
+              
+                 Console.WriteLine("clicked start date day " + day + " successfully");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Element not found:" + e);
+            }
+            sleepms(500);
+            return this;
+        }
+        public LivePage setQueryStartHour(string startHourParam = null)
+        {
+            string hour = startHourParam == null ? Utils.Dates.getCurrentHour() : startHourParam;
+            selectDropDown(QUERY_START_HOUR, hour);
+            return this;
+        }
+        public LivePage setQueryStartMinute(string startMinuteParam = null)
+        {
+            string minute = startMinuteParam == null ? Utils.Dates.getCurrentHour() : startMinuteParam;
+            selectDropDown(QUERY_START_MINUTE, minute);
+            return this;
+        }
+        public LivePage setQueryEndHour(string endHourParam = null)
+        {
+            string hour = endHourParam == null ? Utils.Dates.getCurrentHour() : endHourParam;
+            selectDropDown(QUERY_END_HOUR, hour);
+            return this;
+        }
+        public LivePage setQueryEndMinute(string endMinuteParam = null)
+        {
+            string minute = endMinuteParam == null ? Utils.Dates.getCurrentHour() : endMinuteParam;
+            selectDropDown(QUERY_END_MINUTE, minute);
+            return this;
+        }
+        public LivePage clickSearch()
+        {
+            click(QUERY_SEARCH_BUTTON);
+            return this;
+        }
+        public LivePage verifyCourseName(string courseName)
+        {
+
+            Assertion.AssertionCustom.assertElementVisible("CourseName "+courseName+ " is not visible",driver,
+               By.XPath("//td[@class='ng-binding' and contains(text(),'" + courseName + "')]"));
+          return this;
+        }
+        public LivePage clickCloseButton()
+        {
+            click(QUERY_CLOSE_BUTTON);
+            return this;
+        }
+
+
 
         public LivePage selectTime(){
             try{
@@ -272,6 +433,12 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
 
         public LivePage studentRegister(){
             click(REGISTER);
+            return this;
+        }
+
+        public LivePage clickQueryButton()
+        {
+            click(QUERY_BUTTON);
             return this;
         }
     }

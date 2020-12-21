@@ -641,6 +641,59 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .submit()
                 .assert();
         }
+        [Given(@"instructor adds matching question with")]
+        public void GivenİnstructorAddsMatchingQuestionWith(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openQuestionsPage("instructor")
+                .clickAddNewButton()
+                .typeQuestionInput(dictionary["question"])
+                .selectQuestionType("Matching")
+                .enterPoint(Int32.Parse(dictionary["point"]))
+                .enterMatching1(dictionary["matching1"])
+                .enterMatching2(dictionary["matching2"])
+                .delete3thMatchingInput()
+                .clickIsPublic()
+                .clickIsEDITABLE()
+                .selectTestCategory(dictionary["TestCategory"])
+                .submit()
+                .assert();
+        }
+
+        [Given(@"instructor adds fill in the blanks question with")]
+        public void GivenİnstructorAddsFillInTheBlanksQuestionWith(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openQuestionsPage("instructor")
+                .clickAddNewButton()
+                .typeQuestionInput(dictionary["question"])
+                .selectQuestionType("Fill In The Blanks")
+                .enterPoint(Int32.Parse(dictionary["point"]))
+                .clickIsPublic()
+                .clickIsEDITABLE()
+                .selectTestCategory(dictionary["TestCategory"])
+                .submit()
+                .assert();
+        }
+        [Given(@"instructor adds multiple answer question with")]
+        public void GivenİnstructorAddsMultipleAnswerQuestionWith(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openQuestionsPage("instructor")
+                .clickAddNewButton()
+                .typeQuestionInput(dictionary["question"])
+                .selectQuestionType("Multiple Answer")
+                .enterPoint(Int32.Parse(dictionary["point"]))
+                .answer1ForMultipleChoice(dictionary["answer1"])
+                .answer2ForMultipleChoice(dictionary["answer2"])
+                .answer3ForMultipleChoice(dictionary["answer3"])
+                .clickIsPublic()
+                .clickIsEDITABLE()
+                .selectTestCategory(dictionary["TestCategory"])
+                .submit()
+                .assert();
+        }
+
         [Given(@"instructor checks test poll question is exist")]
         public void GivenİnstructorChecksTestPollQuestionİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
@@ -890,8 +943,8 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .openPollQuestionsPage("admin")
                 .searchNewlyAddedQuestionByNameAndDeleteIt(dictionary["question"]);
         }
-        [Given(@"Admin adds multiple choice question with")]
-        public void GivenAdminAddsMultipleChoiceQuestionWith(Table table){
+        [Given(@"Admin adds multiple choice poll question with")]
+        public void GivenAdminAddsMultipleChoicePollQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
                 .openPollQuestionsPage("admin")
@@ -908,8 +961,8 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .clickSaveButton()
                 .assert();
         }
-        [Given(@"Admin adds open ended question with")]
-        public void GivenAdminAddsOpenEndedQuestionWith(Table table){
+        [Given(@"Admin adds open ended poll question with")]
+        public void GivenAdminAddsOpenEndedPollQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
                 .openPollQuestionsPage("admin")
@@ -921,8 +974,8 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .clickSaveButton()
                 .assert();
         }
-        [Given(@"Admin adds true false question with")]
-        public void GivenAdminAddsTrueFalseQuestionWith(Table table){
+        [Given(@"Admin adds true false poll question with")]
+        public void GivenAdminAddsTrueFalsePollQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
                 .openPollQuestionsPage("admin")
@@ -1200,15 +1253,13 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .assert();
         }
         [Given(@"instructor checks Q&A is exist")]
-        public void GivenİnstructorChecksQuestionsAndAnswerİsExist()
-        {
+        public void GivenİnstructorChecksQuestionsAndAnswerİsExist(){
             new HomePage(driver)
                 .openQuestionsAndAnswersPage("instructor")
                 .checkQuestionIsExist();
         }
         [Then(@"instructor answers the question")]
-        public void GivenInstructorAnswersTheQuestion(Table table)
-        {
+        public void GivenInstructorAnswersTheQuestion(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
                 .openQuestionsAndAnswersPage("instructor")
@@ -1218,13 +1269,73 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .clickReplyButton();
         }
         [Then(@"instructor deletes new Q&A")]
-        public void GivenİnstructorDeletesNewAddedQuestion()
-        {
+        public void GivenİnstructorDeletesNewAddedQuestion(){
             new HomePage(driver)
                 .openQuestionsAndAnswersPage("instructor")
                 .deleteNewAddedQuestions();
         }
 
-
+        [Given(@"instructor checks poll question is exist")]
+        public void GivenInstructorChecksPollQuestionIsExist(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openPollQuestionsPage("instructor")
+                .searchNewlyAddedQuestionByNameAndDeleteIt(dictionary["question"]);
+        }
+        [Given(@"instructor adds multiple poll question with")]
+        public void GivenİnstructorAddsMultiplePollQuestionWith(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openPollQuestionsPage("instructor")
+                .clickAddButton()
+                .enterText(dictionary["question"])
+                .selectType("Multiple Choice")
+                .clickAddNewAnswerButton()
+                .enterAnswer1(dictionary["answer1"])
+                .enterAnswer2(dictionary["answer2"])
+                .enterAnswer3(dictionary["answer3"])
+                .enterAnswer4(dictionary["answer4"])
+                .clickIsPublic()
+                .clickIsEditable()
+                .clickSaveButton()
+                .assert();
+        }
+        [Given(@"instructor adds open ended poll question with")]
+        public void GivenİnstructorAddsOpenEndedPollQuestionWith(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openPollQuestionsPage("instructor")
+                .clickAddButton()
+                .enterText(dictionary["question"])
+                .selectType("Open-Ended")
+                .clickIsPublic()
+                .clickIsEditable()
+                .clickSaveButton()
+                .assert();
+        }
+        [Given(@"instructor adds true false poll question with")]
+        public void GivenİnstructorAddsTrueFalsePollQuestionWith(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openPollQuestionsPage("instructor")
+                .clickAddButton()
+                .enterText(dictionary["question"])
+                .selectType("True False")
+                .clickIsPublic()
+                .clickIsEditable()
+                .clickSaveButton()
+                .assert();
+        }
+        [Then(@"instructor delete poll question with")]
+        public void ThenInstructorDeleteMultipleChoiceQuestionWith(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+               .openPollQuestionsPage("instructor")
+               .searchNewlyAddedQuestionByName(dictionary["question"])
+               .click3Points()
+               .clickDeleteButton()
+               .clickAreUSure()
+               .assert();
+        }
     }
 }

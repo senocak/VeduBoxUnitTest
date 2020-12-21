@@ -288,7 +288,57 @@ Scenario: 14_instructor_add_question_open_ended
 	Then instructor deletes question with
 		| Key  | Value                     |
 		| name | Soru - open ended By ANIL |
-	
+
+Scenario: 16_instrcutor_add_question_matching
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks question is exist
+		| Key  | Value                   |
+		| name | Soru - MATCHING By ANIL |
+	Given instructor adds matching question with
+		| Key          | Value                   |
+		| question     | Soru - MATCHING By ANIL |
+		| point        | 45                      |
+		| matching1    | Apple = Elma            |
+		| matching2    | Kalem = Pencil          |
+		| TestCategory | DefaultTestCategory1    |
+	Then instructor deletes question with
+		| Key  | Value                   |
+		| name | Soru - MATCHING By ANIL |
+
+Scenario: 17_instructor_add_question_fill_in_the_blanks
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks question is exist
+		| Key  | Value                                 |
+		| name | Soru - FILL IN THE BLANKS By ((ANIL)) |
+	Given instructor adds fill in the blanks question with
+		| Key          | Value                                 |
+		| question     | Soru - FILL IN THE BLANKS By ((ANIL)) |
+		| point        | 20                                    |
+		| TestCategory | DefaultTestCategory1                  |
+	Then instructor deletes question with
+		| Key  | Value                                 |
+		| name | Soru - FILL IN THE BLANKS By ((ANIL)) |
+
+Scenario: 18_instructor_add_question_multiple_answer
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks question is exist
+		| Key  | Value                          |
+		| name | Soru - MULTIPLE ANSWER By ANIL |
+	Given instructor adds multiple answer question with
+		| Key          | Value                          |
+		| question     | Soru - MULTIPLE ANSWER By ANIL |
+		| point        | 10                             |
+		| answer1      | Correct Answer 1               |
+		| answer2      | Incorrect Answer 2             |
+		| answer3      | Correct Answer 3               |
+		| TestCategory | DefaultTestCategory1           |
+	Then instructor deletes question with
+		| Key  | Value                          |
+		| name | Soru - MULTIPLE ANSWER By ANIL |
+
 Scenario: 20_instructor_add_test_pool_multiple_choice
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
@@ -431,3 +481,50 @@ Scenario: 0_instructor_add_exam_with_default_params
 	Given instructor delete exam with
 		| Key  | Value                |
 		| name | anil_instructor_exam |
+
+Scenario: 31_instructor_add_poll_question_multiple
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks poll question is exist
+		| Key      | Value                                 |
+		| question | Soru - MULTIPLE POLL QUESTION By ANIL |
+	Given instructor adds multiple poll question with
+		| Key      | Value                                 |
+		| question | Soru - MULTIPLE POLL QUESTION By ANIL |
+		| answer1  | Answer 1                              |
+		| answer2  | Answer 2                              |
+		| answer3  | Answer 3                              |
+		| answer4  | Answer 4                              |
+	Then instructor delete poll question with
+		| Key      | Value                                 |
+		| question | Soru - MULTIPLE POLL QUESTION By ANIL |
+		
+Scenario: 32_instructor_add_poll_question_open_ended
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks poll question is exist
+		| Key      | Value                                   |
+		| question | Soru - OPEN ENDED POLL QUESTION By ANIL |
+	Given instructor adds open ended poll question with
+		| Key      | Value                                   |
+		| question | Soru - OPEN ENDED POLL QUESTION By ANIL |
+		| answer1  | Answer 1                                |
+		| answer2  | Answer 2                                |
+		| answer3  | Answer 3                                |
+		| answer4  | Answer 4                                |
+	Then instructor delete poll question with
+		| Key      | Value                                   |
+		| question | Soru - OPEN ENDED POLL QUESTION By ANIL |
+		
+Scenario: 33_instructor_add_poll_question_true_false
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks poll question is exist
+		| Key      | Value                                   |
+		| question | Soru - TRUE FALSE POLL QUESTION By ANIL |
+	Given instructor adds true false poll question with
+		| Key      | Value                                   |
+		| question | Soru - TRUE FALSE POLL QUESTION By ANIL |
+	Then instructor delete poll question with
+		| Key      | Value                                   |
+		| question | Soru - TRUE FALSE POLL QUESTION By ANIL |

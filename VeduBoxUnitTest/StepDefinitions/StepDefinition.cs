@@ -1123,23 +1123,54 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .enterName(dictionary["name"])
                 .enterTags(dictionary["tags"])
                 .enterDescription(dictionary["description"])
+                .clickIsShowAtHomePage()
                 .submit()
                 .assert();
         }
-        [Then(@"admin adds new catalog subscription to existing catalog")]
-        public void ThenAdminAddsNewCatalogSubscriptionToExistingCatalog(Table table){
+        
+        [Then(@"admin adds new catalog subscription type to existing catalog")]
+        public void ThenAdminAddsNewCatalogSubscriptionTypePermanentToExistingCatalog(Table table)
+        {
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
-                .openCatalogPage("instructor")
+                .openCatalogPage("admin")
                 .searchNewlyAddedCatalog(dictionary["name"])
                 .click3Points()
                 .clickUpdateButton()
                 .clickCatalogSubscriptionAdd_button()
                 .enterCatalogSubscriptionTitle(dictionary["title"])
+                .enterCatalogSubscriptionDescription(dictionary["description"])
                 .selectCatalogSubscriptionCurrency(dictionary["currency"])
+                .enterCatalogSubscriptionPackageAmount(Int32.Parse(dictionary["amount"]))
+                .enterCatalogSubscriptionPackageSalePrice(Int32.Parse(dictionary["salePrice"]))
                 .selectCatalogSubscriptionType(dictionary["type"])
                 .enterCatalogSubscriptionPackageDurationTime(dictionary["duration_time"])
                 .enterCatalogSubscriptionPackageDurationType(dictionary["duration_type"])
+                .clickCatalogSubscriptionBranch()
+                .clickCatalogSubscriptionStudent()
+                .clickCatalogSubscriptionSaveButton()
+                .assert();
+        }
+        [Then(@"admin adds new catalog subscription type temporary to existing catalog")]
+        public void ThenAdminAddsNewCatalogSubscriptionTypeTemporaryToExistingCatalog(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openCatalogPage("admin")
+                .searchNewlyAddedCatalog(dictionary["name"])
+                .click3Points()
+                .clickUpdateButton()
+                .clickCatalogSubscriptionAdd_button()
+                .enterCatalogSubscriptionTitle(dictionary["title"])
+                .enterCatalogSubscriptionDescription(dictionary["description"])
+                .selectCatalogSubscriptionCurrency(dictionary["currency"])
+                .enterCatalogSubscriptionPackageAmount(Int32.Parse(dictionary["amount"]))
+                .enterCatalogSubscriptionPackageSalePrice(Int32.Parse(dictionary["salePrice"]))
+                .selectCatalogSubscriptionType(dictionary["type"])
+                .setTemporaryStartDate()
+                .setTemporaryEndDate()
+                .clickCatalogSubscriptionBranch()
+                .clickCatalogSubscriptionStudent()
                 .clickCatalogSubscriptionSaveButton()
                 .assert();
         }

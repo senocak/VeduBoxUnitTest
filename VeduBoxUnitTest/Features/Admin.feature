@@ -294,6 +294,63 @@ Scenario: 15_admin_switch_to_role
 		| Key   | Value           |
 		| email | anil@parent.com |
 
+Scenario: 17_admin_add_catalog_subscription_type_permanent
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks catalog is exist
+		| Key   | Value               |
+		| name  | anil_vedubox_catalog|
+	Then admin adds new catalog
+		| Key         | Value                |
+		| name        | anil_vedubox_catalog |
+		| tags        | anil,senocak,catalog |
+		| description | Catalog Description  |
+		| category    | defaultCategory1     |
+		| teacher     | Anil Senocak         |
+	Then admin adds new catalog subscription type to existing catalog
+		| Key           | Value                             |
+		| name          | anil_vedubox_catalog              |
+		| description   | anil_vedubox_description          |
+		| title         | anil_vedubox_catalog_subscription |
+		| currency      | TL                                |
+		| amount        | 10                                |
+		| salePrice     | 15                                |
+		| type          | Permanent                         |
+		| duration_time | 5                                 |
+		| duration_type | Month                             |
+    Given admin deletes added catalog
+		| Key   | Value               |
+		| name  | anil_vedubox_catalog|
+
+Scenario: 18_admin_add_catalog_subscription_type_temporary
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks catalog is exist
+		| Key   | Value               |
+		| name  | anil_vedubox_catalog|
+	Then admin adds new catalog
+		| Key         | Value                |
+		| name        | anil_vedubox_catalog |
+		| tags        | anil,senocak,catalog |
+		| description | Catalog Description  |
+		| category    | defaultCategory1     |
+		| teacher     | Anil Senocak         |
+	Then admin adds new catalog subscription type temporary to existing catalog
+		| Key           | Value                             |
+		| name          | anil_vedubox_catalog              |
+		| description   | anil_vedubox_description          |
+		| title         | anil_vedubox_catalog_subscription |
+		| currency      | TL                                |
+		| amount        | 35                                |
+		| salePrice     | 25                                |
+		| type          | Temporary                         |
+		| duration_time | 5                                 |
+		| duration_type | Month                             |
+    Given admin deletes added catalog
+		| Key   | Value               |
+		| name  | anil_vedubox_catalog|
+	
+
 Scenario: 19_admin_live_query
 	Given Open Kurumsal Login Page
 	Given Login as "admin"
@@ -329,14 +386,17 @@ Scenario: 0_admin_add_catalog
 		| description | Catalog Description  |
 		| category    | defaultCategory1     |
 		| teacher     | Anil Senocak         |
-	Then admin adds new catalog subscription to existing catalog
+	Then admin adds new catalog subscription type to existing catalog
 		| Key           | Value                             |
 		| name          | anil_vedubox_catalog              |
+		| description   | anil_vedubox_description          |
 		| title         | anil_vedubox_catalog_subscription |
 		| currency      | TL                                |
+		| amount        | 20                                |
+		| salePrice     | 30                                |
 		| type          | Permanent                         |
-		| duration_time | 100                               |
-		| duration_type | Year                              |
+		| duration_time | 1                                 |
+		| duration_type | year                              |
 	Given admin deletes added catalog
 		| Key   | Value               |
 		| name  | anil_vedubox_catalog|

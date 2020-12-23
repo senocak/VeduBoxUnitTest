@@ -8,50 +8,59 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
 {
     class LivePage : Page
     {
-        private static By ADD_NEW = By.Id("liveLesson-addNew");
-        private static By COURSE = By.Id("liveLesson-selectCourseModal");
+        private static readonly By ADD_NEW = By.Id("liveLesson-addNew");
+        private static readonly By COURSE = By.Id("liveLesson-selectCourseModal");
         //private static string COURSE_VALUE = "deneme";
-        private static By MEETING_TYPE_BASIC = By.Id("liveLessons-addNewModalTypeVideoMeetingBasic");
-        private static By MEETING_TYPE_PRO = By.Id("liveLessons-addNewModalTypeVideoMeetingPro");
-        private static By MEETING_TYPE_WEBINAR = By.Id("liveLessons-addNewModalTypeVideoWebinar");
-        private static By COURSE_OK_BUTTON = By.Id("liveLesson-selectCourseModalConfirm");
-        private static By TITLE = By.Id("liveLessons-addNewModalCourseInput");
+        private static readonly By MEETING_TYPE_BASIC = By.Id("liveLessons-addNewModalTypeVideoMeetingBasic");
+        private static readonly By MEETING_TYPE_PRO = By.Id("liveLessons-addNewModalTypeVideoMeetingPro");
+        private static readonly By MEETING_TYPE_WEBINAR = By.Id("liveLessons-addNewModalTypeVideoWebinar");
+        private static readonly By COURSE_OK_BUTTON = By.Id("liveLesson-selectCourseModalConfirm");
+        private static readonly By TITLE = By.Id("liveLessons-addNewModalCourseInput");
         //private static string DATE = "input[ng-model='startDates[n-1]']";
-        private static By TIME_HOUR = By.Id("liveLessons-addNewModalTimeHoursSelect");
-        private static By TIME_MIN = By.Id("liveLessons-addNewModalTimeMinutesSelect");
-        private static By TIMEZONE = By.Id("liveLessons-addNewModalTimeZonesSelect");
-        private static By DURATION = By.Id("liveLessons-addNewModalSelectDuration");
-        private static By REGISTRATION_LIMIT = By.Id("liveLessons-addNewModalRegistrationLimitInput");
-        private static By DESCRIPTION = By.CssSelector("div[ng-model='html']"); // id: taTextElement5949993084175542
-        private static By TRAINER = By.Id("liveLessons-addNewModalTeacherSelect");
-        private static By PRIVATE = By.Id("liveLessons-addNewModalPrivateCheckbox");
-        private static By SUBMIT = By.Id("liveLessons-addNewModalSave");
-        private static By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private static By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
-        private static By REGISTER = By.Id("liveLesson-sessionStatusRegister");
-        private static By LIVE_RECORD = By.Id("liveLesson-sessionShowDetails");
-        private static By RECORD_DETAIL_BUTTON = By.Id("liveLesson-sessionLink");
-        private static By QUERY_BUTTON = By.Id("liveLesson-query");
-        private static By COPY_BUTTON = By.CssSelector("input[ng-click='copyClicked()']");
-        private static By QUERY_START_DATE_LIVE_LESSONS_ADD_NEW_MODEL_SELECT_DATA = By.XPath("(//input[@id='liveLessons-addNewModalSelectDate'])[1]");
-        private static By QUERY_END_DATE_LIVE_LESSONS_ADD_NEW_MODEL_SELECT_DATA = By.XPath("(//input[@id='liveLessons-addNewModalSelectDate'])[2]");
-        private static By QUERY_START_DATE_OPEN_DATEPICKER = By.CssSelector("button[ng-click*='queryStartDate']");
-        private static By QUERY_END_DATE_OPEN_DATEPICKER = By.CssSelector("button[ng-click*='queryDueDate']");
-        private static By QUERY_START_DATE_CHOOSE_YEAR = By.XPath("(//button[@ng-click='toggleMode()'])[2]");
-        private static By QUERY_END_DATE_CHOOSE_YEAR = By.XPath("(//button[@ng-click='toggleMode()'])[3]");
-        private static By QUERY_START_DATE_GO_PREVIOUS_YEAR = By.XPath("(//button[@ng-click='move(-1)'])[2]");
-        private static By QUERY_END_DATE_GO_PREVIOUS_YEAR = By.XPath("(//button[@ng-click='move(-1)'])[3]");
-        private static By QUERY_START_DATE_GO_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[2]");
-        private static By QUERY_END_DATE_GO_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[3]");
-        private static By QUERY_START_HOUR = By.XPath("(//select[@id='liveLessons-addNewModalTimeHoursSelect'])[1]");
-        private static By QUERY_END_HOUR = By.XPath("(//select[@id='liveLessons-addNewModalTimeHoursSelect'])[2]");
-        private static By QUERY_START_MINUTE = By.XPath("(//select[@id='liveLessons-addNewModalTimeMinutesSelect'])[1]");
-        private static By QUERY_END_MINUTE = By.XPath("(//select[@id='liveLessons-addNewModalTimeMinutesSelect'])[2]");
-        private static By QUERY_SEARCH_BUTTON = By.CssSelector("button[ng-click*='searchLiveLessonsInRange()']");
-        private static By QUERY_CLOSE_BUTTON = By.Id("liveLesson-selectCourseModalCancel");
-        private static By LiveLessonSelectDate = By.Id("liveLesson-selectDate");
-        private static By LiveLessonsAddNewModalSelectDate = By.Id("liveLessons-addNewModalSelectDate");
-        private static By LiveLessonsAddNewModalSelectDatePicker = By.CssSelector("button[ng-click='openDatepicker($event,(n-1))']");
+        private static readonly By TIME_HOUR = By.Id("liveLessons-addNewModalTimeHoursSelect");
+        private static readonly By TIME_MIN = By.Id("liveLessons-addNewModalTimeMinutesSelect");
+        private static readonly By TIMEZONE = By.Id("liveLessons-addNewModalTimeZonesSelect");
+        private static readonly By DURATION = By.Id("liveLessons-addNewModalSelectDuration");
+        private static readonly By REGISTRATION_LIMIT = By.Id("liveLessons-addNewModalRegistrationLimitInput");
+        private static readonly By DESCRIPTION = By.CssSelector("div[ng-model='html']"); // id: taTextElement5949993084175542
+        private static readonly By TRAINER = By.Id("liveLessons-addNewModalTeacherSelect");
+        private static readonly By PRIVATE = By.Id("liveLessons-addNewModalPrivateCheckbox");
+        private static readonly By SUBMIT = By.Id("liveLessons-addNewModalSave");
+        private static readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private static readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
+        private static readonly By REGISTER = By.Id("liveLesson-sessionStatusRegister");
+        private static readonly By LIVE_RECORD = By.Id("liveLesson-sessionShowDetails");
+        private static readonly By RECORD_DETAIL_BUTTON = By.Id("liveLesson-sessionLink");
+        private static readonly By QUERY_BUTTON = By.Id("liveLesson-query");
+        private static readonly By COPY_BUTTON = By.CssSelector("input[ng-click='copyClicked()']");
+        private static readonly By QUERY_START_DATE_LIVE_LESSONS_ADD_NEW_MODEL_SELECT_DATA = By.XPath("(//input[@id='liveLessons-addNewModalSelectDate'])[1]");
+        private static readonly By QUERY_END_DATE_LIVE_LESSONS_ADD_NEW_MODEL_SELECT_DATA = By.XPath("(//input[@id='liveLessons-addNewModalSelectDate'])[2]");
+        private static readonly By QUERY_START_DATE_OPEN_DATEPICKER = By.CssSelector("button[ng-click*='queryStartDate']");
+        private static readonly By QUERY_END_DATE_OPEN_DATEPICKER = By.CssSelector("button[ng-click*='queryDueDate']");
+        private static readonly By QUERY_START_DATE_CHOOSE_YEAR = By.XPath("(//button[@ng-click='toggleMode()'])[2]");
+        private static readonly By QUERY_END_DATE_CHOOSE_YEAR = By.XPath("(//button[@ng-click='toggleMode()'])[3]");
+        private static readonly By QUERY_START_DATE_GO_PREVIOUS_YEAR = By.XPath("(//button[@ng-click='move(-1)'])[2]");
+        private static readonly By QUERY_END_DATE_GO_PREVIOUS_YEAR = By.XPath("(//button[@ng-click='move(-1)'])[3]");
+        private static readonly By QUERY_START_DATE_GO_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[2]");
+        private static readonly By QUERY_END_DATE_GO_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[3]");
+        private static readonly By QUERY_START_HOUR = By.XPath("(//select[@id='liveLessons-addNewModalTimeHoursSelect'])[1]");
+        private static readonly By QUERY_END_HOUR = By.XPath("(//select[@id='liveLessons-addNewModalTimeHoursSelect'])[2]");
+        private static readonly By QUERY_START_MINUTE = By.XPath("(//select[@id='liveLessons-addNewModalTimeMinutesSelect'])[1]");
+        private static readonly By QUERY_END_MINUTE = By.XPath("(//select[@id='liveLessons-addNewModalTimeMinutesSelect'])[2]");
+        private static readonly By QUERY_SEARCH_BUTTON = By.CssSelector("button[ng-click*='searchLiveLessonsInRange()']");
+        private static readonly By QUERY_CLOSE_BUTTON = By.Id("liveLesson-selectCourseModalCancel");
+        private static readonly By GO_TO_DATE_CHOOSE_YEAR =By.XPath("/html/body/div[3]/div/section/div/div[2]/div[2]/div[2]/ul/li/div/table/thead/tr[1]/th[2]/button");
+        private static readonly By GO_TO_DATE_PREVIOUS_YEAR = By.XPath("//*[@id='mainSection']/div/div[2]/div[2]/div[2]/ul/li/div/table/thead/tr[1]/th[1]/button");
+        private static readonly By GO_TO_DATE_NEXT_YEAR = By.XPath("//*[@id='mainSection']/div/div[2]/div[2]/div[2]/ul/li/div/table/thead/tr[1]/th[3]/button");
+        private static readonly By SET_DATE_CHOOSE_YEAR = By.XPath("//*[@id='liveLessonForm']/div[1]/div[5]/div[2]/div/p/ul/li/div/table/thead/tr/th[2]/button");
+        private static readonly By SET_DATE_PREVIOUS_YEAR = By.XPath("//*[@id='liveLessonForm']/div[1]/div[5]/div[2]/div/p/ul/li/div/table/thead/tr/th[1]/button");
+        private static readonly By SET_DATE_NEXT_YEAR = By.XPath("//*[@id='liveLessonForm']/div[1]/div[5]/div[2]/div/p/ul/li/div/table/thead/tr/th[3]/button");
+        private static readonly By ASSERT_START = By.XPath("//*[@id='mainSection']/div/div[2]/div[3]/div/div[3]/div[3]/div/div/div[6]/button");
+        private static readonly By SELECT_TIME = By.XPath("//*[@id='pageBody']/div[2]/div[2]/div[1]/div[2]/table/tbody/tr[9]/td[3]/a[1]");
+        private static readonly By LIVE_REGISTER = By.XPath("//*[@id='mainSection']/div/div[2]/div[3]/div/div[3]/div[3]/div[2]/div/div[6]/div/button[1]");
+        private static readonly By LiveLessonSelectDate = By.Id("liveLesson-selectDate");
+        private static readonly By LiveLessonsAddNewModalSelectDate = By.Id("liveLessons-addNewModalSelectDate");
+        private static readonly By LiveLessonsAddNewModalSelectDatePicker = By.CssSelector("button[ng-click='openDatepicker($event,(n-1))']");
 
        public static string RandomString(int length){
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -102,7 +111,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
         }
 
         public LivePage register(){
-            click(By.XPath("//*[@id='mainSection']/div/div[2]/div[3]/div/div[3]/div[3]/div[2]/div/div[6]/div/button[1]"));
+            click(LIVE_REGISTER);
             return this;
         }
         public LivePage setDate(int yearParam = 0, string monthParam = null, string dayParam = null){
@@ -118,15 +127,15 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
 
             try{
                 click(LiveLessonsAddNewModalSelectDatePicker);
-                click(By.XPath("//*[@id='liveLessonForm']/div[1]/div[5]/div[2]/div/p/ul/li/div/table/thead/tr/th[2]/button"));
+                click(SET_DATE_CHOOSE_YEAR);
                 if (year != getCurrentValueOfInputYear){
                     if (year < getCurrentValueOfInputYear){
                         for (int i = getCurrentValueOfInputYear; i > year; i--){
-                            click(By.XPath("//*[@id='liveLessonForm']/div[1]/div[5]/div[2]/div/p/ul/li/div/table/thead/tr/th[1]/button"));
+                            click(SET_DATE_PREVIOUS_YEAR);
                         }
                     }else{
                         for (int i = getCurrentValueOfInputYear; i < year; i++){
-                            click(By.XPath("//*[@id='liveLessonForm']/div[1]/div[5]/div[2]/div/p/ul/li/div/table/thead/tr/th[3]/button"));
+                            click(SET_DATE_NEXT_YEAR);
                         }
                     }
                 }
@@ -164,7 +173,6 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
                         for (int i = getCurrentValueOfInputYear; i > year; i--)
                         {
                             click(QUERY_START_DATE_GO_PREVIOUS_YEAR);
-                          
                         }
                     }
                     else
@@ -172,7 +180,6 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
                         for (int i = getCurrentValueOfInputYear; i < year; i++)
                         {
                             click(QUERY_START_DATE_GO_NEXT_YEAR);
-                        
                         }
                     }
                 }
@@ -285,7 +292,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
 
         public LivePage selectTime(){
             try{
-                click(By.XPath("//*[@id='pageBody']/div[2]/div[2]/div[1]/div[2]/table/tbody/tr[9]/td[3]/a[1]"));
+                click(SELECT_TIME);
             }catch (Exception e){
                 Console.WriteLine("Error occured in adding time to Live record, user: " + _user + ", Error: " + e);
             }
@@ -345,7 +352,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
         }
         public LivePage assertStart(){
             try{
-                AssertionCustom.assertElementVisible("Element Not Found", driver, By.XPath("//*[@id='mainSection']/div/div[2]/div[3]/div/div[3]/div[3]/div/div/div[6]/button"));
+                AssertionCustom.assertElementVisible("Element Not Found", driver, ASSERT_START);
             }catch (Exception e){
                 Console.WriteLine("Error occured in deleting Live record, user: " + _user + ", Error: " + e);
             }
@@ -410,15 +417,15 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
 
             try{
                 click(LiveLessonSelectDate);
-                click(By.XPath("/html/body/div[3]/div/section/div/div[2]/div[2]/div[2]/ul/li/div/table/thead/tr[1]/th[2]/button"));
+                click(GO_TO_DATE_CHOOSE_YEAR);
                 if (year != getCurrentValueOfInputYear){
                     if (year < getCurrentValueOfInputYear){
                         for (int i = getCurrentValueOfInputYear; i > year; i--){
-                            click(By.XPath("//*[@id='mainSection']/div/div[2]/div[2]/div[2]/ul/li/div/table/thead/tr[1]/th[1]/button"));
+                            click(GO_TO_DATE_PREVIOUS_YEAR);
                         }
                     }else{
                         for (int i = getCurrentValueOfInputYear; i < year; i++){
-                            click(By.XPath("//*[@id='mainSection']/div/div[2]/div[2]/div[2]/ul/li/div/table/thead/tr[1]/th[3]/button"));
+                            click(GO_TO_DATE_NEXT_YEAR);
                         }
                     }
                 }

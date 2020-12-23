@@ -289,6 +289,25 @@ Scenario: 14_instructor_add_question_open_ended
 		| Key  | Value                     |
 		| name | Soru - open ended By ANIL |
 
+Scenario: 15_instrcutor_add_question_ordering
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks question is exist
+		| Key  | Value                   |
+		| name | Soru - ORDERING By ANIL |
+	Given instructor adds ordering question with
+		| Key          | Value                   |
+		| question     | Soru - ORDERING By ANIL |
+		| point        | 20                      |
+		| ordering1    | 1st                     |
+		| ordering2    | 2nd                     |
+		| ordering3    | 3rd                     |
+		| ordering4    | 4th                     |
+		| TestCategory | DefaultTestCategory1    |
+	Then instructor deletes question with
+		| Key  | Value                   |
+		| name | Soru - ORDERING By ANIL |
+
 Scenario: 16_instrcutor_add_question_matching
 	Given Open Kurumsal Login Page
 	Given Login as "instructor"
@@ -528,3 +547,25 @@ Scenario: 33_instructor_add_poll_question_true_false
 	Then instructor delete poll question with
 		| Key      | Value                                   |
 		| question | Soru - TRUE FALSE POLL QUESTION By ANIL |
+
+Scenario: 35_instructor_query_live
+	Given Open Kurumsal Login Page
+	Given Login as "instructor"
+	Given instructor checks live is exist
+	Given instructor adds new live with
+		| Key               | Value                  |
+		| course_name       | defaultCourse1         |
+		| meetingType       | pro                    |
+		| title             | deneme                 |
+		| timezone          | Turkey Time (GMT+3:00) |
+		| duration          | 120                    |
+		| registrationLimit | 50                     |
+		| description       | Deneme 123             |
+    Then instructor query live
+	| Key              | Value          |
+	| startHourParam   | 00             |
+	| startMinuteParam | 00             |
+	| endHourParam     | 23             |
+	| endMinuteParam   | 55             |
+	| courseName       | defaultCourse1 |
+	Then instructor deletes live

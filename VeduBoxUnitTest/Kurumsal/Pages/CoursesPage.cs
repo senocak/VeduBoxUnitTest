@@ -11,7 +11,8 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By NAME_ADMIN = By.CssSelector("input[ng-model='course.name']");
         private static By NAME_INSTRUCTOR = By.CssSelector("input[ng-model='courseAndPackage.courseName']");
         private static By TAGS = By.XPath("//*[@id='courseForm']/div[1]/div[2]/div/div/input");
-        private static By DESCRIPTION = By.CssSelector("div[ng-model='html']");
+        private static By DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[3]/div/div/div/div/form/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private static By EMBEDDED_DESCRIPTION = By.XPath(" /html/body/div[6]/div/div/div/div[3]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
         private static By CATEGORY_ADMIN = By.CssSelector("select[ng-model='course.categoryId']");
         private static By CATEGORY_INSTRUCTOR = By.CssSelector("select[ng-model='courseAndPackage.categoryId']");
         private static By TEACHER = By.CssSelector("select[ng-model='course.teacherUserId']");
@@ -34,7 +35,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By SELECT_RESOURCE_DOC = By.Id("rescourceTypeDoc");
         private static By RESOURCE_OK = By.Id("rescourceTypeOkBtn");
         private static By RESOURCE_TITLE = By.Id("txtName");
-        private static By RESOURCE_DESC = By.XPath("/html/body/div[3]/div/section/div/div[1]/div/div[2]/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]/p");
+        private static By RESOURCE_DESC = By.XPath("/html/body/div[6]/div/div/div/div[3]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
         private static By RESOURCE_DOWNLOADABLE_CHECK = By.Id("resourceTypeDocDownload");
         private static By RESOURCE_REVIEW_CHECK = By.Id("resourceTypeDocReview");
         private static By RESOURCE_SAVE_BUTTON = By.Id("resourceTypeDocFileSave");
@@ -86,6 +87,12 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             type(DESCRIPTION, description);
             return this;
         }
+        public CoursesPage setEmbeddedDescription(string description)
+        {
+            type(EMBEDDED_DESCRIPTION, description);
+            return this;
+        }
+       
         public CoursesPage selectCategory(string catetoryName){
             catetoryName = Encoding.UTF8.GetString(Encoding.Default.GetBytes(catetoryName));
             if (_user == "admin")

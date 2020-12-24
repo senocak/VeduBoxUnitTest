@@ -32,7 +32,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 //WebBrowser.Driver.CaptureScreenShot(_scenarioContext.ScenarioInfo.Title);
                 Console.WriteLine("Title:" + ScenarioContext.Current.ScenarioInfo.Title + " is failed.");
             }
-           // driver.Quit();
+          //  driver.Quit();
         }
         [Given(@"Open Kurumsal Login Page")]
         public void GivenOpenKurumsalLoginPage(){
@@ -497,7 +497,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                     .openCourseUpdate()
                     .addResource()
                     .clickResourceTypeDoc()
-                    .clickOkAfterType()
+                    //.clickOkAfterType()
                     .enterResourceTitle(dictionary["title"])
                     .enterResourceDescription(dictionary["desc"])
                     .selectDownloadable()
@@ -516,7 +516,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                     .openCourseUpdate()
                     .addResource()
                     .clickResourceTypeVideo()
-                    .clickOkAfterType()
+                    //.clickOkAfterType()
                     .enterResourceTitle(dictionary["title"])
                     .enterResourceDescription(dictionary["desc"])
                     .selectCourseVideoPrev()
@@ -544,7 +544,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                     .openCourseUpdate()
                     .addResource()
                     .clickResourceTypeVideo()
-                    .clickOkAfterType()
+                    //.clickOkAfterType()
                     .enterResourceTitle(dictionary["title"])
                     .enterResourceDescription(dictionary["desc"])
                     .selectVimeoID()
@@ -566,7 +566,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                     .openCourseUpdate()
                     .addResource()
                     .clickResourceTypeLink()
-                    .clickOkAfterType()
+                   // .clickOkAfterType()
                     .enterResourceTitle(dictionary["title"])
                     .setDescription(dictionary["desc"])
                     .enterLink(dictionary["link"])
@@ -584,9 +584,9 @@ namespace VeduBoxUnitTest.StepDefinitions{
                     .openCourseUpdate()
                     .addResource()
                     .clickResourceTypeEmbedCode()
-                    .clickOkAfterType()
+                    //.clickOkAfterType()
                     .enterResourceTitle(dictionary["title"])
-                    .setDescription(dictionary["desc"])
+                    .setEmbeddedDescription(dictionary["desc"])
                     .enterEmbedCode(dictionary["embed_code"])
                     .selectVideoUserReview()
                     .clickResourceLinkSave()

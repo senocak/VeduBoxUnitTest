@@ -396,7 +396,7 @@ Scenario: 0_admin_add_catalog
 		| salePrice     | 30                                |
 		| type          | Permanent                         |
 		| duration_time | 1                                 |
-		| duration_type | year                              |
+		| duration_type | Year                              |
 	Given admin deletes added catalog
 		| Key   | Value               |
 		| name  | anil_vedubox_catalog|

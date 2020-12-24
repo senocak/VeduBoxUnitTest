@@ -32,7 +32,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 //WebBrowser.Driver.CaptureScreenShot(_scenarioContext.ScenarioInfo.Title);
                 Console.WriteLine("Title:" + ScenarioContext.Current.ScenarioInfo.Title + " is failed.");
             }
-          //  driver.Quit();
+            driver.Quit();
         }
         [Given(@"Open Kurumsal Login Page")]
         public void GivenOpenKurumsalLoginPage(){
@@ -162,7 +162,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .addNew()
                 .setName(dictionary["name"])
                 .setTags(dictionary["tags"])
-                .setDescription(dictionary["description"])
+                .setCreateCourseDescription(dictionary["description"])
                 .selectCategory(dictionary["category"])
                 .selectTeacher(dictionary["teacher"])
                 .setCatalog(dictionary["catalog"])
@@ -406,9 +406,9 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .openPortalPage("student")
                 .searchEntry(dictionary["entry"])
                 .clickView()
-                .selectLogin()
+                //.selectLogin()
                 .selectContinue()
-                .selectAgree()
+                .selectIsAgree()
                 .clickNext()
                 .enterName(dictionary["name"])
                 .enterSurName(dictionary["surname"])
@@ -429,7 +429,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
             new HomePage(driver)
                 .openPortalPage("student")
                 .clickCoursesPackages()
-                .searchEntry(dictionary["entry"])
+                .searchCoursesPackageEntry(dictionary["entry"])
                 .clickCoursePackagesView()
                 .selectCoursesPackageContinue()
                 //.closeDismiss()
@@ -466,9 +466,8 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .searchEntry(dictionary["course"])
                 .addtoCart()
                 .clickCoursesPackages()
-                .searchEntry(dictionary["coursePackage"])
-                .addtoCart()
-                //TO DO //add cart seçeneği courses package için eklenmeli
+                .searchCoursesPackageEntry(dictionary["coursePackage"])
+                .addtoCoursePackageCart()
                 .goToCart()
                 .selectCoursesPackageContinue()
                 .selectIsAgree()

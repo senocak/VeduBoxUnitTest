@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class PortalPage : Page{
         private static string _user;
-        private static By SEARCH = By.Id("packageDetailCourseSearch");
+        private static By SEARCH = By.Id("packageDetailSearch");
+        private static By COURSE_PACKAGE_SEARCH = By.Id("packageDetailCourseSearch");
         private static By VIEW = By.Id("packageDetailCourseView");
         private static By COURSE_PACKAGE_VIEW = By.Id("packageDetailPredefinedCourseView");
         private static By COURSES_PACKAGES = By.CssSelector("[ng-click='gTab = 2;']");
@@ -20,6 +21,8 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By COURSES_PACKAGE_CONTINUE = By.XPath("(//button[@ng-click='go()'])[2]");
         private static By DISMISS_POLICY = By.CssSelector("a[ng-click='dismissPolicy()']");
         private static By ADD_CART = By.CssSelector("#packageDetailCourseAddToCart");
+        private static By COURSE_PACKAGE_ADD_CART = By.CssSelector("#packageDetailPredefinedCourseAddToCart");
+        
         private static By GO_TO_CART = By.XPath("(//button[@ng-click=' goToCart()'])[2]");
 
         public PortalPage(IWebDriver wd, string user) : base(wd){
@@ -32,6 +35,11 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         }
         public PortalPage searchEntry(string entry){
             type(SEARCH, entry);
+            return this;
+        }
+        public PortalPage searchCoursesPackageEntry(string entry)
+        {
+            type(COURSE_PACKAGE_SEARCH, entry);
             return this;
         }
         public PortalPage clickCoursesPackages()
@@ -61,7 +69,9 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         }
 
         public PaymentPage selectContinue(){
-            click(CONTINUE);
+            sleepms(500);
+            click(COURSES_PACKAGE_CONTINUE);
+            Console.WriteLine("clicked to continue");
             return new PaymentPage(driver, _user);
         }
         public PaymentPage selectCoursesPackageContinue()
@@ -92,6 +102,11 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         public PortalPage addtoCart()
         {
             click(ADD_CART);
+            return this;
+        }
+        public PortalPage addtoCoursePackageCart()
+        {
+            click(COURSE_PACKAGE_ADD_CART);
             return this;
         }
         public PortalPage goToCart()

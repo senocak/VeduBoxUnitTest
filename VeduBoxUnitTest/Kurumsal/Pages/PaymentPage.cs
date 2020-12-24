@@ -11,7 +11,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
 {
     class PaymentPage : Page{
         private static string _user;
-        private static By AGREE = By.Id("//*[@id='mainSection']/div/div/div[1]/div[2]/div/div[2]/div/div[2]/div[2]/input");
+        private static By AGREE = By.Id("open_policy");
         private static By NEXT = By.CssSelector("span[translate='common.next']");
         private static By NAME = By.Id("makePaymentBuyerName");
         private static By PACKAGE_NAME = By.CssSelector("input[ng-model='paymentInfo.billingName']");
@@ -24,7 +24,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
         private static By SURNAME = By.Id("makePaymentBuyerLastName");
         private static By CITY = By.Id("makePaymentBuyerCity");
         private static By DISTRICT = By.Id("makePaymentBuyerCountry");
-        private static By PHONE = By.Id("makePaymentBuyerTelephone");
+        private static By PHONE = By.CssSelector("input[ng-model='paymentInfo.billingTel']");
         private static By ADDRESS = By.Id("makePaymentBuyerAddress");
         private static By CARD_NAME = By.Id("ccname");
         private static By CARD_NUMBER = By.Id("ccnumber");

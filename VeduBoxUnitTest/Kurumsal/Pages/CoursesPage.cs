@@ -12,6 +12,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By NAME_INSTRUCTOR = By.CssSelector("input[ng-model='courseAndPackage.courseName']");
         private static By TAGS = By.XPath("//*[@id='courseForm']/div[1]/div[2]/div/div/input");
         private static By DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[3]/div/div/div/div/form/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private static By CREATE_COURSE_DESCRIPTION = By.XPath("/html/body/div[3]/div/section/div/div[1]/div[3]/div/div/div[2]/form/div[1]/div[3]/div/text-angular/div[2]/div[3]");
         private static By EMBEDDED_DESCRIPTION = By.XPath(" /html/body/div[6]/div/div/div/div[3]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
         private static By CATEGORY_ADMIN = By.CssSelector("select[ng-model='course.categoryId']");
         private static By CATEGORY_INSTRUCTOR = By.CssSelector("select[ng-model='courseAndPackage.categoryId']");
@@ -85,6 +86,11 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         }
         public CoursesPage setDescription(string description){
             type(DESCRIPTION, description);
+            return this;
+        }
+        public CoursesPage setCreateCourseDescription(string description)
+        {
+            type(CREATE_COURSE_DESCRIPTION, description);
             return this;
         }
         public CoursesPage setEmbeddedDescription(string description)

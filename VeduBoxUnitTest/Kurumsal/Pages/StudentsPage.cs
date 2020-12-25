@@ -10,23 +10,23 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
     class StudentsPage : Page{
         private static string _user;
 
-        private static By ADMIN_ADD_NEW = By.CssSelector("button[ui-sref='veduBox.admin.students.new']");
-        private static By INSTRUCTOR_ADD_NEW = By.CssSelector("button[ui-sref='veduBox.teacher.students.new']");
-        private static By FIRSTNAME = By.CssSelector("input[ng-model='student.firstName']");
-        private static By LASTNAME = By.CssSelector("input[ng-model='student.lastName']");
-        private static By BRANCH = By.CssSelector("select[ng-model='student.branchId']");
-        private static By EMAIL = By.CssSelector("input[ng-model='student.email']");
-        private static By USER_NAME = By.CssSelector("input[ng-model='student.userName']");
-        private static By PASSWORD = By.CssSelector("input[ng-model='student.password']");
-        private static By DESCRIPTION = By.CssSelector("textarea[ng-model='student.description']");
-        private static By EMAIL_CONFIRMED = By.CssSelector("input[ng-model='student.emailConfirmed']");
-        private static By GDPR_POLICY = By.CssSelector("input[ng-model='student.gdprAccepted']");
-        private static By SUBMIT = By.CssSelector("button[type='submit']:nth-child(1)");
-        private static By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private static By SEARCH_BOX = By.CssSelector("input.form-control.vedu-search");
-        private static By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
-        private static By DELETE_USER = By.CssSelector("a[ng-click='delete(user)']");
-        private static By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
+        private static readonly By ADMIN_ADD_NEW = By.CssSelector("button[ui-sref='veduBox.admin.students.new']");
+        private static readonly By INSTRUCTOR_ADD_NEW = By.CssSelector("button[ui-sref='veduBox.teacher.students.new']");
+        private static readonly By FIRSTNAME = By.CssSelector("input[ng-model='student.firstName']");
+        private static readonly By LASTNAME = By.CssSelector("input[ng-model='student.lastName']");
+        private static readonly By BRANCH = By.CssSelector("select[ng-model='student.branchId']");
+        private static readonly By EMAIL = By.CssSelector("input[ng-model='student.email']");
+        private static readonly By USER_NAME = By.CssSelector("input[ng-model='student.userName']");
+        private static readonly By PASSWORD = By.CssSelector("input[ng-model='student.password']");
+        private static readonly By DESCRIPTION = By.CssSelector("textarea[ng-model='student.description']");
+        private static readonly By EMAIL_CONFIRMED = By.CssSelector("input[ng-model='student.emailConfirmed']");
+        private static readonly By GDPR_POLICY = By.CssSelector("input[ng-model='student.gdprAccepted']");
+        private static readonly By SUBMIT = By.CssSelector("button[type='submit']:nth-child(1)");
+        private static readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private static readonly By SEARCH_BOX = By.CssSelector("input.form-control.vedu-search");
+        private static readonly By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
+        private static readonly By DELETE_USER = By.CssSelector("a[ng-click='delete(user)']");
+        private static readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
 
         public StudentsPage(IWebDriver wd, string user) : base(wd){
             _user = user;

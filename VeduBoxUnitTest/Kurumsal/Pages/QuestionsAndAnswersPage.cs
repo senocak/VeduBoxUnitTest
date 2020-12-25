@@ -11,19 +11,19 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
 {
     class QuestionsAndAnswersPage : Page
     {
-        private static By NEW_TICKET = By.CssSelector("a[ui-sref='veduBox.student.me.studentQuestions.new']");
-        private static By COURSE = By.CssSelector("select[ng-model='selectedCourse']");
-        private static By SUBJECT = By.CssSelector("input[ng-model='studentQuestion.subject']");
-        private static By NEXT_BUTTON = By.CssSelector("span[translate='common.next']");
-        private static By UPLOAD_PICTURE = By.Id("askUploadImage");
-        private static By SEND_BUTTON = By.CssSelector("span[translate='common.send']");
-        private static By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private static By MESSAGE = By.XPath("/html/body/div[3]/div/section/div/div[1]/div/div/div/div/form/div/div[1]/fieldset[3]/div/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static By VIEW_DETAIL = By.CssSelector("span[ng-click='getMessageDetails(questionAndAnswer.id,questionAndAnswer.instructorName)']");
-        private static By ANSWER_FIELD = By.XPath("/html/body/div[3]/div/section/div/div[1]/div/section/div[2]/div/table/tbody/tr[2]/td/div[3]/div[1]/div[2]/div/div/vedu-box-text-angular/text-angular/div[2]/div[3]/p");
-        private static By REPLY_BUTTON = By.CssSelector("div[translate='studentQuestion.Reply']");
-        private static By DELETE_TICKET = By.XPath("(//span[@translate='routeStates.teacher.me.courses.edit.deleteTicket'])[1]");
-        private static By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
+        private static readonly By NEW_TICKET = By.CssSelector("a[ui-sref='veduBox.student.me.studentQuestions.new']");
+        private static readonly By COURSE = By.CssSelector("select[ng-model='selectedCourse']");
+        private static readonly By SUBJECT = By.CssSelector("input[ng-model='studentQuestion.subject']");
+        private static readonly By NEXT_BUTTON = By.CssSelector("span[translate='common.next']");
+        private static readonly By UPLOAD_PICTURE = By.Id("askUploadImage");
+        private static readonly By SEND_BUTTON = By.CssSelector("span[translate='common.send']");
+        private static readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private static readonly By MESSAGE = By.XPath("/html/body/div[3]/div/section/div/div[1]/div/div/div/div/form/div/div[1]/fieldset[3]/div/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private static readonly By VIEW_DETAIL = By.CssSelector("span[ng-click='getMessageDetails(questionAndAnswer.id,questionAndAnswer.instructorName)']");
+        private static readonly By ANSWER_FIELD = By.XPath("/html/body/div[3]/div/section/div/div[1]/div/section/div[2]/div/table/tbody/tr[2]/td/div[3]/div[1]/div[2]/div/div/vedu-box-text-angular/text-angular/div[2]/div[3]/p");
+        private static readonly By REPLY_BUTTON = By.CssSelector("div[translate='studentQuestion.Reply']");
+        private static readonly By DELETE_TICKET = By.XPath("(//span[@translate='routeStates.teacher.me.courses.edit.deleteTicket'])[1]");
+        private static readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
         private static string _user;
         public QuestionsAndAnswersPage(IWebDriver wd, string user) : base(wd)
         {

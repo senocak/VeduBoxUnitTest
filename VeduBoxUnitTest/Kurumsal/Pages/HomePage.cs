@@ -5,33 +5,33 @@ using VeduBoxUnitTest.Assertion;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class HomePage : Page{
-        private static By LIVE = By.CssSelector("a[title='Live']");
-        private static By COURSES = By.CssSelector("a[title='Courses']");
-        private static By MY_COURSES = By.CssSelector("a[title='My Courses']");
-        private static By STUDENTS = By.CssSelector("a[title='Students']");
-        private static By EXAM = By.CssSelector("a[title='Exams']");
-        private static By PORTAL = By.CssSelector("a[title='Portal']");
-        private static By EARNINGS = By.CssSelector("a[title='Earnings']");
-        private static By QUESTIONS = By.CssSelector("a[title='Question pool']");
-        private static By BRANCH = By.CssSelector("a[title='Branches']");
-        private static By MODERATORS = By.CssSelector("a[title='Moderators']");
-        private static By TEACHERS = By.CssSelector("a[title='Teachers']");
-        private static By ANNOUNCEMENTS = By.CssSelector("a[title='Announcements']");
-        private static By PARENTS = By.CssSelector("a[title='Parents']");
-        private static By POLLS = By.CssSelector("a[title='Polls']");
-        private static By POLL_QUESTIONS = By.CssSelector("a[title='Poll Questions']");
-        private static By TESTS_POOL = By.CssSelector("a[title='Test pool']");
-        private static By CATALOG = By.CssSelector("a[title='Catalogs']");
-        private static By ADMINS = By.CssSelector("a[title='Admins']");
-        private static By MANAGERS = By.CssSelector("a[title='Managers']");
-        private static By QUESTIONSANSWERS = By.CssSelector("a[title='Q&A']");
+        private static readonly By LIVE = By.CssSelector("a[title='Live']");
+        private static readonly By COURSES = By.CssSelector("a[title='Courses']");
+        private static readonly By MY_COURSES = By.CssSelector("a[title='My Courses']");
+        private static readonly By STUDENTS = By.CssSelector("a[title='Students']");
+        private static readonly By EXAM = By.CssSelector("a[title='Exams']");
+        private static readonly By PORTAL = By.CssSelector("a[title='Portal']");
+        private static readonly By EARNINGS = By.CssSelector("a[title='Earnings']");
+        private static readonly By QUESTIONS = By.CssSelector("a[title='Question pool']");
+        private static readonly By BRANCH = By.CssSelector("a[title='Branches']");
+        private static readonly By MODERATORS = By.CssSelector("a[title='Moderators']");
+        private static readonly By TEACHERS = By.CssSelector("a[title='Teachers']");
+        private static readonly By ANNOUNCEMENTS = By.CssSelector("a[title='Announcements']");
+        private static readonly By PARENTS = By.CssSelector("a[title='Parents']");
+        private static readonly By POLLS = By.CssSelector("a[title='Polls']");
+        private static readonly By POLL_QUESTIONS = By.CssSelector("a[title='Poll Questions']");
+        private static readonly By TESTS_POOL = By.CssSelector("a[title='Test pool']");
+        private static readonly By CATALOG = By.CssSelector("a[title='Catalogs']");
+        private static readonly By ADMINS = By.CssSelector("a[title='Admins']");
+        private static readonly By MANAGERS = By.CssSelector("a[title='Managers']");
+        private static readonly By QUESTIONSANSWERS = By.CssSelector("a[title='Q&A']");
 
-        private static By USERNAME_LINK = By.CssSelector("span[ng-bind='$root.user.firstName | limitTo: 8']");
-        private static By SWITCH_TO_ROLE = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/ul/li[3]/a");
-        private static By ROLE_MODAL = By.CssSelector("a[ng-click='openSwitchRoleModal(role)']");
-        private static By PASSWORD = By.CssSelector("input[ng-model='loginData.password']");
-        private static By SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div[2]/button[1]");
-        private static By ROLE_TEXT = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/a/span[2]");
+        private static readonly By USERNAME_LINK = By.CssSelector("span[ng-bind='$root.user.firstName | limitTo: 8']");
+        private static readonly By SWITCH_TO_ROLE = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/ul/li[3]/a");
+        private static readonly By ROLE_MODAL = By.CssSelector("a[ng-click='openSwitchRoleModal(role)']");
+        private static readonly By PASSWORD = By.CssSelector("input[ng-model='loginData.password']");
+        private static readonly By SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div[2]/button[1]");
+        private static readonly By ROLE_TEXT = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/a/span[2]");
 
         private static string _user;
         public HomePage(IWebDriver wd) : base(wd){}

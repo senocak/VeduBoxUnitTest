@@ -11,20 +11,20 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
     class AdminsPage : Page
     {
 
-        private static By SEARCH_BOX = By.CssSelector("input[ng-model='filter.$']");
-        private static By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
-        private static By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
-        private static By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private static By DELETE_ADMIN = By.CssSelector("a[ng-click='delete(admin)']");
-        private static By ADD_BUTTON = By.XPath("//*[@id='mainSection']/div/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/button");
-        private static By INPUT_FIRST_NAME = By.CssSelector("input[ng-model='admin.firstName']");
-        private static By INPUT_LAST_NAME = By.CssSelector("input[ng-model='admin.lastName']");
-        private static By INPUT_EMAIL = By.CssSelector("input[ng-model='admin.email']");
-        private static By INPUT_USER_NAME = By.CssSelector("input[ng-model='admin.userName']");
-        private static By INPUT_PASSWORD = By.XPath("(//input[@ng-model='admin.password'])[2]");
-        private static By GENERATE = By.CssSelector("button[ng-click='generateRandomPassword()']");
-        private static By CHECK_GDPR = By.CssSelector("input[ng-model='admin.gdprAccepted']");
-        private static By SAVE_BUTTON = By.CssSelector("button[type='submit'][form='adminForm']");
+        private static readonly By SEARCH_BOX = By.CssSelector("input[ng-model='filter.$']");
+        private static readonly By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
+        private static readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
+        private static readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private static readonly By DELETE_ADMIN = By.CssSelector("a[ng-click='delete(admin)']");
+        private static readonly By ADD_BUTTON = By.XPath("//*[@id='mainSection']/div/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/button");
+        private static readonly By INPUT_FIRST_NAME = By.CssSelector("input[ng-model='admin.firstName']");
+        private static readonly By INPUT_LAST_NAME = By.CssSelector("input[ng-model='admin.lastName']");
+        private static readonly By INPUT_EMAIL = By.CssSelector("input[ng-model='admin.email']");
+        private static readonly By INPUT_USER_NAME = By.CssSelector("input[ng-model='admin.userName']");
+        private static readonly By INPUT_PASSWORD = By.XPath("(//input[@ng-model='admin.password'])[2]");
+        private static readonly By GENERATE = By.CssSelector("button[ng-click='generateRandomPassword()']");
+        private static readonly By CHECK_GDPR = By.CssSelector("input[ng-model='admin.gdprAccepted']");
+        private static readonly By SAVE_BUTTON = By.CssSelector("button[type='submit'][form='adminForm']");
 
 
         private static string _user;

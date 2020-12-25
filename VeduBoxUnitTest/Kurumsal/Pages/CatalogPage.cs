@@ -8,18 +8,18 @@ using VeduBoxUnitTest.Assertion;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class CatalogPage : Page{
-        private static By ADD_NEW = By.CssSelector("button[ui-sref='veduBox.admin.packages.detail({id: 0})']");
-        private static By NAME = By.CssSelector("input[ng-model='package.name']");
-        private static By TAGS = By.XPath("//*[@id='packageForm']/div[1]/div[2]/div/div/input");
-        private static By DESCRIPTION = By.CssSelector("textarea[ng-model='package.description']");
-        private static By SUBMIT = By.CssSelector("button[type='submit']:nth-child(1)");
-        private static By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private static By SEARCH_BOX = By.CssSelector("input.form-control.vedu-search");
-        private static By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
-        private static By DELETE_CATALOG = By.CssSelector("button[ng-click='delete(package.id)']");
-        private static By UPDATE_CATALOG = By.CssSelector("button[ui-sref='veduBox.admin.packages.detail({id: package.id})']");
-        private static By CATALOG_SUBSCRIPTION_ADD = By.CssSelector("button[ng-click='createPackageDetail(package.id,0)']");
-        private static By CATALOG_SUBSCRIPTION_TITLE= By.CssSelector("input[ng-model='packageDetail.title']");
+        private static readonly By ADD_NEW = By.CssSelector("button[ui-sref='veduBox.admin.packages.detail({id: 0})']");
+        private static readonly By NAME = By.CssSelector("input[ng-model='package.name']");
+        private static readonly By TAGS = By.XPath("//*[@id='packageForm']/div[1]/div[2]/div/div/input");
+        private static readonly By DESCRIPTION = By.CssSelector("textarea[ng-model='package.description']");
+        private static readonly By SUBMIT = By.CssSelector("button[type='submit']:nth-child(1)");
+        private static readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private static readonly By SEARCH_BOX = By.CssSelector("input.form-control.vedu-search");
+        private static readonly By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
+        private static readonly By DELETE_CATALOG = By.CssSelector("button[ng-click='delete(package.id)']");
+        private static readonly By UPDATE_CATALOG = By.CssSelector("button[ui-sref='veduBox.admin.packages.detail({id: package.id})']");
+        private static readonly By CATALOG_SUBSCRIPTION_ADD = By.CssSelector("button[ng-click='createPackageDetail(package.id,0)']");
+        private static readonly By CATALOG_SUBSCRIPTION_TITLE = By.CssSelector("input[ng-model='packageDetail.title']");
         private static readonly By CATALOG_SUBSCRIPTION_DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[2]/div[1]/form/div/div[2]/div/text-angular/div[2]/div[3]");
         private static readonly By CATALOG_SUBSCRIPTION_CURRENCY = By.CssSelector("select[ng-model='packageDetail.currencyTypeId']");
         private static readonly By CATALOG_SUBSCRIPTION_TYPE = By.CssSelector("select[ng-model='packageDetail.packageDetailTypeId']");
@@ -42,7 +42,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static readonly By TEMPORARY_END_DATE_GO_PREVIOUS_YEAR = By.XPath("(//button[@ng-click='move(-1)'])[2]");
         private static readonly By TEMPORARY_START_DATE_GO_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[1]");
         private static readonly By TEMPORARY_END_DATE_GO_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[2]");
-        private static By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
+        private static readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
 
         private static string _user;
         public CatalogPage(IWebDriver wd, string user) : base(wd){

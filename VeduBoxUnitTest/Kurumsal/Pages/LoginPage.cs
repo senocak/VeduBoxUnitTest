@@ -4,9 +4,9 @@ using System;
 namespace VeduBoxUnitTest.Kurumsal.Pages {
     class LoginPage : Page {
 
-        public static By USERNAME = By.Id("userName");
-        public static By PASSWORD = By.Id("password");
-        public static By SUBMIT = By.Id("loginLeftLogin");
+        public static readonly By USERNAME = By.Id("userName");
+        public static readonly By PASSWORD = By.Id("password");
+        public static readonly By SUBMIT = By.Id("loginLeftLogin");
 
         public LoginPage(IWebDriver wd) : base(wd){}
 

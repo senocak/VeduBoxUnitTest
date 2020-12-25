@@ -10,20 +10,24 @@ using VeduBoxUnitTest.Assertion;
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class PollsPage : Page{
         private static string _user;
-        private static By ADD_BUTTON = By.XPath("(//*[@translate='common.add'])[1]");
-        private static By INPUT_NAME = By.CssSelector("input[ng-model='poll.name']");
-        private static By INPUT_DESCRIPTION = By.CssSelector("textarea[ng-model='poll.description']");
-        private static By REPEAT_NUMBER = By.CssSelector("input[ng-model='poll.repeatNumber']");
-        private static By ISMANDATORY = By.CssSelector("input[ng-model='poll.isMandatory']");
-        private static By NEXT_BUTTON = By.CssSelector("button[ng-click='goToStep(2)']");
-        private static By SET_QUESTION = By.XPath("//button[@ng-click='setSelectedQuestions(question)']");
-        private static By SAVE_BUTTON = By.CssSelector("span[translate='common.save']");
-        private static By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private static By SEARCH_BOX = By.CssSelector("input.form-control.vedu-search");
-        private static By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
-        private static By DELETE_POLL = By.CssSelector("button[ng-click='delete(poll)']");
-        private static By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
-        private static By INPUT_QUESTION_LIST_SEARCH = By.XPath("//*[@id='step2']/div[1]/div/div[1]/div[2]/div[4]/input");
+        private static readonly By ADD_BUTTON = By.XPath("(//*[@translate='common.add'])[1]");
+        private static readonly By INPUT_NAME = By.CssSelector("input[ng-model='poll.name']");
+        private static readonly By INPUT_DESCRIPTION = By.CssSelector("textarea[ng-model='poll.description']");
+        private static readonly By REPEAT_NUMBER = By.CssSelector("input[ng-model='poll.repeatNumber']");
+        private static readonly By ISMANDATORY = By.CssSelector("input[ng-model='poll.isMandatory']");
+        private static readonly By SETDATE_OPEN_DATE_PICKER = By.XPath("//*[@id='step1']/div[12]/div/p/span/button/i");
+        private static readonly By SETDATE_CHOOSE_YEAR = By.XPath("(//button[@ng-click='toggleMode()'])[2]");
+        private static readonly By SETDATE_GO_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[2]");
+        private static readonly By SETDATE_GO_PREVIOUS_YEAR = By.XPath("(//button[@ng-click='move(-1)'])[2]");
+        private static readonly By NEXT_BUTTON = By.CssSelector("button[ng-click='goToStep(2)']");
+        private static readonly By SET_QUESTION = By.XPath("//button[@ng-click='setSelectedQuestions(question)']");
+        private static readonly By SAVE_BUTTON = By.CssSelector("span[translate='common.save']");
+        private static readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private static readonly By SEARCH_BOX = By.CssSelector("input.form-control.vedu-search");
+        private static readonly By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
+        private static readonly By DELETE_POLL = By.CssSelector("button[ng-click='delete(poll)']");
+        private static readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
+        private static readonly By INPUT_QUESTION_LIST_SEARCH = By.XPath("//*[@id='step2']/div[1]/div/div[1]/div[2]/div[4]/input");
 
         public PollsPage(IWebDriver wd, string user) : base(wd){
             _user = user;
@@ -53,20 +57,20 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
                 int year = yearParam == 0 ? Utils.Dates.getCurrentYear() : yearParam;
                 string month = monthParam == null ? Utils.Dates.getCurrentMonth() : monthParam;
                 string day = dayParam == null ? Utils.Dates.getCurrentDay() : dayParam;
-                click(By.XPath("//*[@id='step1']/div[12]/div/p/span/button/i"));
+                click(SETDATE_OPEN_DATE_PICKER);
             Console.WriteLine("date picker was opened");
-            click(By.XPath("(//button[@ng-click='toggleMode()'])[2]"));
+            click(SETDATE_CHOOSE_YEAR);
             Console.WriteLine("second button was clicked");
             if (year < 2020){
                 for (int i = 2020; i > year; i--){
                     Console.WriteLine("year is older than 2020 so is going to " + year);
-                    click(By.XPath("(//button[@ng-click='move(-1)'])[2]"));
+                    click(SETDATE_GO_PREVIOUS_YEAR);
                 }
             }
             if (year > 2020){
                 for (int i = 2020; i < year; i++){
                     Console.WriteLine("year is newer than 2020 so is going to " + year);
-                    click(By.XPath("(//button[@ng-click='move(1)'])[2]"));
+                    click(SETDATE_GO_NEXT_YEAR);
                 }
             }
             click(By.XPath("//span[contains(text(),'" + month + "')]"));

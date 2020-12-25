@@ -9,23 +9,23 @@ using VeduBoxUnitTest.Assertion;
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class TeachersPage : Page
     {
-        private static By ADD_BUTTON = By.CssSelector("button[ng-click='select(states.new, null)']");
-        private static By FIRST_NAME = By.CssSelector("input[ng-model='teacher.firstName']");
-        private static By LAST_NAME = By.CssSelector("input[ng-model='teacher.lastName']");
-        private static By BRANCH = By.CssSelector("select[ng-model='teacher.branchId']");
-        private static By EMAIL = By.CssSelector("input[ng-model='teacher.email']");
-        private static By USER_NAME = By.CssSelector("input[ng-model='teacher.userName']");
-        private static By PASSWORD = By.CssSelector("input[ng-model='teacher.password']");
-        private static By GDPR_POLICY = By.CssSelector("input[ng-model='teacher.gdprAccepted']");
-        private static By SAVE_BUTTON = By.XPath("//*[@id='teacherForm']/div[2]/div/div/button[1]");
-        private static By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private static By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
-        private static By SEARCH_BOX = By.CssSelector("input[ng-model='filter.$']");
-        private static By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
-        private static By ROLES = By.CssSelector("a[ng-click='editRolesForUser(teacher)']");
-        private static By ROLES_SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div/div/div[2]/button[1]");
-        private static By DELETE_MODERATOR = By.CssSelector("a[ng-click='delete(teacher)']");
-        private static By IS_GUIDANCE_TEACHER = By.CssSelector("input[ng-model='teacher.isGuidanceTeacher']");
+        private static readonly By ADD_BUTTON = By.CssSelector("button[ng-click='select(states.new, null)']");
+        private static readonly By FIRST_NAME = By.CssSelector("input[ng-model='teacher.firstName']");
+        private static readonly By LAST_NAME = By.CssSelector("input[ng-model='teacher.lastName']");
+        private static readonly By BRANCH = By.CssSelector("select[ng-model='teacher.branchId']");
+        private static readonly By EMAIL = By.CssSelector("input[ng-model='teacher.email']");
+        private static readonly By USER_NAME = By.CssSelector("input[ng-model='teacher.userName']");
+        private static readonly By PASSWORD = By.CssSelector("input[ng-model='teacher.password']");
+        private static readonly By GDPR_POLICY = By.CssSelector("input[ng-model='teacher.gdprAccepted']");
+        private static readonly By SAVE_BUTTON = By.XPath("//*[@id='teacherForm']/div[2]/div/div/button[1]");
+        private static readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private static readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
+        private static readonly By SEARCH_BOX = By.CssSelector("input[ng-model='filter.$']");
+        private static readonly By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
+        private static readonly By ROLES = By.CssSelector("a[ng-click='editRolesForUser(teacher)']");
+        private static readonly By ROLES_SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div/div/div[2]/button[1]");
+        private static readonly By DELETE_MODERATOR = By.CssSelector("a[ng-click='delete(teacher)']");
+        private static readonly By IS_GUIDANCE_TEACHER = By.CssSelector("input[ng-model='teacher.isGuidanceTeacher']");
 
         private static string _user;
         public TeachersPage(IWebDriver wd, string user) : base(wd){

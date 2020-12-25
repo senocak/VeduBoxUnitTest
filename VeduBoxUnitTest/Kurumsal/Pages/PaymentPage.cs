@@ -11,29 +11,30 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
 {
     class PaymentPage : Page{
         private static string _user;
-        private static By AGREE = By.Id("//*[@id='mainSection']/div/div/div[1]/div[2]/div/div[2]/div/div[2]/div[2]/input");
-        private static By NEXT = By.CssSelector("span[translate='common.next']");
-        private static By NAME = By.Id("makePaymentBuyerName");
-        private static By PACKAGE_NAME = By.CssSelector("input[ng-model='paymentInfo.billingName']");
-        private static By PACKAGE_SURNAME = By.CssSelector("input[ng-model='paymentInfo.billingSurname']");
-        private static By PACKAGE_CITY = By.CssSelector("input[ng-model='paymentInfo.billingCity']");
-        private static By PACKAGE_COUNTRY = By.CssSelector("input[ng-model='paymentInfo.billingCountry']");
-        private static By PACKAGE_PHONE = By.CssSelector("input[ng-model='paymentInfo.billingTel']");
-        private static By PACKAGE_ADRESS = By.CssSelector("textarea[ng-model='paymentInfo.billingAdress']");
-        private static By SAME_DELIVERY = By.CssSelector("input[ng-model='sameBillingAndDeliveryInf']");
-        private static By SURNAME = By.Id("makePaymentBuyerLastName");
-        private static By CITY = By.Id("makePaymentBuyerCity");
-        private static By DISTRICT = By.Id("makePaymentBuyerCountry");
-        private static By PHONE = By.Id("makePaymentBuyerTelephone");
-        private static By ADDRESS = By.Id("makePaymentBuyerAddress");
-        private static By CARD_NAME = By.Id("ccname");
-        private static By CARD_NUMBER = By.Id("ccnumber");
-        private static By CARD_DATE = By.Id("ccexp");
-        private static By CARD_CVC = By.Id("cccvc");
-        private static By PAY_BUTTON = By.Id("iyz-payment-button");
-        private static By SUCCESS = By.CssSelector("[class='color_grey_blue bold ft24 ng-scope']");
-        private static By I_AGREE = By.CssSelector("input[ng-model='policy']");
-        private static By DISMISS_POLICY = By.CssSelector("a[ng-click='dismissPolicy()']");
+        private static readonly By AGREE = By.Id("open_policy");
+        private static readonly By NEXT = By.CssSelector("span[translate='common.next']");
+        private static readonly By NAME = By.Id("makePaymentBuyerName");
+        private static readonly By PACKAGE_NAME = By.CssSelector("input[ng-model='paymentInfo.billingName']");
+        private static readonly By PACKAGE_SURNAME = By.CssSelector("input[ng-model='paymentInfo.billingSurname']");
+        private static readonly By PACKAGE_CITY = By.CssSelector("input[ng-model='paymentInfo.billingCity']");
+        private static readonly By PACKAGE_COUNTRY = By.CssSelector("input[ng-model='paymentInfo.billingCountry']");
+        private static readonly By PACKAGE_PHONE = By.CssSelector("input[ng-model='paymentInfo.billingTel']");
+        private static readonly By PACKAGE_ADRESS = By.CssSelector("textarea[ng-model='paymentInfo.billingAdress']");
+        private static readonly By SAME_DELIVERY = By.CssSelector("input[ng-model='sameBillingAndDeliveryInf']");
+        private static readonly By SURNAME = By.Id("makePaymentBuyerLastName");
+        private static readonly By CITY = By.Id("makePaymentBuyerCity");
+        private static readonly By DISTRICT = By.Id("makePaymentBuyerCountry");
+        private static readonly By PHONE = By.CssSelector("input[ng-model='paymentInfo.billingTel']");
+        private static readonly By ADDRESS = By.Id("makePaymentBuyerAddress");
+        private static readonly By CARD_NAME = By.Id("ccname");
+        private static readonly By CARD_NUMBER = By.Id("ccnumber");
+        private static readonly By CARD_DATE = By.Id("ccexp");
+        private static readonly By CARD_CVC = By.Id("cccvc");
+        private static readonly By PAY_BUTTON = By.Id("iyz-payment-button");
+        private static readonly By SUCCESS = By.CssSelector("[class='color_grey_blue bold ft24 ng-scope']");
+        private static readonly By I_AGREE = By.CssSelector("input[ng-model='policy']");
+        private static readonly By ASSERT_PAYMENT_OK = By.CssSelector("span[translate='routeStates.payment.success']");
+        private static readonly By DISMISS_POLICY = By.CssSelector("a[ng-click='dismissPolicy()']");
         public PaymentPage(IWebDriver wd, string user) : base(wd){
             _user = user;
         }
@@ -122,7 +123,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
             return this;
         }
         public PaymentPage assertPaymentIsOK(){
-            AssertionCustom.assertElementVisible("Element Not Found", driver, By.CssSelector("span[translate='routeStates.payment.success']"));
+            AssertionCustom.assertElementVisible("Element Not Found", driver, ASSERT_PAYMENT_OK);
             return this;
         }
 

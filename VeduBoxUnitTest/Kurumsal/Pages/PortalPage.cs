@@ -9,18 +9,20 @@ using System.Threading.Tasks;
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class PortalPage : Page{
         private static string _user;
-        private static By SEARCH = By.Id("packageDetailCourseSearch");
-        private static By VIEW = By.Id("packageDetailCourseView");
-        private static By COURSE_PACKAGE_VIEW = By.Id("packageDetailPredefinedCourseView");
-        private static By COURSES_PACKAGES = By.CssSelector("[ng-click='gTab = 2;']");
-        private static By COURSES = By.CssSelector("[ng-click='gTab = 1;']");
-        private static By INPUT_LOGIN = By.Id("packageDetailCourseViewLogin");
-        private static By INPUT_REGISTER = By.Id("packageDetailCourseViewRegister");
-        private static By CONTINUE = By.Id("packageDetailCourseViewContinue");
-        private static By COURSES_PACKAGE_CONTINUE = By.XPath("(//button[@ng-click='go()'])[2]");
-        private static By DISMISS_POLICY = By.CssSelector("a[ng-click='dismissPolicy()']");
-        private static By ADD_CART = By.CssSelector("#packageDetailCourseAddToCart");
-        private static By GO_TO_CART = By.XPath("(//button[@ng-click=' goToCart()'])[2]");
+        private static readonly By SEARCH = By.Id("packageDetailSearch");
+        private static readonly By COURSE_PACKAGE_SEARCH = By.Id("packageDetailCourseSearch");
+        private static readonly By VIEW = By.Id("packageDetailCourseView");
+        private static readonly By COURSE_PACKAGE_VIEW = By.Id("packageDetailPredefinedCourseView");
+        private static readonly By COURSES_PACKAGES = By.CssSelector("[ng-click='gTab = 2;']");
+        private static readonly By COURSES = By.CssSelector("[ng-click='gTab = 1;']");
+        private static readonly By INPUT_LOGIN = By.Id("packageDetailCourseViewLogin");
+        private static readonly By INPUT_REGISTER = By.Id("packageDetailCourseViewRegister");
+        private static readonly By CONTINUE = By.Id("packageDetailCourseViewContinue");
+        private static readonly By COURSES_PACKAGE_CONTINUE = By.XPath("(//button[@ng-click='go()'])[2]");
+        private static readonly By DISMISS_POLICY = By.CssSelector("a[ng-click='dismissPolicy()']");
+        private static readonly By ADD_CART = By.CssSelector("#packageDetailCourseAddToCart");
+        private static readonly By COURSE_PACKAGE_ADD_CART = By.CssSelector("#packageDetailPredefinedCourseAddToCart");
+        private static readonly By GO_TO_CART = By.XPath("(//button[@ng-click=' goToCart()'])[2]");
 
         public PortalPage(IWebDriver wd, string user) : base(wd){
             _user = user;
@@ -32,6 +34,11 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         }
         public PortalPage searchEntry(string entry){
             type(SEARCH, entry);
+            return this;
+        }
+        public PortalPage searchCoursesPackageEntry(string entry)
+        {
+            type(COURSE_PACKAGE_SEARCH, entry);
             return this;
         }
         public PortalPage clickCoursesPackages()
@@ -61,7 +68,9 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         }
 
         public PaymentPage selectContinue(){
-            click(CONTINUE);
+            sleepms(500);
+            click(COURSES_PACKAGE_CONTINUE);
+            Console.WriteLine("clicked to continue");
             return new PaymentPage(driver, _user);
         }
         public PaymentPage selectCoursesPackageContinue()
@@ -92,6 +101,11 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         public PortalPage addtoCart()
         {
             click(ADD_CART);
+            return this;
+        }
+        public PortalPage addtoCoursePackageCart()
+        {
+            click(COURSE_PACKAGE_ADD_CART);
             return this;
         }
         public PortalPage goToCart()

@@ -9,27 +9,27 @@ using VeduBoxUnitTest.Assertion;
 namespace VeduBoxUnitTest.Kurumsal.Pages
 {
     class ParentPage : Page{
-        private static By SEARCH_BOX = By.CssSelector("input[ng-model='filter.$']");
-        private static By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
-        private static By DELETE_USER = By.CssSelector("a[ng-click='delete(parent)']");
-        private static By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
-        private static By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private static By ADD_BUTTON = By.CssSelector("button[ng-click='select(states.new, null)']");
-        private static By INPUT_FIRST_NAME = By.CssSelector("input[ng-model='parent.firstName']");
-        private static By INPUT_LAST_NAME = By.CssSelector("input[ng-model='parent.lastName']");
-        private static By INPUT_EMAIL = By.CssSelector("input[ng-model='parent.email']");
-        private static By INPUT_USER_NAME = By.CssSelector("input[ng-model='parent.userName']");
-        private static By INPUT_PASSWORD = By.CssSelector("input[ng-model='parent.password']");
-        private static By CHECK_GDPR = By.CssSelector("input[ng-model='parent.gdprAccepted']");
-        private static By SAVE_BUTTON = By.CssSelector("button[type='submit'][form='parentForm']");
-        private static By ROLES_BUTTON = By.CssSelector("a[ng-click='editRolesForUser(parent)']");
-        private static By ROLES_SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div/div/div[2]/button[1]");
-        private static By ADD_ANOTHER_CHILD = By.CssSelector("span[ng-click='children.push(children.length)']");
-        private static By FIRST_BRANCH = By.CssSelector("select[ng-model='childrenBranchIds[child]']");
-        private static By FIRST_STUDENTS = By.CssSelector("select[ng-model='childrenIds[child]']");
-        private static By SECOND_BRANCH = By.XPath("(//select[@ng-model='childrenBranchIds[child]'])[2]");
-        private static By SECOND_STUDENTS = By.XPath("(//select[@ng-model='childrenIds[child]'])[2]");
-        private static By GENERATE = By.CssSelector("button[ng-click='generateRandomPassword()']");
+        private static readonly By SEARCH_BOX = By.CssSelector("input[ng-model='filter.$']");
+        private static readonly By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
+        private static readonly By DELETE_USER = By.CssSelector("a[ng-click='delete(parent)']");
+        private static readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
+        private static readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private static readonly By ADD_BUTTON = By.CssSelector("button[ng-click='select(states.new, null)']");
+        private static readonly By INPUT_FIRST_NAME = By.CssSelector("input[ng-model='parent.firstName']");
+        private static readonly By INPUT_LAST_NAME = By.CssSelector("input[ng-model='parent.lastName']");
+        private static readonly By INPUT_EMAIL = By.CssSelector("input[ng-model='parent.email']");
+        private static readonly By INPUT_USER_NAME = By.CssSelector("input[ng-model='parent.userName']");
+        private static readonly By INPUT_PASSWORD = By.CssSelector("input[ng-model='parent.password']");
+        private static readonly By CHECK_GDPR = By.CssSelector("input[ng-model='parent.gdprAccepted']");
+        private static readonly By SAVE_BUTTON = By.CssSelector("button[type='submit'][form='parentForm']");
+        private static readonly By ROLES_BUTTON = By.CssSelector("a[ng-click='editRolesForUser(parent)']");
+        private static readonly By ROLES_SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div/div/div[2]/button[1]");
+        private static readonly By ADD_ANOTHER_CHILD = By.CssSelector("span[ng-click='children.push(children.length)']");
+        private static readonly By FIRST_BRANCH = By.CssSelector("select[ng-model='childrenBranchIds[child]']");
+        private static readonly By FIRST_STUDENTS = By.CssSelector("select[ng-model='childrenIds[child]']");
+        private static readonly By SECOND_BRANCH = By.XPath("(//select[@ng-model='childrenBranchIds[child]'])[2]");
+        private static readonly By SECOND_STUDENTS = By.XPath("(//select[@ng-model='childrenIds[child]'])[2]");
+        private static readonly By GENERATE = By.CssSelector("button[ng-click='generateRandomPassword()']");
 
 
         private static string _user;

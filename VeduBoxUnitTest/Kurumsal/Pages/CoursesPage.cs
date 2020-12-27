@@ -48,6 +48,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static readonly By INPUT_RESOURCE_EMBED_CODE = By.CssSelector("textarea[ng-model='resource.code']");
         private static readonly By RESOURCE_TYPE_DOC_FILE = By.Id("resourceTypeDocFile");
         private static readonly By RESOURCE_TYPE_DOC_VIDEO1 = By.Id("fileVideo");
+        private static readonly By RESOURCE_VIDEO_UPLOAD_BUTTON = By.XPath("//*[@id='resourceForm']/div[1]/div[5]/div/button");
         private static readonly By RESOURCE_TYPE_DOC_VIDEO2 = By.Id("fileTwo");
         private static readonly By RESOURCE_VIDEO_PREVIEW = By.CssSelector("input[ng-model='resource.preview']");
         private static readonly By RESOURCE_VIDEO_DOWNLOADABLE_CHECK = By.CssSelector("input[ng-model='resource.downloadable']");
@@ -289,6 +290,12 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             );
             return this;
         }
+        public CoursesPage clickUpload()
+        {
+            click(RESOURCE_VIDEO_UPLOAD_BUTTON);
+            return this;
+        }
+        
         public CoursesPage selectVideo2(){
             type(
                 RESOURCE_TYPE_DOC_VIDEO2,

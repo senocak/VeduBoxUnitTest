@@ -516,13 +516,14 @@ namespace VeduBoxUnitTest.StepDefinitions{
                     .addResource()
                     .clickResourceTypeVideo()
                     //.clickOkAfterType()
+                    .selectVideo1()
+                    .clickUpload()
                     .enterResourceTitle(dictionary["title"])
                     .enterResourceDescription(dictionary["desc"])
                     .selectCourseVideoPrev()
                     .selectCourseVideoDownloadable()
                     .selectVideoForward()
                     .selectVideoUserReview()
-                    .selectVideo1()
                     .clickCourseVideoSubmit()
                     .assert();
             new HomePage(driver).openCOURSESpage("instructor");

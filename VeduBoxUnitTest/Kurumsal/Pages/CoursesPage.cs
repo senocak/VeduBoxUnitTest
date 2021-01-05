@@ -3,7 +3,6 @@ using System;
 using System.IO;
 using System.Text;
 using VeduBoxUnitTest.Assertion;
-using OpenQA.Selenium.Support.UI;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class CoursesPage : Page{

@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Text;
 using VeduBoxUnitTest.Assertion;
+using OpenQA.Selenium.Support.UI;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class CoursesPage : Page{
@@ -11,9 +12,9 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static readonly By NAME_ADMIN = By.CssSelector("input[ng-model='course.name']");
         private static readonly By NAME_INSTRUCTOR = By.CssSelector("input[ng-model='courseAndPackage.courseName']");
         private static readonly By TAGS = By.XPath("//*[@id='courseForm']/div[1]/div[2]/div/div/input");
-        private static readonly By DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[3]/div/div/div/div/form/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private static readonly By DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
         private static readonly By CREATE_COURSE_DESCRIPTION = By.XPath("/html/body/div[3]/div/section/div/div[1]/div[3]/div/div/div[2]/form/div[1]/div[3]/div/text-angular/div[2]/div[3]");
-        private static readonly By EMBEDDED_DESCRIPTION = By.XPath(" /html/body/div[6]/div/div/div/div[3]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private static readonly By EMBEDDED_DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
         private static readonly By CATEGORY_ADMIN = By.CssSelector("select[ng-model='course.categoryId']");
         private static readonly By CATEGORY_INSTRUCTOR = By.CssSelector("select[ng-model='courseAndPackage.categoryId']");
         private static readonly By TEACHER = By.CssSelector("select[ng-model='course.teacherUserId']");
@@ -36,7 +37,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static readonly By SELECT_RESOURCE_DOC = By.Id("rescourceTypeDoc");
         private static readonly By RESOURCE_OK = By.Id("rescourceTypeOkBtn");
         private static readonly By RESOURCE_TITLE = By.Id("txtName");
-        private static readonly By RESOURCE_DESC = By.XPath("/html/body/div[6]/div/div/div/div[3]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private static readonly By RESOURCE_DESC = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
         private static readonly By RESOURCE_DOWNLOADABLE_CHECK = By.Id("resourceTypeDocDownload");
         private static readonly By RESOURCE_REVIEW_CHECK = By.Id("resourceTypeDocReview");
         private static readonly By RESOURCE_SAVE_BUTTON = By.Id("resourceTypeDocFileSave");
@@ -58,6 +59,8 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static readonly By RESOURCE_VIDEO_EXISTING_SUBMIT = By.Id("resourceTypeVideoFileSaveExisting");
         private static readonly By RESOURCE_VIDEO_VIMEO_CHECKBOX = By.CssSelector("input[ng-model='resource.vimeoIdEnabled']");
         private static readonly By RESOURCE_VIDEO_VIMEO_TEXT = By.CssSelector("input[ng-model='resource.vimeoId']");
+        private static readonly By UPLOADED_FILE_LABEL = By.CssSelector("label[ng-bind='resource.fileName']");
+        private readonly string UPLOADED_FILE_TEXT = "video.mp4";
 
         private static string _user;
         public CoursesPage(IWebDriver wd, string user) : base(wd){
@@ -93,8 +96,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             type(CREATE_COURSE_DESCRIPTION, description);
             return this;
         }
-        public CoursesPage setEmbeddedDescription(string description)
-        {
+        public CoursesPage setEmbeddedDescription(string description){
             type(EMBEDDED_DESCRIPTION, description);
             return this;
         }
@@ -321,6 +323,10 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         public CoursesPage selectVideoUserReview(){
             if (isSelected(RESOURCE_VIDEO_USER_REVIEW) == false)
                 click(RESOURCE_VIDEO_USER_REVIEW);
+            return this;
+        }
+        public CoursesPage waitUntillFileIsUploaded(){
+            AssertionCustom.assertTextToBePresentInElementLocated(driver, UPLOADED_FILE_LABEL, UPLOADED_FILE_TEXT, "Element Not Found");
             return this;
         }
         public CoursesPage clickCourseVideoSubmit(){

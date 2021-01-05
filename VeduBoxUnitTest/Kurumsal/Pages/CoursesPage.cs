@@ -58,7 +58,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static readonly By RESOURCE_VIDEO_EXISTING_SUBMIT = By.Id("resourceTypeVideoFileSaveExisting");
         private static readonly By RESOURCE_VIDEO_VIMEO_CHECKBOX = By.CssSelector("input[ng-model='resource.vimeoIdEnabled']");
         private static readonly By RESOURCE_VIDEO_VIMEO_TEXT = By.CssSelector("input[ng-model='resource.vimeoId']");
-        private static readonly By UPLOADED_FILE_LABEL = By.CssSelector("label[ng-bind='resource.fileName']");
+        private readonly By UPLOADED_FILE_LABEL = By.CssSelector("label[ng-bind='resource.fileName']");
         private readonly string UPLOADED_FILE_TEXT = "video.mp4";
 
         private static string _user;

@@ -373,6 +373,202 @@ Scenario: 19_admin_live_query
 	| courseName       | defaultCourse1 |
 	Then admin deletes live
 
+Scenario: 20_admin_add_content_document
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks course is exist
+		| Key  | Value               |
+		| name | anil_vedubox_course |
+	Given admin adds new course with
+		| Key         | Value               |
+		| name        | anil_vedubox_course |
+		| tags        | anil,vedubox,course |
+		| description | Anil Vedubox Course |
+		| category    | defaultCategory1    |
+		| teacher     | Anil Senocak        |
+		| catalog     | defaultKatalog1     |
+	Given admin adds new resource as document
+		| Key                  | Value                                    |
+		| name                 | anil_vedubox_course                      |
+		| subject_title        | anil_vedubox_course_subject              |
+		| resource_title       | anil_vedubox_course_resource_title       |
+		| resource_description | anil_vedubox_course_resource_description |
+	Then admin deletes added Course
+		| Key  | Value              |
+		| name | anil_vedubox_course|
+
+Scenario: 21_admin_add_content_video_with_dekstop
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks course is exist
+		| Key  | Value               |
+		| name | anil_vedubox_course |
+	Given admin adds new course with
+		| Key         | Value               |
+		| name        | anil_vedubox_course |
+		| tags        | anil,vedubox,course |
+		| description | Anil Vedubox Course |
+		| category    | defaultCategory1    |
+		| teacher     | Anil Senocak        |
+		| catalog     | defaultKatalog1     |
+	Given admin adds new resource as video
+		| Key                  | Value                                    |
+		| name                 | anil_vedubox_course                      |
+		| subject_title        | anil_vedubox_course_subject              |
+		| resource_title       | anil_vedubox_course_resource_title       |
+		| resource_description | anil_vedubox_course_resource_description |
+	Then admin deletes added Course
+		| Key  | Value              |
+		| name | anil_vedubox_course|
+
+Scenario: 22_admin_add_content_video_with_vimeo_id
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks course is exist
+		| Key  | Value               |
+		| name | anil_vedubox_course |
+	Given admin adds new course with
+		| Key         | Value               |
+		| name        | anil_vedubox_course |
+		| tags        | anil,vedubox,course |
+		| description | Anil Vedubox Course |
+		| category    | defaultCategory1    |
+		| teacher     | Anil Senocak        |
+		| catalog     | defaultKatalog1     |
+	Given admin adds new resource as video with vimeo id
+		| Key                  | Value                                    |
+		| name                 | anil_vedubox_course                      |
+		| subject_title        | anil_vedubox_course_subject              |
+		| resource_title       | anil_vedubox_course_resource_title       |
+		| resource_description | anil_vedubox_course_resource_description |
+		| vimeo_id             | 444883013                                |
+	Then admin deletes added Course
+		| Key  | Value              |
+		| name | anil_vedubox_course|
+
+Scenario: 23_admin_add_content_link
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks course is exist
+		| Key  | Value               |
+		| name | anil_vedubox_course |
+	Given admin adds new course with
+		| Key         | Value               |
+		| name        | anil_vedubox_course |
+		| tags        | anil,vedubox,course |
+		| description | Anil Vedubox Course |
+		| category    | defaultCategory1    |
+		| teacher     | Anil Senocak        |
+		| catalog     | defaultKatalog1     |
+	Given admin adds new resource as link
+		| Key                  | Value                                    |
+		| name                 | anil_vedubox_course                      |
+		| subject_title        | anil_vedubox_course_subject              |
+		| resource_title       | anil_vedubox_course_resource_title       |
+		| resource_description | anil_vedubox_course_resource_description |
+		| link                 | http://github.com/senocak                |
+	Then admin deletes added Course
+		| Key  | Value              |
+		| name | anil_vedubox_course|
+
+Scenario: 24_admin_add_content_embed
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks course is exist
+		| Key  | Value               |
+		| name | anil_vedubox_course |
+	Given admin adds new course with
+		| Key         | Value               |
+		| name        | anil_vedubox_course |
+		| tags        | anil,vedubox,course |
+		| description | Anil Vedubox Course |
+		| category    | defaultCategory1    |
+		| teacher     | Anil Senocak        |
+		| catalog     | defaultKatalog1     |
+	Given admin adds new resource as embed
+		| Key                  | Value                                                             |
+		| name                 | anil_vedubox_course                                               |
+		| subject_title        | anil_vedubox_course_subject                                       |
+		| resource_title       | anil_vedubox_course_resource_title                                |
+		| resource_description | anil_vedubox_course_resource_description                          |
+		| embed_code           | <iframe src="https://www.youtube.com/embed/ZzBDAtbcFvM"></iframe> |
+	Then admin deletes added Course
+		| Key  | Value              |
+		| name | anil_vedubox_course|
+
+Scenario: 26_admin_add_content_text
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks course is exist
+		| Key  | Value               |
+		| name | anil_vedubox_course |
+	Given admin adds new course with
+		| Key         | Value               |
+		| name        | anil_vedubox_course |
+		| tags        | anil,vedubox,course |
+		| description | Anil Vedubox Course |
+		| category    | defaultCategory1    |
+		| teacher     | Anil Senocak        |
+		| catalog     | defaultKatalog1     |
+	Given admin adds new resource as text
+		| Key                  | Value                                    |
+		| name                 | anil_vedubox_course                      |
+		| subject_title        | anil_vedubox_course_subject              |
+		| resource_title       | anil_vedubox_course_resource_title       |
+		| resource_description | anil_vedubox_course_resource_description |
+	Then admin deletes added Course
+		| Key  | Value              |
+		| name | anil_vedubox_course|
+
+Scenario: 27_admin_disccount_codes_add_is_limited
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks discount code is exist
+		| Key  | Value  |
+		| name | code12 |
+	Given admin adds new discount code with
+		| Key         | Value                      |
+		| code        | code12                     |
+		| description | Anil Vedubox Discount Code |
+		| percentage  | 34                         |
+		| limit       | true                       |
+		| usage_limit | 10			               |
+	Then admin deletes added discount code
+		| Key  | Value              |
+		| name | code12             |
+
+Scenario: 28_admin_disccount_codes_add_is_not_limited
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks discount code is exist
+		| Key  | Value  |
+		| name | code12 |
+	Given admin adds new discount code with
+		| Key         | Value                      |
+		| code        | code12                     |
+		| description | Anil Vedubox Discount Code |
+		| percentage  | 34                         |
+		| limit       | false                      |
+	Then admin deletes added discount code
+		| Key  | Value              |
+		| name | code12             |
+
+Scenario: 30_admin_add_student_batch_create
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks user is exist
+		| Key   | Value                 |
+		| email | admin_deneme@anil.com |
+	Given admin adds new batch user with
+		| Key         | Value                 |
+		| user        | admin                 |
+		| branch      | defaultBranch1        |
+		| catalog     | Default Course1       |
+	Then Delete User
+		| Key   | Value                 |
+		| email | admin_deneme@anil.com |
+
+
 Scenario: 0_admin_add_catalog
 	Given Open Kurumsal Login Page
 	Given Login as "admin"

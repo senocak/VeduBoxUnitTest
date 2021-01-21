@@ -5,35 +5,35 @@ using VeduBoxUnitTest.Assertion;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class HomePage : Page{
-        private static readonly By LIVE = By.CssSelector("a[title='Live']");
-        private static readonly By COURSES = By.CssSelector("a[title='Courses']");
-        private static readonly By MY_COURSES = By.CssSelector("a[title='My Courses']");
-        private static readonly By STUDENTS = By.CssSelector("a[title='Students']");
-        private static readonly By EXAM = By.CssSelector("a[title='Exams']");
-        private static readonly By PORTAL = By.CssSelector("a[title='Portal']");
-        private static readonly By EARNINGS = By.CssSelector("a[title='Earnings']");
-        private static readonly By QUESTIONS = By.CssSelector("a[title='Question pool']");
-        private static readonly By BRANCH = By.CssSelector("a[title='Branches']");
-        private static readonly By MODERATORS = By.CssSelector("a[title='Moderators']");
-        private static readonly By TEACHERS = By.CssSelector("a[title='Teachers']");
-        private static readonly By ANNOUNCEMENTS = By.CssSelector("a[title='Announcements']");
-        private static readonly By PARENTS = By.CssSelector("a[title='Parents']");
-        private static readonly By POLLS = By.CssSelector("a[title='Polls']");
-        private static readonly By POLL_QUESTIONS = By.CssSelector("a[title='Poll Questions']");
-        private static readonly By TESTS_POOL = By.CssSelector("a[title='Test pool']");
-        private static readonly By CATALOG = By.CssSelector("a[title='Catalogs']");
-        private static readonly By ADMINS = By.CssSelector("a[title='Admins']");
-        private static readonly By MANAGERS = By.CssSelector("a[title='Managers']");
-        private static readonly By QUESTIONSANSWERS = By.CssSelector("a[title='Q&A']");
+        private readonly By LIVE = By.CssSelector("a[title='Live']");
+        private readonly By COURSES = By.CssSelector("a[title='Courses']");
+        private readonly By MY_COURSES = By.CssSelector("a[title='My Courses']");
+        private readonly By STUDENTS = By.CssSelector("a[title='Students']");
+        private readonly By EXAM = By.CssSelector("a[title='Exams']");
+        private readonly By PORTAL = By.CssSelector("a[title='Portal']");
+        private readonly By EARNINGS = By.CssSelector("a[title='Earnings']");
+        private readonly By QUESTIONS = By.CssSelector("a[title='Question pool']");
+        private readonly By BRANCH = By.CssSelector("a[title='Branches']");
+        private readonly By MODERATORS = By.CssSelector("a[title='Moderators']");
+        private readonly By TEACHERS = By.CssSelector("a[title='Teachers']");
+        private readonly By ANNOUNCEMENTS = By.CssSelector("a[title='Announcements']");
+        private readonly By PARENTS = By.CssSelector("a[title='Parents']");
+        private readonly By POLLS = By.CssSelector("a[title='Polls']");
+        private readonly By POLL_QUESTIONS = By.CssSelector("a[title='Poll Questions']");
+        private readonly By TESTS_POOL = By.CssSelector("a[title='Test pool']");
+        private readonly By CATALOG = By.CssSelector("a[title='Catalogs']");
+        private readonly By ADMINS = By.CssSelector("a[title='Admins']");
+        private readonly By MANAGERS = By.CssSelector("a[title='Managers']");
+        private readonly By QUESTIONS_ANSWERS = By.CssSelector("a[title='Q&A']");
+        private readonly By DISCOUNT_CODES= By.CssSelector("a[title='Discount Codes']");
+        private readonly By USERNAME_LINK = By.CssSelector("span[ng-bind='$root.user.firstName | limitTo: 8']");
+        private readonly By SWITCH_TO_ROLE = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/ul/li[3]/a");
+        private readonly By ROLE_MODAL = By.CssSelector("a[ng-click='openSwitchRoleModal(role)']");
+        private readonly By PASSWORD = By.CssSelector("input[ng-model='loginData.password']");
+        private readonly By SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div[2]/button[1]");
+        private readonly By ROLE_TEXT = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/a/span[2]");
 
-        private static readonly By USERNAME_LINK = By.CssSelector("span[ng-bind='$root.user.firstName | limitTo: 8']");
-        private static readonly By SWITCH_TO_ROLE = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/ul/li[3]/a");
-        private static readonly By ROLE_MODAL = By.CssSelector("a[ng-click='openSwitchRoleModal(role)']");
-        private static readonly By PASSWORD = By.CssSelector("input[ng-model='loginData.password']");
-        private static readonly By SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div[2]/button[1]");
-        private static readonly By ROLE_TEXT = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/a/span[2]");
-
-        private static string _user;
+        private string _user;
         public HomePage(IWebDriver wd) : base(wd){}
         public HomePage clickUpdateAcceptButton(){
             try{
@@ -45,7 +45,6 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             return this;
         }
         public LivePage openLIVEpage(string user){
-            //scroll(LIVE);
             _user = user;
             try{
                 click(LIVE);
@@ -55,43 +54,31 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             Console.WriteLine(user + ": clicked Live page element");
             return new LivePage(driver, user);
         }
-        public AdminsPage openADMINSpage(string user)
-        {
+        public AdminsPage openADMINSpage(string user){
             _user = user;
-            try
-            {
+            try{
                 click(ADMINS);
-            }
-            catch (Exception e)
-            {
+            }catch (Exception e){
                 Console.WriteLine("Error occured in openADMINSpage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked openADMINSpage element");
             return new AdminsPage(driver, user);
         }
-        public ManagersPage openManagersPage(string user)
-        {
+        public ManagersPage openManagersPage(string user){
             _user = user;
-            try
-            {
+            try{
                 click(MANAGERS);
-            }
-            catch (Exception e)
-            {
+            }catch (Exception e){
                 Console.WriteLine("Error occured in openManagersPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked openManagersPage element");
             return new ManagersPage(driver, user);
         }
-        public QuestionsAndAnswersPage openQuestionsAndAnswersPage(string user)
-        {
+        public QuestionsAndAnswersPage openQuestionsAndAnswersPage(string user){
             _user = user;
-            try
-            {
-                click(QUESTIONSANSWERS);
-            }
-            catch (Exception e)
-            {
+            try{
+                click(QUESTIONS_ANSWERS);
+            }catch (Exception e){
                 Console.WriteLine("Error occured in openQuestionsAndAnswersPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked openQuestionsAndAnswersPage element");
@@ -128,7 +115,6 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             }catch (Exception e){
                 Console.WriteLine("Error occured in openExamPage, user: " + user + ", Error is: " + e.Message);
             }
-            Console.WriteLine("asdddddddddddddddddddd");
             Console.WriteLine(user + ": clicked Exam page element");
             return new ExamPage(driver, user);
         }
@@ -267,6 +253,16 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             click(SAVE_BUTTON);
             sleepms(3000);
             return this;
+        }
+        public DiscountCodesPage openDiscountCodesPage(string user){
+            _user = user;
+            try{
+                click(DISCOUNT_CODES);
+            }catch (Exception e){
+                Console.WriteLine("Error occured in openDiscountCodesPage, user: " + user + ", Error is: " + e.Message);
+            }
+            Console.WriteLine(user + ": clicked openDiscountCodesPage element");
+            return new DiscountCodesPage(driver, user);
         }
     }
 }

@@ -169,11 +169,11 @@ Scenario: 9_instructor_add_content_as_video_with_vimeo
 		| course | anil_vedubox_course  |
 		| title  | anil_vedubox_subject |
 	Given instructor adds video with vimeo
-		| Key    | Value                                  |
-		| course | anil_vedubox_course                    |
-		| title  | anil_vedubox_video_to_subject_vimeo_id |
-		| desc   | anil_vedubox_video_desc                |
-		| id     | 444883013                              |
+		| Key      | Value                                  |
+		| course   | anil_vedubox_course                    |
+		| title    | anil_vedubox_video_to_subject_vimeo_id |
+		| desc     | anil_vedubox_video_desc                |
+		| vimeo_id | 444883013                              |
 	Then instructor delete course
 		| Key  | Value               |
 		| name | anil_vedubox_course |
@@ -197,7 +197,7 @@ Scenario: 10_instructor_add_content_as_link
 		| course | anil_vedubox_course                       |
 		| title  | anil_vedubox_course_content_as_link_title |
 		| desc   | anil_vedubox_course_content_as_link_desc  |
-		| link   | https://mail.google.com/mail/u/1/#inbox   |
+		| link   | https://github.com/senocak                |
 	Then instructor delete course
 		| Key  | Value               |
 		| name | anil_vedubox_course |
@@ -217,11 +217,11 @@ Scenario: 11_instructor_add_content_as_embed_code
 		| course | anil_vedubox_course  |
 		| title  | anil_vedubox_subject |
 	Given instructor adds content as embed code
-		| Key        | Value                                                                                       |
-		| course     | anil_vedubox_course                                                                         |
-		| title      | anil_vedubox_course_content_as_embed_code_title                                             |
-		| desc       | anil_vedubox_course_content_as_embed_code_desc                                              |
-		| embed_code | <iframe width="1280" height="968" src="https://www.youtube.com/embed/ZzBDAtbcFvM"></iframe> |
+		| Key        | Value                                                             |
+		| course     | anil_vedubox_course                                               |
+		| title      | anil_vedubox_course_content_as_embed_code_title                   |
+		| desc       | anil_vedubox_course_content_as_embed_code_desc                    |
+		| embed_code | <iframe src="https://www.youtube.com/embed/ZzBDAtbcFvM"></iframe> |
 	Then instructor delete course
 		| Key  | Value               |
 		| name | anil_vedubox_course |

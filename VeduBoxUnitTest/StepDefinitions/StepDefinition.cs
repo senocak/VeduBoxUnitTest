@@ -32,7 +32,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 //WebBrowser.Driver.CaptureScreenShot(_scenarioContext.ScenarioInfo.Title);
                 Console.WriteLine("Title:" + ScenarioContext.Current.ScenarioInfo.Title + " is failed.");
             }
-            driver.Quit();
+            //driver.Quit();
         }
         [Given(@"Open Kurumsal Login Page")]
         public void GivenOpenKurumsalLoginPage(){
@@ -121,37 +121,37 @@ namespace VeduBoxUnitTest.StepDefinitions{
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
                     .openStudentsPage(dictionary["user"])
-                    .addNew()
-                    .setFirstName(dictionary["firstName"])
-                    .setLastName(dictionary["lastName"])
-                    .selectBranch(dictionary["branch"])
-                    .setEmail(dictionary["email"])
-                    .setUserName(dictionary["userName"])
-                    .setPassword(dictionary["password"])
-                    .setCatalog(dictionary["catalog"])
-                    .setDescription(dictionary["description"])
-                    .setEmailConfirmed()
-                    .setGPDRPolicy()
-                    .submit()
-                    .assert();
+                    .AddNew()
+                    .SetFirstName(dictionary["firstName"])
+                    .SetLastName(dictionary["lastName"])
+                    .SelectBranch(dictionary["branch"])
+                    .SetEmail(dictionary["email"])
+                    .SetUserName(dictionary["userName"])
+                    .SetPassword(dictionary["password"])
+                    .SetCatalog(dictionary["catalog"])
+                    .SetDescription(dictionary["description"])
+                    .SetEmailConfirmed()
+                    .SetGpdrPolicy()
+                    .Submit()
+                    .Assert();
         }
         [Given(@"admin checks user is exist")]
         public void GivenAdminChecksUserİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
                     .openStudentsPage("admin")
-                    .searchNewlyAddedUserByEmailAndDeleteIt(dictionary["email"]);
+                    .SearchNewlyAddedUserByEmailAndDeleteIt(dictionary["email"]);
         }
         [Then(@"Delete User")]
         public void deleteUser(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
                 .openStudentsPage("admin")
-                .searchNewlyAddedUserByEmail(dictionary["email"])
-                .click3Points()
-                .clickDeleteUserButton()
-                .clickAreUSure()
-                .assert();
+                .SearchNewlyAddedUserByEmail(dictionary["email"])
+                .Click3Points()
+                .ClickDeleteUserButton()
+                .ClickAreUSure()
+                .Assert();
         }
         [Given(@"admin adds new course with")]
         public void addNewCourse(Table table){
@@ -265,35 +265,35 @@ namespace VeduBoxUnitTest.StepDefinitions{
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
                 .openStudentsPage("instructor")
-                .searchNewlyAddedUserByEmailAndDeleteIt(dictionary["email"]);
+                .SearchNewlyAddedUserByEmailAndDeleteIt(dictionary["email"]);
         }
         [Given(@"instructor adds new student with")]
         public void GivenİnstructorAddsNewStudentWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(driver)
                 .openStudentsPage("instructor")
-                .addNew()
-                .setFirstName(dictionary["firstName"])
-                .setLastName(dictionary["lastName"])
-                .selectBranch(dictionary["branch"])
-                .setEmail(dictionary["email"])
-                .setUserName(dictionary["userName"])
-                .setPassword(dictionary["password"])
-                .setCatalog(dictionary["catalog"])
-                .setEmailConfirmed()
-                .setGPDRPolicy()
-                .submit()
-                .assert();
+                .AddNew()
+                .SetFirstName(dictionary["firstName"])
+                .SetLastName(dictionary["lastName"])
+                .SelectBranch(dictionary["branch"])
+                .SetEmail(dictionary["email"])
+                .SetUserName(dictionary["userName"])
+                .SetPassword(dictionary["password"])
+                .SetCatalog(dictionary["catalog"])
+                .SetEmailConfirmed()
+                .SetGpdrPolicy()
+                .Submit()
+                .Assert();
         }
         [Then(@"instructor delete student")]
         public void ThenİnstructorDeleteStudent(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new StudentsPage(driver, "instructor")
-                .searchNewlyAddedUserByEmail(dictionary["email"])
-                .click3Points()
-                .clickDeleteUserButton()
-                .clickAreUSure()
-                .assert();
+                .SearchNewlyAddedUserByEmail(dictionary["email"])
+                .Click3Points()
+                .ClickDeleteUserButton()
+                .ClickAreUSure()
+                .Assert();
         }
         [Given(@"instructor checks course is exist")]
         public void GivenİnstructorChecksCourseİsExist(Table table){
@@ -500,7 +500,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                     .enterResourceTitle(dictionary["title"])
                     .enterResourceDescription(dictionary["desc"])
                     .selectDownloadable()
-                    .selectUserReviewEnable()
+                    .selectUserReviewEnableForDOC()
                     .selectFile()
                     .clickSaveButton()
                     .assert();
@@ -549,7 +549,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                     .enterResourceTitle(dictionary["title"])
                     .enterResourceDescription(dictionary["desc"])
                     .selectVimeoID()
-                    .enterVimeoID(dictionary["id"])
+                    .enterVimeoID(dictionary["vimeo_id"])
                     .selectCourseVideoDownloadable()
                     .selectVideoForward()
                     .selectCourseVideoPrev()
@@ -1423,6 +1423,185 @@ namespace VeduBoxUnitTest.StepDefinitions{
                .clickDeleteButton()
                .clickAreUSure()
                .assert();
+        }
+        [Given(@"admin adds new resource as document")]
+        public void GivenAdminAddsNewResourceAsDocument(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openCOURSESpage("admin")
+                .searchNewlyAddedCouseByName(dictionary["name"])
+                .click3Points()
+                .clickResources()
+                .addSubject()
+                .enterSubjectTitle(dictionary["subject_title"])
+                .saveSubjectTitle()
+                .addResource()
+                .clickResourceTypeDoc()
+                .enterResourceTitle(dictionary["resource_title"])
+                .enterResourceDescription(dictionary["resource_description"])
+                .selectFile()
+                .selectDownloadable()
+                .selectUserReviewEnableForDOC()
+                .clickSaveButton()
+                .assert();
+        }
+        [Given(@"admin adds new resource as video")]
+        public void GivenAdminAddsNewResourceAsVideo(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openCOURSESpage("admin")
+                .searchNewlyAddedCouseByName(dictionary["name"])
+                .click3Points()
+                .clickResources()
+                .addSubject()
+                .enterSubjectTitle(dictionary["subject_title"])
+                .saveSubjectTitle()
+                .addResource()
+                .clickResourceTypeVideo()
+                .enterResourceTitle(dictionary["resource_title"])
+                .enterResourceDescription(dictionary["resource_description"])
+                .selectVideo1()
+                .clickUpload()
+                .selectCourseVideoPrev()
+                .selectCourseVideoDownloadable()
+                .selectCourseVideoSpeedControl()
+                .selectUserReviewEnableForVideo()
+                .waitUntillFileIsUploaded()
+                .clickCourseVideoSubmit()
+                .assert();
+        }
+        [Given(@"admin adds new resource as video with vimeo id")]
+        public void GivenAdminAddsNewResourceAsVideoWithVimeoİd(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openCOURSESpage("admin")
+                .searchNewlyAddedCouseByName(dictionary["name"])
+                .click3Points()
+                .clickResources()
+                .addSubject()
+                .enterSubjectTitle(dictionary["subject_title"])
+                .saveSubjectTitle()
+                .addResource()
+                .clickResourceTypeVideo()
+                .enterResourceTitle(dictionary["resource_title"])
+                .enterResourceDescription(dictionary["resource_description"])
+                .selectVimeoID()
+                .enterVimeoID(dictionary["vimeo_id"])
+                .selectCourseVideoPrev()
+                .selectCourseVideoDownloadable()
+                .selectCourseVideoSpeedControl()
+                .selectUserReviewEnableForVideo()
+                .clickCourseExistingVideoSubmit()
+                .assert();
+        }
+        [Given(@"admin adds new resource as link")]
+        public void GivenAdminAddsNewResourceAsLink(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openCOURSESpage("admin")
+                .searchNewlyAddedCouseByName(dictionary["name"])
+                .click3Points()
+                .clickResources()
+                .addSubject()
+                .enterSubjectTitle(dictionary["subject_title"])
+                .saveSubjectTitle()
+                .addResource()
+                .clickResourceTypeLink()
+                .enterResourceTitle(dictionary["resource_title"])
+                .setDescription(dictionary["resource_description"])
+                .enterLink(dictionary["link"])
+                .selectVideoUserReview()
+                .clickResourceLinkSave()
+                .assert();
+        }
+        [Given(@"admin adds new resource as embed")]
+        public void GivenAdminAddsNewResourceAsEmbed(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openCOURSESpage("admin")
+                .searchNewlyAddedCouseByName(dictionary["name"])
+                .click3Points()
+                .clickResources()
+                .addSubject()
+                .enterSubjectTitle(dictionary["subject_title"])
+                .saveSubjectTitle()
+                .addResource()
+                .clickResourceTypeEmbedCode()
+                .enterResourceTitle(dictionary["resource_title"])
+                .setEmbeddedDescription(dictionary["resource_description"])
+                .enterEmbedCode(dictionary["embed_code"])
+                .selectVideoUserReview()
+                .clickResourceLinkSave()
+                .assert();
+        }
+        [Given(@"admin adds new resource as text")]
+        public void GivenAdminAddsNewResourceAsText(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openCOURSESpage("admin")
+                .searchNewlyAddedCouseByName(dictionary["name"])
+                .click3Points()
+                .clickResources()
+                .addSubject()
+                .enterSubjectTitle(dictionary["subject_title"])
+                .saveSubjectTitle()
+                .addResource()
+                .clickResourceTypeText()
+                .enterResourceTitle(dictionary["resource_title"])
+                .setDescriptionForText(dictionary["resource_description"])
+                .selectVideoUserReview()
+                .clickResourceLinkSave()
+                .assert();
+        }
+        [Given(@"admin checks discount code is exist")]
+        public void GivenAdminChecksDiscountCodeİsExist(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openDiscountCodesPage("admin")
+                .SearchNewlyAddedDiscountCodeByNameAndDeleteIt(dictionary["name"]);
+        }
+        [Given(@"admin adds new discount code with")]
+        public void GivenAdminAddsNewDiscountCodeWith(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openDiscountCodesPage("admin")
+                .ClickAddNew()
+                .EnterCode(dictionary["code"])
+                .EnterDescription(dictionary["description"])
+                .EnterPercentage(dictionary["percentage"])
+                .SelectIsLimited(Boolean.Parse(dictionary["limit"]))
+                .EnterLimit(dictionary.ContainsKey("usage_limit") ? dictionary["usage_limit"] : null)
+                .SetStartDate()
+                .SetEndDate(Utils.Dates.getNextYear(NEXT_YEAR), Utils.Dates.getNextMonth(Months.April), Utils.Dates.getNextDay(30))
+                .ClickSave()
+                .Assert();
+        }
+        [Then(@"admin deletes added discount code")]
+        public void ThenAdminDeletesAddedDiscountCode(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openDiscountCodesPage("admin")
+                .SearchNewlyAddedDiscountCodeByName(dictionary["name"])
+                .Click3Points()
+                .ClickDeleteCodeButton()
+                .ClickAreUSure()
+                .Assert();
+        }
+        [Given(@"admin adds new batch user with")]
+        public void AdminAddsNewBatchUserWith(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(driver)
+                .openStudentsPage(dictionary["user"])
+                .ClickBatchButton()
+                .ClickBatchCreateButton()
+                .EnterExcelFile()
+                .SelectBranchBatchCreate(dictionary["branch"])
+                .SetCatalogBatchCreate(dictionary["catalog"])
+                .ClickAddCatalogButtonBatchCreate()
+                .SetGpdrPolicyBatchCreate()
+                .ClickUploadButtonBatchCreate()
+                .ClickAcceptButtonBatchCreate()
+                .Assert();
         }
     }
 }

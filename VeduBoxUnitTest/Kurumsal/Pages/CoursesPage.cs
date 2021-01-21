@@ -6,62 +6,87 @@ using VeduBoxUnitTest.Assertion;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class CoursesPage : Page{
-        private static readonly By ADD_NEW_ADMIN = By.CssSelector("button[ui-sref='veduBox.admin.courses.new']");
-        private static readonly By ADD_NEW_INSTRUCTOR = By.CssSelector("button[ng-show='$root.app.isTeacherAddCourseAndPackageEnabled']");
-        private static readonly By NAME_ADMIN = By.CssSelector("input[ng-model='course.name']");
-        private static readonly By NAME_INSTRUCTOR = By.CssSelector("input[ng-model='courseAndPackage.courseName']");
-        private static readonly By TAGS = By.XPath("//*[@id='courseForm']/div[1]/div[2]/div/div/input");
-        private static readonly By DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static readonly By CREATE_COURSE_DESCRIPTION = By.XPath("/html/body/div[3]/div/section/div/div[1]/div[3]/div/div/div[2]/form/div[1]/div[3]/div/text-angular/div[2]/div[3]");
-        private static readonly By EMBEDDED_DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static readonly By CATEGORY_ADMIN = By.CssSelector("select[ng-model='course.categoryId']");
-        private static readonly By CATEGORY_INSTRUCTOR = By.CssSelector("select[ng-model='courseAndPackage.categoryId']");
-        private static readonly By TEACHER = By.CssSelector("select[ng-model='course.teacherUserId']");
-        private static readonly By CATALOG = By.CssSelector("select[ng-model='course.teacherUserId']");
-        private static readonly By SUBMIT_ADMIN = By.CssSelector("button[type='submit']:nth-child(1)");
-        private static readonly By SUBMIT_INSTRUCTOR = By.CssSelector("button[ng-disabled='courseAndPackageForm.$invalid']");
-        private static readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private static readonly By SEARCH_BOX = By.CssSelector("input.form-control.vedu-search");
-        private static readonly By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
-        private static readonly By DELETE_COURSE = By.CssSelector("button[ng-click='delete(course)']");
-        private static readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
-        private static readonly By LINK_PROJET_MANAGEMENT = By.XPath("//*[contains(text(),'project management')]");
-        private static readonly By COURSE_UPDATE_BUTTON = By.CssSelector("button[ui-sref='veduBox.teacher.me.courses.edit({id: course.courseId})']");
-        private static readonly By DELETE_COURSE_INSTRUCTOR = By.CssSelector("button[ng-click='deleteCourse(course.courseId)']");
-        private static readonly By ADD_SUBJECT_BUTTON = By.CssSelector("a[ng-click='saveSubject(0)']");
-        private static readonly By SUBJECT_INPUT = By.CssSelector("input[ng-model='title']");
-        private static readonly By FINISH_EDITING_BUTTON = By.CssSelector("button[ui-sref='veduBox.teacher.me.courses.view({id: course.courseId})']");
-        private static readonly By SAVE_SUBJECT_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[3]/button[1]");
-        private static readonly By ADD_RESOURCE = By.Id("teacherCourseEditAddResource");
-        private static readonly By SELECT_RESOURCE_DOC = By.Id("rescourceTypeDoc");
-        private static readonly By RESOURCE_OK = By.Id("rescourceTypeOkBtn");
-        private static readonly By RESOURCE_TITLE = By.Id("txtName");
-        private static readonly By RESOURCE_DESC = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static readonly By RESOURCE_DOWNLOADABLE_CHECK = By.Id("resourceTypeDocDownload");
-        private static readonly By RESOURCE_REVIEW_CHECK = By.Id("resourceTypeDocReview");
-        private static readonly By RESOURCE_SAVE_BUTTON = By.Id("resourceTypeDocFileSave");
-        private static readonly By SELECT_RESOURCE_VIDEO = By.Id("rescourceTypeVideo");
-        private static readonly By SELECT_RESOURCE_LINK = By.Id("rescourceTypeLink");
-        private static readonly By INPUT_RESOURCE_LINK = By.CssSelector("input[ng-model='resource.url']");
-        private static readonly By BUTTON_RESOURCE_LINK_SAVE = By.XPath("//*[@id='resourceForm']/div[2]/div/div/button[1]");
-        private static readonly By SELECT_RESOURCE_EMBED_CODE = By.Id("rescourceTypeEmbedCode");
-        private static readonly By INPUT_RESOURCE_EMBED_CODE = By.CssSelector("textarea[ng-model='resource.code']");
-        private static readonly By RESOURCE_TYPE_DOC_FILE = By.Id("resourceTypeDocFile");
-        private static readonly By RESOURCE_TYPE_DOC_VIDEO1 = By.Id("fileVideo");
-        private static readonly By RESOURCE_VIDEO_UPLOAD_BUTTON = By.XPath("//*[@id='resourceForm']/div[1]/div[5]/div/button");
-        private static readonly By RESOURCE_TYPE_DOC_VIDEO2 = By.Id("fileTwo");
-        private static readonly By RESOURCE_VIDEO_PREVIEW = By.CssSelector("input[ng-model='resource.preview']");
-        private static readonly By RESOURCE_VIDEO_DOWNLOADABLE_CHECK = By.CssSelector("input[ng-model='resource.downloadable']");
-        private static readonly By RESOURCE_VIDEO_FORWARD = By.CssSelector("input[ng-model='resource.forwardRewindEnabled']");
-        private static readonly By RESOURCE_VIDEO_USER_REVIEW = By.CssSelector("input[ng-model='resource.userReviewEnabled']");
-        private static readonly By RESOURCE_VIDEO_SUBMIT = By.Id("resourceTypeVideoFileSave");
-        private static readonly By RESOURCE_VIDEO_EXISTING_SUBMIT = By.Id("resourceTypeVideoFileSaveExisting");
-        private static readonly By RESOURCE_VIDEO_VIMEO_CHECKBOX = By.CssSelector("input[ng-model='resource.vimeoIdEnabled']");
-        private static readonly By RESOURCE_VIDEO_VIMEO_TEXT = By.CssSelector("input[ng-model='resource.vimeoId']");
+        private readonly By ADD_NEW_ADMIN = By.CssSelector("button[ui-sref='veduBox.admin.courses.new']");
+        private readonly By ADD_NEW_INSTRUCTOR = By.CssSelector("button[ng-show='$root.app.isTeacherAddCourseAndPackageEnabled']");
+        private readonly By NAME_ADMIN = By.CssSelector("input[ng-model='course.name']");
+        private readonly By NAME_INSTRUCTOR = By.CssSelector("input[ng-model='courseAndPackage.courseName']");
+        private readonly By TAGS = By.XPath("//*[@id='courseForm']/div[1]/div[2]/div/div/input");
+        private readonly By DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By CREATE_COURSE_DESCRIPTION = By.XPath("/html/body/div[3]/div/section/div/div[1]/div[3]/div/div/div[2]/form/div[1]/div[3]/div/text-angular/div[2]/div[3]");
+        private readonly By EMBEDDED_DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By CATEGORY_ADMIN = By.CssSelector("select[ng-model='course.categoryId']");
+        private readonly By CATEGORY_INSTRUCTOR = By.CssSelector("select[ng-model='courseAndPackage.categoryId']");
+        private readonly By TEACHER = By.CssSelector("select[ng-model='course.teacherUserId']");
+        private readonly By CATALOG = By.CssSelector("select[ng-model='course.teacherUserId']");
+        private readonly By SUBMIT_ADMIN = By.CssSelector("button[type='submit']:nth-child(1)");
+        private readonly By SUBMIT_INSTRUCTOR = By.CssSelector("button[ng-disabled='courseAndPackageForm.$invalid']");
+        private readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private readonly By SEARCH_BOX = By.CssSelector("input.form-control.vedu-search");
+        private readonly By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
+        private readonly By DELETE_COURSE = By.CssSelector("button[ng-click='delete(course)']");
+        private readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
+        private readonly By LINK_PROJET_MANAGEMENT = By.XPath("//*[contains(text(),'project management')]");
+        private readonly By COURSE_UPDATE_BUTTON = By.CssSelector("button[ui-sref='veduBox.teacher.me.courses.edit({id: course.courseId})']");
+        private readonly By COURSE_RESOURCES_BUTTON = By.CssSelector("button[ui-sref='veduBox.admin.courses.courseEdit({id: course.courseId})']");
+
+
+
+        
+
+
+        private readonly By DELETE_COURSE_INSTRUCTOR = By.CssSelector("button[ng-click='deleteCourse(course.courseId)']");
+        private readonly By ADD_SUBJECT_BUTTON = By.CssSelector("a[ng-click='saveSubject(0)']");
+        private readonly By SUBJECT_INPUT = By.CssSelector("input[ng-model='title']");
+        private readonly By FINISH_EDITING_BUTTON = By.CssSelector("button[ui-sref='veduBox.teacher.me.courses.view({id: course.courseId})']");
+        private readonly By SAVE_SUBJECT_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[3]/button[1]");
+        private readonly By ADD_RESOURCE_TEACHER = By.Id("teacherCourseEditAddResource");
+        private readonly By ADD_RESOURCE_ADMIN = By.CssSelector("button[ng-click='addResource(subject.id)']");
+       
+
+
+        
+
+
+        
+        private readonly By SELECT_RESOURCE_DOC = By.Id("rescourceTypeDoc");
+        private readonly By RESOURCE_OK = By.Id("rescourceTypeOkBtn");
+        private readonly By RESOURCE_TITLE = By.Id("txtName");
+        private readonly By RESOURCE_DESC = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By RESOURCE_DOWNLOADABLE_CHECK = By.Id("resourceTypeDocDownload");
+        private readonly By RESOURCE_VIDEO_SPEED_CONTROL= By.CssSelector("input[ng-model='resource.videoSpeedControl']");
+
+
+        private readonly By RESOURCE_DOC_REVIEW_CHECK = By.Id("resourceTypeDocReview");
+        private readonly By RESOURCE_VIDEO_REVIEW_CHECK = By.Id("resourceTypeVideoReview");
+        private readonly By RESOURCE_DOC_SAVE_BUTTON = By.Id("resourceTypeDocFileSave");
+        private readonly By SELECT_RESOURCE_VIDEO = By.Id("rescourceTypeVideo");
+        private readonly By SELECT_RESOURCE_LINK = By.Id("rescourceTypeLink");
+        private readonly By INPUT_RESOURCE_LINK = By.CssSelector("input[ng-model='resource.url']");
+        private readonly By BUTTON_RESOURCE_LINK_SAVE = By.XPath("//*[@id='resourceForm']/div[2]/div/div/button[1]");
+        private readonly By SELECT_RESOURCE_EMBED_CODE = By.Id("rescourceTypeEmbedCode");
+        private readonly By INPUT_RESOURCE_EMBED_CODE = By.CssSelector("textarea[ng-model='resource.code']");
+        private readonly By RESOURCE_TYPE_DOC_FILE = By.Id("resourceTypeDocFile");
+        private readonly By RESOURCE_TYPE_DOC_VIDEO1 = By.Id("fileVideo");
+        private readonly By RESOURCE_VIDEO_UPLOAD_BUTTON = By.XPath("//*[@id='resourceForm']/div[1]/div[5]/div/button");
+        private readonly By RESOURCE_TYPE_DOC_VIDEO2 = By.Id("fileTwo");
+        private readonly By RESOURCE_VIDEO_PREVIEW = By.CssSelector("input[ng-model='resource.preview']");
+        private readonly By RESOURCE_VIDEO_DOWNLOADABLE_CHECK = By.CssSelector("input[ng-model='resource.downloadable']");
+        private readonly By RESOURCE_VIDEO_FORWARD = By.CssSelector("input[ng-model='resource.forwardRewindEnabled']");
+        private readonly By RESOURCE_VIDEO_USER_REVIEW = By.CssSelector("input[ng-model='resource.userReviewEnabled']");
+        private readonly By RESOURCE_VIDEO_SUBMIT = By.Id("resourceTypeVideoFileSave");
+        private readonly By RESOURCE_VIDEO_EXISTING_SUBMIT = By.Id("resourceTypeVideoFileSaveExisting");
+        private readonly By RESOURCE_VIDEO_VIMEO_CHECKBOX = By.CssSelector("input[ng-model='resource.vimeoIdEnabled']");
+        private readonly By RESOURCE_VIDEO_VIMEO_TEXT = By.Id("resourceTypeVideoIfVimeoIdValue");
         private readonly By UPLOADED_FILE_LABEL = By.CssSelector("label[ng-bind='resource.fileName']");
+        private readonly By SELECT_RESOURCE_TEST = By.Id("rescourceTypeTest");
+        private readonly By SELECT_RESOURCE_TEXT = By.Id("rescourceTypeText");
+        private readonly By RESOURCE_TEXT_DESCRIPTION= By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[2]/div/text-angular/div[2]/div[3]");
+        private readonly By RESOURCE_TEXT_SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[2]/div/div/button[1]");
+        
+
         private readonly string UPLOADED_FILE_TEXT = "video.mp4";
 
-        private static string _user;
+        private string _user;
         public CoursesPage(IWebDriver wd, string user) : base(wd){
             _user = user;
         }
@@ -146,12 +171,20 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         }
         public CoursesPage deleteNewlyAddedCourse(){
             if (_user == "admin"){
-                click(THREE_POINTS);
+                click3Points();
                 click(DELETE_COURSE);
             }else if (_user == "instructor"){
                 click(DELETE_COURSE_INSTRUCTOR);
             }
             click(ARE_U_SURE_OK);
+            return this;
+        }
+        public CoursesPage clickResources(){
+            click(COURSE_RESOURCES_BUTTON);
+            return this;
+        }
+        public CoursesPage click3Points(){
+            click(THREE_POINTS);
             return this;
         }
         public CoursesPage openCourseDetail(string name){
@@ -214,9 +247,12 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             }
             return this;
         }
-
         public CoursesPage addResource(){
-            click(ADD_RESOURCE);
+            if (_user == "instructor"){
+                click(ADD_RESOURCE_TEACHER);
+            }else if (_user == "admin"){
+                click(ADD_RESOURCE_ADMIN);
+            }
             return this;
         }
         public CoursesPage clickResourceTypeDoc(){
@@ -243,8 +279,12 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             click(RESOURCE_DOWNLOADABLE_CHECK);
             return this;
         }
-        public CoursesPage selectUserReviewEnable(){
-            click(RESOURCE_REVIEW_CHECK);
+        public CoursesPage selectUserReviewEnableForDOC(){
+            click(RESOURCE_DOC_REVIEW_CHECK);
+            return this;
+        }
+        public CoursesPage selectUserReviewEnableForVideo(){
+            click(RESOURCE_VIDEO_REVIEW_CHECK);
             return this;
         }
         public CoursesPage selectFile(){
@@ -261,7 +301,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             return this;
         }
         public CoursesPage clickSaveButton(){
-            click(RESOURCE_SAVE_BUTTON);
+            click(RESOURCE_DOC_SAVE_BUTTON);
             return this;
         }
         public CoursesPage clickResourceTypeVideo(){
@@ -291,12 +331,10 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             );
             return this;
         }
-        public CoursesPage clickUpload()
-        {
+        public CoursesPage clickUpload(){
             click(RESOURCE_VIDEO_UPLOAD_BUTTON);
             return this;
         }
-        
         public CoursesPage selectVideo2(){
             type(
                 RESOURCE_TYPE_DOC_VIDEO2,
@@ -312,6 +350,11 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         public CoursesPage selectCourseVideoDownloadable(){
             if (isSelected(RESOURCE_VIDEO_DOWNLOADABLE_CHECK) == false)
                 click(RESOURCE_VIDEO_DOWNLOADABLE_CHECK);
+            return this;
+        }
+        public CoursesPage selectCourseVideoSpeedControl(){
+            if (isSelected(RESOURCE_VIDEO_SPEED_CONTROL) == false)
+                click(RESOURCE_VIDEO_SPEED_CONTROL);
             return this;
         }
         public CoursesPage selectVideoForward(){
@@ -345,5 +388,22 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             type(RESOURCE_VIDEO_VIMEO_TEXT, id);
             return this;
         }
+        public CoursesPage clickResourceTypeTest(){
+            click(SELECT_RESOURCE_TEST);
+            return this;
+        }
+        public CoursesPage clickResourceTypeText(){
+            click(SELECT_RESOURCE_TEXT);
+            return this;
+        }
+        public CoursesPage setDescriptionForText(string description){
+            type(RESOURCE_TEXT_DESCRIPTION, description);
+            return this;
+        }
+        public CoursesPage clickSaveButtonForText(){
+            click(RESOURCE_TEXT_SAVE_BUTTON);
+            return this;
+        }
+
     }
 }

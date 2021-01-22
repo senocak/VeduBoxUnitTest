@@ -8,67 +8,68 @@ using VeduBoxUnitTest.Assertion;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class BranchPage : Page{
-        private static string _user;
-        private static readonly By ADD_BUTTON = By.CssSelector("button[ng-click='branch={ id: 0 }']");
-        private static readonly By NAME = By.CssSelector("input[ng-model='branch.name']");
-        private static readonly By LIMIT = By.CssSelector("input[ng-model='branch.userLimitCount']");
-        private static readonly By SAVE_BUTTON = By.CssSelector("button[class='btn btn-default btn-oval mb5'][type='submit']");
-        private static readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private static readonly By DELETE_BUTTON = By.CssSelector("button[ng-click='delete()']");
-        private static readonly By SEARCH_BOX = By.Id("search");
-        private static readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
+        
+        private static string USER;
+        private readonly By BUTTON_ADD = By.CssSelector("button[ng-click='branch={ id: 0 }']");
+        private readonly By INPUT_NAME = By.CssSelector("input[ng-model='branch.name']");
+        private readonly By INPUT_LIMIT = By.CssSelector("input[ng-model='branch.userLimitCount']");
+        private readonly By BUTTON_SAVE = By.CssSelector("button[class='btn btn-default btn-oval mb5'][type='submit']");
+        private readonly By BUTTON_DELETE = By.CssSelector("button[ng-click='delete()']");
+        private readonly By INPUT_SEARCH_BOX = By.Id("search");
+        private readonly By ALERT_SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private readonly By ALERT_ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
 
         public BranchPage(IWebDriver wd, string user) : base(wd){
-            _user = user;
+            USER = user;
         }
-        public BranchPage clickAddButton(){
-            click(ADD_BUTTON);
+        public BranchPage ClickAddButton(){
+            Click(BUTTON_ADD);
             return this;
         }
-        public BranchPage enterName(string name){
-            type(NAME, name);
+        public BranchPage EnterName(string name){
+            Type(INPUT_NAME, name);
             return this;
         }
-        public BranchPage enterLimit(int limit){
-            type(LIMIT, limit);
+        public BranchPage EnterLimit(int limit){
+            Type(INPUT_LIMIT, limit);
             return this;
         }
-        public BranchPage clickSaveButton(){
-            click(SAVE_BUTTON);
+        public BranchPage ClickSaveButton(){
+            Click(BUTTON_SAVE);
             return this;
         }
-        public BranchPage assert(){
-            AssertionCustom.assertElementVisible("Element Not Found", driver, SUCCESS);
+        public BranchPage Assert(){
+            AssertionCustom.AssertElementVisible("Element Not Found", Driver, ALERT_SUCCESS);
             return this;
         }
-        public BranchPage searchNewlyAddedBranchByNameAndDeleteItAndAssertIt(string name){
-            searchNewlyAddedBranchByName(name);
+        public BranchPage SearchNewlyAddedBranchByNameAndDeleteItAndAssertIt(string name){
+            SearchNewlyAddedBranchByName(name);
             try{
-                selectBranch(name);
+                SelectBranch(name);
             }catch (Exception e){
                 Console.WriteLine("Error while selecting branch. Looks like there is no record. Returning null." + e.Message);
                 return null;
             }
-            deleteNewlyAddedBranch();
-            clickAreYouSure();
-            assert();
+            DeleteNewlyAddedBranch();
+            ClickAreYouSure();
+            Assert();
             return this;
         }
-        public BranchPage searchNewlyAddedBranchByName(string name){
-            type(SEARCH_BOX, name);
-            sleepms(1000);
+        public BranchPage SearchNewlyAddedBranchByName(string name){
+            Type(INPUT_SEARCH_BOX, name);
+            Sleepms(1000);
             return this;
         }
-        public BranchPage selectBranch(string name){
-            click(By.XPath("//a[contains(text(), '" + name + "')]"));
+        public BranchPage SelectBranch(string name){
+            Click(By.XPath("//a[contains(text(), '" + name + "')]"));
             return this;
         }
-        public BranchPage deleteNewlyAddedBranch(){
-            click(DELETE_BUTTON);
+        public BranchPage DeleteNewlyAddedBranch(){
+            Click(BUTTON_DELETE);
             return this;
         }
-        public BranchPage clickAreYouSure(){
-            click(ARE_U_SURE_OK);
+        public BranchPage ClickAreYouSure(){
+            Click(ALERT_ARE_U_SURE_OK);
             return this;
         }
     }

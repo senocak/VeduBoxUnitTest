@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Interactions;
 using System;
 using VeduBoxUnitTest.Assertion;
+using VeduBoxUnitTest.Utils;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class HomePage : Page{
@@ -33,236 +34,236 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div[2]/button[1]");
         private readonly By ROLE_TEXT = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/a/span[2]");
 
-        private string _user;
+        private string USER;
         public HomePage(IWebDriver wd) : base(wd){}
-        public HomePage clickUpdateAcceptButton(){
+        public HomePage ClickUpdateAcceptButton(){
             try{
-                click(By.CssSelector("a[ng-click='acceptGdprPolicy(gdprPolicy.id);']"));
+                Click(By.CssSelector("a[ng-click='acceptGdprPolicy(gdprPolicy.id);']"));
                 Console.WriteLine("Popup found and clicked accept button");
             }catch (Exception e){
                 Console.WriteLine("Popup not found. Keep working. Error is : " + e.Message);
             }
             return this;
         }
-        public LivePage openLIVEpage(string user){
-            _user = user;
+        public LivePage OpenLivePage(string user){
+            USER = user;
             try{
-                click(LIVE);
+                Click(LIVE);
             }catch(Exception e){
                 Console.WriteLine("Error occured in OpenLivePage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked Live page element");
-            return new LivePage(driver, user);
+            return new LivePage(Driver, user);
         }
-        public AdminsPage openADMINSpage(string user){
-            _user = user;
+        public AdminsPage OpenAdminsPage(string user){
+            USER = user;
             try{
-                click(ADMINS);
+                Click(ADMINS);
             }catch (Exception e){
                 Console.WriteLine("Error occured in openADMINSpage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked openADMINSpage element");
-            return new AdminsPage(driver, user);
+            return new AdminsPage(Driver, user);
         }
-        public ManagersPage openManagersPage(string user){
-            _user = user;
+        public ManagersPage OpenManagersPage(string user){
+            USER = user;
             try{
-                click(MANAGERS);
+                Click(MANAGERS);
             }catch (Exception e){
                 Console.WriteLine("Error occured in openManagersPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked openManagersPage element");
-            return new ManagersPage(driver, user);
+            return new ManagersPage(Driver, user);
         }
-        public QuestionsAndAnswersPage openQuestionsAndAnswersPage(string user){
-            _user = user;
+        public QuestionsAndAnswersPage OpenQuestionsAndAnswersPage(string user){
+            USER = user;
             try{
-                click(QUESTIONS_ANSWERS);
+                Click(QUESTIONS_ANSWERS);
             }catch (Exception e){
                 Console.WriteLine("Error occured in openQuestionsAndAnswersPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked openQuestionsAndAnswersPage element");
-            return new QuestionsAndAnswersPage(driver, user);
+            return new QuestionsAndAnswersPage(Driver, user);
         }
-        public CoursesPage openCOURSESpage(string user){
-            _user = user;
+        public CoursesPage OpenCoursesPage(string user){
+            USER = user;
             try{
-                if(_user == "admin"){
-                    click(COURSES);
-                }else if (_user == "instructor"){
-                    click(MY_COURSES);
+                if(USER == Constants.Roles.Admin.ToString()){
+                    Click(COURSES);
+                }else if (USER == Constants.Roles.Instructor.ToString()){
+                    Click(MY_COURSES);
                 }
             }catch (Exception e){
                 Console.WriteLine("Error occured in openCOURSESpage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked Courses page element");
-            return new CoursesPage(driver, user);
+            return new CoursesPage(Driver, user);
         }
-        public StudentsPage openStudentsPage(string user){
-            _user = user;
+        public StudentsPage OpenStudentsPage(string user){
+            USER = user;
             try{
-                click(STUDENTS);
+                Click(STUDENTS);
             }catch (Exception e){
                 Console.WriteLine("Error occured in openUserPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked User page element");
-            return new StudentsPage(driver, user);
+            return new StudentsPage(Driver, user);
         }
-        public ExamPage openExamPage(string user){
-            _user = user;
+        public ExamPage OpenExamPage(string user){
+            USER = user;
             try{
-                click(EXAM);
+                Click(EXAM);
             }catch (Exception e){
                 Console.WriteLine("Error occured in openExamPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked Exam page element");
-            return new ExamPage(driver, user);
+            return new ExamPage(Driver, user);
         }
-        public PortalPage openPortalPage(string user){
-            _user = user;
+        public PortalPage OpenPortalPage(string user){
+            USER = user;
             try{
-                click(PORTAL);
+                Click(PORTAL);
             }catch (Exception e){
                 Console.WriteLine("Error occured in openPortalPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked PORTAL page element");
-            return new PortalPage(driver, user);
+            return new PortalPage(Driver, user);
         }
-        public EarningsPage openEarningsPage(string user){
-            _user = user;
+        public EarningsPage OpenEarningsPage(string user){
+            USER = user;
             try{
-                click(EARNINGS);
+                Click(EARNINGS);
             }catch (Exception e){
                 Console.WriteLine("Error occured in openEarningsPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked EARNINGS page element");
-            return new EarningsPage(driver, user);
+            return new EarningsPage(Driver, user);
         }
-        public QuestionsPage openQuestionsPage(string user){
-            _user = user;
+        public QuestionsPage OpenQuestionsPage(string user){
+            USER = user;
             try{
-                click(QUESTIONS);
+                Click(QUESTIONS);
             }catch (Exception e){
                 Console.WriteLine("Error occured in openQuestionsPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked QUESTIONS page element");
-            return new QuestionsPage(driver, user);
+            return new QuestionsPage(Driver, user);
         }
-        public BranchPage openBranchPage(string user){
-            _user = user;
+        public BranchPage OpenBranchPage(string user){
+            USER = user;
             try{
-                click(BRANCH);
+                Click(BRANCH);
             }catch (Exception e){
                 Console.WriteLine("Error occured in BranchPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked Branch page element");
-            return new BranchPage(driver, user);
+            return new BranchPage(Driver, user);
         }
-        public TeachersPage openTeachersPage(string user){
-            _user = user;
+        public TeachersPage OpenTeachersPage(string user){
+            USER = user;
             try{
-                click(TEACHERS);
+                Click(TEACHERS);
             }catch (Exception e){
                 Console.WriteLine("Error occured in ModeratorsPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked Moderators page element");
-            return new TeachersPage(driver, user);
+            return new TeachersPage(Driver, user);
         }
-        public AnnouncementsPage openAnnouncementsPage(string user){
-            _user = user;
+        public AnnouncementsPage OpenAnnouncementsPage(string user){
+            USER = user;
             try{
-                click(ANNOUNCEMENTS);
+                Click(ANNOUNCEMENTS);
             }catch (Exception e){
                 Console.WriteLine("Error occured in AnnouncementsPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked Announcements page element");
-            return new AnnouncementsPage(driver, user);
+            return new AnnouncementsPage(Driver, user);
         }
-        public ParentPage openParentPage(string user){
-            _user = user;
+        public ParentPage OpenParentPage(string user){
+            USER = user;
             try{
-                click(PARENTS);
+                Click(PARENTS);
             }catch (Exception e){
                 Console.WriteLine("Error occured in ParentPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked Parent page element");
-            return new ParentPage(driver, user);
+            return new ParentPage(Driver, user);
         }
-        public PollsPage openPollsPage(string user){
-            _user = user;
+        public PollsPage OpenPollsPage(string user){
+            USER = user;
             try{
-                click(POLLS);
+                Click(POLLS);
             }catch (Exception e){
                 Console.WriteLine("Error occured in openUserPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked User page element");
-            return new PollsPage(driver, user);
+            return new PollsPage(Driver, user);
         }
-        public PollQuestionsPage openPollQuestionsPage(string user){
-            _user = user;
+        public PollQuestionsPage OpenPollQuestionsPage(string user){
+            USER = user;
             try{
-                click(POLL_QUESTIONS);
+                Click(POLL_QUESTIONS);
             }catch (Exception e){
                 Console.WriteLine("Error occured in openPollQuestionsPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked User page element");
-            return new PollQuestionsPage(driver, user);
+            return new PollQuestionsPage(Driver, user);
         }
-        public TestPoolPage openTestPoolPage(string user){
-            _user = user;
+        public TestPoolPage OpenTestPoolPage(string user){
+            USER = user;
             try{
-                click(TESTS_POOL);
+                Click(TESTS_POOL);
             }catch (Exception e){
                 Console.WriteLine("Error occured in openTestPoolPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked TestPoolPage element");
-            return new TestPoolPage(driver, user);
+            return new TestPoolPage(Driver, user);
         }
-        public CatalogPage openCatalogPage(string user){
-            _user = user;
+        public CatalogPage OpenCatalogPage(string user){
+            USER = user;
             try{
-                click(CATALOG);
+                Click(CATALOG);
             }catch (Exception e){
                 Console.WriteLine("Error occured in openCatalogPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked openCatalogPage element");
-            return new CatalogPage(driver, user);
+            return new CatalogPage(Driver, user);
         }
-        public HomePage assertRoleIs(string role){
-            AssertionCustom.assertTextToBePresentInElementLocated(driver, ROLE_TEXT, role, "Element Not Found");
+        public HomePage AssertRoleIs(string role){
+            AssertionCustom.AssertTextToBePresentInElementLocated(Driver, ROLE_TEXT, role, "Element Not Found");
             Console.WriteLine("Assertion is ok. Text: " + role);
             return this;
         }
-        public HomePage clickUserName(){
-            click(USERNAME_LINK);
+        public HomePage ClickUserName(){
+            Click(USERNAME_LINK);
             return this;
         }
-        public HomePage clickRoleModal(){
-            Actions hover = new Actions(driver);
-            IWebElement elementToHover = driver.FindElement(SWITCH_TO_ROLE);
+        public HomePage ClickRoleModal(){
+            Actions hover = new Actions(Driver);
+            IWebElement elementToHover = Driver.FindElement(SWITCH_TO_ROLE);
             hover.MoveToElement(elementToHover);
             hover.Perform();
-            click(ROLE_MODAL);
+            Click(ROLE_MODAL);
             return this;
         }
-        public HomePage enterPassword(string password){
-            type(PASSWORD, password);
+        public HomePage EnterPassword(string password){
+            Type(PASSWORD, password);
             return this;
         }
-        public HomePage clickChangeButton(){
-            click(SAVE_BUTTON);
-            sleepms(3000);
+        public HomePage ClickChangeButton(){
+            Click(SAVE_BUTTON);
+            Sleepms(3000);
             return this;
         }
-        public DiscountCodesPage openDiscountCodesPage(string user){
-            _user = user;
+        public DiscountCodesPage OpenDiscountCodesPage(string user){
+            USER = user;
             try{
-                click(DISCOUNT_CODES);
+                Click(DISCOUNT_CODES);
             }catch (Exception e){
                 Console.WriteLine("Error occured in openDiscountCodesPage, user: " + user + ", Error is: " + e.Message);
             }
             Console.WriteLine(user + ": clicked openDiscountCodesPage element");
-            return new DiscountCodesPage(driver, user);
+            return new DiscountCodesPage(Driver, user);
         }
     }
 }

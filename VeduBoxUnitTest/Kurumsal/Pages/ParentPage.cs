@@ -5,155 +5,145 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VeduBoxUnitTest.Assertion;
+using VeduBoxUnitTest.Utils;
 
-namespace VeduBoxUnitTest.Kurumsal.Pages
-{
+namespace VeduBoxUnitTest.Kurumsal.Pages{
     class ParentPage : Page{
-        private static readonly By SEARCH_BOX = By.CssSelector("input[ng-model='filter.$']");
-        private static readonly By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
-        private static readonly By DELETE_USER = By.CssSelector("a[ng-click='delete(parent)']");
-        private static readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
-        private static readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private static readonly By ADD_BUTTON = By.CssSelector("button[ng-click='select(states.new, null)']");
-        private static readonly By INPUT_FIRST_NAME = By.CssSelector("input[ng-model='parent.firstName']");
-        private static readonly By INPUT_LAST_NAME = By.CssSelector("input[ng-model='parent.lastName']");
-        private static readonly By INPUT_EMAIL = By.CssSelector("input[ng-model='parent.email']");
-        private static readonly By INPUT_USER_NAME = By.CssSelector("input[ng-model='parent.userName']");
-        private static readonly By INPUT_PASSWORD = By.CssSelector("input[ng-model='parent.password']");
-        private static readonly By CHECK_GDPR = By.CssSelector("input[ng-model='parent.gdprAccepted']");
-        private static readonly By SAVE_BUTTON = By.CssSelector("button[type='submit'][form='parentForm']");
-        private static readonly By ROLES_BUTTON = By.CssSelector("a[ng-click='editRolesForUser(parent)']");
-        private static readonly By ROLES_SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div/div/div[2]/button[1]");
-        private static readonly By ADD_ANOTHER_CHILD = By.CssSelector("span[ng-click='children.push(children.length)']");
-        private static readonly By FIRST_BRANCH = By.CssSelector("select[ng-model='childrenBranchIds[child]']");
-        private static readonly By FIRST_STUDENTS = By.CssSelector("select[ng-model='childrenIds[child]']");
-        private static readonly By SECOND_BRANCH = By.XPath("(//select[@ng-model='childrenBranchIds[child]'])[2]");
-        private static readonly By SECOND_STUDENTS = By.XPath("(//select[@ng-model='childrenIds[child]'])[2]");
-        private static readonly By GENERATE = By.CssSelector("button[ng-click='generateRandomPassword()']");
 
+        private readonly By INPUT_SEARCH = By.CssSelector("input[ng-model='filter.$']");
+        private readonly By BUTTON_THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
+        private readonly By A_DELETE_USER = By.CssSelector("a[ng-click='delete(parent)']");
+        private readonly By ALERT_ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
+        private readonly By ALERT_SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private readonly By BUTTON_ADD = By.CssSelector("button[ng-click='select(states.new, null)']");
+        private readonly By INPUT_FIRST_NAME = By.CssSelector("input[ng-model='parent.firstName']");
+        private readonly By INPUT_LAST_NAME = By.CssSelector("input[ng-model='parent.lastName']");
+        private readonly By INPUT_EMAIL = By.CssSelector("input[ng-model='parent.email']");
+        private readonly By INPUT_USER_NAME = By.CssSelector("input[ng-model='parent.userName']");
+        private readonly By INPUT_PASSWORD = By.CssSelector("input[ng-model='parent.password']");
+        private readonly By CHECK_GDPR = By.CssSelector("input[ng-model='parent.gdprAccepted']");
+        private readonly By BUTTON_SAVE = By.CssSelector("button[type='submit'][form='parentForm']");
+        private readonly By BUTTON_ROLES = By.CssSelector("a[ng-click='editRolesForUser(parent)']");
+        private readonly By BUTTON_ROLES_SAVE = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div/div/div[2]/button[1]");
+        private readonly By SPAN_ADD_ANOTHER_CHILD = By.CssSelector("span[ng-click='children.push(children.length)']");
+        private readonly By SELECT_FIRST_BRANCH = By.CssSelector("select[ng-model='childrenBranchIds[child]']");
+        private readonly By SELECT_FIRST_STUDENTS = By.CssSelector("select[ng-model='childrenIds[child]']");
+        private readonly By SELECT_SECOND_BRANCH = By.XPath("(//select[@ng-model='childrenBranchIds[child]'])[2]");
+        private readonly By SELECT_SECOND_STUDENTS = By.XPath("(//select[@ng-model='childrenIds[child]'])[2]");
+        private readonly By BUTTON_GENERATE = By.CssSelector("button[ng-click='generateRandomPassword()']");
 
-        private static string _user;
+        private string USER;
         public ParentPage(IWebDriver wd, string user) : base(wd){
-            _user = user;
+            USER = user;
         }
-        public ParentPage searchNewlyAddedParent(string name){
-            type(SEARCH_BOX, name);
-            sleepms(1000);
+        public ParentPage SearchNewlyAddedParent(string name){
+            Type(INPUT_SEARCH, name);
+            Sleepms(1000);
             return this;
         }
-        public ParentPage searchNewlyAddedParentAndDeleteIt(string name){
-            searchNewlyAddedParent(name);
+        public ParentPage SearchNewlyAddedParentAndDeleteIt(string name){
+            SearchNewlyAddedParent(name);
             try{
-                click3Points();
+                Click3Points();
             }catch (Exception e){
                 Console.WriteLine("Error while clicking 3dots. Looks like there is no record. Returning null." + e.Message);
                 return null;
             }
-            clickDeleteButton();
-            clickAreUSure();
-            assert();
+            ClickDeleteButton();
+            ClickAreUSure();
+            Assert();
             return this;
         }
-        public ParentPage click3Points(){
-            click(THREE_POINTS);
+        public ParentPage Click3Points(){
+            Click(BUTTON_THREE_POINTS);
             return this;
         }
-        public ParentPage clickDeleteButton(){
-            click(DELETE_USER);
+        public ParentPage ClickDeleteButton(){
+            Click(A_DELETE_USER);
             return this;
         }
-        public ParentPage clickAreUSure(){
-            click(ARE_U_SURE_OK);
+        public ParentPage ClickAreUSure(){
+            Click(ALERT_ARE_U_SURE_OK);
             return this;
         }
-        public ParentPage assert(){
-            AssertionCustom.assertElementVisible("Element Not Found", driver, SUCCESS);
+        public ParentPage Assert(){
+            AssertionCustom.AssertElementVisible("Element Not Found", Driver, ALERT_SUCCESS);
             return this;
         }
-        public ParentPage clickAddButton(){
-            click(ADD_BUTTON);
+        public ParentPage ClickAddButton(){
+            Click(BUTTON_ADD);
             return this;
         }
-        public ParentPage enterFirstName(string first_name){
-            type(INPUT_FIRST_NAME, first_name);
+        public ParentPage EnterFirstName(string firstName){
+            Type(INPUT_FIRST_NAME, firstName);
             return this;
         }
-        public ParentPage enterLastName(string last_name){
-            type(INPUT_LAST_NAME, last_name);
+        public ParentPage EnterLastName(string lastName){
+            Type(INPUT_LAST_NAME, lastName);
             return this;
         }
-        public ParentPage clickAnotherChildButton()
-        {
-            click(ADD_ANOTHER_CHILD);
+        public ParentPage ClickAnotherChildButton() {
+            Click(SPAN_ADD_ANOTHER_CHILD);
             return this;
         }
-
-        public ParentPage selectFirstBranchName(string firstBranchName)
-        {
-            selectDropDown(FIRST_BRANCH, firstBranchName);
+        public ParentPage SelectFirstBranchName(string firstBranchName) {
+            SelectDropDown(SELECT_FIRST_BRANCH, firstBranchName);
             return this;
         }
-
-        public ParentPage selectFirstStudents(string firstStudents)
-        {
-            selectDropDown(FIRST_STUDENTS, firstStudents);
+        public ParentPage SelectFirstStudents(string firstStudents) {
+            SelectDropDown(SELECT_FIRST_STUDENTS, firstStudents);
             return this;
         }
-
-        public ParentPage selectSecondBranchName(string secondBranchName)
-        {
-            selectDropDown(SECOND_BRANCH, secondBranchName);
+        public ParentPage SelectSecondBranchName(string secondBranchName) {
+            SelectDropDown(SELECT_SECOND_BRANCH, secondBranchName);
             return this;
         }
-
-        public ParentPage selectSecondStudents(string secondStudents)
-        {
-            selectDropDown(SECOND_STUDENTS, secondStudents);
+        public ParentPage SelectSecondStudents(string secondStudents) {
+            SelectDropDown(SELECT_SECOND_STUDENTS, secondStudents);
             return this;
         }
-        public ParentPage enterEmail(string email){
-            type(INPUT_EMAIL, email);
+        public ParentPage EnterEmail(string email){
+            Type(INPUT_EMAIL, email);
             return this;
         }
-        public ParentPage enterUserName(string user_name){
-            type(INPUT_USER_NAME, user_name);
+        public ParentPage EnterUserName(string userName){
+            Type(INPUT_USER_NAME, userName);
             return this;
         }
-        public ParentPage enterPassword(string password){
-            type(INPUT_PASSWORD, password);
+        public ParentPage EnterPassword(string password){
+            Type(INPUT_PASSWORD, password);
             return this;
         }
-        public ParentPage clickGenerate()
-        {
-            click(GENERATE);
+        public ParentPage ClickGenerate() {
+            Click(BUTTON_GENERATE);
             return this;
         }
-        public ParentPage selectGPDR(){
-            if (isSelected(CHECK_GDPR) == false)
-                click(CHECK_GDPR);
+        public ParentPage SelectGpdr(){
+            if (IsSelected(CHECK_GDPR) == false)
+                Click(CHECK_GDPR);
             return this;
         }
-        public ParentPage clickSaveButton(){
-            click(SAVE_BUTTON);
+        public ParentPage ClickSaveButton(){
+            Click(BUTTON_SAVE);
             return this;
         }
 
-        public ParentPage clickRolesInThreePoints(){
-            click(ROLES_BUTTON);
+        public ParentPage ClickRolesInThreePoints(){
+            Click(BUTTON_ROLES);
             return this;
         }
-        public ParentPage selectRole(string role){
+        public ParentPage SelectRole(string role){
             int id = 1;
-            if (role == "Admin") id = 1;
-            if (role == "Manager") id = 2;
-            if (role == "Parent") id = 3;
-            if (role == "User") id = 4;
-            if (role == "Instructor") id = 5;
-            click(By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div/div/div[1]/div[1]/div[" + id + "]/label/input"));
+            if (role == Constants.Roles.Admin.ToString()) id = 1;
+            if (role == Constants.Roles.Manager.ToString()) id = 2;
+            if (role == Constants.Roles.Parent.ToString()) id = 3;
+            if (role == Constants.Roles.Student.ToString()) id = 4;
+            if (role == Constants.Roles.Instructor.ToString()) id = 5;
+            Click(By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div/div/div[1]/div[1]/div[" + id + "]/label/input"));
             return this;
         }
-        public ParentPage clickRoleSaveButton(){
-            click(ROLES_SAVE_BUTTON);
+        public ParentPage ClickRoleSaveButton(){
+            Click(BUTTON_ROLES_SAVE);
             return this;
         }
     }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VeduBoxUnitTest.Assertion;
+using VeduBoxUnitTest.Utils;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class StudentsPage : Page{
@@ -44,72 +45,72 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             JS = (IJavaScriptExecutor)wd;
         }
         public StudentsPage AddNew(){
-            if(USER == "admin"){
-                click(BUTTON_ADMIN_ADD_NEW);
-            }else if(USER == "instructor"){
-                click(BUTTON_INSTRUCTOR_ADD_NEW);
+            if(USER == Constants.Roles.Admin.ToString()){
+                Click(BUTTON_ADMIN_ADD_NEW);
+            }else if(USER == Constants.Roles.Instructor.ToString()){
+                Click(BUTTON_INSTRUCTOR_ADD_NEW);
             }
             return this;
         }
         public StudentsPage SetFirstName(string firstName){
-            type(INPUT_FIRSTNAME, firstName);
+            Type(INPUT_FIRSTNAME, firstName);
             return this;
         }
         public StudentsPage SetLastName(string lastName){
-            type(INPUT_LASTNAME, lastName);
+            Type(INPUT_LASTNAME, lastName);
             return this;
         }
         public StudentsPage SelectBranch(string branchName){
-            selectDropDown(SELECT_BRANCH, branchName);
+            SelectDropDown(SELECT_BRANCH, branchName);
             return this;
         }
         public StudentsPage SetEmail(string email){
-            type(INPUT_EMAIL, email);
+            Type(INPUT_EMAIL, email);
             return this;
         }
         public StudentsPage SetUserName(string userName){
-            type(INPUT_USER_NAME, userName);
+            Type(INPUT_USER_NAME, userName);
             return this;
         }
         public StudentsPage SetPassword(string password){
-            type(INPUT_PASSWORD, password);
+            Type(INPUT_PASSWORD, password);
             return this;
         }
         public StudentsPage SetCatalog(params string[] catalogNames){
             foreach (string catalogName in catalogNames){
-                click(By.XPath("//a[contains(text(), '" + catalogName + "')]"));
+                Click(By.XPath("//a[contains(text(), '" + catalogName + "')]"));
             }
             return this;
         }
         public StudentsPage SetDescription(string description){
-            type(TEXTAREA_DESCRIPTION, description);
+            Type(TEXTAREA_DESCRIPTION, description);
             return this;
         }
         public StudentsPage SetEmailConfirmed(){
-            if (!isSelected(INPUT_EMAIL_CONFIRMED))
-                click(INPUT_EMAIL_CONFIRMED);
+            if (!IsSelected(INPUT_EMAIL_CONFIRMED))
+                Click(INPUT_EMAIL_CONFIRMED);
             else
                 Console.WriteLine("Already EMAIL_CONFIRMED is selected");
             return this;
         }
         public StudentsPage SetGpdrPolicy(){
-            if (!isSelected(INPUT_GDPR_POLICY))
-                click(INPUT_GDPR_POLICY);
+            if (!IsSelected(INPUT_GDPR_POLICY))
+                Click(INPUT_GDPR_POLICY);
             else
                 Console.WriteLine("Already GDPR_POLICY is selected");
             return this;
         }
         public StudentsPage Submit(){
-            click(BUTTON_SUBMIT);
+            Click(BUTTON_SUBMIT);
             return this;
         }
         public StudentsPage Assert(){
-            AssertionCustom.assertElementVisible("Element Not Found", driver, ALERT_SUCCESS);
+            AssertionCustom.AssertElementVisible("Element Not Found", Driver, ALERT_SUCCESS);
             return this;
         }
         public StudentsPage SearchNewlyAddedUserByEmail(string email){
-            type(INPUT_SEARCH_BOX, email);
-            sleepms(1000);
+            Type(INPUT_SEARCH_BOX, email);
+            Sleepms(1000);
             return this;
         }
         public StudentsPage SearchNewlyAddedUserByEmailAndDeleteIt(string email){
@@ -126,55 +127,55 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             return this;
         }
         public StudentsPage Click3Points(){
-            click(BUTTON_THREE_POINTS);
+            Click(BUTTON_THREE_POINTS);
             return this;
         }
         public StudentsPage ClickDeleteUserButton(){
-            click(A_DELETE_USER);
+            Click(A_DELETE_USER);
             return this;
         }
         public StudentsPage ClickAreUSure(){
-            click(ALERT_ARE_U_SURE_OK);
+            Click(ALERT_ARE_U_SURE_OK);
             return this;
         }
         public StudentsPage ClickBatchButton(){
-            click(BUTTON_BATCH);
+            Click(BUTTON_BATCH);
             return this;
         }
         public StudentsPage ClickBatchCreateButton(){
-            click(BUTTON_BATCH_CREATE);
+            Click(BUTTON_BATCH_CREATE);
             return this;
         }
         public StudentsPage EnterExcelFile(){
             JS.ExecuteScript("document.getElementById('html_btn').style.display = 'block';");
-            type(
+            Type(
                 INPUT_BATCH_FILE,
                 Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Docs\\student_batch_excel.xlsx"))
             );
             return this;
         }
         public StudentsPage SelectBranchBatchCreate(string branch){
-            selectDropDown(SELECT_BRANCH_BATCH_CREATE, branch);
+            SelectDropDown(SELECT_BRANCH_BATCH_CREATE, branch);
             return this;
         }
         public StudentsPage SetCatalogBatchCreate(string catalog){
-            selectDropDown(SELECT_CATALOG_SUBSCRIPTION_BATCH_CREATE, catalog);
+            SelectDropDown(SELECT_CATALOG_SUBSCRIPTION_BATCH_CREATE, catalog);
             return this;
         }
         public StudentsPage ClickAddCatalogButtonBatchCreate(){
-            click(BUTTON_CATALOG_ADD_BATCH_CREATE);
+            Click(BUTTON_CATALOG_ADD_BATCH_CREATE);
             return this;
         }
         public StudentsPage ClickUploadButtonBatchCreate(){
-            click(BUTTON_UPLOAD_BATCH_CREATE);
+            Click(BUTTON_UPLOAD_BATCH_CREATE);
             return this;
         }
         public StudentsPage ClickAcceptButtonBatchCreate(){
-            click(BUTTON_ACCEPT_BATCH_CREATE);
+            Click(BUTTON_ACCEPT_BATCH_CREATE);
             return this;
         }
         public StudentsPage SetGpdrPolicyBatchCreate(){
-            click(CHECKBOX_ACCEPT_GPDR_BATCH_CREATE);
+            Click(CHECKBOX_ACCEPT_GPDR_BATCH_CREATE);
             return this;
         }
         

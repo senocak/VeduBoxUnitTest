@@ -9,55 +9,54 @@ using VeduBoxUnitTest.Assertion;
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class WebinarPage : Page{
 
-        private static string _user;
-        public static By FIRST_NAME = By.CssSelector("input[ng-model='account.fname']");
-        public static By LAST_NAME = By.CssSelector("input[ng-model='account.lname']");
-        public static By PHONE_NUMBER = By.CssSelector("input[ng-model='account.phoneNumber']");
-        public static By EMAIL = By.CssSelector("input[ng-model='account.email']");
-        public static By GPDR = By.CssSelector("input[ng-model='isGdprRead']");
-        public static By IS_TERM = By.CssSelector("input[ng-model='isTermRead']");
-        public static By CREATE_ACCOUNT = By.CssSelector("button[ng-click='submit()']");
+        private string USER;
+        private readonly By INPUT_FIRST_NAME = By.CssSelector("input[ng-model='account.fname']");
+        private readonly By INPUT_LAST_NAME = By.CssSelector("input[ng-model='account.lname']");
+        private readonly By INPUT_PHONE_NUMBER = By.CssSelector("input[ng-model='account.phoneNumber']");
+        private readonly By INPUT_EMAIL = By.CssSelector("input[ng-model='account.email']");
+        private readonly By CHECK_GPDR = By.CssSelector("input[ng-model='isGdprRead']");
+        private readonly By CHECK_IS_TERM = By.CssSelector("input[ng-model='isTermRead']");
+        private readonly By BUTTON_CREATE_ACCOUNT = By.CssSelector("button[ng-click='submit()']");
         
         public WebinarPage(IWebDriver wd, string user) : base(wd){
-            _user = user;
+            USER = user;
         }
-        public WebinarPage enterFirstName(String username){
-            type(FIRST_NAME, username);
+        public WebinarPage EnterFirstName(String username){
+            Type(INPUT_FIRST_NAME, username);
             return this;
         }
-        public WebinarPage enterLastName(String name){
-            type(LAST_NAME, name);
+        public WebinarPage EnterLastName(String name){
+            Type(INPUT_LAST_NAME, name);
             return this;
         }
-        public WebinarPage enterPhoneNumber(String number){
-            type(PHONE_NUMBER, number);
+        public WebinarPage EnterPhoneNumber(String number){
+            Type(INPUT_PHONE_NUMBER, number);
             return this;
         }
-        public WebinarPage enterEmail(String mail){
-            type(EMAIL, mail);
+        public WebinarPage EnterEmail(String mail){
+            Type(INPUT_EMAIL, mail);
             return this;
         }
-        public WebinarPage setGPDRPolicy(){
-            if (!isSelected(GPDR))
-                click(GPDR);
+        public WebinarPage SetGpdrPolicy(){
+            if (!IsSelected(CHECK_GPDR))
+                Click(CHECK_GPDR);
             else
                 Console.WriteLine("Already GDPR_POLICY is selected");
             return this;
         }
-        public WebinarPage setAGREEPolicy(){
-            if (!isSelected(IS_TERM))
-                click(IS_TERM);
+        public WebinarPage SetAgreePolicy(){
+            if (!IsSelected(CHECK_IS_TERM))
+                Click(CHECK_IS_TERM);
             else
                 Console.WriteLine("Already IS_TERM is selected");
             return this;
         }
-        public WebinarPage clickCreateAccount(){
-            click(CREATE_ACCOUNT);
+        public WebinarPage ClickCreateAccount(){
+            Click(BUTTON_CREATE_ACCOUNT);
             return this;
         }
-
-        public WebinarPage assertEmailSentText(){
-            AssertionCustom.assertElementVisible("Element Not Found", driver, By.XPath("//*[contains(text(), 'The email sent')]"));
+        public WebinarPage AssertEmailSentText(){
+            AssertionCustom.AssertElementVisible("Element Not Found", Driver, By.XPath("//*[contains(text(), 'The email sent')]"));
             return this;
         }
     }

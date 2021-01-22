@@ -2,12 +2,12 @@
 
 Scenario: 1_admin_add_live
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks live is exist
 	Given admin adds new live with
 		| Key               | Value                  |
 		| course_name       | defaultCourse1         |
-		| meetingType       | pro                    |
+		| meetingType       | Pro                    |
 		| title             | deneme                 |
 		| timezone          | Turkey Time (GMT+3:00) |
 		| duration          | 120                    |
@@ -17,7 +17,7 @@ Scenario: 1_admin_add_live
 
 Scenario: 2_admin_add_user
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks user is exist
 		| Key   | Value                 |
 		| email | admin_deneme@anil.com |
@@ -38,7 +38,7 @@ Scenario: 2_admin_add_user
 
 Scenario: 3_admin_create_course
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks course is exist
 		| Key  | Value               |
 		| name | anil_vedubox_course |
@@ -56,7 +56,7 @@ Scenario: 3_admin_create_course
 
 Scenario: 4_admin_earnings_payment_control
 	Given Open Kurumsal Login Page
-	Given Login as "student"
+	Given Login as "Student"
 	Then student purchase course
 		| Key        | Value                         |
 		| entry      | Default Course1               |
@@ -71,14 +71,14 @@ Scenario: 4_admin_earnings_payment_control
 		| cardDate   | 11/22                         |
 		| cardCVC    | 123                           |
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Then Verify earnings payment
 		| Key  | Value     |
 		| name | Ahmet1234 |
 
 Scenario: 5_admin_add_role
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks instructor is exist
 		| Key  | Value                             |
 		| name | anil_vedubox_instructor_firstname |
@@ -101,7 +101,7 @@ Scenario: 5_admin_add_role
 	
 Scenario: 5_1_admin_add_branch
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks branch is exist
 		| Key   | Value               |
 		| name  | anil_vedubox_branch |
@@ -115,7 +115,7 @@ Scenario: 5_1_admin_add_branch
 
 Scenario: 6_admin_add_announcement
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks announcement is exist
 		| Key  | Value                     |
 		| name | anil_vedubox_announcement |
@@ -129,7 +129,7 @@ Scenario: 6_admin_add_announcement
 	 
 Scenario: 7_admin_add_poll_question_multiple_choice
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given Admin checks poll question is exist
 		| Key      | Value                                      |
 		| question | anıl_vedubox_poll_questıon_multıple_choıce |
@@ -146,7 +146,7 @@ Scenario: 7_admin_add_poll_question_multiple_choice
 		 
 Scenario: 8_admin_add_poll_question_open_ended
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given Admin checks poll question is exist
 		| Key      | Value                                 |
 		| question | anıl_vedubox_poll_questıon_open_ended |
@@ -159,7 +159,7 @@ Scenario: 8_admin_add_poll_question_open_ended
 		 
 Scenario: 9_admin_add_poll_question_true_false
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given Admin checks poll question is exist
 		| Key      | Value                                 |
 		| question | anıl_vedubox_poll_questıon_true_false |
@@ -172,7 +172,7 @@ Scenario: 9_admin_add_poll_question_true_false
 
 Scenario: 10_admin_add_poll
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given Admin checks poll is exist
 		| Key  | Value             |
 		| Name | New Anket by Anil |
@@ -189,7 +189,7 @@ Scenario: 10_admin_add_poll
 
 Scenario: 11_admin_add_instructor
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks instructor is exist
 		| Key  | Value                             |
 		| name | anil_vedubox_instructor_firstname |
@@ -208,7 +208,7 @@ Scenario: 11_admin_add_instructor
 
 Scenario: 12_admin_add_admin
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks admin is exist
 		| Key  | Value                             |
 		| name | anil_vedubox_admin_firstname      |
@@ -225,7 +225,7 @@ Scenario: 12_admin_add_admin
 
 Scenario: 13_admin_add_manager
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks manager is exist
 		| Key  | Value                          |
 		| name | anil_vedubox_manager_firstname |
@@ -243,7 +243,7 @@ Scenario: 13_admin_add_manager
 
 Scenario: 14_admin_addes_parent
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks parent is exist
 		| Key   | Value           |
 		| email | anil@parent.com |
@@ -264,7 +264,7 @@ Scenario: 14_admin_addes_parent
 	
 Scenario: 15_admin_switch_to_role
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks parent is exist
 		| Key   | Value           |
 		| email | anil@parent.com |
@@ -284,19 +284,19 @@ Scenario: 15_admin_switch_to_role
 		| email | anil@parent.com |
 		| role1 | Admin           |
 	Given Open Kurumsal Login Page
-	Given Login as "custom@anil_parent_com:anil_parent_com"
+	Given Login as "Custom@anil_parent_com:anil_parent_com"
 	When custom parent switch to admin
 		| Key      | Value           |
 		| password | anil_parent_com |
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Then admin deletes added parent
 		| Key   | Value           |
 		| email | anil@parent.com |
 
 Scenario: 17_admin_add_catalog_subscription_type_permanent
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks catalog is exist
 		| Key   | Value               |
 		| name  | anil_vedubox_catalog|
@@ -324,7 +324,7 @@ Scenario: 17_admin_add_catalog_subscription_type_permanent
 
 Scenario: 18_admin_add_catalog_subscription_type_temporary
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks catalog is exist
 		| Key   | Value               |
 		| name  | anil_vedubox_catalog|
@@ -353,12 +353,12 @@ Scenario: 18_admin_add_catalog_subscription_type_temporary
 
 Scenario: 19_admin_live_query
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks live is exist
 	Given admin adds new live with
 		| Key               | Value                  |
 		| course_name       | defaultCourse1         |
-		| meetingType       | pro                    |
+		| meetingType       | Pro                    |
 		| title             | deneme                 |
 		| timezone          | Turkey Time (GMT+3:00) |
 		| duration          | 120                    |
@@ -375,7 +375,7 @@ Scenario: 19_admin_live_query
 
 Scenario: 20_admin_add_content_document
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks course is exist
 		| Key  | Value               |
 		| name | anil_vedubox_course |
@@ -399,7 +399,7 @@ Scenario: 20_admin_add_content_document
 
 Scenario: 21_admin_add_content_video_with_dekstop
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks course is exist
 		| Key  | Value               |
 		| name | anil_vedubox_course |
@@ -423,7 +423,7 @@ Scenario: 21_admin_add_content_video_with_dekstop
 
 Scenario: 22_admin_add_content_video_with_vimeo_id
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks course is exist
 		| Key  | Value               |
 		| name | anil_vedubox_course |
@@ -448,7 +448,7 @@ Scenario: 22_admin_add_content_video_with_vimeo_id
 
 Scenario: 23_admin_add_content_link
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks course is exist
 		| Key  | Value               |
 		| name | anil_vedubox_course |
@@ -473,7 +473,7 @@ Scenario: 23_admin_add_content_link
 
 Scenario: 24_admin_add_content_embed
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks course is exist
 		| Key  | Value               |
 		| name | anil_vedubox_course |
@@ -498,7 +498,7 @@ Scenario: 24_admin_add_content_embed
 
 Scenario: 26_admin_add_content_text
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks course is exist
 		| Key  | Value               |
 		| name | anil_vedubox_course |
@@ -522,7 +522,7 @@ Scenario: 26_admin_add_content_text
 
 Scenario: 27_admin_disccount_codes_add_is_limited
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks discount code is exist
 		| Key  | Value  |
 		| name | code12 |
@@ -539,7 +539,7 @@ Scenario: 27_admin_disccount_codes_add_is_limited
 
 Scenario: 28_admin_disccount_codes_add_is_not_limited
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks discount code is exist
 		| Key  | Value  |
 		| name | code12 |
@@ -555,7 +555,7 @@ Scenario: 28_admin_disccount_codes_add_is_not_limited
 
 Scenario: 30_admin_add_student_batch_create
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks user is exist
 		| Key   | Value                 |
 		| email | admin_deneme@anil.com |
@@ -571,7 +571,7 @@ Scenario: 30_admin_add_student_batch_create
 
 Scenario: 0_admin_add_catalog
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks catalog is exist
 		| Key   | Value               |
 		| name  | anil_vedubox_catalog|

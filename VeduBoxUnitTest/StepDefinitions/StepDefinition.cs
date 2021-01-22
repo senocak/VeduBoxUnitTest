@@ -9,25 +9,24 @@ namespace VeduBoxUnitTest.StepDefinitions{
     [Binding]
     public class StepDefinitionsCommon{
         private ScenarioContext _scenarioContext;
-        private static readonly int NEXT_YEAR = 2;
-        private static readonly Months NEXT_MONTH = Months.April;
-        private static readonly int NEXT_DAY = 23;
+        private readonly int NEXT_YEAR = 2;
+        private readonly int NEXT_DAY = 23;
 
         public StepDefinitionsCommon(ScenarioContext scenarioContext){
             _scenarioContext = scenarioContext;
         }
-        public IWebDriver driver;
+        public static IWebDriver Driver;
         [BeforeScenario]
         public void BeforeWebScenarioStudent(){
             ChromeOptions options = new ChromeOptions();
             options.AddArguments("--lang=en");
-            driver = new ChromeDriver(options);
-            driver.Manage().Window.Maximize();
-            driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
+            Driver = new ChromeDriver(options);
+            Driver.Manage().Window.Maximize();
+            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
         }
         [AfterScenario]
         [Obsolete]
-        public void after(){
+        public void After(){
             if (_scenarioContext.TestError != null){
                 //WebBrowser.Driver.CaptureScreenShot(_scenarioContext.ScenarioInfo.Title);
                 Console.WriteLine("Title:" + ScenarioContext.Current.ScenarioInfo.Title + " is failed.");
@@ -36,91 +35,97 @@ namespace VeduBoxUnitTest.StepDefinitions{
         }
         [Given(@"Open Kurumsal Login Page")]
         public void GivenOpenKurumsalLoginPage(){
-            new OpenURL(driver).openPage();
+            new OpenUrl(Driver).OpenPage();
         }
         [Given(@"Login as ""(.*)""")]
-        public void WhenLoginAs(string user){
-            if (user == "admin"){
-                new LoginPage(driver).enterUsername("defaultadmin").enterPassword("12345").submit();
-            }else if (user == "instructor"){
-                new LoginPage(driver).enterUsername("defaultinstructor").enterPassword("12345").submit();
-            }else if (user == "student"){
-                new LoginPage(driver).enterUsername("defaultstudent").enterPassword("12345").submit();
-            }else if (user == "veli"){
-                new LoginPage(driver).enterUsername("defaultparent").enterPassword("12345").submit();
+        public void WhenLoginAs(string user) {
+            var username = "";
+            var password = "";
+            if (user == Constants.Roles.Admin.ToString()){
+                username = "defaultadmin";
+                password = "12345";
+            }else if (user == Constants.Roles.Instructor.ToString()){
+                username = "defaultinstructor";
+                password = "12345";
+            }else if (user == Constants.Roles.Student.ToString()){
+                username = "defaultstudent";
+                password = "12345";
+            }else if (user == Constants.Roles.Parent.ToString()){
+                username = "defaultparent";
+                password = "12345";
             }else{
                 string[] words = user.Split('@');
-                if(words[0] == "custom"){
+                if(words[0] == Constants.Roles.Custom.ToString()){
                     string[] infos = words[1].Split(':');
                     if (infos[0] == null || infos[0] == "" || infos[1] == null || infos[1] == ""){
-                        throw new Exception("Kullanıcı Belirtmek Zorundasınız");
+                        throw new Exception("You have to define a user.");
                     }
-                    new LoginPage(driver).enterUsername(infos[0]).enterPassword(infos[1]).submit();
-                }
-                else{
-                    throw new Exception("Kullanıcı Belirtmek Zorundasınız");
+                    username = infos[0];
+                    password = infos[1];
+                }else{
+                    throw new Exception("Unrecognized user format.");
                 }
             }
+            new LoginPage(Driver).EnterUsername(username).EnterPassword(password).Submit();
         }
         [Given(@"admin checks live is exist")]
         public void GivenAdminChecksLiveİsExist(){
-            new HomePage(driver)
-                .openLIVEpage("admin")
-                .goDate(Utils.Dates.getNextYear(NEXT_YEAR), Utils.Dates.getNextMonth(NEXT_MONTH), Utils.Dates.getNextDay(NEXT_DAY))
-                .checkLiveIsExist();
+            new HomePage(Driver)
+                .OpenLivePage(Constants.Roles.Admin.ToString())
+                .GoDate(Utils.Dates.GetNextYear(NEXT_YEAR), Utils.Dates.GetNextMonth(Months.April), Utils.Dates.GetNextDay(NEXT_DAY))
+                .CheckLiveIsExist();
         }
         [Given(@"admin adds new live with")]
-        public void ThenAddNewLIVEWith(Table table){
+        public void ThenAddNewLiveWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openLIVEpage("admin")
+            new HomePage(Driver)
+                .OpenLivePage(Constants.Roles.Admin.ToString())
                 .AddNew()
                 .SelectCourse(dictionary["course_name"])
                 .SubmitSelectedCourse()
-                .setDate(Utils.Dates.getNextYear(NEXT_YEAR), Utils.Dates.getNextMonth(NEXT_MONTH), Utils.Dates.getNextDay(NEXT_DAY))
-                .selectMeetingType(dictionary["meetingType"])
-                .enterTitle(dictionary["title"])
-                .setHour()
-                .setTimezone(dictionary["timezone"])
-                .setDuration(Int32.Parse(dictionary["duration"]))
-                .setRegistrationLimit(Int32.Parse(dictionary["registrationLimit"]))
-                .setDescription(dictionary["description"])
+                .SetDate(Utils.Dates.GetNextYear(NEXT_YEAR), Utils.Dates.GetNextMonth(Months.April), Utils.Dates.GetNextDay(NEXT_DAY))
+                .SelectMeetingType(dictionary["meetingType"])
+                .EnterTitle(dictionary["title"])
+                .SetHour()
+                .SetTimezone(dictionary["timezone"])
+                .SetDuration(Int32.Parse(dictionary["duration"]))
+                .SetRegistrationLimit(Int32.Parse(dictionary["registrationLimit"]))
+                .SetDescription(dictionary["description"])
                 //.setTrainer("test eğitmen")
-                .submit()
-                .assertLive();
+                .Submit()
+                .AssertLive();
         }
         [Then(@"admin query live")]
-        public void adminQueryAddedLive(Table table)
-        {
+        public void AdminQueryAddedLive(Table table) {
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openLIVEpage("admin")
-                .clickQueryButton()
-                .setQueryStartDate(Utils.Dates.getNextYear(NEXT_YEAR), Utils.Dates.getNextMonth(NEXT_MONTH), Utils.Dates.getNextDay(NEXT_DAY))
-                .setQueryEndDate(Utils.Dates.getNextYear(NEXT_YEAR+1), Utils.Dates.getNextMonth(NEXT_MONTH), Utils.Dates.getNextDay(NEXT_DAY))
-                .setQueryStartHour(dictionary["startHourParam"])
-                .setQueryStartMinute(dictionary["startMinuteParam"])
-                .setQueryEndHour(dictionary["endHourParam"])
-                .setQueryEndMinute(dictionary["endMinuteParam"])
-                .clickSearch()
-                .verifyCourseName(dictionary["courseName"])
-                .clickCloseButton();
+            new HomePage(Driver)
+                .OpenLivePage(Constants.Roles.Admin.ToString())
+                .ClickQueryButton()
+                .SetQueryStartDate(Utils.Dates.GetNextYear(NEXT_YEAR), Utils.Dates.GetNextMonth(Months.April), Utils.Dates.GetNextDay(NEXT_DAY))
+                .SetQueryEndDate(Utils.Dates.GetNextYear(NEXT_YEAR+1), Utils.Dates.GetNextMonth(Months.April), Utils.Dates.GetNextDay(NEXT_DAY))
+                .SetQueryStartHour(dictionary["startHourParam"])
+                .SetQueryStartMinute(dictionary["startMinuteParam"])
+                .SetQueryEndHour(dictionary["endHourParam"])
+                .SetQueryEndMinute(dictionary["endMinuteParam"])
+                .ClickSearch()
+                .VerifyCourseName(dictionary["courseName"])
+                .ClickCloseButton();
         }
         [Then(@"admin deletes live")]
-        public void adminDeleteAddedLive(){
-            new HomePage(driver)
-                .openLIVEpage("admin")
-                .goDate(Utils.Dates.getNextYear(NEXT_YEAR), Utils.Dates.getNextMonth(NEXT_MONTH), Utils.Dates.getNextDay(NEXT_DAY))
-                .openLiveRecordDetail()
-                .clickDeleteButtonInRecordDetail()
-                .clickAreUSure()
-                .assertLive();
+        public void AdminDeleteAddedLive(){
+            new HomePage(Driver)
+                .OpenLivePage(Constants.Roles.Admin.ToString())
+                .GoDate(Utils.Dates.GetNextYear(NEXT_YEAR), Utils.Dates.GetNextMonth(Months.April), Utils.Dates.GetNextDay(NEXT_DAY))
+                .OpenLiveRecordDetail()
+                .ClickDeleteButtonInRecordDetail()
+                .ClickAreUSure()
+                .AssertLive();
         }
         [Given(@"admin adds new user with")]
-        public void adminAddsNewUserWith(Table table){
+        public void AdminAddsNewUserWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                    .openStudentsPage(dictionary["user"])
+            new HomePage(Driver)
+                    .OpenStudentsPage(dictionary["user"])
                     .AddNew()
                     .SetFirstName(dictionary["firstName"])
                     .SetLastName(dictionary["lastName"])
@@ -138,15 +143,15 @@ namespace VeduBoxUnitTest.StepDefinitions{
         [Given(@"admin checks user is exist")]
         public void GivenAdminChecksUserİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                    .openStudentsPage("admin")
+            new HomePage(Driver)
+                    .OpenStudentsPage(Constants.Roles.Admin.ToString())
                     .SearchNewlyAddedUserByEmailAndDeleteIt(dictionary["email"]);
         }
         [Then(@"Delete User")]
-        public void deleteUser(Table table){
+        public void DeleteUser(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openStudentsPage("admin")
+            new HomePage(Driver)
+                .OpenStudentsPage(Constants.Roles.Admin.ToString())
                 .SearchNewlyAddedUserByEmail(dictionary["email"])
                 .Click3Points()
                 .ClickDeleteUserButton()
@@ -154,124 +159,120 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .Assert();
         }
         [Given(@"admin adds new course with")]
-        public void addNewCourse(Table table){
+        public void AddNewCourse(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             Console.WriteLine(dictionary["category"]);
-            new HomePage(driver)
-                .openCOURSESpage("admin")
-                .addNew()
-                .setName(dictionary["name"])
-                .setTags(dictionary["tags"])
-                .setCreateCourseDescription(dictionary["description"])
-                .selectCategory(dictionary["category"])
-                .selectTeacher(dictionary["teacher"])
-                .setCatalog(dictionary["catalog"])
-                .submit()
-                .assert();
+            new HomePage(Driver)
+                .OpenCoursesPage(Constants.Roles.Admin.ToString())
+                .AddNew()
+                .SetName(dictionary["name"])
+                .SetTags(dictionary["tags"])
+                .SetCreateCourseDescription(dictionary["description"])
+                .SelectCategory(dictionary["category"])
+                .SelectTeacher(dictionary["teacher"])
+                .SetCatalog(dictionary["catalog"])
+                .Submit()
+                .Assert();
         }
 
         [Then(@"instructor deletes live")]
-        public void instructorDeleteAddedLive(){
-            new HomePage(driver)
-                .openLIVEpage("instructor")
-                .goDate()
-                .openLiveRecordDetail()
-                .clickDeleteButtonInRecordDetail()
-                .clickAreUSure()
-                .assertLive();
+        public void InstructorDeleteAddedLive(){
+            new HomePage(Driver)
+                .OpenLivePage(Constants.Roles.Instructor.ToString())
+                .GoDate()
+                .OpenLiveRecordDetail()
+                .ClickDeleteButtonInRecordDetail()
+                .ClickAreUSure()
+                .AssertLive();
         }
         [Given(@"admin checks course is exist")]
         public void GivenAdminChecksCourseİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openCOURSESpage("admin")
-                .searchNewlyAddedCouseByName(dictionary["name"])
-                .deleteAndAssertNewlyAddedCourseIfIsExist();
+            new HomePage(Driver)
+                .OpenCoursesPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedCourseByName(dictionary["name"])
+                .DeleteAndAssertNewlyAddedCourseIfIsExist();
         }
         [Then(@"admin deletes added Course")]
         public void ThenAdminDeletesAddedCourse(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openCOURSESpage("admin")
-                .searchNewlyAddedCouseByName(dictionary["name"])
-                .deleteNewlyAddedCourse()
-                .assert();
+            new HomePage(Driver)
+                .OpenCoursesPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedCourseByName(dictionary["name"])
+                .DeleteNewlyAddedCourse()
+                .Assert();
         }
         [Given(@"instructor checks live is exist")]
         public void GivenİnstructorChecksLiveİsExist(){
-            new HomePage(driver)
-                .openLIVEpage("admin")
-                .goDate()
-                .checkLiveIsExist();
+            new HomePage(Driver)
+                .OpenLivePage(Constants.Roles.Admin.ToString())
+                .GoDate()
+                .CheckLiveIsExist();
         }
         [Given(@"instructor adds new live with")]
         public void GivenİnstructorAddsNewLiveWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openLIVEpage("instructor")
+            new HomePage(Driver)
+                .OpenLivePage(Constants.Roles.Instructor.ToString())
                 .AddNew()
                 .SelectCourse(dictionary["course_name"])
                 .SubmitSelectedCourse()
-                .setDate()
-                .selectMeetingType(dictionary["meetingType"])
-                .enterTitle(dictionary["title"])
-                .setHour()
-                .setTimezone(dictionary["timezone"])
-                .setDuration(Int32.Parse(dictionary["duration"]))
-                .setRegistrationLimit(Int32.Parse(dictionary["registrationLimit"]))
-                .setDescription(dictionary["description"])
-                .submit()
-                .assertLive();
+                .SetDate()
+                .SelectMeetingType(dictionary["meetingType"])
+                .EnterTitle(dictionary["title"])
+                .SetHour()
+                .SetTimezone(dictionary["timezone"])
+                .SetDuration(Int32.Parse(dictionary["duration"]))
+                .SetRegistrationLimit(Int32.Parse(dictionary["registrationLimit"]))
+                .SetDescription(dictionary["description"])
+                .Submit()
+                .AssertLive();
         }
-
         [Then(@"instructor query live")]
-        public void instructorQueryAddedLive(Table table)
-        {
+        public void InstructorQueryAddedLive(Table table) {
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openLIVEpage("instructor")
-                .clickQueryButton()
-                .setQueryStartDate()
-                .setQueryEndDate()
-                .setQueryStartHour(dictionary["startHourParam"])
-                .setQueryStartMinute(dictionary["startMinuteParam"])
-                .setQueryEndHour(dictionary["endHourParam"])
-                .setQueryEndMinute(dictionary["endMinuteParam"])
-                .clickSearch()
-                .verifyCourseName(dictionary["courseName"])
-                .clickCloseButton();
+            new HomePage(Driver)
+                .OpenLivePage(Constants.Roles.Instructor.ToString())
+                .ClickQueryButton()
+                .SetQueryStartDate()
+                .SetQueryEndDate()
+                .SetQueryStartHour(dictionary["startHourParam"])
+                .SetQueryStartMinute(dictionary["startMinuteParam"])
+                .SetQueryEndHour(dictionary["endHourParam"])
+                .SetQueryEndMinute(dictionary["endMinuteParam"])
+                .ClickSearch()
+                .VerifyCourseName(dictionary["courseName"])
+                .ClickCloseButton();
         }
-
         [Then(@"verify start live and delete live with")]
         public void ThenVerifyStartLiveAndDeleteLiveWith(){
-            new LivePage(driver, "admin")
+            new LivePage(Driver, Constants.Roles.Admin.ToString())
                 //.goDate(YEAR, MONTH, DAY)
-                .assertStart()
-                .openLiveRecordDetail()
-                .clickDeleteButtonInRecordDetail()
-                .clickAreUSure();
+                .AssertStart()
+                .OpenLiveRecordDetail()
+                .ClickDeleteButtonInRecordDetail()
+                .ClickAreUSure();
         }
-
         [Then(@"student verify start live")]
         public void ThenStudentVerifyStartLive(){
-            new HomePage(driver)
-                .openLIVEpage("student")
-                .goDate()
-                .studentRegister()
-                .assertStart();
+            new HomePage(Driver)
+                .OpenLivePage(Constants.Roles.Student.ToString())
+                .GoDate()
+                .StudentRegister()
+                .AssertStart();
         }
         [Given(@"instructor checks student is exist")]
         public void GivenİnstructorChecksStudentİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openStudentsPage("instructor")
+            new HomePage(Driver)
+                .OpenStudentsPage(Constants.Roles.Instructor.ToString())
                 .SearchNewlyAddedUserByEmailAndDeleteIt(dictionary["email"]);
         }
         [Given(@"instructor adds new student with")]
         public void GivenİnstructorAddsNewStudentWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openStudentsPage("instructor")
+            new HomePage(Driver)
+                .OpenStudentsPage(Constants.Roles.Instructor.ToString())
                 .AddNew()
                 .SetFirstName(dictionary["firstName"])
                 .SetLastName(dictionary["lastName"])
@@ -288,7 +289,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
         [Then(@"instructor delete student")]
         public void ThenİnstructorDeleteStudent(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new StudentsPage(driver, "instructor")
+            new StudentsPage(Driver, Constants.Roles.Instructor.ToString())
                 .SearchNewlyAddedUserByEmail(dictionary["email"])
                 .Click3Points()
                 .ClickDeleteUserButton()
@@ -298,1273 +299,1269 @@ namespace VeduBoxUnitTest.StepDefinitions{
         [Given(@"instructor checks course is exist")]
         public void GivenİnstructorChecksCourseİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                    .openCOURSESpage("instructor")
-                    .searchNewlyAddedCouseByName(dictionary["name"])
-                    .deleteAndAssertNewlyAddedCourseIfIsExist();
+            new HomePage(Driver)
+                    .OpenCoursesPage(Constants.Roles.Instructor.ToString())
+                    .SearchNewlyAddedCourseByName(dictionary["name"])
+                    .DeleteAndAssertNewlyAddedCourseIfIsExist();
         }
         [Given(@"instructor adds new course with")]
         public void GivenİnstructorAddsNewCourseWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                    .openCOURSESpage("instructor")
-                    .addNew()
-                    .setName(dictionary["name"])
-                    .selectCategory(dictionary["category"])
-                    .submit()
-                    .assert();
+            new HomePage(Driver)
+                    .OpenCoursesPage(Constants.Roles.Instructor.ToString())
+                    .AddNew()
+                    .SetName(dictionary["name"])
+                    .SelectCategory(dictionary["category"])
+                    .Submit()
+                    .Assert();
         }
         [Then(@"instructor delete course")]
         public void ThenİnstructorDeleteCourse(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new CoursesPage(driver, "instructor")
-                    .searchNewlyAddedCouseByName(dictionary["name"])
-                    .deleteAndAssertNewlyAddedCourseIfIsExist();
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                    .SearchNewlyAddedCourseByName(dictionary["name"])
+                    .DeleteAndAssertNewlyAddedCourseIfIsExist();
         }
         [Given(@"instructor adds subject with")]
         public void ThenİnstructorAddsSubject(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new CoursesPage(driver, "instructor")
-                    .searchNewlyAddedCouseByName(dictionary["course"])
-                    .openCourseDetail(dictionary["course"])
-                    .openCourseUpdate()
-                    .addSubject()
-                    .enterSubjectTitle(dictionary["title"])
-                    .saveSubjectTitle()
-                    .assert()
-                    .finishEditing()
-                    .assertSubjectIsVisible(dictionary["title"]);
-            new HomePage(driver).openCOURSESpage("instructor");
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                    .SearchNewlyAddedCourseByName(dictionary["course"])
+                    .OpenCourseDetail(dictionary["course"])
+                    .OpenCourseUpdate()
+                    .AddSubject()
+                    .EnterSubjectTitle(dictionary["title"])
+                    .SaveSubjectTitle()
+                    .Assert()
+                    .FinishEditing()
+                    .AssertSubjectIsVisible(dictionary["title"]);
+            new HomePage(Driver).OpenCoursesPage(Constants.Roles.Instructor.ToString());
         }
         [Given(@"instructor adds new webinar with")]
         public void GivenİnstructorAddsNewWebinarWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openLIVEpage("instructor")
+            new HomePage(Driver)
+                .OpenLivePage(Constants.Roles.Instructor.ToString())
                 .AddNew()
                 .SelectCourse(dictionary["course_name"])
                 .SubmitSelectedCourse()
-                .setDate()
-                .selectMeetingType(dictionary["meetingType"])
-                .enterTitle(dictionary["title"])
-                .setHour()
-                .setTimezone(dictionary["timezone"])
-                .setDuration(Int32.Parse(dictionary["duration"]))
-                .setRegistrationLimit(Int32.Parse(dictionary["registrationLimit"]))
-                .setDescription(dictionary["description"])
-                .submit()
-                .assertLive();
+                .SetDate()
+                .SelectMeetingType(dictionary["meetingType"])
+                .EnterTitle(dictionary["title"])
+                .SetHour()
+                .SetTimezone(dictionary["timezone"])
+                .SetDuration(Int32.Parse(dictionary["duration"]))
+                .SetRegistrationLimit(Int32.Parse(dictionary["registrationLimit"]))
+                .SetDescription(dictionary["description"])
+                .Submit()
+                .AssertLive();
         }
         [Then(@"instructor copies webinar URL with")]
-        public void ThenİnstructorCopiesWebinarURLWith(Table table){
+        public void ThenInstructorCopiesWebinarUrlWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                    .openLIVEpage("instructor")
+            new HomePage(Driver)
+                    .OpenLivePage(Constants.Roles.Instructor.ToString())
                     //.goDate(YEAR, MONTH, DAY)
-                    .goToWebinar()
-                    .enterFirstName(dictionary["firstName"])
-                    .enterLastName(dictionary["lastName"])
-                    .enterPhoneNumber(dictionary["phone"])
-                    .enterEmail(dictionary["email"])
-                    .setAGREEPolicy()
-                    .setGPDRPolicy()
-                    .clickCreateAccount()
-                    .assertEmailSentText();
+                    .GoToWebinar()
+                    .EnterFirstName(dictionary["firstName"])
+                    .EnterLastName(dictionary["lastName"])
+                    .EnterPhoneNumber(dictionary["phone"])
+                    .EnterEmail(dictionary["email"])
+                    .SetAgreePolicy()
+                    .SetGpdrPolicy()
+                    .ClickCreateAccount()
+                    .AssertEmailSentText();
         }
         [Then(@"instructor deletes webinar with")]
         public void ThenİnstructorDeletesWebinarWith(){
-            new HomePage(driver).openLIVEpage("instructor");
-            new LivePage(driver, "instructor")
-                    .goDate()
-                    .openLiveRecordDetail()
-                    .clickDeleteButtonInRecordDetail()
-                    .clickAreUSure()
-                    .assertLive();
+            new HomePage(Driver).OpenLivePage(Constants.Roles.Instructor.ToString());
+            new LivePage(Driver, Constants.Roles.Instructor.ToString())
+                    .GoDate()
+                    .OpenLiveRecordDetail()
+                    .ClickDeleteButtonInRecordDetail()
+                    .ClickAreUSure()
+                    .AssertLive();
         }
         [Then(@"student registers live")]
         public void ThenStudentRegistersLive(){
-            new HomePage(driver)
-                .openLIVEpage("instructor")
-                .goDate()
-                .studentRegister()
-                .assertLive();
+            new HomePage(Driver)
+                .OpenLivePage(Constants.Roles.Instructor.ToString())
+                .GoDate()
+                .StudentRegister()
+                .AssertLive();
         }
         [Then(@"student takes exam")]
         public void ThenStudentTakesExam(){
-            new HomePage(driver)
-                .openExamPage("student")
-                .getFirstExam()
-                .clickStartExamButton()
-                .clickFinishExamButton()
-                .clickAreUSure()
-                .assert();
+            new HomePage(Driver)
+                .OpenExamPage(Constants.Roles.Student.ToString())
+                .GetFirstExam()
+                .ClickStartExamButton()
+                .ClickFinishExamButton()
+                .ClickAreUSure()
+                .Assert();
         }
         [Then(@"student purchase course")]
         public void ThenStudentPurchaseCourse(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openPortalPage("student")
-                .searchEntry(dictionary["entry"])
-                .clickView()
+            new HomePage(Driver)
+                .OpenPortalPage(Constants.Roles.Student.ToString())
+                .SearchEntry(dictionary["entry"])
+                .ClickView()
                 //.selectLogin()
-                .selectContinue()
-                .selectIsAgree()
-                .clickNext()
-                .enterName(dictionary["name"])
-                .enterSurName(dictionary["surname"])
-                .enterCity(dictionary["city"])
-                .enterDistrict(dictionary["district"])
-                .enterPhone(dictionary["phone"])
-                .enterAddress(dictionary["address"])
-                .clickNext()
-                .enterCardName(dictionary["cardName"])
-                .enterCardNumber(dictionary["cardNumber"])
-                .enterCardDate(dictionary["cardDate"])
-                .enterCardCVC(dictionary["cardCVC"])
-                .clickPayButton();
+                .SelectContinue()
+                .SelectIsAgree()
+                .ClickNext()
+                .EnterName(dictionary["name"])
+                .EnterSurName(dictionary["surname"])
+                .EnterCity(dictionary["city"])
+                .EnterDistrict(dictionary["district"])
+                .EnterPhone(dictionary["phone"])
+                .EnterAddress(dictionary["address"])
+                .ClickNext()
+                .EnterCardName(dictionary["cardName"])
+                .EnterCardNumber(dictionary["cardNumber"])
+                .EnterCardDate(dictionary["cardDate"])
+                .EnterCardCvc(dictionary["cardCVC"])
+                .ClickPayButton();
         }
         [Then(@"Student add course package purchase and reflection")]
         public void ThenStudentAddCoursePackagePurchaseAndReflection(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openPortalPage("student")
-                .clickCoursesPackages()
-                .searchCoursesPackageEntry(dictionary["entry"])
-                .clickCoursePackagesView()
-                .selectCoursesPackageContinue()
+            new HomePage(Driver)
+                .OpenPortalPage(Constants.Roles.Student.ToString())
+                .ClickCoursesPackages()
+                .SearchCoursesPackageEntry(dictionary["entry"])
+                .ClickCoursePackagesView()
+                .SelectCoursesPackageContinue()
                 //.closeDismiss()
-                .selectIsAgree()
-                .clickNext()
-                .enterPackageName(dictionary["name"])
-                .enterPackageSurname(dictionary["surname"])
-                .enterPackageCity(dictionary["city"])
-                .enterPackageCountry(dictionary["country"])
-                .enterPackagePhone(dictionary["phone"])
-                .enterPackageAddress(dictionary["address"])
-                .selectSameDelivery()
-                .clickNext()
-                .enterCardName(dictionary["cardName"])
-                .enterCardNumber(dictionary["cardNumber"])
-                .enterCardDate(dictionary["cardDate"])
-                .enterCardCVC(dictionary["cardCVC"])
-                 .clickPayButton()
-                 .assertPaymentIsOK();
+                .SelectIsAgree()
+                .ClickNext()
+                .EnterPackageName(dictionary["name"])
+                .EnterPackageSurname(dictionary["surname"])
+                .EnterPackageCity(dictionary["city"])
+                .EnterPackageCountry(dictionary["country"])
+                .EnterPackagePhone(dictionary["phone"])
+                .EnterPackageAddress(dictionary["address"])
+                .SelectSameDelivery()
+                .ClickNext()
+                .EnterCardName(dictionary["cardName"])
+                .EnterCardNumber(dictionary["cardNumber"])
+                .EnterCardDate(dictionary["cardDate"])
+                .EnterCardCvc(dictionary["cardCVC"])
+                 .ClickPayButton()
+                 .AssertPaymentIsOk();
         }
         [Then(@"Student verifies course package is exist on Courses")]
         public void ThenStudentVerifiesCoursePackageİsExistOnCourses(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openCOURSESpage("student")
-                .searchNewlyAddedCouseByName(dictionary["Name"])
-                .assertSubjectIsVisible(dictionary["title"]);
+            new HomePage(Driver)
+                .OpenCoursesPage(Constants.Roles.Student.ToString())
+                .SearchNewlyAddedCourseByName(dictionary["Name"])
+                .AssertSubjectIsVisible(dictionary["title"]);
         }
         [Then(@"Student make portal shopping both course and course package")]
         public void ThenStudentMakePortalShoppingBothCourseAndCoursePackage(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openPortalPage("student")
-                .searchEntry(dictionary["course"])
-                .addtoCart()
-                .clickCoursesPackages()
-                .searchCoursesPackageEntry(dictionary["coursePackage"])
-                .addtoCoursePackageCart()
-                .goToCart()
-                .selectCoursesPackageContinue()
-                .selectIsAgree()
-                .clickNext()
-                .enterPackageName(dictionary["name"])
-                .enterPackageSurname(dictionary["surname"])
-                .enterPackageCity(dictionary["city"])
-                .enterPackageCountry(dictionary["country"])
-                .enterPackagePhone(dictionary["phone"])
-                .enterPackageAddress(dictionary["address"])
-                .selectSameDelivery()
-                .clickNext()
-                .enterCardName(dictionary["cardName"])
-                .enterCardNumber(dictionary["cardNumber"])
-                .enterCardDate(dictionary["cardDate"])
-                .enterCardCVC(dictionary["cardCVC"])
-                .clickPayButton()
-                .assertPaymentIsOK();
+            new HomePage(Driver)
+                .OpenPortalPage(Constants.Roles.Student.ToString())
+                .SearchEntry(dictionary["course"])
+                .AddToCart()
+                .ClickCoursesPackages()
+                .SearchCoursesPackageEntry(dictionary["coursePackage"])
+                .AddtoCoursePackageCart()
+                .GoToCart()
+                .SelectCoursesPackageContinue()
+                .SelectIsAgree()
+                .ClickNext()
+                .EnterPackageName(dictionary["name"])
+                .EnterPackageSurname(dictionary["surname"])
+                .EnterPackageCity(dictionary["city"])
+                .EnterPackageCountry(dictionary["country"])
+                .EnterPackagePhone(dictionary["phone"])
+                .EnterPackageAddress(dictionary["address"])
+                .SelectSameDelivery()
+                .ClickNext()
+                .EnterCardName(dictionary["cardName"])
+                .EnterCardNumber(dictionary["cardNumber"])
+                .EnterCardDate(dictionary["cardDate"])
+                .EnterCardCvc(dictionary["cardCVC"])
+                .ClickPayButton()
+                .AssertPaymentIsOk();
         }
         [Given(@"instructor adds file source with")]
         public void GivenİnstructorAddsFileSourceWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new CoursesPage(driver, "instructor")
-                    .searchNewlyAddedCouseByName(dictionary["course"])
-                    .openCourseDetail(dictionary["course"])
-                    .openCourseUpdate()
-                    .addResource()
-                    .clickResourceTypeDoc()
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                    .SearchNewlyAddedCourseByName(dictionary["course"])
+                    .OpenCourseDetail(dictionary["course"])
+                    .OpenCourseUpdate()
+                    .AddResource()
+                    .ClickResourceTypeDoc()
                     //.clickOkAfterType()
-                    .enterResourceTitle(dictionary["title"])
-                    .enterResourceDescription(dictionary["desc"])
-                    .selectDownloadable()
-                    .selectUserReviewEnableForDOC()
-                    .selectFile()
-                    .clickSaveButton()
-                    .assert();
-            new HomePage(driver).openCOURSESpage("instructor");
+                    .EnterResourceTitle(dictionary["title"])
+                    .EnterResourceDescription(dictionary["desc"])
+                    .SelectDownloadable()
+                    .SelectUserReviewEnableForDoc()
+                    .SelectFile()
+                    .ClickSaveButton()
+                    .Assert();
+            new HomePage(Driver).OpenCoursesPage(Constants.Roles.Instructor.ToString());
         }
         [Given(@"instructor adds video source with")]
         public void GivenİnstructorAddsVideoSourceWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new CoursesPage(driver, "instructor")
-                    .searchNewlyAddedCouseByName(dictionary["course"])
-                    .openCourseDetail(dictionary["course"])
-                    .openCourseUpdate()
-                    .addResource()
-                    .clickResourceTypeVideo()
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                    .SearchNewlyAddedCourseByName(dictionary["course"])
+                    .OpenCourseDetail(dictionary["course"])
+                    .OpenCourseUpdate()
+                    .AddResource()
+                    .ClickResourceTypeVideo()
                     //.clickOkAfterType()
-                    .enterResourceTitle(dictionary["title"])
-                    .enterResourceDescription(dictionary["desc"])
-                    .selectVideo1()
-                    .clickUpload()
-                    .selectCourseVideoPrev()
-                    .selectCourseVideoDownloadable()
-                    .selectVideoForward()
-                    .selectVideoUserReview()
-                    .waitUntillFileIsUploaded()
-                    .clickCourseVideoSubmit()
-                    .assert();
-            new HomePage(driver).openCOURSESpage("instructor");
+                    .EnterResourceTitle(dictionary["title"])
+                    .EnterResourceDescription(dictionary["desc"])
+                    .SelectVideo1()
+                    .ClickUpload()
+                    .SelectCourseVideoPrev()
+                    .SelectCourseVideoDownloadable()
+                    .SelectVideoForward()
+                    .SelectVideoUserReview()
+                    .WaitUntilFileIsUploaded()
+                    .ClickCourseVideoSubmit()
+                    .Assert();
+            new HomePage(Driver).OpenCoursesPage(Constants.Roles.Instructor.ToString());
         }
         [Then(@"Verify earnings payment")]
         public void ThenVerifyEarningsPayment(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openEarningsPage("admin")
-                .searchEntry(dictionary["name"]);
+            new HomePage(Driver)
+                .OpenEarningsPage(Constants.Roles.Admin.ToString())
+                .SearchEntry(dictionary["name"]);
         }
         [Given(@"instructor adds video with vimeo")]
         public void GivenİnstructorAddsVideoWithVimeo(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new CoursesPage(driver, "instructor")
-                    .searchNewlyAddedCouseByName(dictionary["course"])
-                    .openCourseDetail(dictionary["course"])
-                    .openCourseUpdate()
-                    .addResource()
-                    .clickResourceTypeVideo()
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                    .SearchNewlyAddedCourseByName(dictionary["course"])
+                    .OpenCourseDetail(dictionary["course"])
+                    .OpenCourseUpdate()
+                    .AddResource()
+                    .ClickResourceTypeVideo()
                     //.clickOkAfterType()
-                    .enterResourceTitle(dictionary["title"])
-                    .enterResourceDescription(dictionary["desc"])
-                    .selectVimeoID()
-                    .enterVimeoID(dictionary["vimeo_id"])
-                    .selectCourseVideoDownloadable()
-                    .selectVideoForward()
-                    .selectCourseVideoPrev()
-                    .selectVideoUserReview()
-                    .clickCourseExistingVideoSubmit()
-                    .assert();
-            new HomePage(driver).openCOURSESpage("instructor");
+                    .EnterResourceTitle(dictionary["title"])
+                    .EnterResourceDescription(dictionary["desc"])
+                    .SelectVimeoId()
+                    .EnterVimeoId(dictionary["vimeo_id"])
+                    .SelectCourseVideoDownloadable()
+                    .SelectVideoForward()
+                    .SelectCourseVideoPrev()
+                    .SelectVideoUserReview()
+                    .ClickCourseExistingVideoSubmit()
+                    .Assert();
+            new HomePage(Driver).OpenCoursesPage(Constants.Roles.Instructor.ToString());
         }
         [Given(@"instructor adds content as link")]
         public void GivenİnstructorAddsContentAsLink(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new CoursesPage(driver, "instructor")
-                    .searchNewlyAddedCouseByName(dictionary["course"])
-                    .openCourseDetail(dictionary["course"])
-                    .openCourseUpdate()
-                    .addResource()
-                    .clickResourceTypeLink()
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                    .SearchNewlyAddedCourseByName(dictionary["course"])
+                    .OpenCourseDetail(dictionary["course"])
+                    .OpenCourseUpdate()
+                    .AddResource()
+                    .ClickResourceTypeLink()
                    // .clickOkAfterType()
-                    .enterResourceTitle(dictionary["title"])
-                    .setDescription(dictionary["desc"])
-                    .enterLink(dictionary["link"])
-                    .selectVideoUserReview()
-                    .clickResourceLinkSave()
-                    .assert();
-            new HomePage(driver).openCOURSESpage("instructor");
+                    .EnterResourceTitle(dictionary["title"])
+                    .SetDescription(dictionary["desc"])
+                    .EnterLink(dictionary["link"])
+                    .SelectVideoUserReview()
+                    .ClickResourceLinkSave()
+                    .Assert();
+            new HomePage(Driver).OpenCoursesPage(Constants.Roles.Instructor.ToString());
         }
         [Given(@"instructor adds content as embed code")]
         public void GivenİnstructorAddsContentAsEmbedCode(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new CoursesPage(driver, "instructor")
-                    .searchNewlyAddedCouseByName(dictionary["course"])
-                    .openCourseDetail(dictionary["course"])
-                    .openCourseUpdate()
-                    .addResource()
-                    .clickResourceTypeEmbedCode()
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                    .SearchNewlyAddedCourseByName(dictionary["course"])
+                    .OpenCourseDetail(dictionary["course"])
+                    .OpenCourseUpdate()
+                    .AddResource()
+                    .ClickResourceTypeEmbedCode()
                     //.clickOkAfterType()
-                    .enterResourceTitle(dictionary["title"])
-                    .setEmbeddedDescription(dictionary["desc"])
-                    .enterEmbedCode(dictionary["embed_code"])
-                    .selectVideoUserReview()
-                    .clickResourceLinkSave()
-                    .assert();
-            new HomePage(driver).openCOURSESpage("instructor");
+                    .EnterResourceTitle(dictionary["title"])
+                    .SetEmbeddedDescription(dictionary["desc"])
+                    .EnterEmbedCode(dictionary["embed_code"])
+                    .SelectVideoUserReview()
+                    .ClickResourceLinkSave()
+                    .Assert();
+            new HomePage(Driver).OpenCoursesPage(Constants.Roles.Instructor.ToString());
         }
-
-
         [Given(@"instructor checks question is exist")]
         public void GivenInstructorChecksMultipleChoiceQuestionİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openQuestionsPage("instructor")
-                .searchNewlyAddedQuestionByNameAndDeleteIt(dictionary["name"]);
+            new HomePage(Driver)
+                .OpenQuestionsPage(Constants.Roles.Instructor.ToString())
+                .SearchNewlyAddedQuestionByNameAndDeleteIt(dictionary["name"]);
         }
         [Given(@"instructor adds multiple choice question with")]
         public void GivenİnstructorAddsMultipleChoiceQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openQuestionsPage("instructor")
-                .clickAddNewButton()
-                .typeQuestionInput(dictionary["question"])
-                .enterPoint(Int32.Parse(dictionary["point"]))
-                .clickDeleteButtonLastElementOfAnswers()
-                .enterAnswerA(dictionary["choiceA"])
-                .enterAnswerB(dictionary["choiceB"])
-                .enterAnswerC(dictionary["choiceC"])
-                .enterAnswerD(dictionary["choiceD"])
-                .clickRigthAnswerAsC()
-                .clickIsPublic()
-                .clickIsEDITABLE()
-                .selectTestCategory(dictionary["TestCategory"])
-                .submit()
-                .assert();
+            new HomePage(Driver)
+                .OpenQuestionsPage(Constants.Roles.Instructor.ToString())
+                .ClickAddNewButton()
+                .TypeQuestionInput(dictionary["question"])
+                .EnterPoint(Int32.Parse(dictionary["point"]))
+                .ClickDeleteButtonLastElementOfAnswers()
+                .EnterAnswerA(dictionary["choiceA"])
+                .EnterAnswerB(dictionary["choiceB"])
+                .EnterAnswerC(dictionary["choiceC"])
+                .EnterAnswerD(dictionary["choiceD"])
+                .ClickRigthAnswerAsC()
+                .ClickIsPublic()
+                .ClickIsEditable()
+                .SelectTestCategory(dictionary["TestCategory"])
+                .Submit()
+                .Assert();
         }
         [Then(@"instructor deletes question with")]
         public void ThenInstructorDeletesQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new QuestionsPage(driver, "instructor")
-                    .searchNewlyAddedQuestionByName(dictionary["name"])
-                    .clickThreePoints()
-                    .clickDeleteSingleQuestionPopup()
-                    .assert();
+            new QuestionsPage(Driver, Constants.Roles.Instructor.ToString())
+                    .SearchNewlyAddedQuestionByName(dictionary["name"])
+                    .ClickThreePoints()
+                    .ClickDeleteSingleQuestionPopup()
+                    .Assert();
         }
         [Given(@"instructor batch create question with")]
         public void GivenİnstructorBatchCreateQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new QuestionsPage(driver, "instructor")
-                    .clickBatchCreateButton()
-                    .enterExcelFile()
-                    .selectTestCategory(dictionary["TestCategory"])
-                    .clickUploadExcelButton()
-                    .clickQuestionListAcceptButton()
-                    .refreshPage()
-                    ;
-            new HomePage(driver).openQuestionsPage("instructor");
+            new QuestionsPage(Driver, Constants.Roles.Instructor.ToString())
+                    .ClickBatchCreateButton()
+                    .EnterExcelFile()
+                    .SelectTestCategory(dictionary["TestCategory"])
+                    .ClickUploadExcelButton()
+                    .ClickQuestionListAcceptButton()
+                    .RefreshPage();
+            new HomePage(Driver).OpenQuestionsPage(Constants.Roles.Instructor.ToString());
         }
-
         [Given(@"instructor adds true false question with")]
         public void GivenİnstructorAddsTrueFalseQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openQuestionsPage("instructor")
-                .clickAddNewButton()
-                .typeQuestionInput(dictionary["question"])
-                .selectQuestionType("True False")
-                .enterPoint(Int32.Parse(dictionary["point"]))
-                .selectTrueFalseAnswer(false)
-                .clickIsPublic()
-                .clickIsEDITABLE()
-                .selectTestCategory(dictionary["TestCategory"])
-                .submit()
-                .assert();
+            new HomePage(Driver)
+                .OpenQuestionsPage(Constants.Roles.Instructor.ToString())
+                .ClickAddNewButton()
+                .TypeQuestionInput(dictionary["question"])
+                .SelectQuestionType("True False")
+                .EnterPoint(Int32.Parse(dictionary["point"]))
+                .SelectTrueFalseAnswer(false)
+                .ClickIsPublic()
+                .ClickIsEditable()
+                .SelectTestCategory(dictionary["TestCategory"])
+                .Submit()
+                .Assert();
         }
         [Given(@"instructor adds open_ended question with")]
         public void GivenİnstructorAddsOpen_EndedQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openQuestionsPage("instructor")
-                .clickAddNewButton()
-                .typeQuestionInput(dictionary["question"])
-                .selectQuestionType("Open-Ended")
-                .enterPoint(Int32.Parse(dictionary["point"]))
-                .clickIsPublic()
-                .clickIsEDITABLE()
-                .selectTestCategory(dictionary["TestCategory"])
-                .submit()
-                .assert();
+            new HomePage(Driver)
+                .OpenQuestionsPage(Constants.Roles.Instructor.ToString())
+                .ClickAddNewButton()
+                .TypeQuestionInput(dictionary["question"])
+                .SelectQuestionType("Open-Ended")
+                .EnterPoint(Int32.Parse(dictionary["point"]))
+                .ClickIsPublic()
+                .ClickIsEditable()
+                .SelectTestCategory(dictionary["TestCategory"])
+                .Submit()
+                .Assert();
         }
         [Given(@"instructor adds matching question with")]
         public void GivenİnstructorAddsMatchingQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openQuestionsPage("instructor")
-                .clickAddNewButton()
-                .typeQuestionInput(dictionary["question"])
-                .selectQuestionType("Matching")
-                .enterPoint(Int32.Parse(dictionary["point"]))
-                .enterMatching1(dictionary["matching1"])
-                .enterMatching2(dictionary["matching2"])
-                .delete3thMatchingInput()
-                .clickIsPublic()
-                .clickIsEDITABLE()
-                .selectTestCategory(dictionary["TestCategory"])
-                .submit()
-                .assert();
+            new HomePage(Driver)
+                .OpenQuestionsPage(Constants.Roles.Instructor.ToString())
+                .ClickAddNewButton()
+                .TypeQuestionInput(dictionary["question"])
+                .SelectQuestionType("Matching")
+                .EnterPoint(Int32.Parse(dictionary["point"]))
+                .EnterMatching1(dictionary["matching1"])
+                .EnterMatching2(dictionary["matching2"])
+                .Delete3ThMatchingInput()
+                .ClickIsPublic()
+                .ClickIsEditable()
+                .SelectTestCategory(dictionary["TestCategory"])
+                .Submit()
+                .Assert();
         }
         [Given(@"instructor adds ordering question with")]
         public void GivenİnstructorAddsOrderingQuestionWith(Table table)
         {
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openQuestionsPage("instructor")
-                .clickAddNewButton()
-                .typeQuestionInput(dictionary["question"])
-                .enterPoint(Int32.Parse(dictionary["point"]))
-                 .selectQuestionType("Ordering")
-                .enterOrdering1(dictionary["ordering1"])
-                .enterOrdering2(dictionary["ordering2"])
-                .enterOrdering3(dictionary["ordering3"])
-                .clickAddChoice()
-                .enterOrdering4(dictionary["ordering4"])
-                .clickIsPublic()
-                .clickIsEDITABLE()
-                .selectTestCategory(dictionary["TestCategory"])
-                .submit()
-                .assert();
+            new HomePage(Driver)
+                .OpenQuestionsPage(Constants.Roles.Instructor.ToString())
+                .ClickAddNewButton()
+                .TypeQuestionInput(dictionary["question"])
+                .EnterPoint(Int32.Parse(dictionary["point"]))
+                 .SelectQuestionType("Ordering")
+                .EnterOrdering1(dictionary["ordering1"])
+                .EnterOrdering2(dictionary["ordering2"])
+                .EnterOrdering3(dictionary["ordering3"])
+                .ClickAddChoice()
+                .EnterOrdering4(dictionary["ordering4"])
+                .ClickIsPublic()
+                .ClickIsEditable()
+                .SelectTestCategory(dictionary["TestCategory"])
+                .Submit()
+                .Assert();
         }
         [Given(@"instructor adds fill in the blanks question with")]
         public void GivenİnstructorAddsFillInTheBlanksQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openQuestionsPage("instructor")
-                .clickAddNewButton()
-                .typeQuestionInput(dictionary["question"])
-                .selectQuestionType("Fill In The Blanks")
-                .enterPoint(Int32.Parse(dictionary["point"]))
-                .clickIsPublic()
-                .clickIsEDITABLE()
-                .selectTestCategory(dictionary["TestCategory"])
-                .submit()
-                .assert();
+            new HomePage(Driver)
+                .OpenQuestionsPage(Constants.Roles.Instructor.ToString())
+                .ClickAddNewButton()
+                .TypeQuestionInput(dictionary["question"])
+                .SelectQuestionType("Fill In The Blanks")
+                .EnterPoint(Int32.Parse(dictionary["point"]))
+                .ClickIsPublic()
+                .ClickIsEditable()
+                .SelectTestCategory(dictionary["TestCategory"])
+                .Submit()
+                .Assert();
         }
         [Given(@"instructor adds multiple answer question with")]
         public void GivenİnstructorAddsMultipleAnswerQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openQuestionsPage("instructor")
-                .clickAddNewButton()
-                .typeQuestionInput(dictionary["question"])
-                .selectQuestionType("Multiple Answer")
-                .enterPoint(Int32.Parse(dictionary["point"]))
-                .answer1ForMultipleChoice(dictionary["answer1"])
-                .answer2ForMultipleChoice(dictionary["answer2"])
-                .answer3ForMultipleChoice(dictionary["answer3"])
-                .clickIsPublic()
-                .clickIsEDITABLE()
-                .selectTestCategory(dictionary["TestCategory"])
-                .submit()
-                .assert();
+            new HomePage(Driver)
+                .OpenQuestionsPage(Constants.Roles.Instructor.ToString())
+                .ClickAddNewButton()
+                .TypeQuestionInput(dictionary["question"])
+                .SelectQuestionType("Multiple Answer")
+                .EnterPoint(Int32.Parse(dictionary["point"]))
+                .Answer1ForMultipleChoice(dictionary["answer1"])
+                .Answer2ForMultipleChoice(dictionary["answer2"])
+                .Answer3ForMultipleChoice(dictionary["answer3"])
+                .ClickIsPublic()
+                .ClickIsEditable()
+                .SelectTestCategory(dictionary["TestCategory"])
+                .Submit()
+                .Assert();
         }
 
         [Given(@"instructor checks test poll question is exist")]
         public void GivenİnstructorChecksTestPollQuestionİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openTestPoolPage("instructor")
-                .searchNewlyAddedPollTestByNameAndDeleteIt(dictionary["name"]);
+            new HomePage(Driver)
+                .OpenTestPoolPage(Constants.Roles.Instructor.ToString())
+                .SearchNewlyAddedPollTestByNameAndDeleteIt(dictionary["name"]);
         }
 
         [Given(@"instructor adds test pool multiple choice with")]
         public void GivenİnstructorAddsMultipleChoiceTestPollWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openTestPoolPage("instructor")
-                .clickAddButton()
-                .enterName(dictionary["name"])
-                .enterDuration(Int32.Parse(dictionary["time"]))
-                .selectIsPublic()
-                .clickIsReturnBetweenQuestions()
-                .selectTestCategory(dictionary["TestCategory"])
-                .clickNextButton()
-                .enterQuestionName(dictionary["question"])
-                .clickSetButton()
-                .clickSaveButton()
-                .assert();
+            new HomePage(Driver)
+                .OpenTestPoolPage(Constants.Roles.Instructor.ToString())
+                .ClickAddButton()
+                .EnterName(dictionary["name"])
+                .EnterDuration(Int32.Parse(dictionary["time"]))
+                .SelectIsPublic()
+                .ClickIsReturnBetweenQuestions()
+                .SelectTestCategory(dictionary["TestCategory"])
+                .ClickNextButton()
+                .EnterQuestionName(dictionary["question"])
+                .ClickSetButton()
+                .ClickSaveButton()
+                .Assert();
         }
         [Given(@"instructor delete tests with")]
         public void GivenİnstructorDeleteTestsWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new TestPoolPage(driver, "instructor")
-                .searchNewlyAddedPollTestByName(dictionary["name"])
-                .clickThreePoints()
-                .clickDeleteTest()
-                .clickAreUSure()
-                .assert();
-            new HomePage(driver).openQuestionsPage("instructor");
+            new TestPoolPage(Driver, Constants.Roles.Instructor.ToString())
+                .SearchNewlyAddedPollTestByName(dictionary["name"])
+                .ClickThreePoints()
+                .ClickDeleteTest()
+                .ClickAreUSure()
+                .Assert();
+            new HomePage(Driver).OpenQuestionsPage(Constants.Roles.Instructor.ToString());
         }
         [Then(@"admin adds new branch")]
         public void ThenAdminAddsNewBranch(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openBranchPage("instructor")
-                .clickAddButton()
-                .enterName(dictionary["name"])
-                .enterLimit(Int32.Parse(dictionary["limit"]))
-                .clickSaveButton()
-                .assert();
+            new HomePage(Driver)
+                .OpenBranchPage(Constants.Roles.Instructor.ToString())
+                .ClickAddButton()
+                .EnterName(dictionary["name"])
+                .EnterLimit(Int32.Parse(dictionary["limit"]))
+                .ClickSaveButton()
+                .Assert();
         }
         [Given(@"admin checks branch is exist")]
         public void GivenAdminChecksBranchİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openBranchPage("instructor")
-                .searchNewlyAddedBranchByNameAndDeleteItAndAssertIt(dictionary["name"]);
+            new HomePage(Driver)
+                .OpenBranchPage(Constants.Roles.Instructor.ToString())
+                .SearchNewlyAddedBranchByNameAndDeleteItAndAssertIt(dictionary["name"]);
         }
         [Then(@"admin deletes added branch")]
         public void ThenAdminDeletesAddedBranch(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openBranchPage("instructor")
-                .searchNewlyAddedBranchByName(dictionary["name"])
-                .selectBranch(dictionary["name"])
-                .deleteNewlyAddedBranch()
-                .clickAreYouSure()
-                .assert();
+            new HomePage(Driver)
+                .OpenBranchPage(Constants.Roles.Instructor.ToString())
+                .SearchNewlyAddedBranchByName(dictionary["name"])
+                .SelectBranch(dictionary["name"])
+                .DeleteNewlyAddedBranch()
+                .ClickAreYouSure()
+                .Assert();
         }
         [Then(@"admin adds instructor")]
         public void ThenAdminAddsİnstructor(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openTeachersPage("admin")
-                .clickAddButton()
-                .enterFirstName(dictionary["first_name"])
-                .enterLastName(dictionary["last_name"])
-                .selectBranchName(dictionary["branch"])
-                .enterEmailName(dictionary["email"])
-                .enterUserNameName(dictionary["username"])
-                .enterPasswordName(dictionary["password"])
-                .selectIsGuidanceTeacher()
-                .selectGPDRPolicy()
-                .clickSaveButton()
-                .assert();
+            new HomePage(Driver)
+                .OpenTeachersPage(Constants.Roles.Admin.ToString())
+                .ClickAddButton()
+                .EnterFirstName(dictionary["first_name"])
+                .EnterLastName(dictionary["last_name"])
+                .SelectBranchName(dictionary["branch"])
+                .EnterEmailName(dictionary["email"])
+                .EnterUserNameName(dictionary["username"])
+                .EnterPasswordName(dictionary["password"])
+                .SelectIsGuidanceTeacher()
+                .SelectGpdrPolicy()
+                .ClickSaveButton()
+                .Assert();
         }
         [Then(@"admin adds role to instructor")]
         public void ThenAdminAddsRoleToİnstructor(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new TeachersPage(driver, "admin")
-                .searchNewlyAddedModeratorByName(dictionary["name"])
-                .clickThreePoints()
-                .clickRolesInThreePoints()
-                .selectRole(dictionary["role1"])
-                .selectRole(dictionary["role2"])
-                .clickRoleSaveButton();
+            new TeachersPage(Driver, Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedModeratorByName(dictionary["name"])
+                .ClickThreePoints()
+                .ClickRolesInThreePoints()
+                .SelectRole(dictionary["role1"])
+                .SelectRole(dictionary["role2"])
+                .ClickRoleSaveButton();
         }
         [Given(@"admin checks instructor is exist")]
         public void GivenAdminChecksİnstructorİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openTeachersPage("admin")
-                .searchNewlyAddedModeratorByNameAndDeleteIt(dictionary["name"]);
+            new HomePage(Driver)
+                .OpenTeachersPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedModeratorByNameAndDeleteIt(dictionary["name"]);
         }
         [Then(@"admin delete instructor")]
         public void ThenAdminDeleteİnstructor(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new TeachersPage(driver, "admin")
-                .searchNewlyAddedModeratorByName(dictionary["name"])
-                .clickThreePoints()
-                .clickDeleteInThreePoints()
-                .clickAreYouSure()
-                .assert();
+            new TeachersPage(Driver, Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedModeratorByName(dictionary["name"])
+                .ClickThreePoints()
+                .ClickDeleteInThreePoints()
+                .ClickAreYouSure()
+                .Assert();
         }
         [Given(@"admin checks announcement is exist")]
         public void GivenAdminChecksAnnouncementİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openAnnouncementsPage("admin")
-                .searchNewlyAddedAnnouncementAndDeleteIt(dictionary["name"]);
+            new HomePage(Driver)
+                .OpenAnnouncementsPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedAnnouncementAndDeleteIt(dictionary["name"]);
         }
         [Given(@"admin adds new announcement with")]
         public void GivenAdminAddsNewAnnouncementWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-               .openAnnouncementsPage("admin")
-               .clickAddButton()
-               .enterTitle(dictionary["title"])
-               .enterDesc(dictionary["description"])
-               .selectShowToStudents()
-               .selectShowToTeachers()
-               .selectShowToParents()
-               .enterEndDate()
-               .clickSaveButton()
-               .assert();
+            new HomePage(Driver)
+               .OpenAnnouncementsPage(Constants.Roles.Admin.ToString())
+               .ClickAddButton()
+               .EnterTitle(dictionary["title"])
+               .EnterDesc(dictionary["description"])
+               .SelectShowToStudents()
+               .SelectShowToTeachers()
+               .SelectShowToParents()
+               .EnterEndDate()
+               .ClickSaveButton()
+               .Assert();
         }
         [Then(@"admin deletes announcement")]
         public void ThenAdminDeletesAnnouncementİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openAnnouncementsPage("admin")
-                .searchNewlyAddedAnnouncement(dictionary["name"])
-                .click3Points()
-                .clickDeleteButton()
-                .clickAreUSure()
-                .assert();
+            new HomePage(Driver)
+                .OpenAnnouncementsPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedAnnouncement(dictionary["name"])
+                .Click3Points()
+                .ClickDeleteButton()
+                .ClickAreUSure()
+                .Assert();
         }
         [Given(@"admin checks parent is exist")]
         public void GivenAdminChecksParentİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openParentPage("admin")
-                .searchNewlyAddedParentAndDeleteIt(dictionary["email"]);
+            new HomePage(Driver)
+                .OpenParentPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedParentAndDeleteIt(dictionary["email"]);
         }
         [Then(@"admin adds parent")]
         public void ThenAdminAddsParent(Table table)
         {
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openParentPage("admin")
-                .clickAddButton()
-                .enterFirstName(dictionary["first_name"])
-                .enterLastName(dictionary["last_name"])
-                .clickAnotherChildButton()
-                .selectFirstBranchName(dictionary["firstBranchName"])
-                .selectFirstStudents(dictionary["firstStudents"])
-                .clickAnotherChildButton()
-                .selectSecondBranchName(dictionary["secondBranchName"])
-                .selectSecondStudents(dictionary["secondStudents"])
-                .enterEmail(dictionary["email"])
-                .enterUserName(dictionary["username"])
-                .enterPassword(dictionary["password"])
+            new HomePage(Driver)
+                .OpenParentPage(Constants.Roles.Admin.ToString())
+                .ClickAddButton()
+                .EnterFirstName(dictionary["first_name"])
+                .EnterLastName(dictionary["last_name"])
+                .ClickAnotherChildButton()
+                .SelectFirstBranchName(dictionary["firstBranchName"])
+                .SelectFirstStudents(dictionary["firstStudents"])
+                .ClickAnotherChildButton()
+                .SelectSecondBranchName(dictionary["secondBranchName"])
+                .SelectSecondStudents(dictionary["secondStudents"])
+                .EnterEmail(dictionary["email"])
+                .EnterUserName(dictionary["username"])
+                .EnterPassword(dictionary["password"])
                 //.clickGenerate()
-                .selectGPDR()
-                .clickSaveButton()
-                .assert();
+                .SelectGpdr()
+                .ClickSaveButton()
+                .Assert();
         }
         [Then(@"admin adds role to parent")]
         public void ThenAdminAddsRoleToParent(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openParentPage("admin")
-                .searchNewlyAddedParent(dictionary["email"])
-                .click3Points()
-                .clickRolesInThreePoints()
-                .selectRole(dictionary["role1"])
-                .clickRoleSaveButton();
+            new HomePage(Driver)
+                .OpenParentPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedParent(dictionary["email"])
+                .Click3Points()
+                .ClickRolesInThreePoints()
+                .SelectRole(dictionary["role1"])
+                .ClickRoleSaveButton();
         }
         [When(@"custom parent switch to admin")]
         public void WhenCustomParentSwitchToAdmin(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .clickUpdateAcceptButton()
-                .assertRoleIs("Parent")
-                .clickUserName()
-                .clickRoleModal()
-                .enterPassword(dictionary["password"])
-                .clickChangeButton()
-                .assertRoleIs("Admin");
+            new HomePage(Driver)
+                .ClickUpdateAcceptButton()
+                .AssertRoleIs(Constants.Roles.Parent.ToString())
+                .ClickUserName()
+                .ClickRoleModal()
+                .EnterPassword(dictionary["password"])
+                .ClickChangeButton()
+                .AssertRoleIs(Constants.Roles.Admin.ToString());
         }
         [Then(@"admin deletes added parent")]
         public void ThenAdminDeletesAddedParent(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openParentPage("admin")
-                .searchNewlyAddedParent(dictionary["email"])
-                .click3Points()
-                .clickDeleteButton()
-                .clickAreUSure()
-                .assert();
+            new HomePage(Driver)
+                .OpenParentPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedParent(dictionary["email"])
+                .Click3Points()
+                .ClickDeleteButton()
+                .ClickAreUSure()
+                .Assert();
         }
         [Then(@"Admin adds poll")]
         public void ThenAdminAddsPoll(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openPollsPage("admin")
-                .clearSearchBox()
-                .clickAddButton()
-                .enterName(dictionary["Name"])
-                .enterDescription(dictionary["Description"])
-                .enterRepeatNumber(Int32.Parse(dictionary["RepeatNumber"]))
-                .selectIsMandatory()
-                .setDate()
-                .clickNextButton()
-                .searchQuestion(dictionary["question"])
-                .setSetQuestion()
-                .clickSaveButton()
-                .assert();
+            new HomePage(Driver)
+                .OpenPollsPage(Constants.Roles.Admin.ToString())
+                .ClearSearchBox()
+                .ClickAddButton()
+                .EnterName(dictionary["Name"])
+                .EnterDescription(dictionary["Description"])
+                .EnterRepeatNumber(Int32.Parse(dictionary["RepeatNumber"]))
+                .SelectIsMandatory()
+                .SetDate()
+                .ClickNextButton()
+                .SearchQuestion(dictionary["question"])
+                .SetSetQuestion()
+                .ClickSaveButton()
+                .Assert();
         }
         [Then(@"Admin deletes Newly added polls")]
         public void ThenAdminDeletesNewlyAddedPolls(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new PollsPage(driver, "admin")
-                .searchNewlyAddedPollByName(dictionary["Name"])
-                .clickThreePoints()
-                .clickDelete()
-                .clickAreYouSureOK()
-                .assert();
+            new PollsPage(Driver, Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedPollByName(dictionary["Name"])
+                .ClickThreePoints()
+                .ClickDelete()
+                .ClickAreYouSureOk()
+                .Assert();
         }
         [Given(@"Admin checks poll is exist")]
         public void GivenAdminChecksPollİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openPollsPage("admin")
-                .checkPollIsExist(dictionary["Name"]);
+            new HomePage(Driver)
+                .OpenPollsPage(Constants.Roles.Admin.ToString())
+                .CheckPollIsExist(dictionary["Name"]);
         }
         [Given(@"Admin checks poll question is exist")]
         public void GivenAdminChecksPollQuestionIsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openPollQuestionsPage("admin")
-                .searchNewlyAddedQuestionByNameAndDeleteIt(dictionary["question"]);
+            new HomePage(Driver)
+                .OpenPollQuestionsPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedQuestionByNameAndDeleteIt(dictionary["question"]);
         }
         [Given(@"Admin adds multiple choice poll question with")]
         public void GivenAdminAddsMultipleChoicePollQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openPollQuestionsPage("admin")
-                .clickAddButton()
-                .enterText(dictionary["question"])
-                .selectType("Multiple Choice")
-                .clickIsPublic()
-                .clickIsEditable()
-                .clickAddNewAnswerButton()
-                .enterAnswer1(dictionary["answer1"])
-                .enterAnswer2(dictionary["answer2"])
-                .enterAnswer3(dictionary["answer3"])
-                .enterAnswer4(dictionary["answer4"])
-                .clickSaveButton()
-                .assert();
+            new HomePage(Driver)
+                .OpenPollQuestionsPage(Constants.Roles.Admin.ToString())
+                .ClickAddButton()
+                .EnterText(dictionary["question"])
+                .SelectType("Multiple Choice")
+                .ClickIsPublic()
+                .ClickIsEditable()
+                .ClickAddNewAnswerButton()
+                .EnterAnswer1(dictionary["answer1"])
+                .EnterAnswer2(dictionary["answer2"])
+                .EnterAnswer3(dictionary["answer3"])
+                .EnterAnswer4(dictionary["answer4"])
+                .ClickSaveButton()
+                .Assert();
         }
         [Given(@"Admin adds open ended poll question with")]
         public void GivenAdminAddsOpenEndedPollQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openPollQuestionsPage("admin")
-                .clickAddButton()
-                .enterText(dictionary["question"])
-                .selectType("Open-Ended")
-                .clickIsPublic()
-                .clickIsEditable()
-                .clickSaveButton()
-                .assert();
+            new HomePage(Driver)
+                .OpenPollQuestionsPage(Constants.Roles.Admin.ToString())
+                .ClickAddButton()
+                .EnterText(dictionary["question"])
+                .SelectType("Open-Ended")
+                .ClickIsPublic()
+                .ClickIsEditable()
+                .ClickSaveButton()
+                .Assert();
         }
         [Given(@"Admin adds true false poll question with")]
         public void GivenAdminAddsTrueFalsePollQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openPollQuestionsPage("admin")
-                .clickAddButton()
-                .enterText(dictionary["question"])
-                .selectType("True False")
-                .clickIsPublic()
-                .clickIsEditable()
-                .clickSaveButton()
-                .assert();
+            new HomePage(Driver)
+                .OpenPollQuestionsPage(Constants.Roles.Admin.ToString())
+                .ClickAddButton()
+                .EnterText(dictionary["question"])
+                .SelectType("True False")
+                .ClickIsPublic()
+                .ClickIsEditable()
+                .ClickSaveButton()
+                .Assert();
         }
         [Then(@"Admin delete poll question with")]
         public void ThenAdminDeleteMultipleChoiceQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-               .openPollQuestionsPage("admin")
-               .searchNewlyAddedQuestionByName(dictionary["question"])
-               .click3Points()
-               .clickDeleteButton()
-               .clickAreUSure()
-               .assert();
+            new HomePage(Driver)
+               .OpenPollQuestionsPage(Constants.Roles.Admin.ToString())
+               .SearchNewlyAddedQuestionByName(dictionary["question"])
+               .Click3Points()
+               .ClickDeleteButton()
+               .ClickAreUSure()
+               .Assert();
         }
         [Then(@"instructor adds test pool multiple choice with document")]
         public void ThenİnstructorAddsTestPoolMultipleChoiceWithDocument(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                    .openTestPoolPage("instructor")
-                    .clickAddButton()
-                    .enterName(dictionary["name"])
+            new HomePage(Driver)
+                    .OpenTestPoolPage(Constants.Roles.Instructor.ToString())
+                    .ClickAddButton()
+                    .EnterName(dictionary["name"])
                     //.enterDescription(dictionary["description"])
-                    .enterDuration(Int32.Parse(dictionary["Duration"]))
-                    .selectIsPublic()
-                    .selectIsOpticalMarker()
-                    .selectIsDocument()
-                    .selectFile()
-                    .enterQuestionNumber(Int32.Parse(dictionary["questionNumber"]))
-                    .enterPointsofEach(Int32.Parse(dictionary["points"]))
-                    .enterNumberOfChoices(Int32.Parse(dictionary["choicesNumber"]))
-                    .enterFirstAnswer(dictionary["firstAnswer"])
-                    .enterSecondAnswer(dictionary["secondAnswer"])
-                    .enterThirdAnswer(dictionary["thirdAnswer"])
-                    .enterFourthAnswer(dictionary["fourthAnswer"])
-                    .enterFifthAnswer(dictionary["fifthAnswer"])
-                    .enterSixthAnswer(dictionary["sixthAnswer"])
-                    .enterSeventhAnswer(dictionary["seventhAnswer"])
-                    .enterEighthAnswer(dictionary["eighthAnswer"])
-                    .selectTestCategory(dictionary["TestCategory"])
-                    .clickSaveButton()
-                    .assert();
+                    .EnterDuration(Int32.Parse(dictionary["Duration"]))
+                    .SelectIsPublic()
+                    .SelectIsOpticalMarker()
+                    .SelectIsDocument()
+                    .SelectFile()
+                    .EnterQuestionNumber(Int32.Parse(dictionary["questionNumber"]))
+                    .EnterPointsofEach(Int32.Parse(dictionary["points"]))
+                    .EnterNumberOfChoices(Int32.Parse(dictionary["choicesNumber"]))
+                    .EnterFirstAnswer(dictionary["firstAnswer"])
+                    .EnterSecondAnswer(dictionary["secondAnswer"])
+                    .EnterThirdAnswer(dictionary["thirdAnswer"])
+                    .EnterFourthAnswer(dictionary["fourthAnswer"])
+                    .EnterFifthAnswer(dictionary["fifthAnswer"])
+                    .EnterSixthAnswer(dictionary["sixthAnswer"])
+                    .EnterSeventhAnswer(dictionary["seventhAnswer"])
+                    .EnterEighthAnswer(dictionary["eighthAnswer"])
+                    .SelectTestCategory(dictionary["TestCategory"])
+                    .ClickSaveButton()
+                    .Assert();
         }
         [Given(@"instructor adds test pool open ended with")]
         public void GivenİnstructorAddsTestPoolOpenEndedWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                    .openTestPoolPage("instructor")
-                    .clickAddButton()
-                    .enterName(dictionary["name"])
-                    .selectIsPublic()
-                    .selectTestCategory(dictionary["TestCategory"])
-                    .clickNextButton()
-                    .enterQuestionName(dictionary["question"])
-                    .clickSetButton()
-                    .clickSaveButton()
-                    .assert();
+            new HomePage(Driver)
+                    .OpenTestPoolPage(Constants.Roles.Instructor.ToString())
+                    .ClickAddButton()
+                    .EnterName(dictionary["name"])
+                    .SelectIsPublic()
+                    .SelectTestCategory(dictionary["TestCategory"])
+                    .ClickNextButton()
+                    .EnterQuestionName(dictionary["question"])
+                    .ClickSetButton()
+                    .ClickSaveButton()
+                    .Assert();
         }
 
         [Then(@"Admin deletes newly added test multiple choice adding question with document")]
         public void ThenAdminDeletesNewlyAddedTestMultipleChoiceAddingQuestionWithDocument(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new TestPoolPage(driver, "instructor")
-                .searchNewlyAddedPollTestByName(dictionary["Name"])
-                .clickThreePoints()
-                .clickDeleteTest()
-                .clickAreUSure()
-                .assert();
+            new TestPoolPage(Driver, Constants.Roles.Instructor.ToString())
+                .SearchNewlyAddedPollTestByName(dictionary["Name"])
+                .ClickThreePoints()
+                .ClickDeleteTest()
+                .ClickAreUSure()
+                .Assert();
         }
         [Given(@"admin checks catalog is exist")]
         public void GivenAdminChecksCatalogİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openCatalogPage("admin")
-                .searchNewlyAddedCatalogAndDeleteIt(dictionary["name"]);
+            new HomePage(Driver)
+                .OpenCatalogPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedCatalogAndDeleteIt(dictionary["name"]);
         }
         [Then(@"admin adds new catalog")]
         public void ThenAdminAddsNewCatalog(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openCatalogPage("instructor")
-                .clickAddNew()
-                .enterName(dictionary["name"])
-                .enterTags(dictionary["tags"])
-                .enterDescription(dictionary["description"])
-                .clickIsShowAtHomePage()
-                .submit()
-                .assert();
+            new HomePage(Driver)
+                .OpenCatalogPage(Constants.Roles.Instructor.ToString())
+                .ClickAddNew()
+                .EnterName(dictionary["name"])
+                .EnterTags(dictionary["tags"])
+                .EnterDescription(dictionary["description"])
+                .ClickIsShowAtHomePage()
+                .Submit()
+                .Assert();
         }
         
         [Then(@"admin adds new catalog subscription type to existing catalog")]
         public void ThenAdminAddsNewCatalogSubscriptionTypePermanentToExistingCatalog(Table table)
         {
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openCatalogPage("admin")
-                .searchNewlyAddedCatalog(dictionary["name"])
-                .click3Points()
-                .clickUpdateButton()
+            new HomePage(Driver)
+                .OpenCatalogPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedCatalog(dictionary["name"])
+                .Click3Points()
+                .ClickUpdateButton()
                 .clickCatalogSubscriptionAdd_button()
-                .enterCatalogSubscriptionTitle(dictionary["title"])
-                .enterCatalogSubscriptionDescription(dictionary["description"])
-                .selectCatalogSubscriptionCurrency(dictionary["currency"])
-                .enterCatalogSubscriptionPackageAmount(Int32.Parse(dictionary["amount"]))
-                .enterCatalogSubscriptionPackageSalePrice(Int32.Parse(dictionary["salePrice"]))
-                .selectCatalogSubscriptionType(dictionary["type"])
-                .enterCatalogSubscriptionPackageDurationTime(dictionary["duration_time"])
-                .enterCatalogSubscriptionPackageDurationType(dictionary["duration_type"])
-                .clickCatalogSubscriptionBranch()
-                .clickCatalogSubscriptionStudent()
-                .clickCatalogSubscriptionSaveButton()
-                .assert();
+                .EnterCatalogSubscriptionTitle(dictionary["title"])
+                .EnterCatalogSubscriptionDescription(dictionary["description"])
+                .SelectCatalogSubscriptionCurrency(dictionary["currency"])
+                .EnterCatalogSubscriptionPackageAmount(Int32.Parse(dictionary["amount"]))
+                .EnterCatalogSubscriptionPackageSalePrice(Int32.Parse(dictionary["salePrice"]))
+                .SelectCatalogSubscriptionType(dictionary["type"])
+                .EnterCatalogSubscriptionPackageDurationTime(dictionary["duration_time"])
+                .EnterCatalogSubscriptionPackageDurationType(dictionary["duration_type"])
+                .ClickCatalogSubscriptionBranch()
+                .ClickCatalogSubscriptionStudent()
+                .ClickCatalogSubscriptionSaveButton()
+                .Assert();
         }
         [Then(@"admin adds new catalog subscription type temporary to existing catalog")]
         public void ThenAdminAddsNewCatalogSubscriptionTypeTemporaryToExistingCatalog(Table table)
         {
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openCatalogPage("admin")
-                .searchNewlyAddedCatalog(dictionary["name"])
-                .click3Points()
-                .clickUpdateButton()
+            new HomePage(Driver)
+                .OpenCatalogPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedCatalog(dictionary["name"])
+                .Click3Points()
+                .ClickUpdateButton()
                 .clickCatalogSubscriptionAdd_button()
-                .enterCatalogSubscriptionTitle(dictionary["title"])
-                .enterCatalogSubscriptionDescription(dictionary["description"])
-                .selectCatalogSubscriptionCurrency(dictionary["currency"])
-                .enterCatalogSubscriptionPackageAmount(Int32.Parse(dictionary["amount"]))
-                .enterCatalogSubscriptionPackageSalePrice(Int32.Parse(dictionary["salePrice"]))
-                .selectCatalogSubscriptionType(dictionary["type"])
-                .setTemporaryStartDate()
-                .setTemporaryEndDate()
-                .clickCatalogSubscriptionBranch()
-                .clickCatalogSubscriptionStudent()
-                .clickCatalogSubscriptionSaveButton()
-                .assert();
+                .EnterCatalogSubscriptionTitle(dictionary["title"])
+                .EnterCatalogSubscriptionDescription(dictionary["description"])
+                .SelectCatalogSubscriptionCurrency(dictionary["currency"])
+                .EnterCatalogSubscriptionPackageAmount(Int32.Parse(dictionary["amount"]))
+                .EnterCatalogSubscriptionPackageSalePrice(Int32.Parse(dictionary["salePrice"]))
+                .SelectCatalogSubscriptionType(dictionary["type"])
+                .SetTemporaryStartDate()
+                .SetTemporaryEndDate()
+                .ClickCatalogSubscriptionBranch()
+                .ClickCatalogSubscriptionStudent()
+                .ClickCatalogSubscriptionSaveButton()
+                .Assert();
         }
         [Given(@"admin deletes added catalog")]
         public void GivenAdminDeletesAddedCatalog(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openCatalogPage("instructor")
-                .searchNewlyAddedCatalog(dictionary["name"])
-                .click3Points()
-                .clickDeleteUserButton()
-                .clickAreUSure()
-                .assert();
+            new HomePage(Driver)
+                .OpenCatalogPage(Constants.Roles.Instructor.ToString())
+                .SearchNewlyAddedCatalog(dictionary["name"])
+                .Click3Points()
+                .ClickDeleteUserButton()
+                .ClickAreUSure()
+                .Assert();
         }
         [Given(@"instructor checks exam is exist")]
         public void GivenİnstructorChecksExamİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openExamPage("instructor")
-                .searchNewlyAddedExamAndDelete(dictionary["name"]);
+            new HomePage(Driver)
+                .OpenExamPage(Constants.Roles.Instructor.ToString())
+                .SearchNewlyAddedExamAndDelete(dictionary["name"]);
         }
         [Then(@"instructor adds exam with document")]
         public void ThenİnstructorAddsExamWithDocument(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openExamPage("instructor")
-                .clickAddNew()
-                .enterName(dictionary["name"])
-                .enterDescription(dictionary["description"])
-                .selectCatalogs(dictionary["catalogs"])
-                .clickNextButton()
-                .setTests(dictionary["tests"])
-                .clickSaveButton();
+            new HomePage(Driver)
+                .OpenExamPage(Constants.Roles.Instructor.ToString())
+                .ClickAddNew()
+                .EnterName(dictionary["name"])
+                .EnterDescription(dictionary["description"])
+                .SelectCatalogs(dictionary["catalogs"])
+                .ClickNextButton()
+                .SetTests(dictionary["tests"])
+                .ClickSaveButton();
         }
         [Given(@"instructor delete exam with")]
         public void GivenİnstructorDeleteExamWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openExamPage("instructor")
-                .searchNewlyAddedExam(dictionary["name"])
-                .click3Points()
-                .clickDeleteExamButton()
-                .clickAreUSure()
-                .assert();
+            new HomePage(Driver)
+                .OpenExamPage(Constants.Roles.Instructor.ToString())
+                .SearchNewlyAddedExam(dictionary["name"])
+                .Click3Points()
+                .ClickDeleteExamButton()
+                .ClickAreUSure()
+                .Assert();
         }
         [Then(@"instructor adds exam with multiple choice")]
         public void ThenİnstructorAddsExamWithMultipleChoice(Table table)
         {
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openExamPage("instructor")
-                .clickAddNew()
-                .enterName(dictionary["name"])
-                .enterDescription(dictionary["description"])
-                .enterRepeatNumber(Int32.Parse(dictionary["repeatNumber"]))
-                .selectCatalogs(dictionary["catalogs"])
-                .clickNextButton()
-                .setTests(dictionary["tests"])
-                .clickSaveButton();
+            new HomePage(Driver)
+                .OpenExamPage(Constants.Roles.Instructor.ToString())
+                .ClickAddNew()
+                .EnterName(dictionary["name"])
+                .EnterDescription(dictionary["description"])
+                .EnterRepeatNumber(Int32.Parse(dictionary["repeatNumber"]))
+                .SelectCatalogs(dictionary["catalogs"])
+                .ClickNextButton()
+                .SetTests(dictionary["tests"])
+                .ClickSaveButton();
         }
         [Then(@"instructor adds exam with open ended")]
         public void ThenİnstructorAddsExamWithOpenEnded(Table table)
         {
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openExamPage("instructor")
-                .clickAddNew()
-                .enterName(dictionary["name"])
-                .enterDescription(dictionary["description"])
-                .enterRepeatNumber(Int32.Parse(dictionary["repeatNumber"]))
-                .selectCatalogs(dictionary["catalogs"])
-                .clickNextButton()
-                .setTests(dictionary["tests"])
-                .clickSaveButton();
+            new HomePage(Driver)
+                .OpenExamPage(Constants.Roles.Instructor.ToString())
+                .ClickAddNew()
+                .EnterName(dictionary["name"])
+                .EnterDescription(dictionary["description"])
+                .EnterRepeatNumber(Int32.Parse(dictionary["repeatNumber"]))
+                .SelectCatalogs(dictionary["catalogs"])
+                .ClickNextButton()
+                .SetTests(dictionary["tests"])
+                .ClickSaveButton();
         }
         [Given(@"admin checks admin is exist")]
         public void GivenAdminChecksAdminİsExist(Table table)
         {
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openADMINSpage("admin")
-                .searchNewlyAddedAdminByNameAndDeleteIt(dictionary["name"]);
+            new HomePage(Driver)
+                .OpenAdminsPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedAdminByNameAndDeleteIt(dictionary["name"]);
 
         }
         [Then(@"admin adds admin")]
         public void ThenAdminAddsAdmin(Table table)
         {
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                 .openADMINSpage("admin")
-                 .clickAddButton()
-                 .enterFirstName(dictionary["first_name"])
-                 .enterLastName(dictionary["last_name"])
-                 .enterEmail(dictionary["email"])
-                 .enterUserName(dictionary["username"])
-                 .enterPassword(dictionary["password"])
-                 .clickGenerate()
-                 .selectGPDR()
-                 .clickSaveButton()
-                 .assert();
+            new HomePage(Driver)
+                 .OpenAdminsPage(Constants.Roles.Admin.ToString())
+                 .ClickAddButton()
+                 .EnterFirstName(dictionary["first_name"])
+                 .EnterLastName(dictionary["last_name"])
+                 .EnterEmail(dictionary["email"])
+                 .EnterUserName(dictionary["username"])
+                 .EnterPassword(dictionary["password"])
+                 .ClickGenerate()
+                 .SelectGpdr()
+                 .ClickSaveButton()
+                 .Assert();
         }
         [Then(@"admin delete admin")]
         public void ThenAdminDeleteAdmin(Table table)
         {
             var dictionary = TableExtensions.ToDictionary(table);
-            new AdminsPage(driver, "admin")
-                .searchNewlyAddedAdminByName(dictionary["name"])
-                .click3Points()
-                .clickDeleteButton()
-                .clickAreUSure()
-                .assert();
+            new AdminsPage(Driver, Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedAdminByName(dictionary["name"])
+                .Click3Points()
+                .ClickDeleteButton()
+                .ClickAreUSure()
+                .Assert();
         }
 
         [Given(@"admin checks manager is exist")]
         public void GivenAdminChecksManagerİsExist(Table table)
         {
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openManagersPage("admin")
-                .searchNewlyAddedManagerByNameAndDeleteIt(dictionary["name"]);
+            new HomePage(Driver)
+                .OpenManagersPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedManagerByNameAndDeleteIt(dictionary["name"]);
 
         }
         [Then(@"admin adds manager")]
         public void ThenAdminAddsManager(Table table)
         {
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                 .openManagersPage("admin")
-                 .clickAddButton()
-                 .enterFirstName(dictionary["first_name"])
-                 .enterLastName(dictionary["last_name"])
-                 .selectBranchName(dictionary["branchName"])
-                 .enterEmail(dictionary["email"])
-                 .enterUserName(dictionary["username"])
-                 .enterPassword(dictionary["password"])
-                 .clickGenerate()
-                 .selectGPDR()
-                 .clickSaveButton()
-                 .assert();
+            new HomePage(Driver)
+                 .OpenManagersPage(Constants.Roles.Admin.ToString())
+                 .ClickAddButton()
+                 .EnterFirstName(dictionary["first_name"])
+                 .EnterLastName(dictionary["last_name"])
+                 .SelectBranchName(dictionary["branchName"])
+                 .EnterEmail(dictionary["email"])
+                 .EnterUserName(dictionary["username"])
+                 .EnterPassword(dictionary["password"])
+                 .ClickGenerate()
+                 .SelectGpdr()
+                 .ClickSaveButton()
+                 .Assert();
         }
         [Then(@"admin delete manager")]
         public void ThenAdminDeleteManager(Table table)
         {
             var dictionary = TableExtensions.ToDictionary(table);
-            new ManagersPage(driver, "admin")
-                .searchNewlyAddedManagerByName(dictionary["name"])
-                .click3Points()
-                .clickDeleteButton()
-                .clickAreUSure()
-                .assert();
+            new ManagersPage(Driver, Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedManagerByName(dictionary["name"])
+                .Click3Points()
+                .ClickDeleteButton()
+                .ClickAreUSure()
+                .Assert();
         }
 
         [Given(@"student adds new Q&A")]
-        public void GivenStudentAddsNewQA(Table table)
+        public void GivenStudentAddsNewQa(Table table)
         {
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openQuestionsAndAnswersPage("student")
-                .clickNewTicket()
+            new HomePage(Driver)
+                .OpenQuestionsAndAnswersPage(Constants.Roles.Student.ToString())
+                .ClickNewTicket()
                 .SelectCourse(dictionary["courseName"])
-                .enterSubject(dictionary["subject"])
-                .enterMessage(dictionary["message"])
-                .clickNextButton()
+                .EnterSubject(dictionary["subject"])
+                .EnterMessage(dictionary["message"])
+                .ClickNextButton()
                 //.selectFile()
-                .clickSendButton()
-                .assert();
+                .ClickSendButton()
+                .Assert();
         }
         [Given(@"instructor checks Q&A is exist")]
         public void GivenİnstructorChecksQuestionsAndAnswerİsExist(){
-            new HomePage(driver)
-                .openQuestionsAndAnswersPage("instructor")
-                .checkQuestionIsExist();
+            new HomePage(Driver)
+                .OpenQuestionsAndAnswersPage(Constants.Roles.Instructor.ToString())
+                .CheckQuestionIsExist();
         }
         [Then(@"instructor answers the question")]
         public void GivenInstructorAnswersTheQuestion(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openQuestionsAndAnswersPage("instructor")
-                .openViewDetail()
-                .enterAnswer(dictionary["answer"])
+            new HomePage(Driver)
+                .OpenQuestionsAndAnswersPage(Constants.Roles.Instructor.ToString())
+                .OpenViewDetail()
+                .EnterAnswer(dictionary["answer"])
                 // .selectFile()
-                .clickReplyButton();
+                .ClickReplyButton();
         }
         [Then(@"instructor deletes new Q&A")]
         public void GivenİnstructorDeletesNewAddedQuestion(){
-            new HomePage(driver)
-                .openQuestionsAndAnswersPage("instructor")
-                .deleteNewAddedQuestions();
+            new HomePage(Driver)
+                .OpenQuestionsAndAnswersPage(Constants.Roles.Instructor.ToString())
+                .DeleteNewAddedQuestions();
         }
 
         [Given(@"instructor checks poll question is exist")]
         public void GivenInstructorChecksPollQuestionIsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openPollQuestionsPage("instructor")
-                .searchNewlyAddedQuestionByNameAndDeleteIt(dictionary["question"]);
+            new HomePage(Driver)
+                .OpenPollQuestionsPage(Constants.Roles.Instructor.ToString())
+                .SearchNewlyAddedQuestionByNameAndDeleteIt(dictionary["question"]);
         }
         [Given(@"instructor adds multiple poll question with")]
         public void GivenİnstructorAddsMultiplePollQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openPollQuestionsPage("instructor")
-                .clickAddButton()
-                .enterText(dictionary["question"])
-                .selectType("Multiple Choice")
-                .clickAddNewAnswerButton()
-                .enterAnswer1(dictionary["answer1"])
-                .enterAnswer2(dictionary["answer2"])
-                .enterAnswer3(dictionary["answer3"])
-                .enterAnswer4(dictionary["answer4"])
-                .clickIsPublic()
-                .clickIsEditable()
-                .clickSaveButton()
-                .assert();
+            new HomePage(Driver)
+                .OpenPollQuestionsPage(Constants.Roles.Instructor.ToString())
+                .ClickAddButton()
+                .EnterText(dictionary["question"])
+                .SelectType("Multiple Choice")
+                .ClickAddNewAnswerButton()
+                .EnterAnswer1(dictionary["answer1"])
+                .EnterAnswer2(dictionary["answer2"])
+                .EnterAnswer3(dictionary["answer3"])
+                .EnterAnswer4(dictionary["answer4"])
+                .ClickIsPublic()
+                .ClickIsEditable()
+                .ClickSaveButton()
+                .Assert();
         }
         [Given(@"instructor adds open ended poll question with")]
         public void GivenİnstructorAddsOpenEndedPollQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openPollQuestionsPage("instructor")
-                .clickAddButton()
-                .enterText(dictionary["question"])
-                .selectType("Open-Ended")
-                .clickIsPublic()
-                .clickIsEditable()
-                .clickSaveButton()
-                .assert();
+            new HomePage(Driver)
+                .OpenPollQuestionsPage(Constants.Roles.Instructor.ToString())
+                .ClickAddButton()
+                .EnterText(dictionary["question"])
+                .SelectType("Open-Ended")
+                .ClickIsPublic()
+                .ClickIsEditable()
+                .ClickSaveButton()
+                .Assert();
         }
         [Given(@"instructor adds true false poll question with")]
         public void GivenİnstructorAddsTrueFalsePollQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openPollQuestionsPage("instructor")
-                .clickAddButton()
-                .enterText(dictionary["question"])
-                .selectType("True False")
-                .clickIsPublic()
-                .clickIsEditable()
-                .clickSaveButton()
-                .assert();
+            new HomePage(Driver)
+                .OpenPollQuestionsPage(Constants.Roles.Instructor.ToString())
+                .ClickAddButton()
+                .EnterText(dictionary["question"])
+                .SelectType("True False")
+                .ClickIsPublic()
+                .ClickIsEditable()
+                .ClickSaveButton()
+                .Assert();
         }
         [Then(@"instructor delete poll question with")]
         public void ThenInstructorDeleteMultipleChoiceQuestionWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-               .openPollQuestionsPage("instructor")
-               .searchNewlyAddedQuestionByName(dictionary["question"])
-               .click3Points()
-               .clickDeleteButton()
-               .clickAreUSure()
-               .assert();
+            new HomePage(Driver)
+               .OpenPollQuestionsPage(Constants.Roles.Instructor.ToString())
+               .SearchNewlyAddedQuestionByName(dictionary["question"])
+               .Click3Points()
+               .ClickDeleteButton()
+               .ClickAreUSure()
+               .Assert();
         }
         [Given(@"admin adds new resource as document")]
         public void GivenAdminAddsNewResourceAsDocument(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openCOURSESpage("admin")
-                .searchNewlyAddedCouseByName(dictionary["name"])
-                .click3Points()
-                .clickResources()
-                .addSubject()
-                .enterSubjectTitle(dictionary["subject_title"])
-                .saveSubjectTitle()
-                .addResource()
-                .clickResourceTypeDoc()
-                .enterResourceTitle(dictionary["resource_title"])
-                .enterResourceDescription(dictionary["resource_description"])
-                .selectFile()
-                .selectDownloadable()
-                .selectUserReviewEnableForDOC()
-                .clickSaveButton()
-                .assert();
+            new HomePage(Driver)
+                .OpenCoursesPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedCourseByName(dictionary["name"])
+                .Click3Points()
+                .ClickResources()
+                .AddSubject()
+                .EnterSubjectTitle(dictionary["subject_title"])
+                .SaveSubjectTitle()
+                .AddResource()
+                .ClickResourceTypeDoc()
+                .EnterResourceTitle(dictionary["resource_title"])
+                .EnterResourceDescription(dictionary["resource_description"])
+                .SelectFile()
+                .SelectDownloadable()
+                .SelectUserReviewEnableForDoc()
+                .ClickSaveButton()
+                .Assert();
         }
         [Given(@"admin adds new resource as video")]
         public void GivenAdminAddsNewResourceAsVideo(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openCOURSESpage("admin")
-                .searchNewlyAddedCouseByName(dictionary["name"])
-                .click3Points()
-                .clickResources()
-                .addSubject()
-                .enterSubjectTitle(dictionary["subject_title"])
-                .saveSubjectTitle()
-                .addResource()
-                .clickResourceTypeVideo()
-                .enterResourceTitle(dictionary["resource_title"])
-                .enterResourceDescription(dictionary["resource_description"])
-                .selectVideo1()
-                .clickUpload()
-                .selectCourseVideoPrev()
-                .selectCourseVideoDownloadable()
-                .selectCourseVideoSpeedControl()
-                .selectUserReviewEnableForVideo()
-                .waitUntillFileIsUploaded()
-                .clickCourseVideoSubmit()
-                .assert();
+            new HomePage(Driver)
+                .OpenCoursesPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedCourseByName(dictionary["name"])
+                .Click3Points()
+                .ClickResources()
+                .AddSubject()
+                .EnterSubjectTitle(dictionary["subject_title"])
+                .SaveSubjectTitle()
+                .AddResource()
+                .ClickResourceTypeVideo()
+                .EnterResourceTitle(dictionary["resource_title"])
+                .EnterResourceDescription(dictionary["resource_description"])
+                .SelectVideo1()
+                .ClickUpload()
+                .SelectCourseVideoPrev()
+                .SelectCourseVideoDownloadable()
+                .SelectCourseVideoSpeedControl()
+                .SelectUserReviewEnableForVideo()
+                .WaitUntilFileIsUploaded()
+                .ClickCourseVideoSubmit()
+                .Assert();
         }
         [Given(@"admin adds new resource as video with vimeo id")]
         public void GivenAdminAddsNewResourceAsVideoWithVimeoİd(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openCOURSESpage("admin")
-                .searchNewlyAddedCouseByName(dictionary["name"])
-                .click3Points()
-                .clickResources()
-                .addSubject()
-                .enterSubjectTitle(dictionary["subject_title"])
-                .saveSubjectTitle()
-                .addResource()
-                .clickResourceTypeVideo()
-                .enterResourceTitle(dictionary["resource_title"])
-                .enterResourceDescription(dictionary["resource_description"])
-                .selectVimeoID()
-                .enterVimeoID(dictionary["vimeo_id"])
-                .selectCourseVideoPrev()
-                .selectCourseVideoDownloadable()
-                .selectCourseVideoSpeedControl()
-                .selectUserReviewEnableForVideo()
-                .clickCourseExistingVideoSubmit()
-                .assert();
+            new HomePage(Driver)
+                .OpenCoursesPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedCourseByName(dictionary["name"])
+                .Click3Points()
+                .ClickResources()
+                .AddSubject()
+                .EnterSubjectTitle(dictionary["subject_title"])
+                .SaveSubjectTitle()
+                .AddResource()
+                .ClickResourceTypeVideo()
+                .EnterResourceTitle(dictionary["resource_title"])
+                .EnterResourceDescription(dictionary["resource_description"])
+                .SelectVimeoId()
+                .EnterVimeoId(dictionary["vimeo_id"])
+                .SelectCourseVideoPrev()
+                .SelectCourseVideoDownloadable()
+                .SelectCourseVideoSpeedControl()
+                .SelectUserReviewEnableForVideo()
+                .ClickCourseExistingVideoSubmit()
+                .Assert();
         }
         [Given(@"admin adds new resource as link")]
         public void GivenAdminAddsNewResourceAsLink(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openCOURSESpage("admin")
-                .searchNewlyAddedCouseByName(dictionary["name"])
-                .click3Points()
-                .clickResources()
-                .addSubject()
-                .enterSubjectTitle(dictionary["subject_title"])
-                .saveSubjectTitle()
-                .addResource()
-                .clickResourceTypeLink()
-                .enterResourceTitle(dictionary["resource_title"])
-                .setDescription(dictionary["resource_description"])
-                .enterLink(dictionary["link"])
-                .selectVideoUserReview()
-                .clickResourceLinkSave()
-                .assert();
+            new HomePage(Driver)
+                .OpenCoursesPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedCourseByName(dictionary["name"])
+                .Click3Points()
+                .ClickResources()
+                .AddSubject()
+                .EnterSubjectTitle(dictionary["subject_title"])
+                .SaveSubjectTitle()
+                .AddResource()
+                .ClickResourceTypeLink()
+                .EnterResourceTitle(dictionary["resource_title"])
+                .SetDescription(dictionary["resource_description"])
+                .EnterLink(dictionary["link"])
+                .SelectVideoUserReview()
+                .ClickResourceLinkSave()
+                .Assert();
         }
         [Given(@"admin adds new resource as embed")]
         public void GivenAdminAddsNewResourceAsEmbed(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openCOURSESpage("admin")
-                .searchNewlyAddedCouseByName(dictionary["name"])
-                .click3Points()
-                .clickResources()
-                .addSubject()
-                .enterSubjectTitle(dictionary["subject_title"])
-                .saveSubjectTitle()
-                .addResource()
-                .clickResourceTypeEmbedCode()
-                .enterResourceTitle(dictionary["resource_title"])
-                .setEmbeddedDescription(dictionary["resource_description"])
-                .enterEmbedCode(dictionary["embed_code"])
-                .selectVideoUserReview()
-                .clickResourceLinkSave()
-                .assert();
+            new HomePage(Driver)
+                .OpenCoursesPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedCourseByName(dictionary["name"])
+                .Click3Points()
+                .ClickResources()
+                .AddSubject()
+                .EnterSubjectTitle(dictionary["subject_title"])
+                .SaveSubjectTitle()
+                .AddResource()
+                .ClickResourceTypeEmbedCode()
+                .EnterResourceTitle(dictionary["resource_title"])
+                .SetEmbeddedDescription(dictionary["resource_description"])
+                .EnterEmbedCode(dictionary["embed_code"])
+                .SelectVideoUserReview()
+                .ClickResourceLinkSave()
+                .Assert();
         }
         [Given(@"admin adds new resource as text")]
         public void GivenAdminAddsNewResourceAsText(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openCOURSESpage("admin")
-                .searchNewlyAddedCouseByName(dictionary["name"])
-                .click3Points()
-                .clickResources()
-                .addSubject()
-                .enterSubjectTitle(dictionary["subject_title"])
-                .saveSubjectTitle()
-                .addResource()
-                .clickResourceTypeText()
-                .enterResourceTitle(dictionary["resource_title"])
-                .setDescriptionForText(dictionary["resource_description"])
-                .selectVideoUserReview()
-                .clickResourceLinkSave()
-                .assert();
+            new HomePage(Driver)
+                .OpenCoursesPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedCourseByName(dictionary["name"])
+                .Click3Points()
+                .ClickResources()
+                .AddSubject()
+                .EnterSubjectTitle(dictionary["subject_title"])
+                .SaveSubjectTitle()
+                .AddResource()
+                .ClickResourceTypeText()
+                .EnterResourceTitle(dictionary["resource_title"])
+                .SetDescriptionForText(dictionary["resource_description"])
+                .SelectVideoUserReview()
+                .ClickResourceLinkSave()
+                .Assert();
         }
         [Given(@"admin checks discount code is exist")]
         public void GivenAdminChecksDiscountCodeİsExist(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openDiscountCodesPage("admin")
+            new HomePage(Driver)
+                .OpenDiscountCodesPage(Constants.Roles.Admin.ToString())
                 .SearchNewlyAddedDiscountCodeByNameAndDeleteIt(dictionary["name"]);
         }
         [Given(@"admin adds new discount code with")]
         public void GivenAdminAddsNewDiscountCodeWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openDiscountCodesPage("admin")
+            new HomePage(Driver)
+                .OpenDiscountCodesPage(Constants.Roles.Admin.ToString())
                 .ClickAddNew()
                 .EnterCode(dictionary["code"])
                 .EnterDescription(dictionary["description"])
@@ -1572,15 +1569,15 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .SelectIsLimited(Boolean.Parse(dictionary["limit"]))
                 .EnterLimit(dictionary.ContainsKey("usage_limit") ? dictionary["usage_limit"] : null)
                 .SetStartDate()
-                .SetEndDate(Utils.Dates.getNextYear(NEXT_YEAR), Utils.Dates.getNextMonth(Months.April), Utils.Dates.getNextDay(30))
+                .SetEndDate(Utils.Dates.GetNextYear(NEXT_YEAR), Utils.Dates.GetNextMonth(Months.April), Utils.Dates.GetNextDay(30))
                 .ClickSave()
                 .Assert();
         }
         [Then(@"admin deletes added discount code")]
         public void ThenAdminDeletesAddedDiscountCode(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openDiscountCodesPage("admin")
+            new HomePage(Driver)
+                .OpenDiscountCodesPage(Constants.Roles.Admin.ToString())
                 .SearchNewlyAddedDiscountCodeByName(dictionary["name"])
                 .Click3Points()
                 .ClickDeleteCodeButton()
@@ -1590,8 +1587,8 @@ namespace VeduBoxUnitTest.StepDefinitions{
         [Given(@"admin adds new batch user with")]
         public void AdminAddsNewBatchUserWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new HomePage(driver)
-                .openStudentsPage(dictionary["user"])
+            new HomePage(Driver)
+                .OpenStudentsPage(dictionary["user"])
                 .ClickBatchButton()
                 .ClickBatchCreateButton()
                 .EnterExcelFile()

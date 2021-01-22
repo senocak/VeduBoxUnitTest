@@ -6,108 +6,108 @@ using System.Text;
 using System.Threading.Tasks;
 using VeduBoxUnitTest.Assertion;
 
-namespace VeduBoxUnitTest.Kurumsal.Pages
-{
+namespace VeduBoxUnitTest.Kurumsal.Pages{
     class PollQuestionsPage : Page{
-        private static string _user;
-        private static readonly By SEARCH_BOX = By.CssSelector("input.form-control.vedu-search");
-        private static readonly By ADD_BUTTON = By.CssSelector("button[ui-sref='veduBox.poll.questions.new']");
-        private static readonly By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
-        private static readonly By DELETE_POLL_QUESTION = By.CssSelector("button[ng-click='delete(question.id)']");
-        private static readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
-        private static readonly By TEXT_INPUT = By.CssSelector("div[ng-model='html']");
-        private static readonly By SELECT_TYPE = By.CssSelector("select[ng-model='question.questionTypeId']");
-        private static readonly By IS_PUBLIC_INPUT = By.CssSelector("input[ng-model='question.isPublic']");
-        private static readonly By IS_EDITABLE_INPUT = By.CssSelector("input[ng-model='question.isEditable']");
-        private static readonly By SAVE_BUTTON = By.XPath("//*[@id='questionForm']/div[2]/button[1]");
-        private static readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private static readonly By ADD_NEW_ANSWER_BUTTON = By.CssSelector("button[ng-click='addChoice()']");
-        private static readonly By ANSWER1_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div/div[2]/form/div[1]/div[9]/div[3]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static readonly By ANSWER2_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div/div[2]/form/div[1]/div[9]/div[4]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static readonly By ANSWER3_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div/div[2]/form/div[1]/div[9]/div[5]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static readonly By ANSWER4_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div/div[2]/form/div[1]/div[9]/div[6]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+
+        private string USER;
+        private readonly By INPUT_SEARCH = By.CssSelector("input.form-control.vedu-search");
+        private readonly By BUTTON_ADD = By.CssSelector("button[ui-sref='veduBox.poll.questions.new']");
+        private readonly By BUTTON_THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
+        private readonly By BUTTON_DELETE_POLL_QUESTION = By.CssSelector("button[ng-click='delete(question.id)']");
+        private readonly By ALERT_ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
+        private readonly By INPUT_TEXT = By.CssSelector("div[ng-model='html']");
+        private readonly By SELECT_TYPE = By.CssSelector("select[ng-model='question.questionTypeId']");
+        private readonly By INPUT_IS_PUBLIC = By.CssSelector("input[ng-model='question.isPublic']");
+        private readonly By INPUT_IS_EDITABLE = By.CssSelector("input[ng-model='question.isEditable']");
+        private readonly By BUTTON_SAVE = By.XPath("//*[@id='questionForm']/div[2]/button[1]");
+        private readonly By ALERT_SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private readonly By BUTTON_ADD_NEW_ANSWER = By.CssSelector("button[ng-click='addChoice()']");
+        private readonly By INPUT_ANSWER1 = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div/div[2]/form/div[1]/div[9]/div[3]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By INPUT_ANSWER2 = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div/div[2]/form/div[1]/div[9]/div[4]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By INPUT_ANSWER3 = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div/div[2]/form/div[1]/div[9]/div[5]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By INPUT_ANSWER4 = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div/div[2]/form/div[1]/div[9]/div[6]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
         public PollQuestionsPage(IWebDriver wd, string user) : base(wd){
-            _user = user;
+            USER = user;
         }
-        public PollQuestionsPage searchNewlyAddedQuestionByName(string name){
-            type(SEARCH_BOX, name);
-            sleepms(1000);
+        public PollQuestionsPage SearchNewlyAddedQuestionByName(string name){
+            Type(INPUT_SEARCH, name);
+            Sleepms(1000);
             return this;
         }
-        public PollQuestionsPage searchNewlyAddedQuestionByNameAndDeleteIt(string name){
-            sleepms(3000);
-            searchNewlyAddedQuestionByName(name);
+        public PollQuestionsPage SearchNewlyAddedQuestionByNameAndDeleteIt(string name){
+            Sleepms(3000);
+            SearchNewlyAddedQuestionByName(name);
             try{
-                click3Points();
+                Click3Points();
             }catch (Exception e){
                 Console.WriteLine("Error while clicking 3dots. Looks like there is no record. Returning null." + e.Message);
                 return null;
             }
-            clickDeleteButton();
-            clickAreUSure();
-            assert();
+            ClickDeleteButton();
+            ClickAreUSure();
+            Assert();
             return this;
         }
-        public PollQuestionsPage click3Points(){
-            click(THREE_POINTS);
+        public PollQuestionsPage Click3Points(){
+            Click(BUTTON_THREE_POINTS);
             return this;
         }
-        public PollQuestionsPage clickDeleteButton(){
-            click(DELETE_POLL_QUESTION);
+        public PollQuestionsPage ClickDeleteButton(){
+            Click(BUTTON_DELETE_POLL_QUESTION);
             return this;
         }
-        public PollQuestionsPage clickAreUSure(){
-            click(ARE_U_SURE_OK);
+        public PollQuestionsPage ClickAreUSure(){
+            Click(ALERT_ARE_U_SURE_OK);
             return this;
         }
-        public PollQuestionsPage assert(){
-            AssertionCustom.assertElementVisible("Element Not Found", driver, SUCCESS);
+        public PollQuestionsPage Assert(){
+            AssertionCustom.AssertElementVisible("Element Not Found", Driver, ALERT_SUCCESS);
             return this;
         }
-        public PollQuestionsPage clickAddButton(){
-            click(ADD_BUTTON);
+        public PollQuestionsPage ClickAddButton(){
+            Click(BUTTON_ADD);
             return this;
         }
-        public PollQuestionsPage enterText(string title){
-            type(TEXT_INPUT, title);
+        public PollQuestionsPage EnterText(string title){
+            Type(INPUT_TEXT, title);
             return this;
         }
-        public PollQuestionsPage selectType(string type){
-            selectDropDown(SELECT_TYPE, type);
+        public PollQuestionsPage SelectType(string type){
+            SelectDropDown(SELECT_TYPE, type);
             return this;
         }
-        public PollQuestionsPage clickIsPublic(){
-            if (isSelected(IS_PUBLIC_INPUT) == false)
-                click(IS_PUBLIC_INPUT);
+        public PollQuestionsPage ClickIsPublic(){
+            if (IsSelected(INPUT_IS_PUBLIC) == false)
+                Click(INPUT_IS_PUBLIC);
             return this;
         }
-        public PollQuestionsPage clickIsEditable(){
-            if (isSelected(IS_EDITABLE_INPUT) == false)
-                click(IS_EDITABLE_INPUT);
+        public PollQuestionsPage ClickIsEditable(){
+            if (IsSelected(INPUT_IS_EDITABLE) == false)
+                Click(INPUT_IS_EDITABLE);
             return this;
         }
-        public PollQuestionsPage clickSaveButton(){
-            click(SAVE_BUTTON);
+        public PollQuestionsPage ClickSaveButton(){
+            Click(BUTTON_SAVE);
             return this;
         }
-        public PollQuestionsPage clickAddNewAnswerButton(){
-            click(ADD_NEW_ANSWER_BUTTON);
+        public PollQuestionsPage ClickAddNewAnswerButton(){
+            Click(BUTTON_ADD_NEW_ANSWER);
             return this;
         }
-        public PollQuestionsPage enterAnswer1(string answer){
-            type(ANSWER1_INPUT, answer);
+        public PollQuestionsPage EnterAnswer1(string answer){
+            Type(INPUT_ANSWER1, answer);
             return this;
         }
-        public PollQuestionsPage enterAnswer2(string answer){
-            type(ANSWER2_INPUT, answer);
+        public PollQuestionsPage EnterAnswer2(string answer){
+            Type(INPUT_ANSWER2, answer);
             return this;
         }
-        public PollQuestionsPage enterAnswer3(string answer){
-            type(ANSWER3_INPUT, answer);
+        public PollQuestionsPage EnterAnswer3(string answer){
+            Type(INPUT_ANSWER3, answer);
             return this;
         }
-        public PollQuestionsPage enterAnswer4(string answer){
-            type(ANSWER4_INPUT, answer);
+        public PollQuestionsPage EnterAnswer4(string answer){
+            Type(INPUT_ANSWER4, answer);
             return this;
         }
     }

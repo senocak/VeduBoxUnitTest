@@ -3,202 +3,185 @@ using System;
 using System.IO;
 using System.Text;
 using VeduBoxUnitTest.Assertion;
+using VeduBoxUnitTest.Utils;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class CoursesPage : Page{
-        private readonly By ADD_NEW_ADMIN = By.CssSelector("button[ui-sref='veduBox.admin.courses.new']");
-        private readonly By ADD_NEW_INSTRUCTOR = By.CssSelector("button[ng-show='$root.app.isTeacherAddCourseAndPackageEnabled']");
-        private readonly By NAME_ADMIN = By.CssSelector("input[ng-model='course.name']");
-        private readonly By NAME_INSTRUCTOR = By.CssSelector("input[ng-model='courseAndPackage.courseName']");
-        private readonly By TAGS = By.XPath("//*[@id='courseForm']/div[1]/div[2]/div/div/input");
-        private readonly By DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private readonly By CREATE_COURSE_DESCRIPTION = By.XPath("/html/body/div[3]/div/section/div/div[1]/div[3]/div/div/div[2]/form/div[1]/div[3]/div/text-angular/div[2]/div[3]");
-        private readonly By EMBEDDED_DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private readonly By CATEGORY_ADMIN = By.CssSelector("select[ng-model='course.categoryId']");
-        private readonly By CATEGORY_INSTRUCTOR = By.CssSelector("select[ng-model='courseAndPackage.categoryId']");
-        private readonly By TEACHER = By.CssSelector("select[ng-model='course.teacherUserId']");
-        private readonly By CATALOG = By.CssSelector("select[ng-model='course.teacherUserId']");
-        private readonly By SUBMIT_ADMIN = By.CssSelector("button[type='submit']:nth-child(1)");
-        private readonly By SUBMIT_INSTRUCTOR = By.CssSelector("button[ng-disabled='courseAndPackageForm.$invalid']");
-        private readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private readonly By SEARCH_BOX = By.CssSelector("input.form-control.vedu-search");
-        private readonly By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
-        private readonly By DELETE_COURSE = By.CssSelector("button[ng-click='delete(course)']");
-        private readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
-        private readonly By LINK_PROJET_MANAGEMENT = By.XPath("//*[contains(text(),'project management')]");
-        private readonly By COURSE_UPDATE_BUTTON = By.CssSelector("button[ui-sref='veduBox.teacher.me.courses.edit({id: course.courseId})']");
-        private readonly By COURSE_RESOURCES_BUTTON = By.CssSelector("button[ui-sref='veduBox.admin.courses.courseEdit({id: course.courseId})']");
-
-
-
-        
-
-
-        private readonly By DELETE_COURSE_INSTRUCTOR = By.CssSelector("button[ng-click='deleteCourse(course.courseId)']");
-        private readonly By ADD_SUBJECT_BUTTON = By.CssSelector("a[ng-click='saveSubject(0)']");
-        private readonly By SUBJECT_INPUT = By.CssSelector("input[ng-model='title']");
-        private readonly By FINISH_EDITING_BUTTON = By.CssSelector("button[ui-sref='veduBox.teacher.me.courses.view({id: course.courseId})']");
-        private readonly By SAVE_SUBJECT_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[3]/button[1]");
-        private readonly By ADD_RESOURCE_TEACHER = By.Id("teacherCourseEditAddResource");
-        private readonly By ADD_RESOURCE_ADMIN = By.CssSelector("button[ng-click='addResource(subject.id)']");
-       
-
-
-        
-
-
-        
-        private readonly By SELECT_RESOURCE_DOC = By.Id("rescourceTypeDoc");
-        private readonly By RESOURCE_OK = By.Id("rescourceTypeOkBtn");
-        private readonly By RESOURCE_TITLE = By.Id("txtName");
-        private readonly By RESOURCE_DESC = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private readonly By RESOURCE_DOWNLOADABLE_CHECK = By.Id("resourceTypeDocDownload");
-        private readonly By RESOURCE_VIDEO_SPEED_CONTROL= By.CssSelector("input[ng-model='resource.videoSpeedControl']");
-
-
-        private readonly By RESOURCE_DOC_REVIEW_CHECK = By.Id("resourceTypeDocReview");
-        private readonly By RESOURCE_VIDEO_REVIEW_CHECK = By.Id("resourceTypeVideoReview");
-        private readonly By RESOURCE_DOC_SAVE_BUTTON = By.Id("resourceTypeDocFileSave");
-        private readonly By SELECT_RESOURCE_VIDEO = By.Id("rescourceTypeVideo");
-        private readonly By SELECT_RESOURCE_LINK = By.Id("rescourceTypeLink");
+        private readonly By BUTTON_ADD_NEW_ADMIN = By.CssSelector("button[ui-sref='veduBox.admin.courses.new']");
+        private readonly By BUTTON_ADD_NEW_INSTRUCTOR = By.CssSelector("button[ng-show='$root.app.isTeacherAddCourseAndPackageEnabled']");
+        private readonly By INPUT_NAME_ADMIN = By.CssSelector("input[ng-model='course.name']");
+        private readonly By INPUT_NAME_INSTRUCTOR = By.CssSelector("input[ng-model='courseAndPackage.courseName']");
+        private readonly By INPUT_TAGS = By.XPath("//*[@id='courseForm']/div[1]/div[2]/div/div/input");
+        private readonly By DIV_DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By DIV_CREATE_COURSE_DESCRIPTION = By.XPath("/html/body/div[3]/div/section/div/div[1]/div[3]/div/div/div[2]/form/div[1]/div[3]/div/text-angular/div[2]/div[3]");
+        private readonly By DIV_EMBEDDED_DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By SELECT_CATEGORY_ADMIN = By.CssSelector("select[ng-model='course.categoryId']");
+        private readonly By SELECT_CATEGORY_INSTRUCTOR = By.CssSelector("select[ng-model='courseAndPackage.categoryId']");
+        private readonly By SELECT_TEACHER = By.CssSelector("select[ng-model='course.teacherUserId']");
+        private readonly By SELECT_CATALOG = By.CssSelector("select[ng-model='course.teacherUserId']");
+        private readonly By BUTTON_SUBMIT_ADMIN = By.CssSelector("button[type='submit']:nth-child(1)");
+        private readonly By BUTTON_SUBMIT_INSTRUCTOR = By.CssSelector("button[ng-disabled='courseAndPackageForm.$invalid']");
+        private readonly By ALERT_SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private readonly By INPUT_SEARCH_BOX = By.CssSelector("input.form-control.vedu-search");
+        private readonly By BUTTON_THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
+        private readonly By BUTTON_DELETE_COURSE = By.CssSelector("button[ng-click='delete(course)']");
+        private readonly By ALERT_ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
+        private readonly By LINK_PROJECT_MANAGEMENT = By.XPath("//*[contains(text(),'project management')]");
+        private readonly By BUTTON_COURSE_UPDATE = By.CssSelector("button[ui-sref='veduBox.teacher.me.courses.edit({id: course.courseId})']");
+        private readonly By BUTTON_COURSE_RESOURCES = By.CssSelector("button[ui-sref='veduBox.admin.courses.courseEdit({id: course.courseId})']");
+        private readonly By BUTTON_DELETE_COURSE_INSTRUCTOR = By.CssSelector("button[ng-click='deleteCourse(course.courseId)']");
+        private readonly By A_ADD_SUBJECT_BUTTON = By.CssSelector("a[ng-click='saveSubject(0)']");
+        private readonly By INPUT_SUBJECT_INPUT = By.CssSelector("input[ng-model='title']");
+        private readonly By BUTTON_FINISH_EDITING_BUTTON = By.CssSelector("button[ui-sref='veduBox.teacher.me.courses.view({id: course.courseId})']");
+        private readonly By BUTTON_SAVE_SUBJECT_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[3]/button[1]");
+        private readonly By BUTTON_ADD_RESOURCE_TEACHER = By.Id("teacherCourseEditAddResource");
+        private readonly By BUTTON_ADD_RESOURCE_ADMIN = By.CssSelector("button[ng-click='addResource(subject.id)']");
+        private readonly By DIV_SELECT_RESOURCE_DOC = By.Id("rescourceTypeDoc");
+        private readonly By BUTTON_RESOURCE_OK = By.Id("rescourceTypeOkBtn");
+        private readonly By INPUT_RESOURCE_TITLE = By.Id("txtName");
+        private readonly By DIV_RESOURCE_DESC = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By CHECKBOX_RESOURCE_DOWNLOADABLE_CHECK = By.Id("resourceTypeDocDownload");
+        private readonly By CHECKBOX_RESOURCE_VIDEO_SPEED_CONTROL= By.CssSelector("input[ng-model='resource.videoSpeedControl']");
+        private readonly By CHECKBOX_RESOURCE_DOC_REVIEW_CHECK = By.Id("resourceTypeDocReview");
+        private readonly By CHECKBOX_RESOURCE_VIDEO_REVIEW_CHECK = By.Id("resourceTypeVideoReview");
+        private readonly By BUTTON_RESOURCE_DOC_SAVE = By.Id("resourceTypeDocFileSave");
+        private readonly By DIV_SELECT_RESOURCE_VIDEO = By.Id("rescourceTypeVideo");
+        private readonly By DIV_SELECT_RESOURCE_LINK = By.Id("rescourceTypeLink");
         private readonly By INPUT_RESOURCE_LINK = By.CssSelector("input[ng-model='resource.url']");
         private readonly By BUTTON_RESOURCE_LINK_SAVE = By.XPath("//*[@id='resourceForm']/div[2]/div/div/button[1]");
         private readonly By SELECT_RESOURCE_EMBED_CODE = By.Id("rescourceTypeEmbedCode");
         private readonly By INPUT_RESOURCE_EMBED_CODE = By.CssSelector("textarea[ng-model='resource.code']");
-        private readonly By RESOURCE_TYPE_DOC_FILE = By.Id("resourceTypeDocFile");
-        private readonly By RESOURCE_TYPE_DOC_VIDEO1 = By.Id("fileVideo");
-        private readonly By RESOURCE_VIDEO_UPLOAD_BUTTON = By.XPath("//*[@id='resourceForm']/div[1]/div[5]/div/button");
-        private readonly By RESOURCE_TYPE_DOC_VIDEO2 = By.Id("fileTwo");
-        private readonly By RESOURCE_VIDEO_PREVIEW = By.CssSelector("input[ng-model='resource.preview']");
-        private readonly By RESOURCE_VIDEO_DOWNLOADABLE_CHECK = By.CssSelector("input[ng-model='resource.downloadable']");
-        private readonly By RESOURCE_VIDEO_FORWARD = By.CssSelector("input[ng-model='resource.forwardRewindEnabled']");
-        private readonly By RESOURCE_VIDEO_USER_REVIEW = By.CssSelector("input[ng-model='resource.userReviewEnabled']");
-        private readonly By RESOURCE_VIDEO_SUBMIT = By.Id("resourceTypeVideoFileSave");
-        private readonly By RESOURCE_VIDEO_EXISTING_SUBMIT = By.Id("resourceTypeVideoFileSaveExisting");
-        private readonly By RESOURCE_VIDEO_VIMEO_CHECKBOX = By.CssSelector("input[ng-model='resource.vimeoIdEnabled']");
-        private readonly By RESOURCE_VIDEO_VIMEO_TEXT = By.Id("resourceTypeVideoIfVimeoIdValue");
-        private readonly By UPLOADED_FILE_LABEL = By.CssSelector("label[ng-bind='resource.fileName']");
+        private readonly By INPUT_RESOURCE_TYPE_DOC_FILE = By.Id("resourceTypeDocFile");
+        private readonly By INPUT_RESOURCE_TYPE_DOC_VIDEO1 = By.Id("fileVideo");
+        private readonly By BUTTON_RESOURCE_VIDEO_UPLOAD_BUTTON = By.XPath("//*[@id='resourceForm']/div[1]/div[5]/div/button");
+        private readonly By INPUT_RESOURCE_TYPE_DOC_VIDEO2 = By.Id("fileTwo");
+        private readonly By CHECKBOX_RESOURCE_VIDEO_PREVIEW = By.CssSelector("input[ng-model='resource.preview']");
+        private readonly By CHECKBOX_RESOURCE_VIDEO_DOWNLOADABLE = By.CssSelector("input[ng-model='resource.downloadable']");
+        private readonly By CHECKBOX_RESOURCE_VIDEO_FORWARD = By.CssSelector("input[ng-model='resource.forwardRewindEnabled']");
+        private readonly By CHECKBOX_RESOURCE_VIDEO_USER_REVIEW = By.CssSelector("input[ng-model='resource.userReviewEnabled']");
+        private readonly By BUTTON_RESOURCE_VIDEO_SUBMIT = By.Id("resourceTypeVideoFileSave");
+        private readonly By BUTTON_RESOURCE_VIDEO_EXISTING_SUBMIT = By.Id("resourceTypeVideoFileSaveExisting");
+        private readonly By CHECKBOX_RESOURCE_VIDEO_VIMEO = By.CssSelector("input[ng-model='resource.vimeoIdEnabled']");
+        private readonly By INPUT_RESOURCE_VIDEO_VIMEO_TEXT = By.Id("resourceTypeVideoIfVimeoIdValue");
+        private readonly By LABEL_UPLOADED_FILE = By.CssSelector("label[ng-bind='resource.fileName']");
         private readonly By SELECT_RESOURCE_TEST = By.Id("rescourceTypeTest");
         private readonly By SELECT_RESOURCE_TEXT = By.Id("rescourceTypeText");
-        private readonly By RESOURCE_TEXT_DESCRIPTION= By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[2]/div/text-angular/div[2]/div[3]");
-        private readonly By RESOURCE_TEXT_SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[2]/div/div/button[1]");
-        
-
+        private readonly By DIV_RESOURCE_TEXT_DESCRIPTION= By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[2]/div/text-angular/div[2]/div[3]");
+        private readonly By BUTTON_RESOURCE_TEXT_SAVE = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[2]/div/div/button[1]");
         private readonly string UPLOADED_FILE_TEXT = "video.mp4";
 
-        private string _user;
+        private string USER;
         public CoursesPage(IWebDriver wd, string user) : base(wd){
-            _user = user;
+            USER = user;
         }
-        public CoursesPage addNew(){
-            if(_user == "admin")
-                click(ADD_NEW_ADMIN);
-            else if(_user == "instructor")
-                click(ADD_NEW_INSTRUCTOR);
+        public CoursesPage AddNew(){
+            if(USER == Constants.Roles.Admin.ToString())
+                Click(BUTTON_ADD_NEW_ADMIN);
+            else if(USER == Constants.Roles.Instructor.ToString())
+                Click(BUTTON_ADD_NEW_INSTRUCTOR);
             return this;
         }
-        public CoursesPage setName(string name){
-            if(_user == "admin")
-                type(NAME_ADMIN, name);
-            else if(_user == "instructor")
-                type(NAME_INSTRUCTOR, name);
+        public CoursesPage SetName(string name){
+            if(USER == Constants.Roles.Admin.ToString())
+                Type(INPUT_NAME_ADMIN, name);
+            else if(USER == Constants.Roles.Instructor.ToString())
+                Type(INPUT_NAME_INSTRUCTOR, name);
             return this;
         }
-        public CoursesPage setTags(string tags){
+        public CoursesPage SetTags(string tags){
             string[] names = tags.Split(',');
             foreach (var name in names){
-                type(TAGS, name + ",");
+                Type(INPUT_TAGS, name + ",");
             }
             return this;
         }
-        public CoursesPage setDescription(string description){
-            type(DESCRIPTION, description);
+        public CoursesPage SetDescription(string description){
+            Type(DIV_DESCRIPTION, description);
             return this;
         }
-        public CoursesPage setCreateCourseDescription(string description)
+        public CoursesPage SetCreateCourseDescription(string description)
         {
-            type(CREATE_COURSE_DESCRIPTION, description);
+            Type(DIV_CREATE_COURSE_DESCRIPTION, description);
             return this;
         }
-        public CoursesPage setEmbeddedDescription(string description){
-            type(EMBEDDED_DESCRIPTION, description);
+        public CoursesPage SetEmbeddedDescription(string description){
+            Type(DIV_EMBEDDED_DESCRIPTION, description);
             return this;
         }
-       
-        public CoursesPage selectCategory(string catetoryName){
-            catetoryName = Encoding.UTF8.GetString(Encoding.Default.GetBytes(catetoryName));
-            if (_user == "admin")
-                selectDropDown(CATEGORY_ADMIN, catetoryName);
-            else if (_user == "instructor")
-                selectDropDown(CATEGORY_INSTRUCTOR, catetoryName);
+        public CoursesPage SelectCategory(string categoryName){
+            categoryName = Encoding.UTF8.GetString(Encoding.Default.GetBytes(categoryName));
+            if (USER == Constants.Roles.Admin.ToString())
+                SelectDropDown(SELECT_CATEGORY_ADMIN, categoryName);
+            else if (USER == Constants.Roles.Instructor.ToString())
+                SelectDropDown(SELECT_CATEGORY_INSTRUCTOR, categoryName);
             return this;
         }
-        public CoursesPage selectTeacher(string teacherName){
-            selectDropDown(TEACHER, teacherName);
+        public CoursesPage SelectTeacher(string teacherName){
+            SelectDropDown(SELECT_TEACHER, teacherName);
             return this;
         }
-        public CoursesPage setCatalog(string catalogNames){
+        public CoursesPage SetCatalog(string catalogNames){
             string[] names = catalogNames.Split(',');
             foreach (var name in names){
-                click(By.XPath("//a[contains(text(), '" + name + "')]"));
+                Click(By.XPath("//a[contains(text(), '" + name + "')]"));
             }
             return this;
         }
-        public CoursesPage submit(){
-            if (_user == "admin")
-                click(SUBMIT_ADMIN);
-            else if (_user == "instructor")
-                click(SUBMIT_INSTRUCTOR);
+        public CoursesPage Submit(){
+            if (USER == Constants.Roles.Admin.ToString())
+                Click(BUTTON_SUBMIT_ADMIN);
+            else if (USER == Constants.Roles.Instructor.ToString())
+                Click(BUTTON_SUBMIT_INSTRUCTOR);
             return this;
         }
-        public CoursesPage assert(){
-            AssertionCustom.assertElementVisible("Element Not Found", driver, SUCCESS);
+        public CoursesPage Assert(){
+            AssertionCustom.AssertElementVisible("Element Not Found", Driver, ALERT_SUCCESS);
             return this;
         }
-        public CoursesPage searchNewlyAddedCouseByName(string tag){
-            type(SEARCH_BOX, tag);
-            sleepms(1000);
+        public CoursesPage SearchNewlyAddedCourseByName(string tag){
+            Type(INPUT_SEARCH_BOX, tag);
+            Sleepms(1000);
             return this;
         }
-        public CoursesPage deleteAndAssertNewlyAddedCourseIfIsExist(){
+        public CoursesPage DeleteAndAssertNewlyAddedCourseIfIsExist(){
             try{
-                deleteNewlyAddedCourse();
-                assert();
+                DeleteNewlyAddedCourse();
+                Assert();
             }catch(Exception e){
                 Console.WriteLine("Error while deleting course. Error is : " + e.Message);
             }
             return this;
         }
-        public CoursesPage deleteNewlyAddedCourse(){
-            if (_user == "admin"){
-                click3Points();
-                click(DELETE_COURSE);
-            }else if (_user == "instructor"){
-                click(DELETE_COURSE_INSTRUCTOR);
+        public CoursesPage DeleteNewlyAddedCourse(){
+            if (USER == Constants.Roles.Admin.ToString()){
+                Click3Points();
+                Click(BUTTON_DELETE_COURSE);
+            }else if (USER == Constants.Roles.Instructor.ToString()){
+                Click(BUTTON_DELETE_COURSE_INSTRUCTOR);
             }
-            click(ARE_U_SURE_OK);
+            Click(ALERT_ARE_U_SURE_OK);
             return this;
         }
-        public CoursesPage clickResources(){
-            click(COURSE_RESOURCES_BUTTON);
+        public CoursesPage ClickResources(){
+            Click(BUTTON_COURSE_RESOURCES);
             return this;
         }
-        public CoursesPage click3Points(){
-            click(THREE_POINTS);
+        public CoursesPage Click3Points(){
+            Click(BUTTON_THREE_POINTS);
             return this;
         }
-        public CoursesPage openCourseDetail(string name){
+        public CoursesPage OpenCourseDetail(string name){
             try {
-                click(By.XPath("//div[contains(text(), '" + name + "')]"));
+                Click(By.XPath("//div[contains(text(), '" + name + "')]"));
                 Console.WriteLine("Clicked "+ name + " course in Courses Page");
             }catch (Exception e) {
                 Console.WriteLine("Error occured during opening Course Detail. Error is : " + e);
             }
             return this;
         }
-        public CoursesPage openCourseUpdate(){
+        public CoursesPage OpenCourseUpdate(){
             try{
-                click(COURSE_UPDATE_BUTTON);
+                Click(BUTTON_COURSE_UPDATE);
                 Console.WriteLine("Clicked Update button in Courses Page");
             }
             catch (Exception e){
@@ -206,204 +189,196 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             }
             return this;
         }
-        public CoursesPage addSubject(){
+        public CoursesPage AddSubject(){
             try{
-                click(ADD_SUBJECT_BUTTON);
+                Click(A_ADD_SUBJECT_BUTTON);
                 Console.WriteLine("Clicked Add Subject button in Courses Detail Page");
             }catch (Exception e){
                 Console.WriteLine("Error occured during clicking Add Subject. Error is : " + e);
             }
             return this;
         }
-        public CoursesPage enterSubjectTitle(string title){
+        public CoursesPage EnterSubjectTitle(string title){
             try{
-                type(SUBJECT_INPUT, title);
+                Type(INPUT_SUBJECT_INPUT, title);
                 Console.WriteLine("Subject title is typed");
             }catch (Exception e){
                 Console.WriteLine("Error occured during entering Subject Title. Error is : " + e);
             }
             return this;
         }
-        public CoursesPage assertSubjectIsVisible(string title){
-            AssertionCustom.assertElementVisible(title + " text was not found", driver, By.XPath("(//*[contains(text(), '"+ title + "')])[1]"));
+        public CoursesPage AssertSubjectIsVisible(string title){
+            AssertionCustom.AssertElementVisible(title + " text was not found", Driver, By.XPath("(//*[contains(text(), '"+ title + "')])[1]"));
             return this;
         }
-      
-        public CoursesPage finishEditing(){
+        public CoursesPage FinishEditing(){
             try{
-                click(FINISH_EDITING_BUTTON);
+                Click(BUTTON_FINISH_EDITING_BUTTON);
                 Console.WriteLine("Clicked Finish Editing button in Courses Detail Page");
             }catch (Exception e){
                 Console.WriteLine("Error occured during clicking Finish Editing button. Error is : " + e);
             }
             return this;
         }
-        public CoursesPage saveSubjectTitle(){
+        public CoursesPage SaveSubjectTitle(){
             try{
-                click(SAVE_SUBJECT_BUTTON);
+                Click(BUTTON_SAVE_SUBJECT_BUTTON);
                 Console.WriteLine("Subject title is saved");
             }catch (Exception e){
                 Console.WriteLine("Error occured during saving Subject Title. Error is : " + e);
             }
             return this;
         }
-        public CoursesPage addResource(){
-            if (_user == "instructor"){
-                click(ADD_RESOURCE_TEACHER);
-            }else if (_user == "admin"){
-                click(ADD_RESOURCE_ADMIN);
+        public CoursesPage AddResource(){
+            if (USER == Constants.Roles.Instructor.ToString()){
+                Click(BUTTON_ADD_RESOURCE_TEACHER);
+            }else if (USER == Constants.Roles.Admin.ToString()){
+                Click(BUTTON_ADD_RESOURCE_ADMIN);
             }
             return this;
         }
-        public CoursesPage clickResourceTypeDoc(){
-            click(SELECT_RESOURCE_DOC);
+        public CoursesPage ClickResourceTypeDoc(){
+            Click(DIV_SELECT_RESOURCE_DOC);
             return this;
         }
-        public CoursesPage clickOkAfterType(){
-            click(RESOURCE_OK);
+        public CoursesPage ClickOkAfterType(){
+            Click(BUTTON_RESOURCE_OK);
             return this;
         }
-        public CoursesPage enterResourceTitle(string title){
-            type(RESOURCE_TITLE, title);
+        public CoursesPage EnterResourceTitle(string title){
+            Type(INPUT_RESOURCE_TITLE, title);
             return this;
         }
-        public CoursesPage enterResourceDescription(string desc){
-            type(RESOURCE_DESC, desc);
+        public CoursesPage EnterResourceDescription(string desc){
+            Type(DIV_RESOURCE_DESC, desc);
             return this;
         }
-        public CoursesPage enterEmbedCode(string code){
-            type(INPUT_RESOURCE_EMBED_CODE, code);
+        public CoursesPage EnterEmbedCode(string code){
+            Type(INPUT_RESOURCE_EMBED_CODE, code);
             return this;
         }
-        public CoursesPage selectDownloadable(){
-            click(RESOURCE_DOWNLOADABLE_CHECK);
+        public CoursesPage SelectDownloadable(){
+            Click(CHECKBOX_RESOURCE_DOWNLOADABLE_CHECK);
             return this;
         }
-        public CoursesPage selectUserReviewEnableForDOC(){
-            click(RESOURCE_DOC_REVIEW_CHECK);
+        public CoursesPage SelectUserReviewEnableForDoc(){
+            Click(CHECKBOX_RESOURCE_DOC_REVIEW_CHECK);
             return this;
         }
-        public CoursesPage selectUserReviewEnableForVideo(){
-            click(RESOURCE_VIDEO_REVIEW_CHECK);
+        public CoursesPage SelectUserReviewEnableForVideo(){
+            Click(CHECKBOX_RESOURCE_VIDEO_REVIEW_CHECK);
             return this;
         }
-        public CoursesPage selectFile(){
-            /*
-            IWebElement element = driver.FindElement(By.Id("resourceTypeDocFile"));
-            element.SendKeys(
-                Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Docs\\file.png"))
-            );
-            */
-            type(
-                RESOURCE_TYPE_DOC_FILE,
+        public CoursesPage SelectFile(){
+            Type(
+                INPUT_RESOURCE_TYPE_DOC_FILE,
                 Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Docs\\file.png"))
             );
             return this;
         }
-        public CoursesPage clickSaveButton(){
-            click(RESOURCE_DOC_SAVE_BUTTON);
+        public CoursesPage ClickSaveButton(){
+            Click(BUTTON_RESOURCE_DOC_SAVE);
             return this;
         }
-        public CoursesPage clickResourceTypeVideo(){
-            click(SELECT_RESOURCE_VIDEO);
+        public CoursesPage ClickResourceTypeVideo(){
+            Click(DIV_SELECT_RESOURCE_VIDEO);
             return this;
         }
-        public CoursesPage clickResourceTypeLink(){
-            click(SELECT_RESOURCE_LINK);
+        public CoursesPage ClickResourceTypeLink(){
+            Click(DIV_SELECT_RESOURCE_LINK);
             return this;
         }
-        public CoursesPage enterLink(string link){
-            type(INPUT_RESOURCE_LINK, link);
+        public CoursesPage EnterLink(string link){
+            Type(INPUT_RESOURCE_LINK, link);
             return this;
         }
-        public CoursesPage clickResourceLinkSave(){
-            click(BUTTON_RESOURCE_LINK_SAVE);
+        public CoursesPage ClickResourceLinkSave(){
+            Click(BUTTON_RESOURCE_LINK_SAVE);
             return this;
         }
-        public CoursesPage clickResourceTypeEmbedCode(){
-            click(SELECT_RESOURCE_EMBED_CODE);
+        public CoursesPage ClickResourceTypeEmbedCode(){
+            Click(SELECT_RESOURCE_EMBED_CODE);
             return this;
         }
-        public CoursesPage selectVideo1(){
-            type(
-                RESOURCE_TYPE_DOC_VIDEO1,
+        public CoursesPage SelectVideo1(){
+            Type(
+                INPUT_RESOURCE_TYPE_DOC_VIDEO1,
                 Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Docs\\video.mp4"))
             );
             return this;
         }
-        public CoursesPage clickUpload(){
-            click(RESOURCE_VIDEO_UPLOAD_BUTTON);
+        public CoursesPage ClickUpload(){
+            Click(BUTTON_RESOURCE_VIDEO_UPLOAD_BUTTON);
             return this;
         }
-        public CoursesPage selectVideo2(){
-            type(
-                RESOURCE_TYPE_DOC_VIDEO2,
+        public CoursesPage SelectVideo2(){
+            Type(
+                INPUT_RESOURCE_TYPE_DOC_VIDEO2,
                 Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Docs\\video.mp4"))
             );
             return this;
         }
-        public CoursesPage selectCourseVideoPrev(){
-            if (isSelected(RESOURCE_VIDEO_PREVIEW) == false)
-                click(RESOURCE_VIDEO_PREVIEW);
+        public CoursesPage SelectCourseVideoPrev(){
+            if (IsSelected(CHECKBOX_RESOURCE_VIDEO_PREVIEW) == false)
+                Click(CHECKBOX_RESOURCE_VIDEO_PREVIEW);
             return this;
         }
-        public CoursesPage selectCourseVideoDownloadable(){
-            if (isSelected(RESOURCE_VIDEO_DOWNLOADABLE_CHECK) == false)
-                click(RESOURCE_VIDEO_DOWNLOADABLE_CHECK);
+        public CoursesPage SelectCourseVideoDownloadable(){
+            if (IsSelected(CHECKBOX_RESOURCE_VIDEO_DOWNLOADABLE) == false)
+                Click(CHECKBOX_RESOURCE_VIDEO_DOWNLOADABLE);
             return this;
         }
-        public CoursesPage selectCourseVideoSpeedControl(){
-            if (isSelected(RESOURCE_VIDEO_SPEED_CONTROL) == false)
-                click(RESOURCE_VIDEO_SPEED_CONTROL);
+        public CoursesPage SelectCourseVideoSpeedControl(){
+            if (IsSelected(CHECKBOX_RESOURCE_VIDEO_SPEED_CONTROL) == false)
+                Click(CHECKBOX_RESOURCE_VIDEO_SPEED_CONTROL);
             return this;
         }
-        public CoursesPage selectVideoForward(){
-            if (isSelected(RESOURCE_VIDEO_FORWARD) == false)
-                click(RESOURCE_VIDEO_FORWARD);
+        public CoursesPage SelectVideoForward(){
+            if (IsSelected(CHECKBOX_RESOURCE_VIDEO_FORWARD) == false)
+                Click(CHECKBOX_RESOURCE_VIDEO_FORWARD);
             return this;
         }
-        public CoursesPage selectVideoUserReview(){
-            if (isSelected(RESOURCE_VIDEO_USER_REVIEW) == false)
-                click(RESOURCE_VIDEO_USER_REVIEW);
+        public CoursesPage SelectVideoUserReview(){
+            if (IsSelected(CHECKBOX_RESOURCE_VIDEO_USER_REVIEW) == false)
+                Click(CHECKBOX_RESOURCE_VIDEO_USER_REVIEW);
             return this;
         }
-        public CoursesPage waitUntillFileIsUploaded(){
-            AssertionCustom.assertTextToBePresentInElementLocated(driver, UPLOADED_FILE_LABEL, UPLOADED_FILE_TEXT, "Element Not Found");
+        public CoursesPage WaitUntilFileIsUploaded(){
+            AssertionCustom.AssertTextToBePresentInElementLocated(Driver, LABEL_UPLOADED_FILE, UPLOADED_FILE_TEXT, "Element Not Found");
             return this;
         }
-        public CoursesPage clickCourseVideoSubmit(){
-            click(RESOURCE_VIDEO_SUBMIT);
+        public CoursesPage ClickCourseVideoSubmit(){
+            Click(BUTTON_RESOURCE_VIDEO_SUBMIT);
             return this;
         }
-        public CoursesPage clickCourseExistingVideoSubmit(){
-            click(RESOURCE_VIDEO_EXISTING_SUBMIT);
+        public CoursesPage ClickCourseExistingVideoSubmit(){
+            Click(BUTTON_RESOURCE_VIDEO_EXISTING_SUBMIT);
             return this;
         }
-        public CoursesPage selectVimeoID(){
-            if (isSelected(RESOURCE_VIDEO_VIMEO_CHECKBOX) == false)
-                click(RESOURCE_VIDEO_VIMEO_CHECKBOX);
+        public CoursesPage SelectVimeoId(){
+            if (IsSelected(CHECKBOX_RESOURCE_VIDEO_VIMEO) == false)
+                Click(CHECKBOX_RESOURCE_VIDEO_VIMEO);
             return this;
         }
-        public CoursesPage enterVimeoID(string id){
-            type(RESOURCE_VIDEO_VIMEO_TEXT, id);
+        public CoursesPage EnterVimeoId(string id){
+            Type(INPUT_RESOURCE_VIDEO_VIMEO_TEXT, id);
             return this;
         }
-        public CoursesPage clickResourceTypeTest(){
-            click(SELECT_RESOURCE_TEST);
+        public CoursesPage ClickResourceTypeTest(){
+            Click(SELECT_RESOURCE_TEST);
             return this;
         }
-        public CoursesPage clickResourceTypeText(){
-            click(SELECT_RESOURCE_TEXT);
+        public CoursesPage ClickResourceTypeText(){
+            Click(SELECT_RESOURCE_TEXT);
             return this;
         }
-        public CoursesPage setDescriptionForText(string description){
-            type(RESOURCE_TEXT_DESCRIPTION, description);
+        public CoursesPage SetDescriptionForText(string description){
+            Type(DIV_RESOURCE_TEXT_DESCRIPTION, description);
             return this;
         }
-        public CoursesPage clickSaveButtonForText(){
-            click(RESOURCE_TEXT_SAVE_BUTTON);
+        public CoursesPage ClickSaveButtonForText(){
+            Click(BUTTON_RESOURCE_TEXT_SAVE);
             return this;
         }
-
     }
 }

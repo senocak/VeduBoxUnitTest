@@ -51,46 +51,46 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             return this;
         }
         public DiscountCodesPage SearchNewlyAddedDiscountCodeByName(string tag){
-            type(SEARCH_BOX, tag);
-            sleepms(1000);
+            Type(SEARCH_BOX, tag);
+            Sleepms(1000);
             return this;
         }
         public DiscountCodesPage Click3Points(){
-            click(THREE_POINTS);
+            Click(THREE_POINTS);
             return this;
         }
         public DiscountCodesPage ClickDeleteCodeButton(){
-            click(DELETE_CODE);
+            Click(DELETE_CODE);
             return this;
         }
         public DiscountCodesPage ClickAreUSure(){
-            click(ARE_U_SURE_OK);
+            Click(ARE_U_SURE_OK);
             return this;
         }
         public DiscountCodesPage Assert(){
-            AssertionCustom.assertElementVisible("Element Not Found", driver, SUCCESS);
+            AssertionCustom.AssertElementVisible("Element Not Found", Driver, SUCCESS);
             return this;
         }
         public DiscountCodesPage ClickAddNew(){
-            click(BUTTON_ADD_NEW);
+            Click(BUTTON_ADD_NEW);
             return this;
         }
         public DiscountCodesPage EnterCode(string code){
-            type(INPUT_CODE, code);
+            Type(INPUT_CODE, code);
             return this;
         }
         public DiscountCodesPage EnterDescription(string desc){
-            type(INPUT_DESCRIPTION, desc);
+            Type(INPUT_DESCRIPTION, desc);
             return this;
         }
         public DiscountCodesPage EnterPercentage(string desc){
-            type(INPUT_PERCENTAGE, desc);
+            Type(INPUT_PERCENTAGE, desc);
             return this;
         }
         public DiscountCodesPage SelectIsLimited(bool limit){
             if (limit == true) {
-                if (isSelected(CHECKBOX_IS_LIMITED) == false) {
-                    click(CHECKBOX_IS_LIMITED);
+                if (IsSelected(CHECKBOX_IS_LIMITED) == false) {
+                    Click(CHECKBOX_IS_LIMITED);
                 }
             }else{ 
                 Console.WriteLine("limit is not selected.");   
@@ -99,16 +99,16 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         }
         public DiscountCodesPage EnterLimit(string limit = null){
             if (limit != null) {
-                type(INPUT_LIMIT, limit);   
+                Type(INPUT_LIMIT, limit);   
             }
             return this;
         }
         public DiscountCodesPage SetStartDate(int yearParam = 0, string monthParam = null, string dayParam = null){
-            int year = yearParam == 0 ? Utils.Dates.getCurrentYear() : yearParam;
-            string month = monthParam == null ? Utils.Dates.getCurrentMonth() : monthParam;
-            string day = dayParam == null ? Utils.Dates.getCurrentDay() : dayParam;
+            int year = yearParam == 0 ? Utils.Dates.GetCurrentYear() : yearParam;
+            string month = monthParam == null ? Utils.Dates.GetCurrentMonth() : monthParam;
+            string day = dayParam == null ? Utils.Dates.GetCurrentDay() : dayParam;
 
-            string getCurrentValueOfInput = getAttribute(INPUT_START_DATE_TEXTBOX, "value");
+            string getCurrentValueOfInput = GetAttribute(INPUT_START_DATE_TEXTBOX, "value");
             
             string[] words = getCurrentValueOfInput.Split('/');
             string getCurrentValueOfInputDay = words[0];
@@ -116,62 +116,62 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             int getCurrentValueOfInputYear = Int32.Parse(words[2]);
 
             try{
-                click(BUTTON_START_DATE_PICKER);
-                click(BUTTON_START_DATE_CHOOSE_YEAR);
+                Click(BUTTON_START_DATE_PICKER);
+                Click(BUTTON_START_DATE_CHOOSE_YEAR);
                 if (year != getCurrentValueOfInputYear){
                     if (year < getCurrentValueOfInputYear){
                         for (int i = getCurrentValueOfInputYear; i > year; i--){
-                            click(BUTTON_START_DATE_PREVIOUS_YEAR);
+                            Click(BUTTON_START_DATE_PREVIOUS_YEAR);
                         }
                     }else{
                         for (int i = getCurrentValueOfInputYear; i < year; i++){
-                            click(BUTTON_START_DATE_NEXT_YEAR);
+                            Click(BUTTON_START_DATE_NEXT_YEAR);
                         }
                     }
                 }
-                click(By.XPath("//span[contains(text(),'" + month + "')]"));
-                click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[1]"));
+                Click(By.XPath("//span[contains(text(),'" + month + "')]"));
+                Click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[1]"));
             }catch(Exception e){
                 Console.WriteLine("Element not found:" + e);
             }
-            sleepms(500);
+            Sleepms(500);
             return this;
         }
         public DiscountCodesPage SetEndDate(int yearParam = 0, string monthParam = null, string dayParam = null){
-            int year = yearParam == 0 ? Utils.Dates.getCurrentYear() : yearParam;
-            string month = monthParam == null ? Utils.Dates.getCurrentMonth() : monthParam;
-            string day = dayParam == null ? Utils.Dates.getCurrentDay() : dayParam;
+            int year = yearParam == 0 ? Utils.Dates.GetCurrentYear() : yearParam;
+            string month = monthParam == null ? Utils.Dates.GetCurrentMonth() : monthParam;
+            string day = dayParam == null ? Utils.Dates.GetCurrentDay() : dayParam;
 
-            string getCurrentValueOfInput = getAttribute(INPUT_END_DATE_TEXTBOX, "value");
+            string getCurrentValueOfInput = GetAttribute(INPUT_END_DATE_TEXTBOX, "value");
             string[] words = getCurrentValueOfInput.Split('/');
             string getCurrentValueOfInputDay = words[0];
             int getCurrentValueOfInputMonth = Int32.Parse(words[1]);
             int getCurrentValueOfInputYear = Int32.Parse(words[2]);
 
             try{
-                click(BUTTON_END_DATE_PICKER);
-                click(BUTTON_END_DATE_CHOOSE_YEAR);
+                Click(BUTTON_END_DATE_PICKER);
+                Click(BUTTON_END_DATE_CHOOSE_YEAR);
                 if (year != getCurrentValueOfInputYear){
                     if (year < getCurrentValueOfInputYear){
                         for (int i = getCurrentValueOfInputYear; i > year; i--){
-                            click(BUTTON_END_DATE_PREVIOUS_YEAR);
+                            Click(BUTTON_END_DATE_PREVIOUS_YEAR);
                         }
                     }else{
                         for (int i = getCurrentValueOfInputYear; i < year; i++){
-                            click(BUTTON_END_DATE_NEXT_YEAR);
+                            Click(BUTTON_END_DATE_NEXT_YEAR);
                         }
                     }
                 }
-                click(By.XPath("//span[contains(text(),'" + month + "')]"));
-                click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[1]"));
+                Click(By.XPath("//span[contains(text(),'" + month + "')]"));
+                Click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[1]"));
             }catch (Exception e){
                 Console.WriteLine("Element not found:" + e);
             }
-            sleepms(500);
+            Sleepms(500);
             return this;
         }
         public DiscountCodesPage ClickSave(){
-            click(BUTTON_SAVE);
+            Click(BUTTON_SAVE);
             return this;
         }
         

@@ -8,267 +8,232 @@ using VeduBoxUnitTest.Assertion;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class CatalogPage : Page{
-        private static readonly By ADD_NEW = By.CssSelector("button[ui-sref='veduBox.admin.packages.detail({id: 0})']");
-        private static readonly By NAME = By.CssSelector("input[ng-model='package.name']");
-        private static readonly By TAGS = By.XPath("//*[@id='packageForm']/div[1]/div[2]/div/div/input");
-        private static readonly By DESCRIPTION = By.CssSelector("textarea[ng-model='package.description']");
-        private static readonly By SUBMIT = By.CssSelector("button[type='submit']:nth-child(1)");
-        private static readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private static readonly By SEARCH_BOX = By.CssSelector("input.form-control.vedu-search");
-        private static readonly By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
-        private static readonly By DELETE_CATALOG = By.CssSelector("button[ng-click='delete(package.id)']");
-        private static readonly By UPDATE_CATALOG = By.CssSelector("button[ui-sref='veduBox.admin.packages.detail({id: package.id})']");
-        private static readonly By CATALOG_SUBSCRIPTION_ADD = By.CssSelector("button[ng-click='createPackageDetail(package.id,0)']");
-        private static readonly By CATALOG_SUBSCRIPTION_TITLE = By.CssSelector("input[ng-model='packageDetail.title']");
-        private static readonly By CATALOG_SUBSCRIPTION_DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[2]/div[1]/form/div/div[2]/div/text-angular/div[2]/div[3]");
-        private static readonly By CATALOG_SUBSCRIPTION_CURRENCY = By.CssSelector("select[ng-model='packageDetail.currencyTypeId']");
-        private static readonly By CATALOG_SUBSCRIPTION_TYPE = By.CssSelector("select[ng-model='packageDetail.packageDetailTypeId']");
-        private static readonly By CATALOG_AMOUNT = By.CssSelector("input[ng-model='packageDetail.salePrice']");
-        private static readonly By CATALOG_SELL_PRICE = By.CssSelector("input[ng-model='packageDetail.amount']");
-        private static readonly By CATALOG_SUBSCRIPTION_BRANCH = By.XPath("/html/body/div[6]/div/div/div/div[2]/div[1]/form/div/div[8]/div[5]/div/div/div[2]/div/ul/li/i");
-        private static readonly By CATALOG_SUBSCRIPTION_STUDENT = By.XPath("/html/body/div[6]/div/div/div/div[2]/div[1]/form/div/div[8]/div[5]/div/div/div[2]/div/ul/li/ul/li/a");
-        private static readonly By CATALOG_SUBSCRIPTION_PACKAGE_DURATION_TIME = By.CssSelector("input[ng-model='packageDetail.duration']");
-        private static readonly By CATALOG_SUBSCRIPTION_PACKAGE_DURATION_TYPE = By.CssSelector("select[ng-model='packageDetail.durationTypeId']");
-        private static readonly By CATALOG_SUBSCRIPTION_PACKAGE_SAVE = By.XPath("/html/body/div[6]/div/div/div/div[2]/div[2]/button[1]");
-        private static readonly By CATALOG_IS_SHOWN_AT_HOMEPAGE = By.CssSelector("[ng-model='package.isShownAtHomepage']");
-        private static readonly By TEMPORARY_START_DATE_SELECT_DATA = By.CssSelector("input[ng-model='packageDetail.startDate']");
-        private static readonly By TEMPORARY_END_DATE_SELECT_DATA = By.CssSelector("input[ng-model='packageDetail.endDate']");
+        private readonly By BUTTON_ADD_NEW = By.CssSelector("button[ui-sref='veduBox.admin.packages.detail({id: 0})']");
+        private readonly By INPUT_NAME = By.CssSelector("input[ng-model='package.name']");
+        private readonly By INPUT_TAGS = By.XPath("//*[@id='packageForm']/div[1]/div[2]/div/div/input");
+        private readonly By TEXTAREA_DESCRIPTION = By.CssSelector("textarea[ng-model='package.description']");
+        private readonly By BUTTON_SUBMIT = By.CssSelector("button[type='submit']:nth-child(1)");
+        private readonly By ALERT_SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private readonly By INPUT_SEARCH_BOX = By.CssSelector("input.form-control.vedu-search");
+        private readonly By BUTTON_THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
+        private readonly By BUTTON_DELETE_CATALOG = By.CssSelector("button[ng-click='delete(package.id)']");
+        private readonly By BUTTON_UPDATE_CATALOG = By.CssSelector("button[ui-sref='veduBox.admin.packages.detail({id: package.id})']");
+        private readonly By BUTTON_CATALOG_SUBSCRIPTION_ADD = By.CssSelector("button[ng-click='createPackageDetail(package.id,0)']");
+        private readonly By INPUT_CATALOG_SUBSCRIPTION_TITLE = By.CssSelector("input[ng-model='packageDetail.title']");
+        private readonly By DIV_CATALOG_SUBSCRIPTION_DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[2]/div[1]/form/div/div[2]/div/text-angular/div[2]/div[3]");
+        private readonly By SELECT_CATALOG_SUBSCRIPTION_CURRENCY = By.CssSelector("select[ng-model='packageDetail.currencyTypeId']");
+        private readonly By SELECT_CATALOG_SUBSCRIPTION_TYPE = By.CssSelector("select[ng-model='packageDetail.packageDetailTypeId']");
+        private readonly By INPUT_CATALOG_AMOUNT = By.CssSelector("input[ng-model='packageDetail.salePrice']");
+        private readonly By INPUT_CATALOG_SELL_PRICE = By.CssSelector("input[ng-model='packageDetail.amount']");
+        private readonly By ICON_JSTREE_CATALOG_SUBSCRIPTION_BRANCH = By.XPath("/html/body/div[6]/div/div/div/div[2]/div[1]/form/div/div[8]/div[5]/div/div/div[2]/div/ul/li/i");
+        private readonly By ICON_JSTREE_CATALOG_SUBSCRIPTION_STUDENT = By.XPath("/html/body/div[6]/div/div/div/div[2]/div[1]/form/div/div[8]/div[5]/div/div/div[2]/div/ul/li/ul/li/a");
+        private readonly By INPUT_CATALOG_SUBSCRIPTION_PACKAGE_DURATION_TIME = By.CssSelector("input[ng-model='packageDetail.duration']");
+        private readonly By SELECT_CATALOG_SUBSCRIPTION_PACKAGE_DURATION_TYPE = By.CssSelector("select[ng-model='packageDetail.durationTypeId']");
+        private readonly By BUTTON_CATALOG_SUBSCRIPTION_PACKAGE_SAVE = By.XPath("/html/body/div[6]/div/div/div/div[2]/div[2]/button[1]");
+        private readonly By CHECKBOX_CATALOG_IS_SHOWN_AT_HOMEPAGE = By.CssSelector("input[ng-model='package.isShownAtHomepage']");
+        private readonly By TEMPORARY_START_DATE_SELECT_DATA = By.CssSelector("input[ng-model='packageDetail.startDate']");
+        private readonly By INPUT_TEMPORARY_END_DATE_SELECT_DATA = By.CssSelector("input[ng-model='packageDetail.endDate']");
+        private readonly By BUTTON_TEMPORARY_START_DATE_OPEN_DATEPICKER = By.CssSelector("button[ng-click*='start']");
+        private readonly By BUTTON_TEMPORARY_END_DATE_OPEN_DATEPICKER = By.CssSelector("button[ng-click*='end']");
+        private readonly By BUTTON_TEMPORARY_START_DATE_CHOOSE_YEAR = By.XPath("(//button[@ng-click='toggleMode()'])[1]");
+        private readonly By BUTTON_TEMPORARY_END_DATE_CHOOSE_YEAR = By.XPath("(//button[@ng-click='toggleMode()'])[2]");
+        private readonly By BUTTON_TEMPORARY_START_DATE_GO_PREVIOUS_YEAR = By.XPath("(//button[@ng-click='move(-1)'])[1]");
+        private readonly By BUTTON_TEMPORARY_END_DATE_GO_PREVIOUS_YEAR = By.XPath("(//button[@ng-click='move(-1)'])[2]");
+        private readonly By BUTTON_TEMPORARY_START_DATE_GO_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[1]");
+        private readonly By BUTTON_TEMPORARY_END_DATE_GO_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[2]");
+        private readonly By ALERT_ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
 
-        private static readonly By TEMPORARY_START_DATE_OPEN_DATEPICKER = By.CssSelector("button[ng-click*='start']");
-        private static readonly By TEMPORARY_END_DATE_OPEN_DATEPICKER = By.CssSelector("button[ng-click*='end']");
-        private static readonly By TEMPORARY_START_DATE_CHOOSE_YEAR = By.XPath("(//button[@ng-click='toggleMode()'])[1]");
-        private static readonly By TEMPORARY_END_DATE_CHOOSE_YEAR = By.XPath("(//button[@ng-click='toggleMode()'])[2]");
-        private static readonly By TEMPORARY_START_DATE_GO_PREVIOUS_YEAR = By.XPath("(//button[@ng-click='move(-1)'])[1]");
-        private static readonly By TEMPORARY_END_DATE_GO_PREVIOUS_YEAR = By.XPath("(//button[@ng-click='move(-1)'])[2]");
-        private static readonly By TEMPORARY_START_DATE_GO_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[1]");
-        private static readonly By TEMPORARY_END_DATE_GO_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[2]");
-        private static readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
-
-        private static string _user;
+        private string USER;
         public CatalogPage(IWebDriver wd, string user) : base(wd){
-            _user = user;
+            USER = user;
         }
-        public CatalogPage searchNewlyAddedCatalog(string email){
-            type(SEARCH_BOX, email);
-            sleepms(1000);
+        public CatalogPage SearchNewlyAddedCatalog(string email){
+            Type(INPUT_SEARCH_BOX, email);
+            Sleepms(1000);
             return this;
         }
-        public CatalogPage clickAddNew(){
-            click(ADD_NEW);
+        public CatalogPage ClickAddNew(){
+            Click(BUTTON_ADD_NEW);
             return this;
         }
-        public CatalogPage enterName(string name){
-            type(NAME, name);
+        public CatalogPage EnterName(string name){
+            Type(INPUT_NAME, name);
             return this;
         }
-        public CatalogPage enterTags(string tags){
+        public CatalogPage EnterTags(string tags){
             string[] names = tags.Split(',');
             foreach (var name in names){
-                type(TAGS, name + ",");
+                Type(INPUT_TAGS, name + ",");
             }
             return this;
         }
-        public CatalogPage enterDescription(string description){
-            type(DESCRIPTION, description);
+        public CatalogPage EnterDescription(string description){
+            Type(TEXTAREA_DESCRIPTION, description);
             return this;
         }
-        public CatalogPage submit(){
-            click(SUBMIT);
+        public CatalogPage Submit(){
+            Click(BUTTON_SUBMIT);
             return this;
         }
-        public CatalogPage assert(){
-            AssertionCustom.assertElementVisible("Element Not Found", driver, SUCCESS);
+        public CatalogPage Assert(){
+            AssertionCustom.AssertElementVisible("Element Not Found", Driver, ALERT_SUCCESS);
             return this;
         }
-        public CatalogPage searchNewlyAddedCatalogAndDeleteIt(string email){
-            searchNewlyAddedCatalog(email);
+        public CatalogPage SearchNewlyAddedCatalogAndDeleteIt(string email){
+            SearchNewlyAddedCatalog(email);
             try{
-                click3Points();
+                Click3Points();
             }catch (Exception e){
                 Console.WriteLine("Error:" + e.Message);
                 return null;
             }
-            clickDeleteUserButton();
-            clickAreUSure();
-            assert();
+            ClickDeleteUserButton();
+            ClickAreUSure();
+            Assert();
             return this;
         }
-        public CatalogPage click3Points(){
-            click(THREE_POINTS);
+        public CatalogPage Click3Points(){
+            Click(BUTTON_THREE_POINTS);
             return this;
         }
-        public CatalogPage clickDeleteUserButton(){
-            click(DELETE_CATALOG);
+        public CatalogPage ClickDeleteUserButton(){
+            Click(BUTTON_DELETE_CATALOG);
             return this;
         }
-        public CatalogPage clickAreUSure(){
-            click(ARE_U_SURE_OK);
+        public CatalogPage ClickAreUSure(){
+            Click(ALERT_ARE_U_SURE_OK);
             return this;
         }
-        public CatalogPage clickUpdateButton(){
-            click(UPDATE_CATALOG);
+        public CatalogPage ClickUpdateButton(){
+            Click(BUTTON_UPDATE_CATALOG);
             return this;
         }
         public CatalogPage clickCatalogSubscriptionAdd_button(){
-            click(CATALOG_SUBSCRIPTION_ADD);
+            Click(BUTTON_CATALOG_SUBSCRIPTION_ADD);
             return this;
         }
-        public CatalogPage enterCatalogSubscriptionTitle(string title){
-            type(CATALOG_SUBSCRIPTION_TITLE, title);
+        public CatalogPage EnterCatalogSubscriptionTitle(string title){
+            Type(INPUT_CATALOG_SUBSCRIPTION_TITLE, title);
             return this;
         }
-        public CatalogPage enterCatalogSubscriptionDescription(string description)
-        {
-            type(CATALOG_SUBSCRIPTION_DESCRIPTION, description);
+        public CatalogPage EnterCatalogSubscriptionDescription(string description) {
+            Type(DIV_CATALOG_SUBSCRIPTION_DESCRIPTION, description);
             return this;
         }
-        public CatalogPage selectCatalogSubscriptionCurrency(string currency){
-            selectDropDown(CATALOG_SUBSCRIPTION_CURRENCY, currency);
+        public CatalogPage SelectCatalogSubscriptionCurrency(string currency){
+            SelectDropDown(SELECT_CATALOG_SUBSCRIPTION_CURRENCY, currency);
             return this;
         }
-        public CatalogPage enterCatalogSubscriptionPackageAmount(int amount)
-        {
-            type(CATALOG_AMOUNT, amount);
+        public CatalogPage EnterCatalogSubscriptionPackageAmount(int amount){
+            Type(INPUT_CATALOG_AMOUNT, amount);
             return this;
         }
-        public CatalogPage enterCatalogSubscriptionPackageSalePrice(int salePrice)
-        {
-            type(CATALOG_SELL_PRICE, salePrice);
+        public CatalogPage EnterCatalogSubscriptionPackageSalePrice(int salePrice){
+            Type(INPUT_CATALOG_SELL_PRICE, salePrice);
             return this;
         }
-        public CatalogPage selectCatalogSubscriptionType(string type){
-            selectDropDown(CATALOG_SUBSCRIPTION_TYPE, type);
+        public CatalogPage SelectCatalogSubscriptionType(string type){
+            SelectDropDown(SELECT_CATALOG_SUBSCRIPTION_TYPE, type);
             return this;
         }
-        public CatalogPage enterCatalogSubscriptionPackageDurationTime(string time){
-            type(CATALOG_SUBSCRIPTION_PACKAGE_DURATION_TIME, time);
+        public CatalogPage EnterCatalogSubscriptionPackageDurationTime(string time){
+            Type(INPUT_CATALOG_SUBSCRIPTION_PACKAGE_DURATION_TIME, time);
             return this;
         }
-        public CatalogPage enterCatalogSubscriptionPackageDurationType(string duration_type){
-            selectDropDown(CATALOG_SUBSCRIPTION_PACKAGE_DURATION_TYPE, duration_type);
+        public CatalogPage EnterCatalogSubscriptionPackageDurationType(string durationType){
+            SelectDropDown(SELECT_CATALOG_SUBSCRIPTION_PACKAGE_DURATION_TYPE, durationType);
             return this;
         }
-        public CatalogPage clickCatalogSubscriptionBranch()
-        {
-            click(CATALOG_SUBSCRIPTION_BRANCH);
+        public CatalogPage ClickCatalogSubscriptionBranch() {
+            Click(ICON_JSTREE_CATALOG_SUBSCRIPTION_BRANCH);
+            Sleepms(15000);
             return this;
         }
-        public CatalogPage clickCatalogSubscriptionStudent()
-        {
-            click(CATALOG_SUBSCRIPTION_STUDENT);
+        public CatalogPage ClickCatalogSubscriptionStudent() {
+            Click(ICON_JSTREE_CATALOG_SUBSCRIPTION_STUDENT);
             return this;
         }
-        public CatalogPage clickCatalogSubscriptionSaveButton(){
-            click(CATALOG_SUBSCRIPTION_PACKAGE_SAVE);
+        public CatalogPage ClickCatalogSubscriptionSaveButton(){
+            Click(BUTTON_CATALOG_SUBSCRIPTION_PACKAGE_SAVE);
             return this;
         }
-        public CatalogPage clickIsShowAtHomePage()
-        {
-            if (isSelected(CATALOG_IS_SHOWN_AT_HOMEPAGE) == false)
-                click(CATALOG_IS_SHOWN_AT_HOMEPAGE);
+        public CatalogPage ClickIsShowAtHomePage(){
+            if (IsSelected(CHECKBOX_CATALOG_IS_SHOWN_AT_HOMEPAGE) == false)
+                Click(CHECKBOX_CATALOG_IS_SHOWN_AT_HOMEPAGE);
             return this;
         }
-        public CatalogPage setTemporaryStartDate(int yearParam = 0, string monthParam = null, string dayParam = null)
-        {
-            int year = yearParam == 0 ? Utils.Dates.getCurrentYear() : yearParam;
-            string month = monthParam == null ? Utils.Dates.getCurrentMonth() : monthParam;
-            string day = dayParam == null ? Utils.Dates.getCurrentDay() : dayParam;
+        public CatalogPage SetTemporaryStartDate(int yearParam = 0, string monthParam = null, string dayParam = null){
+            int year = yearParam == 0 ? Utils.Dates.GetCurrentYear() : yearParam;
+            string month = monthParam == null ? Utils.Dates.GetCurrentMonth() : monthParam;
+            string day = dayParam == null ? Utils.Dates.GetCurrentDay() : dayParam;
 
-            string getCurrentValueOfInput = getAttribute(TEMPORARY_START_DATE_SELECT_DATA, "value");
+            string getCurrentValueOfInput = GetAttribute(TEMPORARY_START_DATE_SELECT_DATA, "value");
             string[] words = getCurrentValueOfInput.Split('/');
             int getCurrentValueOfInputYear = Int32.Parse(words[2]);
             int getCurrentValueOfInputMonth = Int32.Parse(words[1]);
             string getCurrentValueOfInputDay = words[0];
 
-            try
-            {
-                click(TEMPORARY_START_DATE_OPEN_DATEPICKER);
-                Console.WriteLine("clicked start date picker");
-                click(TEMPORARY_START_DATE_CHOOSE_YEAR);
-                Console.WriteLine("clicked start date choose year");
-                if (year != getCurrentValueOfInputYear)
-                {
-                    if (year < getCurrentValueOfInputYear)
-                    {
-                        for (int i = getCurrentValueOfInputYear; i > year; i--)
-                        {
-                            click(TEMPORARY_START_DATE_GO_PREVIOUS_YEAR);
-
+            try{
+                Click(BUTTON_TEMPORARY_START_DATE_OPEN_DATEPICKER);
+                Click(BUTTON_TEMPORARY_START_DATE_CHOOSE_YEAR);
+                if (year != getCurrentValueOfInputYear){
+                    if (year < getCurrentValueOfInputYear){
+                        for (int i = getCurrentValueOfInputYear; i > year; i--){
+                            Click(BUTTON_TEMPORARY_START_DATE_GO_PREVIOUS_YEAR);
                         }
-                    }
-                    else
-                    {
-                        for (int i = getCurrentValueOfInputYear; i < year; i++)
-                        {
-                            click(TEMPORARY_START_DATE_GO_NEXT_YEAR);
-
+                    }else{
+                        for (int i = getCurrentValueOfInputYear; i < year; i++){
+                            Click(BUTTON_TEMPORARY_START_DATE_GO_NEXT_YEAR);
                         }
                     }
                 }
-                click(By.XPath("//span[contains(text(),'" + month + "')]"));
-                Console.WriteLine("clicked start date month " + month + " successfully");
-                click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[2]"));
-                Console.WriteLine("clicked start date day " + day + " successfully");
+                Click(By.XPath("//span[contains(text(),'" + month + "')]"));
+                Click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[2]"));
+            }catch (Exception e){
+                Console.WriteLine("Element not found:" + e.Message);
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("Element not found:" + e);
-            }
-            sleepms(500);
+            Sleepms(500);
             return this;
         }
 
-        public CatalogPage setTemporaryEndDate(int yearParam = 0, string monthParam = null, string dayParam = null)
-        {
-            int year = yearParam == 0 ? Utils.Dates.getCurrentYear() : yearParam;
-            string month = monthParam == null ? Utils.Dates.getCurrentMonth() : monthParam;
-            string day = dayParam == null ? Utils.Dates.getCurrentDay() : dayParam;
+        public CatalogPage SetTemporaryEndDate(int yearParam = 0, string monthParam = null, string dayParam = null){
+            int year = yearParam == 0 ? Utils.Dates.GetCurrentYear() : yearParam;
+            string month = monthParam == null ? Utils.Dates.GetCurrentMonth() : monthParam;
+            string day = dayParam == null ? Utils.Dates.GetCurrentDay() : dayParam;
 
-            string getCurrentValueOfInput = getAttribute(TEMPORARY_END_DATE_SELECT_DATA, "value");
+            string getCurrentValueOfInput = GetAttribute(INPUT_TEMPORARY_END_DATE_SELECT_DATA, "value");
             string[] words = getCurrentValueOfInput.Split('/');
             int getCurrentValueOfInputYear = Int32.Parse(words[2]);
             int getCurrentValueOfInputMonth = Int32.Parse(words[1]);
             string getCurrentValueOfInputDay = words[0];
 
-
-            try
-            {
-                click(TEMPORARY_END_DATE_OPEN_DATEPICKER);
+            try {
+                Click(BUTTON_TEMPORARY_END_DATE_OPEN_DATEPICKER);
                 Console.WriteLine("clicked end date picker");
-                click(TEMPORARY_END_DATE_CHOOSE_YEAR);
+                Click(BUTTON_TEMPORARY_END_DATE_CHOOSE_YEAR);
                 Console.WriteLine("clicked start date choose year");
-                if (year != getCurrentValueOfInputYear)
-                {
-                    if (year < getCurrentValueOfInputYear)
-                    {
-                        for (int i = getCurrentValueOfInputYear; i > year; i--)
-                        {
-                            click(TEMPORARY_END_DATE_GO_PREVIOUS_YEAR);
+                if (year != getCurrentValueOfInputYear){
+                    if (year < getCurrentValueOfInputYear){
+                        for (int i = getCurrentValueOfInputYear; i > year; i--){
+                            Click(BUTTON_TEMPORARY_END_DATE_GO_PREVIOUS_YEAR);
                         }
-                    }
-                    else
-                    {
-                        for (int i = getCurrentValueOfInputYear; i < year; i++)
-                        {
-                            click(TEMPORARY_END_DATE_GO_NEXT_YEAR);
+                    }else{
+                        for (int i = getCurrentValueOfInputYear; i < year; i++) {
+                            Click(BUTTON_TEMPORARY_END_DATE_GO_NEXT_YEAR);
                             Console.WriteLine("clicked end date go to next year " + i + " times");
                         }
                     }
                 }
-                click(By.XPath("//span[contains(text(),'" + month + "')]"));
+                Click(By.XPath("//span[contains(text(),'" + month + "')]"));
                 Console.WriteLine("clicked end date month " + month + " successfully");
-                click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[2]"));
+                Click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[2]"));
 
                 Console.WriteLine("clicked start date day " + day + " successfully");
+            }catch (Exception e){
+                Console.WriteLine("Element not found:" + e.Message);
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("Element not found:" + e);
-            }
-            sleepms(500);
+            Sleepms(500);
             return this;
         }
-
-
     }
 }

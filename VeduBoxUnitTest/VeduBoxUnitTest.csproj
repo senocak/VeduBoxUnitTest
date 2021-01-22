@@ -152,9 +152,11 @@
     <Compile Include="Kurumsal\Pages\BranchPage.cs" />
     <Compile Include="Kurumsal\Pages\CatalogPage.cs" />
     <Compile Include="Kurumsal\Pages\CoursesPage.cs" />
+    <Compile Include="Kurumsal\Pages\CustomFieldsPage.cs" />
     <Compile Include="Kurumsal\Pages\EarningsPage.cs" />
     <Compile Include="Kurumsal\Pages\ExamPage.cs" />
     <Compile Include="Kurumsal\Pages\HomePage.cs" />
+    <Compile Include="Kurumsal\Pages\LibraryPage.cs" />
     <Compile Include="Kurumsal\Pages\LivePage.cs" />
     <Compile Include="Kurumsal\Pages\LoginPage.cs" />
     <Compile Include="Kurumsal\Pages\ManagersPage.cs" />

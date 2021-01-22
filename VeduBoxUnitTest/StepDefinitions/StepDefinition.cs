@@ -95,6 +95,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .Submit()
                 .AssertLive();
         }
+        
         [Then(@"admin query live")]
         public void AdminQueryAddedLive(Table table) {
             var dictionary = TableExtensions.ToDictionary(table);
@@ -120,6 +121,32 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .ClickDeleteButtonInRecordDetail()
                 .ClickAreUSure()
                 .AssertLive();
+        }
+        [Then(@"admin copies zoom link")]
+        public void AdminCopiesZoomLink()
+        {
+            new HomePage(Driver)
+                .OpenLivePage(Constants.Roles.Admin.ToString())
+                //.goDate(Utils.Dates.getNextYear(NEXT_YEAR), Utils.Dates.getNextMonth(NEXT_MONTH), Utils.Dates.getNextDay(NEXT_DAY))
+                .OpenLiveRecordDetail()
+                .ClickLinkInRecordDetail()
+                .ClickZoomInLink()
+                .ClickToCopy()
+                .AssertLive()
+                .ClickToCancel()
+                .OpenLiveRecordDetail();
+        }
+        [Then(@"admin exports attendees report")]
+        public void AdminExportsAttendeesReport()
+        {
+            new HomePage(Driver)
+                .OpenLivePage(Constants.Roles.Admin.ToString())
+                .OpenLiveRecordDetail()
+                .ClickAttendees()
+                .ClickConfirmed()
+                .ClickExportAll()
+                .ClickToCancelAfterExport()
+                .OpenLiveRecordDetail();
         }
         [Given(@"admin adds new user with")]
         public void AdminAddsNewUserWith(Table table){
@@ -1598,6 +1625,162 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .SetGpdrPolicyBatchCreate()
                 .ClickUploadButtonBatchCreate()
                 .ClickAcceptButtonBatchCreate()
+                .Assert();
+        }
+        [Given(@"admin checks custom field is exist")]
+        public void GivenAdminChecksCustomFieldİsExist(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenCustomFieldPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedCustomFieldByNameAndDeleteIt(dictionary["name"]);
+        }
+        [Then(@"admin adds custom field text")]
+        public void ThenAddCustomFieldText(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenCustomFieldPage(Constants.Roles.Admin.ToString())
+                .ClickAddButton()
+                .SelectFieldType(dictionary["type"])
+                .SelectLanguage(dictionary["language"])
+                .EnterName(dictionary["name"])
+                .EnterDescription(dictionary["description"])
+                .EnterOrderNumber(Int32.Parse(dictionary["orderNumber"]))
+                .SelectIsRequired()
+                .ClickSaveButton()
+                .Assert();
+        }
+        [Then(@"admin adds custom field dropdown")]
+        public void ThenAddCustomFieldDropDown(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenCustomFieldPage(Constants.Roles.Admin.ToString())
+                .ClickAddButton()
+                .SelectFieldType(dictionary["type"])
+                .SelectLanguage(dictionary["language"])
+                .EnterName(dictionary["name"])
+                .EnterDescription(dictionary["description"])
+                .EnterOrderNumber(Int32.Parse(dictionary["orderNumber"]))
+                .SelectIsRequired()
+                .EnterOptions(dictionary["options"])
+                .ClickSaveButton()
+                .Assert();
+        }
+        [Then(@"admin adds custom field checkbox")]
+        public void ThenAddCustomFieldCheckbox(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenCustomFieldPage(Constants.Roles.Admin.ToString())
+                .ClickAddButton()
+                .SelectFieldType(dictionary["type"])
+                .SelectLanguage(dictionary["language"])
+                .EnterName(dictionary["name"])
+                .EnterDescription(dictionary["description"])
+                .EnterOrderNumber(Int32.Parse(dictionary["orderNumber"]))
+                .ClickSaveButton()
+                .Assert();
+        }
+        [Then(@"admin deletes added custom field")]
+        public void GivenAdminDeletesAddedCustomField(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenCustomFieldPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedCustomFieldByName(dictionary["name"])
+                .ClickThreePoints()
+                .ClickDelete()
+                .ClickAreUSure()
+                .Assert();
+        }
+        [Given(@"admin checks catalog is exist in library")]
+        public void GivenAdminChecksCatalogİsExistInLibrary(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenLibraryPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedCatalogAndDeleteIt(dictionary["name"]);
+        }
+        [Then(@"admin adds new catalog in library")]
+        public void ThenAdminAddsNewCatalogToLibrary(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenLibraryPage(Constants.Roles.Admin.ToString())
+                .ClickAddCategory()
+                .EnterCatalogName(dictionary["name"])
+                .DeselectIsEditable()
+                .ClickAdd()
+                .Assert();
+        }
+        [Then(@"admin adds new content document catalog in library")]
+        public void ThenAdminAddsNewContentDocumentCatalogToLibrary(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenLibraryPage(Constants.Roles.Admin.ToString())
+                 .ClickCatalog()
+                 .ClickAddItem()
+                 .ClickDocument()
+                 .ClickContentOk()
+                 .EnterTitle(dictionary["title"])
+                 .EnterDescription(dictionary["description"])
+                 .SelectFile()
+                 .SelectIsDownloadable()
+                 .ClickSaveButton()
+                 .Assert();
+        }
+        [Then(@"admin adds new content link catalog in library")]
+        public void ThenAdminAddsNewContentLinkCatalogToLibrary(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenLibraryPage(Constants.Roles.Admin.ToString())
+                 .ClickCatalog()
+                 .ClickAddItem()
+                 .ClickLink()
+                 .ClickContentOk()
+                 .EnterTitle(dictionary["title"])
+                 .EnterDescription(dictionary["description"])
+                 .EnterUrl(dictionary["url"])
+                 .ClickSaveButton()
+                 .Assert();
+        }
+
+        [Then(@"admin adds new content embed code catalog in library")]
+        public void ThenAdminAddsNewContentEmbedCodeCatalogToLibrary(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenLibraryPage(Constants.Roles.Admin.ToString())
+                 .ClickCatalog()
+                 .ClickAddItem()
+                 .ClickEmbedCode()
+                 .ClickContentOk()
+                 .EnterTitle(dictionary["title"])
+                 .EnterDescription(dictionary["description"])
+                 .EnterCode(dictionary["code"])
+                 .ClickSaveButton()
+                 .Assert();
+        }
+
+        [Then(@"admin adds new content sound catalog in library")]
+        public void ThenAdminAddsNewContentSoundCatalogToLibrary(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenLibraryPage(Constants.Roles.Admin.ToString())
+                 .ClickCatalog()
+                 .ClickAddItem()
+                 .ClickSound()
+                 .ClickContentOk()
+                 .EnterTitle(dictionary["title"])
+                 .EnterDescription(dictionary["description"])
+                 .SelectSound()
+                 .SelectIsDownloadable()
+                 .ClickAudioSaveButton()
+                 .Assert();
+        }
+        [Given(@"admin deletes added catalog in library")]
+        public void GivenAdminDeletesAddedCatalogInLibrary(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenLibraryPage("admin")
+                .SearchNewlyAddedCatalog(dictionary["name"])
+                .ClickCatalog()
+                .DeleteCatalog()
+                .ClickAreUSure()
                 .Assert();
         }
     }

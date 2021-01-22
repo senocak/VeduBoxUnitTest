@@ -491,7 +491,7 @@ Scenario: 24_admin_add_content_embed
 		| subject_title        | anil_vedubox_course_subject                                       |
 		| resource_title       | anil_vedubox_course_resource_title                                |
 		| resource_description | anil_vedubox_course_resource_description                          |
-		| embed_code           | <iframe src="https://www.youtube.com/embed/ZzBDAtbcFvM"></iframe> |
+		| embed_code           | <iframe src="http://github.com/senocak "></iframe> |
 	Then admin deletes added Course
 		| Key  | Value              |
 		| name | anil_vedubox_course|
@@ -553,6 +553,23 @@ Scenario: 28_admin_disccount_codes_add_is_not_limited
 		| Key  | Value              |
 		| name | code12             |
 
+Scenario: 29_admin_disccount_codes_delete
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks discount code is exist
+		| Key  | Value  |
+		| name | code12 |
+	Given admin adds new discount code with
+		| Key         | Value                      |
+		| code        | code12                     |
+		| description | Anil Vedubox Discount Code |
+		| percentage  | 34                         |
+		| limit       | true                       |
+		| usage_limit | 10			               |
+	Then admin deletes added discount code
+		| Key  | Value              |
+		| name | code12             |
+
 Scenario: 30_admin_add_student_batch_create
 	Given Open Kurumsal Login Page
 	Given Login as "Admin"
@@ -568,6 +585,190 @@ Scenario: 30_admin_add_student_batch_create
 		| Key   | Value                 |
 		| email | admin_deneme@anil.com |
 
+Scenario: 31_admin_custom_fields_add_text
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks custom field is exist
+		| Key  | Value             |
+		| name | Custom Text Field |
+	Then admin adds custom field text
+		| Key         | Value             |
+		| type        | Text              |
+		| language    | TR                |
+		| name        | Custom Text Field |
+		| description | Custom Text Field |
+		| orderNumber | 1                 |  
+    Then admin deletes added custom field
+		| Key  | Value             |
+		| name | Custom Text Field |
+
+Scenario: 32_admin_custom_fields_add_multiple_text
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks custom field is exist
+		| Key  | Value                      |
+		| name | Custom Multiple Text Field |
+	Then admin adds custom field text
+		| Key         | Value                      |
+		| type        | Multitext                  |
+		| language    | EN                         |
+		| name        | Custom Multiple Text Field |
+		| description | Custom Multiple Text Field |
+		| orderNumber | 2                          |  
+    Then admin deletes added custom field
+		| Key  | Value                      |
+		| name | Custom Multiple Text Field |
+
+Scenario: 33_admin_custom_fields_add_dropdown
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks custom field is exist
+		| Key  | Value                 |
+		| name | Custom Dropdown Field |
+	Then admin adds custom field dropdown
+		| Key         | Value                 |
+		| type        | Dropdown              |
+		| language    | JP                    |
+		| name        | Custom Dropdown Field |
+		| description | Custom Dropdown Field |
+		| orderNumber | 3                     |
+		| options     | options               |  
+	Then admin deletes added custom field
+		| Key  | Value                 |
+		| name | Custom Dropdown Field |
+
+Scenario: 34_admin_custom_fields_add_checkbox
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks custom field is exist
+		| Key  | Value                 |
+		| name | Custom Checkbox Field |
+	Then admin adds custom field checkbox
+		| Key         | Value                 |
+		| type        | Checkbox              |
+		| language    | TR                    |
+		| name        | Custom Checkbox Field |
+		| description | Custom Checkbox Field |
+		| orderNumber | 3                     | 
+	Then admin deletes added custom field
+		| Key  | Value                 |
+		| name | Custom Checkbox Field |
+
+Scenario: 35_admin_zoom_link_copied
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks live is exist
+	Given admin adds new live with
+		| Key               | Value                  |
+		| course_name       | defaultCourse1         |
+		| meetingType       | pro                    |
+		| title             | deneme                 |
+		| timezone          | Turkey Time (GMT+3:00) |
+		| duration          | 120                    |
+		| registrationLimit | 50                     |
+		| description       | Deneme 123             |
+    Then admin copies zoom link
+	Then admin deletes live
+	
+Scenario: 36_admin_export_attendees_report
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks live is exist
+	Given admin adds new live with
+		| Key               | Value                  |
+		| course_name       | defaultCourse1         |
+		| meetingType       | pro                    |
+		| title             | deneme                 |
+		| timezone          | Turkey Time (GMT+3:00) |
+		| duration          | 120                    |
+		| registrationLimit | 50                     |
+		| description       | Deneme 123             |
+	Then admin exports attendees report
+	Then admin deletes live
+
+Scenario: 37_admin_library_add_category
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks catalog is exist in library
+		| Key  | Value                   |
+		| name | test catalog to library |
+	Then admin adds new catalog in library
+		| Key  | Value                   |
+		| name | test catalog to library |
+    Given admin deletes added catalog in library
+		| Key  | Value                   |
+		| name | test catalog to library |
+
+Scenario: 38_admin_library_add_content_document
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks catalog is exist in library
+		| Key  | Value                   |
+		| name | test catalog to library |
+	Then admin adds new catalog in library
+		| Key  | Value                   |
+		| name | test catalog to library |
+    Then admin adds new content document catalog in library
+		| Key         | Value                                              |
+		| title       | admin adds new content document catalog in library |
+		| description | admin adds new content document catalog in library |
+    Given admin deletes added catalog in library
+		| Key  | Value                   |
+		| name | test catalog to library |
+
+Scenario: 39_admin_library_add_content_link
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks catalog is exist in library
+		| Key  | Value                   |
+		| name | test catalog to library |
+	Then admin adds new catalog in library
+		| Key  | Value                   |
+		| name | test catalog to library |
+    Then admin adds new content link catalog in library
+		| Key         | Value                                          |
+		| title       | admin adds new content link catalog in library |
+		| description | admin adds new content link catalog in library |
+		| url         | http://github.com/senocak                      |
+    Given admin deletes added catalog in library
+		| Key  | Value                   |
+		| name | test catalog to library |
+
+Scenario: 40_admin_library_add_content_embed_code
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks catalog is exist in library
+		| Key  | Value                   |
+		| name | test catalog to library |
+	Then admin adds new catalog in library
+		| Key  | Value                   |
+		| name | test catalog to library |
+    Then admin adds new content embed code catalog in library
+		| Key         | Value                                                |
+		| title       | admin adds new content embed code catalog in library |
+		| description | admin adds new content embed code catalog in library |
+		| code        | <iframe src="http://github.com/senocak "></iframe>   |
+    Given admin deletes added catalog in library
+		| Key  | Value                   |
+		| name | test catalog to library |
+
+Scenario: 41_admin_library_add_content_sound
+	Given Open Kurumsal Login Page
+	Given Login as "admin"
+	Given admin checks catalog is exist in library
+		| Key  | Value                   |
+		| name | test catalog to library |
+	Then admin adds new catalog in library
+		| Key  | Value                   |
+		| name | test catalog to library |
+    Then admin adds new content sound catalog in library
+		| Key         | Value                                           |
+		| title       | admin adds new content sound catalog in library |
+		| description | admin adds new content sound catalog in library |
+    Given admin deletes added catalog in library
+		| Key  | Value                   |
+		| name | test catalog to library |
+	
 Scenario: 0_admin_add_catalog
 	Given Open Kurumsal Login Page
 	Given Login as "Admin"

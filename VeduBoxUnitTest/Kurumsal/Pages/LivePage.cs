@@ -7,7 +7,6 @@ using VeduBoxUnitTest.Utils;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class LivePage : Page{
-
         private readonly By BUTTON_ADD_NEW = By.Id("liveLesson-addNew");
         private readonly By SELECT_COURSE = By.Id("liveLesson-selectCourseModal");
         private readonly By BUTTON_MEETING_TYPE_BASIC = By.Id("liveLessons-addNewModalTypeVideoMeetingBasic");
@@ -59,14 +58,20 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By INPUT_LIVE_LESSON_SELECT_DATE = By.Id("liveLesson-selectDate");
         private readonly By INPUT_LIVE_LESSONS_ADD_NEW_MODAL_SELECT_DATE = By.Id("liveLessons-addNewModalSelectDate");
         private readonly By BUTTON_LIVE_LESSONS_ADD_NEW_MODAL_SELECT_DATE_PİCKER = By.CssSelector("button[ng-click='openDatepicker($event,(n-1))']");
-
-       public string RandomString(int length){
+        private readonly By ZOOM_LINK = By.CssSelector("label[ng-click*='zoom']");
+        private readonly By CONFIRMED = By.CssSelector("a[ng-bind*='entities.liveLesson.confirmed']");
+        private readonly By EXPORT_ALL = By.CssSelector("span[translate='common.exportAll']");
+        private readonly By ATTENDEES = By.Id("liveLesson-sessionShowAttenders");
+        private readonly By CLICK_TO_COPY = By.CssSelector("span[translate='common.clickToCopy']");
+        private readonly By CANCEL_IN_DETAILS = By.CssSelector("button[ng-click='close()']");
+        private readonly By CANCEL_AFTER_EXPORT = By.CssSelector("span[translate='common.cancel']");
+        private readonly By BUTTON_DETAIL_DELETE = By.Id("liveLesson-sessionDel");
+        private string USER;
+        
+        public string RandomString(int length){
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             return new string(Enumerable.Repeat(chars, length).Select(s => s[new Random().Next(s.Length)]).ToArray());
         }
-        //private string titleRandom = RandomString(10);
-        private string USER;
-   
         public LivePage(IWebDriver wd, string user) : base(wd){
             USER = user;
         }
@@ -280,11 +285,45 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             return this;
        }
        public LivePage ClickDeleteButtonInRecordDetail(){
-            Click(By.Id("liveLesson-sessionDel"));
+            Click(BUTTON_DETAIL_DELETE);
             return this;
        }
        public LivePage ClickAreUSure(){
             Click(ALERT_ARE_U_SURE_OK);
+            return this;
+       }
+       public LivePage ClickLinkInRecordDetail(){
+            Click(BUTTON_RECORD_DETAIL);
+            return this;
+       }
+       public LivePage ClickZoomInLink(){
+            Click(ZOOM_LINK);
+            return this;
+       }
+       public LivePage ClickToCopy(){
+            Click(CLICK_TO_COPY);
+            return this;
+       }
+       public LivePage ClickToCancel(){
+            Click(CANCEL_IN_DETAILS);
+            Sleepms(1000);
+            return this;
+       }
+       public LivePage ClickToCancelAfterExport(){
+            Click(CANCEL_AFTER_EXPORT);
+            Sleepms(1000);
+            return this;
+       }
+       public LivePage ClickAttendees(){
+            Click(ATTENDEES);
+            return this;
+       }
+       public LivePage ClickConfirmed(){
+            Click(CONFIRMED);
+            return this;
+       }
+       public LivePage ClickExportAll() {
+            Click(EXPORT_ALL);
             return this;
        }
        public WebinarPage GoToWebinar(){
@@ -357,7 +396,6 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             AssertionCustom.AssertElementVisible("Element Not Found", Driver, ALERT_SUCCESS);
             return this;
         }
-
         public LivePage GoDate(int yearParam = 0, string monthParam = null, string dayParam = null){
             int year = yearParam == 0 ? Utils.Dates.GetCurrentYear() : yearParam;
             string month = monthParam == null ? Utils.Dates.GetCurrentMonth() : monthParam;
@@ -391,7 +429,6 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             Sleepms(500);
             return this;
         }
-
         public LivePage StudentRegister(){
             Click(BUTTON_REGISTER);
             return this;

@@ -27,13 +27,15 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By MANAGERS = By.CssSelector("a[title='Managers']");
         private readonly By QUESTIONS_ANSWERS = By.CssSelector("a[title='Q&A']");
         private readonly By DISCOUNT_CODES= By.CssSelector("a[title='Discount Codes']");
+        private readonly By CUSTOM_FIELDS = By.CssSelector("a[title='Custom Fields']");
+        private readonly By LIBRARY = By.CssSelector("a[title='Library']");
         private readonly By USERNAME_LINK = By.CssSelector("span[ng-bind='$root.user.firstName | limitTo: 8']");
         private readonly By SWITCH_TO_ROLE = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/ul/li[3]/a");
         private readonly By ROLE_MODAL = By.CssSelector("a[ng-click='openSwitchRoleModal(role)']");
         private readonly By PASSWORD = By.CssSelector("input[ng-model='loginData.password']");
         private readonly By SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div[2]/button[1]");
         private readonly By ROLE_TEXT = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/a/span[2]");
-
+        
         private string USER;
         public HomePage(IWebDriver wd) : base(wd){}
         public HomePage ClickUpdateAcceptButton(){
@@ -233,6 +235,26 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             AssertionCustom.AssertTextToBePresentInElementLocated(Driver, ROLE_TEXT, role, "Element Not Found");
             Console.WriteLine("Assertion is ok. Text: " + role);
             return this;
+        }
+        public CustomFieldsPage OpenCustomFieldPage(string user) {
+            USER = user;
+            try{
+                Click(CUSTOM_FIELDS);
+            }catch (Exception e){
+                Console.WriteLine("Error occured in CustomFieldsPage, user: " + user + ", Error is: " + e.Message);
+            }
+            Console.WriteLine(user + ": clicked CustomFieldsPage element");
+            return new CustomFieldsPage(Driver, user);
+        }
+        public LibraryPage OpenLibraryPage(string user){
+            USER = user;
+            try{
+                Click(LIBRARY);
+            }catch (Exception e){
+                Console.WriteLine("Error occured in CustomFieldsPage, user: " + user + ", Error is: " + e.Message);
+            }
+            Console.WriteLine(user + ": clicked CustomFieldsPage element");
+            return new LibraryPage(Driver, user);
         }
         public HomePage ClickUserName(){
             Click(USERNAME_LINK);

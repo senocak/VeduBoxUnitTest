@@ -5,35 +5,37 @@ using VeduBoxUnitTest.Assertion;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class HomePage : Page{
-        private static readonly By LIVE = By.CssSelector("a[title='Live']");
-        private static readonly By COURSES = By.CssSelector("a[title='Courses']");
-        private static readonly By MY_COURSES = By.CssSelector("a[title='My Courses']");
-        private static readonly By STUDENTS = By.CssSelector("a[title='Students']");
-        private static readonly By EXAM = By.CssSelector("a[title='Exams']");
-        private static readonly By PORTAL = By.CssSelector("a[title='Portal']");
-        private static readonly By EARNINGS = By.CssSelector("a[title='Earnings']");
-        private static readonly By QUESTIONS = By.CssSelector("a[title='Question pool']");
-        private static readonly By BRANCH = By.CssSelector("a[title='Branches']");
-        private static readonly By MODERATORS = By.CssSelector("a[title='Moderators']");
-        private static readonly By TEACHERS = By.CssSelector("a[title='Teachers']");
-        private static readonly By ANNOUNCEMENTS = By.CssSelector("a[title='Announcements']");
-        private static readonly By PARENTS = By.CssSelector("a[title='Parents']");
-        private static readonly By POLLS = By.CssSelector("a[title='Polls']");
-        private static readonly By POLL_QUESTIONS = By.CssSelector("a[title='Poll Questions']");
-        private static readonly By TESTS_POOL = By.CssSelector("a[title='Test pool']");
-        private static readonly By CATALOG = By.CssSelector("a[title='Catalogs']");
-        private static readonly By ADMINS = By.CssSelector("a[title='Admins']");
-        private static readonly By MANAGERS = By.CssSelector("a[title='Managers']");
-        private static readonly By QUESTIONSANSWERS = By.CssSelector("a[title='Q&A']");
+        private readonly By LIVE = By.CssSelector("a[title='Live']");
+        private readonly By COURSES = By.CssSelector("a[title='Courses']");
+        private readonly By MY_COURSES = By.CssSelector("a[title='My Courses']");
+        private readonly By STUDENTS = By.CssSelector("a[title='Students']");
+        private readonly By EXAM = By.CssSelector("a[title='Exams']");
+        private readonly By PORTAL = By.CssSelector("a[title='Portal']");
+        private readonly By EARNINGS = By.CssSelector("a[title='Earnings']");
+        private readonly By QUESTIONS = By.CssSelector("a[title='Question pool']");
+        private readonly By BRANCH = By.CssSelector("a[title='Branches']");
+        private readonly By MODERATORS = By.CssSelector("a[title='Moderators']");
+        private readonly By TEACHERS = By.CssSelector("a[title='Teachers']");
+        private readonly By ANNOUNCEMENTS = By.CssSelector("a[title='Announcements']");
+        private readonly By PARENTS = By.CssSelector("a[title='Parents']");
+        private readonly By POLLS = By.CssSelector("a[title='Polls']");
+        private readonly By POLL_QUESTIONS = By.CssSelector("a[title='Poll Questions']");
+        private readonly By TESTS_POOL = By.CssSelector("a[title='Test pool']");
+        private readonly By CATALOG = By.CssSelector("a[title='Catalogs']");
+        private readonly By ADMINS = By.CssSelector("a[title='Admins']");
+        private readonly By MANAGERS = By.CssSelector("a[title='Managers']");
+        private readonly By QUESTIONSANSWERS = By.CssSelector("a[title='Q&A']");
+        private readonly By CUSTOM_FIELDS = By.CssSelector("a[title='Custom Fields']");
+        private readonly By LIBRARY = By.CssSelector("a[title='Library']");
 
-        private static readonly By USERNAME_LINK = By.CssSelector("span[ng-bind='$root.user.firstName | limitTo: 8']");
-        private static readonly By SWITCH_TO_ROLE = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/ul/li[3]/a");
-        private static readonly By ROLE_MODAL = By.CssSelector("a[ng-click='openSwitchRoleModal(role)']");
-        private static readonly By PASSWORD = By.CssSelector("input[ng-model='loginData.password']");
-        private static readonly By SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div[2]/button[1]");
-        private static readonly By ROLE_TEXT = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/a/span[2]");
+        private readonly By USERNAME_LINK = By.CssSelector("span[ng-bind='$root.user.firstName | limitTo: 8']");
+        private readonly By SWITCH_TO_ROLE = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/ul/li[3]/a");
+        private readonly By ROLE_MODAL = By.CssSelector("a[ng-click='openSwitchRoleModal(role)']");
+        private readonly By PASSWORD = By.CssSelector("input[ng-model='loginData.password']");
+        private readonly By SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div[2]/button[1]");
+        private readonly By ROLE_TEXT = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/a/span[2]");
 
-        private static string _user;
+        private string _user;
         public HomePage(IWebDriver wd) : base(wd){}
         public HomePage clickUpdateAcceptButton(){
             try{
@@ -242,6 +244,36 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             Console.WriteLine(user + ": clicked openCatalogPage element");
             return new CatalogPage(driver, user);
         }
+        public CustomFieldsPage openCustomFieldPage(string user)
+        {
+            _user = user;
+            try
+            {
+                click(CUSTOM_FIELDS);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error occured in CustomFieldsPage, user: " + user + ", Error is: " + e.Message);
+            }
+            Console.WriteLine(user + ": clicked CustomFieldsPage element");
+            return new CustomFieldsPage(driver, user);
+        }
+
+        public LibraryPage openLibraryPage(string user)
+        {
+            _user = user;
+            try
+            {
+                click(LIBRARY);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error occured in CustomFieldsPage, user: " + user + ", Error is: " + e.Message);
+            }
+            Console.WriteLine(user + ": clicked CustomFieldsPage element");
+            return new LibraryPage(driver, user);
+        }
+
         public HomePage assertRoleIs(string role){
             AssertionCustom.assertTextToBePresentInElementLocated(driver, ROLE_TEXT, role, "Element Not Found");
             Console.WriteLine("Assertion is ok. Text: " + role);

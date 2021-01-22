@@ -31,7 +31,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 //WebBrowser.Driver.CaptureScreenShot(_scenarioContext.ScenarioInfo.Title);
                 Console.WriteLine("Title:" + ScenarioContext.Current.ScenarioInfo.Title + " is failed.");
             }
-            //driver.Quit();
+            Driver.Quit();
         }
         [Given(@"Open Kurumsal Login Page")]
         public void GivenOpenKurumsalLoginPage(){
@@ -123,8 +123,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .AssertLive();
         }
         [Then(@"admin copies zoom link")]
-        public void AdminCopiesZoomLink()
-        {
+        public void AdminCopiesZoomLink(){
             new HomePage(Driver)
                 .OpenLivePage(Constants.Roles.Admin.ToString())
                 //.goDate(Utils.Dates.getNextYear(NEXT_YEAR), Utils.Dates.getNextMonth(NEXT_MONTH), Utils.Dates.getNextDay(NEXT_DAY))
@@ -137,8 +136,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .OpenLiveRecordDetail();
         }
         [Then(@"admin exports attendees report")]
-        public void AdminExportsAttendeesReport()
-        {
+        public void AdminExportsAttendeesReport() {
             new HomePage(Driver)
                 .OpenLivePage(Constants.Roles.Admin.ToString())
                 .OpenLiveRecordDetail()
@@ -152,7 +150,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
         public void AdminAddsNewUserWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(Driver)
-                    .OpenStudentsPage(dictionary["user"])
+                    .OpenStudentsPage(Constants.Roles.Admin.ToString())
                     .AddNew()
                     .SetFirstName(dictionary["firstName"])
                     .SetLastName(dictionary["lastName"])
@@ -1615,7 +1613,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
         public void AdminAddsNewBatchUserWith(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(Driver)
-                .OpenStudentsPage(dictionary["user"])
+                .OpenStudentsPage(Constants.Roles.Admin.ToString())
                 .ClickBatchButton()
                 .ClickBatchCreateButton()
                 .EnterExcelFile()
@@ -1739,7 +1737,6 @@ namespace VeduBoxUnitTest.StepDefinitions{
                  .ClickSaveButton()
                  .Assert();
         }
-
         [Then(@"admin adds new content embed code catalog in library")]
         public void ThenAdminAddsNewContentEmbedCodeCatalogToLibrary(Table table) {
             var dictionary = TableExtensions.ToDictionary(table);

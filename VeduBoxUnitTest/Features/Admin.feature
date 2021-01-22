@@ -1,5 +1,33 @@
 ﻿Feature: Admin
 
+Scenario: 0_admin_add_catalog
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks catalog is exist
+		| Key   | Value               |
+		| name  | anil_vedubox_catalog|
+	Then admin adds new catalog
+		| Key         | Value                |
+		| name        | anil_vedubox_catalog |
+		| tags        | anil,senocak,catalog |
+		| description | Catalog Description  |
+		| category    | defaultCategory1     |
+		| teacher     | Anil Senocak         |
+	Then admin adds new catalog subscription type to existing catalog
+		| Key           | Value                             |
+		| name          | anil_vedubox_catalog              |
+		| description   | anil_vedubox_description          |
+		| title         | anil_vedubox_catalog_subscription |
+		| currency      | TL                                |
+		| amount        | 20                                |
+		| salePrice     | 30                                |
+		| type          | Permanent                         |
+		| duration_time | 1                                 |
+		| duration_type | Year                              |
+	Given admin deletes added catalog
+		| Key   | Value               |
+		| name  | anil_vedubox_catalog|
+	
 Scenario: 1_admin_add_live
 	Given Open Kurumsal Login Page
 	Given Login as "Admin"
@@ -23,7 +51,6 @@ Scenario: 2_admin_add_user
 		| email | admin_deneme@anil.com |
 	Given admin adds new user with
 		| Key         | Value                 |
-		| user        | admin                 |
 		| firstName   | deneme_user_first     |
 		| lastName    | deneme_user_last      |
 		| branch      | defaultBranch1        |
@@ -578,7 +605,6 @@ Scenario: 30_admin_add_student_batch_create
 		| email | admin_deneme@anil.com |
 	Given admin adds new batch user with
 		| Key         | Value                 |
-		| user        | admin                 |
 		| branch      | defaultBranch1        |
 		| catalog     | Default Course1       |
 	Then Delete User
@@ -768,31 +794,3 @@ Scenario: 41_admin_library_add_content_sound
     Given admin deletes added catalog in library
 		| Key  | Value                   |
 		| name | test catalog to library |
-	
-Scenario: 0_admin_add_catalog
-	Given Open Kurumsal Login Page
-	Given Login as "Admin"
-	Given admin checks catalog is exist
-		| Key   | Value               |
-		| name  | anil_vedubox_catalog|
-	Then admin adds new catalog
-		| Key         | Value                |
-		| name        | anil_vedubox_catalog |
-		| tags        | anil,senocak,catalog |
-		| description | Catalog Description  |
-		| category    | defaultCategory1     |
-		| teacher     | Anil Senocak         |
-	Then admin adds new catalog subscription type to existing catalog
-		| Key           | Value                             |
-		| name          | anil_vedubox_catalog              |
-		| description   | anil_vedubox_description          |
-		| title         | anil_vedubox_catalog_subscription |
-		| currency      | TL                                |
-		| amount        | 20                                |
-		| salePrice     | 30                                |
-		| type          | Permanent                         |
-		| duration_time | 1                                 |
-		| duration_type | Year                              |
-	Given admin deletes added catalog
-		| Key   | Value               |
-		| name  | anil_vedubox_catalog|

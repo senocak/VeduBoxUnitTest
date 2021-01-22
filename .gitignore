@@ -5,3 +5,4 @@
 /.idea
 /VeduBoxUnitTest/Features/*.feature.cs
 UpgradeLog.htm
+*.sln.DotSettings.user

@@ -587,7 +587,7 @@ Scenario: 30_admin_add_student_batch_create
 
 Scenario: 31_admin_custom_fields_add_text
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks custom field is exist
 		| Key  | Value             |
 		| name | Custom Text Field |
@@ -604,7 +604,7 @@ Scenario: 31_admin_custom_fields_add_text
 
 Scenario: 32_admin_custom_fields_add_multiple_text
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks custom field is exist
 		| Key  | Value                      |
 		| name | Custom Multiple Text Field |
@@ -621,7 +621,7 @@ Scenario: 32_admin_custom_fields_add_multiple_text
 
 Scenario: 33_admin_custom_fields_add_dropdown
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks custom field is exist
 		| Key  | Value                 |
 		| name | Custom Dropdown Field |
@@ -639,7 +639,7 @@ Scenario: 33_admin_custom_fields_add_dropdown
 
 Scenario: 34_admin_custom_fields_add_checkbox
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks custom field is exist
 		| Key  | Value                 |
 		| name | Custom Checkbox Field |
@@ -656,7 +656,7 @@ Scenario: 34_admin_custom_fields_add_checkbox
 
 Scenario: 35_admin_zoom_link_copied
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks live is exist
 	Given admin adds new live with
 		| Key               | Value                  |
@@ -672,7 +672,7 @@ Scenario: 35_admin_zoom_link_copied
 	
 Scenario: 36_admin_export_attendees_report
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks live is exist
 	Given admin adds new live with
 		| Key               | Value                  |
@@ -688,7 +688,7 @@ Scenario: 36_admin_export_attendees_report
 
 Scenario: 37_admin_library_add_category
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks catalog is exist in library
 		| Key  | Value                   |
 		| name | test catalog to library |
@@ -701,7 +701,7 @@ Scenario: 37_admin_library_add_category
 
 Scenario: 38_admin_library_add_content_document
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks catalog is exist in library
 		| Key  | Value                   |
 		| name | test catalog to library |
@@ -718,7 +718,7 @@ Scenario: 38_admin_library_add_content_document
 
 Scenario: 39_admin_library_add_content_link
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks catalog is exist in library
 		| Key  | Value                   |
 		| name | test catalog to library |
@@ -736,7 +736,7 @@ Scenario: 39_admin_library_add_content_link
 
 Scenario: 40_admin_library_add_content_embed_code
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks catalog is exist in library
 		| Key  | Value                   |
 		| name | test catalog to library |
@@ -754,7 +754,7 @@ Scenario: 40_admin_library_add_content_embed_code
 
 Scenario: 41_admin_library_add_content_sound
 	Given Open Kurumsal Login Page
-	Given Login as "admin"
+	Given Login as "Admin"
 	Given admin checks catalog is exist in library
 		| Key  | Value                   |
 		| name | test catalog to library |

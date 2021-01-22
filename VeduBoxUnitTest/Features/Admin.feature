@@ -568,7 +568,6 @@ Scenario: 30_admin_add_student_batch_create
 		| Key   | Value                 |
 		| email | admin_deneme@anil.com |
 
-
 Scenario: 0_admin_add_catalog
 	Given Open Kurumsal Login Page
 	Given Login as "Admin"

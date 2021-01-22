@@ -10,76 +10,76 @@ using VeduBoxUnitTest.Utils;
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class TeachersPage : Page {
 
-        private readonly By ADD_BUTTON = By.CssSelector("button[ng-click='select(states.new, null)']");
-        private readonly By FIRST_NAME = By.CssSelector("input[ng-model='teacher.firstName']");
-        private readonly By LAST_NAME = By.CssSelector("input[ng-model='teacher.lastName']");
-        private readonly By BRANCH = By.CssSelector("select[ng-model='teacher.branchId']");
-        private readonly By EMAIL = By.CssSelector("input[ng-model='teacher.email']");
-        private readonly By USER_NAME = By.CssSelector("input[ng-model='teacher.userName']");
-        private readonly By PASSWORD = By.CssSelector("input[ng-model='teacher.password']");
-        private readonly By GDPR_POLICY = By.CssSelector("input[ng-model='teacher.gdprAccepted']");
-        private readonly By SAVE_BUTTON = By.XPath("//*[@id='teacherForm']/div[2]/div/div/button[1]");
-        private readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
-        private readonly By SEARCH_BOX = By.CssSelector("input[ng-model='filter.$']");
-        private readonly By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
-        private readonly By ROLES = By.CssSelector("a[ng-click='editRolesForUser(teacher)']");
-        private readonly By ROLES_SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div/div/div[2]/button[1]");
-        private readonly By DELETE_MODERATOR = By.CssSelector("a[ng-click='delete(teacher)']");
-        private readonly By IS_GUIDANCE_TEACHER = By.CssSelector("input[ng-model='teacher.isGuidanceTeacher']");
+        private readonly By BUTTON_ADD = By.CssSelector("button[ng-click='select(states.new, null)']");
+        private readonly By INPUT_FIRST_NAME = By.CssSelector("input[ng-model='teacher.firstName']");
+        private readonly By INPUT_LAST_NAME = By.CssSelector("input[ng-model='teacher.lastName']");
+        private readonly By SELECT_BRANCH = By.CssSelector("select[ng-model='teacher.branchId']");
+        private readonly By INPUT_EMAIL = By.CssSelector("input[ng-model='teacher.email']");
+        private readonly By INPUT_USER_NAME = By.CssSelector("input[ng-model='teacher.userName']");
+        private readonly By INPUT_PASSWORD = By.CssSelector("input[ng-model='teacher.password']");
+        private readonly By CHECK_GDPR_POLICY = By.CssSelector("input[ng-model='teacher.gdprAccepted']");
+        private readonly By BUTTON_SAVE = By.XPath("//*[@id='teacherForm']/div[2]/div/div/button[1]");
+        private readonly By ALERT_SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private readonly By ALERT_ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
+        private readonly By INPUT_SEARCH_BOX = By.CssSelector("input[ng-model='filter.$']");
+        private readonly By BUTTON_THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
+        private readonly By A_ROLES = By.CssSelector("a[ng-click='editRolesForUser(teacher)']");
+        private readonly By BUTTON_ROLES_SAVE = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div/div/div[2]/button[1]");
+        private readonly By BUTTON_DELETE_MODERATOR = By.CssSelector("a[ng-click='delete(teacher)']");
+        private readonly By CHECK_IS_GUIDANCE_TEACHER = By.CssSelector("input[ng-model='teacher.isGuidanceTeacher']");
 
         private string USER;
         public TeachersPage(IWebDriver wd, string user) : base(wd){
             USER = user;
         }
         public TeachersPage ClickAddButton(){
-            Click(ADD_BUTTON);
+            Click(BUTTON_ADD);
             return this;
         }
         public TeachersPage EnterFirstName(string firstName){
-            Type(FIRST_NAME, firstName);
+            Type(INPUT_FIRST_NAME, firstName);
             return this;
         }
         public TeachersPage EnterLastName(string lastName){
-            Type(LAST_NAME, lastName);
+            Type(INPUT_LAST_NAME, lastName);
             return this;
         }
         public TeachersPage SelectBranchName(string lastName){
-            SelectDropDown(BRANCH, lastName);
+            SelectDropDown(SELECT_BRANCH, lastName);
             return this;
         }
         public TeachersPage EnterEmailName(string email){
-            Type(EMAIL, email);
+            Type(INPUT_EMAIL, email);
             return this;
         }
         public TeachersPage EnterUserNameName(string username){
-            Type(USER_NAME, username);
+            Type(INPUT_USER_NAME, username);
             return this;
         }
         public TeachersPage EnterPasswordName(string password){
-            Type(PASSWORD, password);
+            Type(INPUT_PASSWORD, password);
             return this;
         }
         public TeachersPage SelectGpdrPolicy(){
-            if (IsSelected(GDPR_POLICY) == false)
-                Click(GDPR_POLICY);
+            if (IsSelected(CHECK_GDPR_POLICY) == false)
+                Click(CHECK_GDPR_POLICY);
             return this;
         }
         public TeachersPage SelectIsGuidanceTeacher() {
-            if (IsSelected(IS_GUIDANCE_TEACHER) == false)
-                Click(IS_GUIDANCE_TEACHER);
+            if (IsSelected(CHECK_IS_GUIDANCE_TEACHER) == false)
+                Click(CHECK_IS_GUIDANCE_TEACHER);
             return this;
         }
         public TeachersPage ClickSaveButton(){
-            Click(SAVE_BUTTON);
+            Click(BUTTON_SAVE);
             return this;
         }
         public TeachersPage Assert(){
-            AssertionCustom.AssertElementVisible("Element Not Found", Driver, SUCCESS);
+            AssertionCustom.AssertElementVisible("Element Not Found", Driver, ALERT_SUCCESS);
             return this;
         }
         public TeachersPage ClickAreYouSure(){
-            Click(ARE_U_SURE_OK);
+            Click(ALERT_ARE_U_SURE_OK);
             return this;
         }
         public TeachersPage SearchNewlyAddedModeratorByNameAndDeleteIt(string tag){
@@ -96,16 +96,16 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             return this;
         }
         public TeachersPage SearchNewlyAddedModeratorByName(string tag){
-            Type(SEARCH_BOX, tag);
+            Type(INPUT_SEARCH_BOX, tag);
             Sleepms(1000);
             return this;
         }
         public TeachersPage ClickThreePoints(){
-            Click(THREE_POINTS);
+            Click(BUTTON_THREE_POINTS);
             return this;
         }
         public TeachersPage ClickRolesInThreePoints(){
-            Click(ROLES);
+            Click(A_ROLES);
             return this;
         }
         public TeachersPage SelectRole(string role){
@@ -119,11 +119,11 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             return this;
         }
         public TeachersPage ClickRoleSaveButton(){
-            Click(ROLES_SAVE_BUTTON);
+            Click(BUTTON_ROLES_SAVE);
             return this;
         }
         public TeachersPage ClickDeleteInThreePoints(){
-            Click(DELETE_MODERATOR);
+            Click(BUTTON_DELETE_MODERATOR);
             return this;
         }
     }

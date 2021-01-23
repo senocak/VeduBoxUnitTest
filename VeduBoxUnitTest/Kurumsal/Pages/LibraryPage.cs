@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using VeduBoxUnitTest.Assertion;
 
-namespace VeduBoxUnitTest.Kurumsal.Pages
-{
-    class LibraryPage : Page
-    {
+namespace VeduBoxUnitTest.Kurumsal.Pages{
+    class LibraryPage : Page{
         private readonly By ADD_CATEGORY = By.CssSelector("span[translate='routeStates.teacher.library.lblAddRootLibrary']");
         private readonly By CATALOG_NAME = By.CssSelector("input[ng-model='library.name']");
         private readonly By IS_EDITABLE = By.CssSelector("[ng-model='library.isEditable']");
@@ -35,142 +33,111 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
         private readonly By IS_DOWNLOADABLE = By.CssSelector("input[ng-model='libraryItem.downloadable']");
         private readonly By SAVE_BUTTON = By.XPath("(//button[@ng-click='save()'])[1]");
         private readonly By AUDIO_SAVE_BUTTON = By.XPath("(//button[@ng-click='save(libraryItem)'])[1]");
-
-        private static string _user;
-        public LibraryPage(IWebDriver wd, string user) : base(wd)
-        {
-            _user = user;
+        private string USER;
+        
+        public LibraryPage(IWebDriver wd, string user) : base(wd){
+            USER = user;
         }
-
-        public LibraryPage ClickAddCategory()
-        {
-            click(ADD_CATEGORY);
+        public LibraryPage ClickAddCategory(){
+            Click(ADD_CATEGORY);
             return this;
         }
-        public LibraryPage EnterCatalogName(String catalogName)
-        {
-            type(CATALOG_NAME, catalogName);
+        public LibraryPage EnterCatalogName(String catalogName){
+            Type(CATALOG_NAME, catalogName);
             return this;
         }
-        public LibraryPage DeselectIsEditable()
-        {
-            if (isSelected(IS_EDITABLE) == true)
-                click(IS_EDITABLE);
+        public LibraryPage DeselectIsEditable(){
+            if (IsSelected(IS_EDITABLE) == true)
+                Click(IS_EDITABLE);
             return this;
         }
-        public LibraryPage ClickAdd()
-        {
-            click(ADD);
+        public LibraryPage ClickAdd(){
+            Click(ADD);
             return this;
         }
-        public LibraryPage Assert()
-        {
-            AssertionCustom.assertElementVisible("Element Not Found", driver, SUCCESS);
+        public LibraryPage Assert(){
+            AssertionCustom.AssertElementVisible("Element Not Found", Driver, SUCCESS);
             return this;
         }
-      
-        public LibraryPage SearchNewlyAddedCatalog(string name)
-        {
-            type(SEARCH_BOX, name);
-            sleepms(1000);
+        public LibraryPage SearchNewlyAddedCatalog(string name){
+            Type(SEARCH_BOX, name);
+            Sleepms(1000);
             return this;
         }
-        public LibraryPage ClickCatalog()
-        {
-            click(CHOOSE_CATALOG);
+        public LibraryPage ClickCatalog(){
+            Click(CHOOSE_CATALOG);
             return this;
         }
-      
-        public LibraryPage DeleteCatalog()
-        {
-            click(DELETE);
+        public LibraryPage DeleteCatalog(){
+            Click(DELETE);
             return this;
         }
-        public LibraryPage ClickMyFolders()
-        {
-            click(MY_FOLDERS);
+        public LibraryPage ClickMyFolders(){
+            Click(MY_FOLDERS);
             return this;
         }
-        public LibraryPage ClickAddItem()
-        {
-            click(ADD_ITEM);
+        public LibraryPage ClickAddItem(){
+            Click(ADD_ITEM);
             return this;
         }
-        public LibraryPage ClickDocument()
-        {
-            click(DOCUMENT);
+        public LibraryPage ClickDocument(){
+            Click(DOCUMENT);
             return this;
         }
-        public LibraryPage ClickLink()
-        {
-            click(LINK);
+        public LibraryPage ClickLink(){
+            Click(LINK);
             return this;
         }
-        public LibraryPage ClickEmbedCode()
-        {
-            click(EMBED_CODE);
+        public LibraryPage ClickEmbedCode(){
+            Click(EMBED_CODE);
             return this;
         }
-        public LibraryPage ClickSound()
-        {
-            click(SOUND);
+        public LibraryPage ClickSound(){
+            Click(SOUND);
             return this;
         }
-        public LibraryPage ClickContentOK()
-        {
-            click(CONTENT_OK);
+        public LibraryPage ClickContentOk(){
+            Click(CONTENT_OK);
             return this;
         }
-        public LibraryPage EnterTitle(String title)
-        {
-            type(TITLE, title);
+        public LibraryPage EnterTitle(String title){
+            Type(TITLE, title);
             return this;
         }
-        public LibraryPage EnterDescription(String description)
-        {
-            type(DESCRIPTION, description);
+        public LibraryPage EnterDescription(String description){
+            Type(DESCRIPTION, description);
             return this;
         }
-        public LibraryPage EnterURL(String url)
-        {
-            type(URL, url);
+        public LibraryPage EnterUrl(String url){
+            Type(URL, url);
             return this;
         }
-        public LibraryPage EnterCode(String code)
-        {
-            type(CODE, code);
+        public LibraryPage EnterCode(String code){
+            Type(CODE, code);
             return this;
         }
-        public LibraryPage SelectIsDownloadable()
-        {
-            if (isSelected(IS_DOWNLOADABLE) == false)
-                click(IS_DOWNLOADABLE);
+        public LibraryPage SelectIsDownloadable(){
+            if (IsSelected(IS_DOWNLOADABLE) == false)
+                Click(IS_DOWNLOADABLE);
             return this;
         }
-        public LibraryPage ClickSaveButton()
-        {
-            click(SAVE_BUTTON);
+        public LibraryPage ClickSaveButton(){
+            Click(SAVE_BUTTON);
             return this;
         }
-        public LibraryPage ClickAudioSaveButton()
-        {
-            click(AUDIO_SAVE_BUTTON);
+        public LibraryPage ClickAudioSaveButton(){
+            Click(AUDIO_SAVE_BUTTON);
             return this;
         }
-        public LibraryPage ClickAreUSure()
-        {
-            click(ARE_U_SURE_OK);
+        public LibraryPage ClickAreUSure(){
+            Click(ARE_U_SURE_OK);
             return this;
         }
-        public LibraryPage SearchNewlyAddedCatalogAndDeleteIt(string name)
-        {
+        public LibraryPage SearchNewlyAddedCatalogAndDeleteIt(string name){
             SearchNewlyAddedCatalog(name);
-            try
-            {
+            try{
                 ClickCatalog();
-            }
-            catch (Exception e)
-            {
+            }catch (Exception e){
                 Console.WriteLine("Error:" + e.Message);
                 return null;
             }
@@ -179,19 +146,15 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
             Assert();
             return this;
         }
-        public LibraryPage SelectFile()
-        {
-            
-            type(
+        public LibraryPage SelectFile(){
+            Type(
                 RESOURCE_TYPE_DOC_FILE,
                 Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Docs\\file.png"))
             );
             return this;
         }
-        public LibraryPage SelectSound()
-        {
-
-            type(
+        public LibraryPage SelectSound(){
+            Type(
                 RESOURCE_TYPE_DOC_FILE,
                 Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Docs\\audio.mp3"))
             );

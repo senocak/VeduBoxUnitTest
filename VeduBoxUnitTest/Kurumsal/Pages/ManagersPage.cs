@@ -6,132 +6,103 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using VeduBoxUnitTest.Assertion;
 
-namespace VeduBoxUnitTest.Kurumsal.Pages
-{
-    class ManagersPage : Page
-    {
+namespace VeduBoxUnitTest.Kurumsal.Pages{
+    class ManagersPage : Page{
 
-        private static readonly By SEARCH_BOX = By.CssSelector("input[ng-model='filter.$']");
-        private static readonly By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
-        private static readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
-        private static readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private static readonly By DELETE_ADMIN = By.CssSelector("a[ng-click='delete(manager)']");
-        private static readonly By ADD_BUTTON = By.XPath("(//button[@ui-sref='veduBox.admin.managers.new'])[1]");
-        private static readonly By INPUT_FIRST_NAME = By.CssSelector("input[ng-model='manager.firstName']");
-        private static readonly By INPUT_LAST_NAME = By.CssSelector("input[ng-model='manager.lastName']");
-        private static readonly By INPUT_EMAIL = By.CssSelector("input[ng-model='manager.email']");
-        private static readonly By INPUT_USER_NAME = By.CssSelector("input[ng-model='manager.userName']");
-        private static readonly By INPUT_PASSWORD = By.XPath("(//input[@ng-model='manager.password'])[2]");
-        private static readonly By GENERATE = By.CssSelector("button[ng-click='generateRandomPassword()']");
-        private static readonly By CHECK_GDPR = By.CssSelector("input[ng-model='manager.gdprAccepted']");
-        private static readonly By SAVE_BUTTON = By.CssSelector("button[type='submit'][form='managerForm']");
-        private static readonly By BRANCH = By.CssSelector("select[ng-model='manager.branch']");
+        private readonly By INPUT_SEARCH = By.CssSelector("input[ng-model='filter.$']");
+        private readonly By BUTTON_THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
+        private readonly By ALERT_ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
+        private readonly By ALERT_SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private readonly By A_DELETE_ADMIN = By.CssSelector("a[ng-click='delete(manager)']");
+        private readonly By BUTTON_ADD = By.XPath("(//button[@ui-sref='veduBox.admin.managers.new'])[1]");
+        private readonly By INPUT_FIRST_NAME = By.CssSelector("input[ng-model='manager.firstName']");
+        private readonly By INPUT_LAST_NAME = By.CssSelector("input[ng-model='manager.lastName']");
+        private readonly By INPUT_EMAIL = By.CssSelector("input[ng-model='manager.email']");
+        private readonly By INPUT_USER_NAME = By.CssSelector("input[ng-model='manager.userName']");
+        private readonly By INPUT_PASSWORD = By.XPath("(//input[@ng-model='manager.password'])[2]");
+        private readonly By BUTTON_GENERATE = By.CssSelector("button[ng-click='generateRandomPassword()']");
+        private readonly By CHECK_GDPR = By.CssSelector("input[ng-model='manager.gdprAccepted']");
+        private readonly By BUTTON_SAVE = By.CssSelector("button[type='submit'][form='managerForm']");
+        private readonly By SELECT_BRANCH = By.CssSelector("select[ng-model='manager.branch']");
 
-
-        private static string _user;
-        public ManagersPage(IWebDriver wd, string user) : base(wd)
-        {
-            _user = user;
-
+        private string USER;
+        public ManagersPage(IWebDriver wd, string user) : base(wd){
+            USER = user;
         }
-        public ManagersPage searchNewlyAddedManagerByName(string name)
-        {
-            type(SEARCH_BOX, name);
-            sleepms(1000);
+        public ManagersPage SearchNewlyAddedManagerByName(string name){
+            Type(INPUT_SEARCH, name);
+            Sleepms(1000);
             return this;
         }
-        public ManagersPage searchNewlyAddedManagerByNameAndDeleteIt(string name)
-        {
-            searchNewlyAddedManagerByName(name);
-            try
-            {
-                click3Points();
-            }
-            catch (Exception e)
-            {
+        public ManagersPage SearchNewlyAddedManagerByNameAndDeleteIt(string name){
+            SearchNewlyAddedManagerByName(name);
+            try{
+                Click3Points();
+            }catch (Exception e){
                 Console.WriteLine("Error while clicking 3dots. Looks like there is no record. Returning null." + e.Message);
                 return null;
             }
-            clickDeleteButton();
-            clickAreUSure();
-            assert();
+            ClickDeleteButton();
+            ClickAreUSure();
+            Assert();
             return this;
         }
-        public ManagersPage click3Points()
-        {
-            click(THREE_POINTS);
+        public ManagersPage Click3Points(){
+            Click(BUTTON_THREE_POINTS);
             return this;
         }
-        public ManagersPage clickDeleteButton()
-        {
-            click(DELETE_ADMIN);
+        public ManagersPage ClickDeleteButton(){
+            Click(A_DELETE_ADMIN);
             return this;
         }
-        public ManagersPage clickAreUSure()
-        {
-            click(ARE_U_SURE_OK);
+        public ManagersPage ClickAreUSure(){
+            Click(ALERT_ARE_U_SURE_OK);
             return this;
         }
-        public ManagersPage assert()
-        {
-            AssertionCustom.assertElementVisible("Element Not Found", driver, SUCCESS);
+        public ManagersPage Assert(){
+            AssertionCustom.AssertElementVisible("Element Not Found", Driver, ALERT_SUCCESS);
             return this;
         }
-        public ManagersPage selectGPDR()
-        {
-            if (isSelected(CHECK_GDPR) == false)
-                click(CHECK_GDPR);
+        public ManagersPage SelectGpdr(){
+            if (IsSelected(CHECK_GDPR) == false)
+                Click(CHECK_GDPR);
             return this;
         }
-
-        public ManagersPage clickAddButton()
-        {
-            click(ADD_BUTTON);
+        public ManagersPage ClickAddButton(){
+            Click(BUTTON_ADD);
             return this;
         }
-        public ManagersPage enterFirstName(string first_name)
-        {
-            type(INPUT_FIRST_NAME, first_name);
+        public ManagersPage EnterFirstName(string firstName){
+            Type(INPUT_FIRST_NAME, firstName);
             return this;
         }
-        public ManagersPage enterLastName(string last_name)
-        {
-            type(INPUT_LAST_NAME, last_name);
+        public ManagersPage EnterLastName(string lastName){
+            Type(INPUT_LAST_NAME, lastName);
             return this;
         }
-        public ManagersPage selectBranchName(string branchName)
-        {
-            selectDropDown(BRANCH, branchName);
+        public ManagersPage SelectBranchName(string branchName){
+            SelectDropDown(SELECT_BRANCH, branchName);
             return this;
         }
-        public ManagersPage enterEmail(string email)
-        {
-            type(INPUT_EMAIL, email);
+        public ManagersPage EnterEmail(string email){
+            Type(INPUT_EMAIL, email);
             return this;
         }
-        public ManagersPage enterUserName(string user_name)
-        {
-            type(INPUT_USER_NAME, user_name);
+        public ManagersPage EnterUserName(string userName){
+            Type(INPUT_USER_NAME, userName);
             return this;
         }
-        public ManagersPage enterPassword(string password)
-        {
-            type(INPUT_PASSWORD, password);
+        public ManagersPage EnterPassword(string password){
+            Type(INPUT_PASSWORD, password);
             return this;
         }
-
-        public ManagersPage clickGenerate()
-        {
-            click(GENERATE);
+        public ManagersPage ClickGenerate(){
+            Click(BUTTON_GENERATE);
             return this;
         }
-        public ManagersPage clickSaveButton()
-        {
-            click(SAVE_BUTTON);
+        public ManagersPage ClickSaveButton(){
+            Click(BUTTON_SAVE);
             return this;
         }
-
-
-    
-}
+    }
 }

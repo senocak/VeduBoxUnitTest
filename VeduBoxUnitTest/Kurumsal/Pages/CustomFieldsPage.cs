@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using VeduBoxUnitTest.Assertion;
 
-namespace VeduBoxUnitTest.Kurumsal.Pages
-{
-    class CustomFieldsPage : Page
-    {
+namespace VeduBoxUnitTest.Kurumsal.Pages{
+    class CustomFieldsPage : Page{
         private readonly By ADD_BUTTON = By.XPath("(//span[@translate='common.add'])[1]");
         private readonly By FIELD_TYPE = By.CssSelector("select[ng-model='customField.fieldTypeId']");
         private readonly By LANGUAGE = By.CssSelector("select[ng-model='customField.language']");
@@ -24,100 +22,78 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
         private readonly By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
         private readonly By DELETE = By.CssSelector("span[translate='common.delete']");
         private readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
-
-        private static string _user;
-        public CustomFieldsPage(IWebDriver wd, string user) : base(wd)
-        {
-            _user = user;
+        private static string USER;
+        
+        public CustomFieldsPage(IWebDriver wd, string user) : base(wd){
+            USER = user;
         }
-
-        public CustomFieldsPage ClickAddButton()
-        {
-            click(ADD_BUTTON);
+        public CustomFieldsPage ClickAddButton(){
+            Click(ADD_BUTTON);
             return this;
         }
-        public CustomFieldsPage SelectFieldType(String type)
-        {
-            selectDropDown(FIELD_TYPE, type);
+        public CustomFieldsPage SelectFieldType(String type){
+            SelectDropDown(FIELD_TYPE, type);
             return this;
         }
-        public CustomFieldsPage EnterName(String name)
-        {
-            type(NAME, name);
+        public CustomFieldsPage EnterName(String name){
+            Type(NAME, name);
             return this;
         }
-        public CustomFieldsPage EnterDescription(String description)
-        {
-            type(DESCRIPTION, description);
+        public CustomFieldsPage EnterDescription(String description){
+            Type(DESCRIPTION, description);
             return this;
         }
-        public CustomFieldsPage EnterOrderNumber(int orderNumber)
-        {
-            type(ORDER_NUMBER, orderNumber);
+        public CustomFieldsPage EnterOrderNumber(int orderNumber){
+            Type(ORDER_NUMBER, orderNumber);
             return this;
         }
-        public CustomFieldsPage EnterOptions(String options)
-        {
-            type(OPTIONS, options);
+        public CustomFieldsPage EnterOptions(String options){
+            Type(OPTIONS, options);
             return this;
         }
-        public CustomFieldsPage SelectLanguage(String language)
-        {
-            selectDropDown(LANGUAGE, language);
+        public CustomFieldsPage SelectLanguage(String language){
+            SelectDropDown(LANGUAGE, language);
             return this;
         }
-        public CustomFieldsPage SelectIsRequired()
-        {
-            if (isSelected(IS_REQUIRED) == false)
-                click(IS_REQUIRED);
+        public CustomFieldsPage SelectIsRequired(){
+            if (IsSelected(IS_REQUIRED) == false)
+                Click(IS_REQUIRED);
             return this;
         }
-        public CustomFieldsPage ClickSaveButton()
-        {
-            click(SAVE_BUTTON);
+        public CustomFieldsPage ClickSaveButton(){
+            Click(SAVE_BUTTON);
             return this;
         }
-        public CustomFieldsPage Assert()
-        {
-            AssertionCustom.assertElementVisible("Element Not Found", driver, SUCCESS);
+        public CustomFieldsPage Assert(){
+            AssertionCustom.AssertElementVisible("Element Not Found", Driver, SUCCESS);
             return this;
         }
-        public CustomFieldsPage SearchNewlyAddedCustomFieldByName(string name)
-        {
-            type(SEARCH_BOX, name);
-            sleepms(1000);
+        public CustomFieldsPage SearchNewlyAddedCustomFieldByName(string name){
+            Type(SEARCH_BOX, name);
+            Sleepms(1000);
             return this;
         }
-        public CustomFieldsPage ClearSearchBox()
-        {
-            clear(SEARCH_BOX);
+        public CustomFieldsPage ClearSearchBox() {
+            Clear(SEARCH_BOX);
             return this;
         }
-        public CustomFieldsPage ClickThreePoints()
-        {
-            click(THREE_POINTS);
+        public CustomFieldsPage ClickThreePoints(){
+            Click(THREE_POINTS);
             return this;
         }
-        public CustomFieldsPage ClickDelete()
-        {
-            click(DELETE);
+        public CustomFieldsPage ClickDelete(){
+            Click(DELETE);
             return this;
         }
-        public CustomFieldsPage ClickAreUSure()
-        {
-            click(ARE_U_SURE_OK);
+        public CustomFieldsPage ClickAreUSure(){
+            Click(ARE_U_SURE_OK);
             return this;
         }
-       
-        public CustomFieldsPage SearchNewlyAddedCustomFieldByNameAndDeleteIt(string name)
-        {
+        public CustomFieldsPage SearchNewlyAddedCustomFieldByNameAndDeleteIt(string name){
             SearchNewlyAddedCustomFieldByName(name);
-            try
-            {
+            try{
                 ClickThreePoints();
-            }
-            catch (Exception e)
-            {
+            }catch (Exception e){
                 Console.WriteLine("Error:" + e.Message);
                 return null;
             }
@@ -126,6 +102,5 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
             Assert();
             return this;
         }
-
     }
 }

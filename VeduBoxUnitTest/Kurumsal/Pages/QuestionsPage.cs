@@ -11,219 +11,211 @@ using OpenQA.Selenium.Support.Extensions;
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class QuestionsPage : Page{
 
-        private static string _user;
+        private string USER;
         private IWebDriver _driver;
-        private IJavaScriptExecutor _js;
-        private static readonly By ADD_NEW_QUESTION_BUTTON = By.CssSelector("button[ui-sref='veduBox.testExam.questions.new']");
-        private static readonly By BATCH_CREATE_QUESTION_BUTTON = By.CssSelector("button[ui-sref='veduBox.testExam.questions.batchCreate']");
-        private static readonly By QUESTION_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static readonly By POINT_INPUT = By.Id("teacherQuesPoolPoint");
-        private static readonly By DELETE_CHOICE_5 = By.XPath("(//*[@id='teacherQuesPoolChoiceAnsDel'])[5]");
-        private static readonly By ANSWER_A_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[2]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static readonly By ANSWER_B_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[3]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static readonly By ANSWER_C_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[4]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static readonly By ANSWER_D_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[5]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static readonly By RIGHT_ANSWER_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[4]/div/div[1]/div/label/input");
-        private static readonly By IS_PUBLIC_INPUT = By.Id("teacherQuesPoolPublic");
-        private static readonly By IS_EDITABLE_INPUT = By.Id("teacherQuesPoolEdit");
-        private static readonly By SUBMIT_BUTTON = By.Id("teacherQuesPoolSaveBtn");
-        private static readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private static readonly By SEARCH_BOX = By.CssSelector("input.form-control.vedu-search");
-        private static readonly By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
-        private static readonly By DELETE_SINGLE_QUESTION_POPUP = By.CssSelector("a[ng-click='delete(question.questionId)']");
-        private static readonly By QUESTION_TYPE = By.Id("teacherQuesPoolTypeQues");
-        private static readonly By ANSWER_TRUE = By.XPath("(//*[@id='teacherQuesPoolChoiceCorrectAns'])[1]");
-        private static readonly By ANSWER_FALSE = By.XPath("(//*[@id='teacherQuesPoolChoiceCorrectAns'])[2]");
-        private static readonly By BATCH_FILE_INPUT = By.Id("html_btn");
-        private static readonly By UPLOAD_EXCEL_BUTTON = By.CssSelector("button[ng-click='uploadFile()']");
-        private static readonly By QUESTION_LIST_ACCEPT_BUTTON = By.CssSelector("a[ng-click='accept()']");
-        private static readonly By MATCHING_INPUT_1 = By.XPath("//*[@id='questionForm']/div[1]/div[12]/div/div/div[2]/div/div[3]/textarea");
-        private static readonly By MATCHING_INPUT_2 = By.XPath("//*[@id='questionForm']/div[1]/div[12]/div/div/div[3]/div/div[3]/textarea");
-        private static readonly By MATCHING_INPUT_3_DELETE_BUTTON = By.XPath("(//*[@id='teacherQuesPoolChoiceAnsDel'])[3]");
-        private static readonly By ORDERING_INPUT_1 = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[2]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static readonly By ORDERING_INPUT_2 = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[3]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static readonly By ORDERING_INPUT_3 = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[4]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static readonly By ORDERING_ADD_BUTTON = By.CssSelector("button[ng-click*='addChoice']");
-        private static readonly By ORDERING_INPUT_4 = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[5]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static readonly By MULTIPLE_CHOICE_ANSWER1_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[2]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static readonly By MULTIPLE_CHOICE_ANSWER2_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[3]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static readonly By MULTIPLE_CHOICE_ANSWER3_INPUT = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[4]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private IJavaScriptExecutor JS_EXECUTOR;
+        private readonly By BUTTON_ADD_NEW_QUESTION = By.CssSelector("button[ui-sref='veduBox.testExam.questions.new']");
+        private readonly By BUTTON_BATCH_CREATE_QUESTION = By.CssSelector("button[ui-sref='veduBox.testExam.questions.batchCreate']");
+        private readonly By INPUT_QUESTION = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By INPUT_POINT = By.Id("teacherQuesPoolPoint");
+        private readonly By BUTTON_DELETE_CHOICE_5 = By.XPath("(//*[@id='teacherQuesPoolChoiceAnsDel'])[5]");
+        private readonly By INPUT_ANSWER_A = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[2]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By INPUT_ANSWER_B = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[3]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By INPUT_ANSWER_C = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[4]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By INPUT_ANSWER_D = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[5]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By INPUT_RIGHT_ANSWER = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[4]/div/div[1]/div/label/input");
+        private readonly By INPUT_IS_PUBLIC = By.Id("teacherQuesPoolPublic");
+        private readonly By INPUT_IS_EDITABLE = By.Id("teacherQuesPoolEdit");
+        private readonly By BUTTON_SUBMIT = By.Id("teacherQuesPoolSaveBtn");
+        private readonly By ALERT_SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private readonly By INPUT_SEARCH_BOX = By.CssSelector("input.form-control.vedu-search");
+        private readonly By BUTTON_THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
+        private readonly By BUTTON_DELETE_SINGLE_QUESTION_POPUP = By.CssSelector("a[ng-click='delete(question.questionId)']");
+        private readonly By BUTTON_QUESTION_TYPE = By.Id("teacherQuesPoolTypeQues");
+        private readonly By INPUT_ANSWER_TRUE = By.XPath("(//*[@id='teacherQuesPoolChoiceCorrectAns'])[1]");
+        private readonly By INPUT_ANSWER_FALSE = By.XPath("(//*[@id='teacherQuesPoolChoiceCorrectAns'])[2]");
+        private readonly By INPUT_BATCH_FILE = By.Id("html_btn");
+        private readonly By BUTTON_UPLOAD_EXCEL = By.CssSelector("button[ng-click='uploadFile()']");
+        private readonly By BUTTON_QUESTION_LIST_ACCEPT = By.CssSelector("a[ng-click='accept()']");
+        private readonly By INPUT_MATCHING_1 = By.XPath("//*[@id='questionForm']/div[1]/div[12]/div/div/div[2]/div/div[3]/textarea");
+        private readonly By BUTTON_MATCHING_2 = By.XPath("//*[@id='questionForm']/div[1]/div[12]/div/div/div[3]/div/div[3]/textarea");
+        private readonly By BUTTON_MATCHING_INPUT_3_DELETE = By.XPath("(//*[@id='teacherQuesPoolChoiceAnsDel'])[3]");
+        private readonly By INPUT_ORDERING_1 = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[2]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By INPUT_ORDERING_2 = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[3]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By INPUT_ORDERING_3 = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[4]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By BUTTON_ORDERING_ADD = By.CssSelector("button[ng-click*='addChoice']");
+        private readonly By INPUT_ORDERING_4 = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[5]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By INPUT_MULTIPLE_CHOICE_ANSWER1 = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[2]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By INPUT_MULTIPLE_CHOICE_ANSWER2 = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[3]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By INPUT_MULTIPLE_CHOICE_ANSWER3 = By.XPath("/html/body/div[3]/div/section/div/div/div[3]/div/div[2]/div[2]/form/div[1]/div[12]/div/div/div[4]/div/div[2]/vedu-box-text-angular/text-angular/div[2]/div[3]");
 
         public QuestionsPage(IWebDriver wd, string user) : base(wd) {
-            _user = user;
+            USER = user;
             _driver = wd;
-            _js = (IJavaScriptExecutor)_driver;
+            JS_EXECUTOR = (IJavaScriptExecutor)_driver;
         }
-        public QuestionsPage clickAddNewButton(){
-            click(ADD_NEW_QUESTION_BUTTON);
+        public QuestionsPage ClickAddNewButton(){
+            Click(BUTTON_ADD_NEW_QUESTION);
             return this;
         }
-        public QuestionsPage enterExcelFile(){
-            _js.ExecuteScript("document.getElementById('html_btn').style.display = 'block';");
-            type(
-                BATCH_FILE_INPUT,
+        public QuestionsPage EnterExcelFile(){
+            JS_EXECUTOR.ExecuteScript("document.getElementById('html_btn').style.display = 'block';");
+            Type(
+                INPUT_BATCH_FILE,
                 Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Docs\\soru_yukleme_excel.xlsx"))
             );
             return this;
         }
-        public QuestionsPage clickUploadExcelButton() {
-            click(UPLOAD_EXCEL_BUTTON);
+        public QuestionsPage ClickUploadExcelButton() {
+            Click(BUTTON_UPLOAD_EXCEL);
             return this;
         }
-        public QuestionsPage clickBatchCreateButton(){
-            click(BATCH_CREATE_QUESTION_BUTTON);
+        public QuestionsPage ClickBatchCreateButton(){
+            Click(BUTTON_BATCH_CREATE_QUESTION);
             return this;
         }
-        public QuestionsPage clickQuestionListAcceptButton(){
-            click(QUESTION_LIST_ACCEPT_BUTTON);
+        public QuestionsPage ClickQuestionListAcceptButton(){
+            Click(BUTTON_QUESTION_LIST_ACCEPT);
             return this;
         }
-        public QuestionsPage refreshPage(){
+        public QuestionsPage RefreshPage(){
             _driver.Navigate().Refresh();
             return this;
         }
-        public QuestionsPage typeQuestionInput(string question){
-            type(QUESTION_INPUT, question);
+        public QuestionsPage TypeQuestionInput(string question){
+            Type(INPUT_QUESTION, question);
             return this;
         }
-        public QuestionsPage enterPoint(int point){
-            type(POINT_INPUT, point);
+        public QuestionsPage EnterPoint(int point){
+            Type(INPUT_POINT, point);
             return this;
         }
-        public QuestionsPage clickDeleteButtonLastElementOfAnswers(){
-            click(DELETE_CHOICE_5);
+        public QuestionsPage ClickDeleteButtonLastElementOfAnswers(){
+            Click(BUTTON_DELETE_CHOICE_5);
             return this;
         }
-        public QuestionsPage selectQuestionType(string type){
-            selectDropDown(QUESTION_TYPE, type);
+        public QuestionsPage SelectQuestionType(string type){
+            SelectDropDown(BUTTON_QUESTION_TYPE, type);
             return this;
         }
-        public QuestionsPage selectTrueFalseAnswer(bool answer){
-            if (answer == true) click(ANSWER_TRUE);
-            if (answer == false) click(ANSWER_FALSE);
+        public QuestionsPage SelectTrueFalseAnswer(bool answer){
+            if (answer == true) Click(INPUT_ANSWER_TRUE);
+            if (answer == false) Click(INPUT_ANSWER_FALSE);
             return this;
         }
-        public QuestionsPage enterAnswerA(string answer){
-            type(ANSWER_A_INPUT, answer);
+        public QuestionsPage EnterAnswerA(string answer){
+            Type(INPUT_ANSWER_A, answer);
             return this;
         }
-        public QuestionsPage enterAnswerB(string answer){
-            type(ANSWER_B_INPUT, answer);
+        public QuestionsPage EnterAnswerB(string answer){
+            Type(INPUT_ANSWER_B, answer);
             return this;
         }
-        public QuestionsPage enterAnswerC(string answer){
-            type(ANSWER_C_INPUT, answer);
+        public QuestionsPage EnterAnswerC(string answer){
+            Type(INPUT_ANSWER_C, answer);
             return this;
         }
-        public QuestionsPage enterAnswerD(string answer){
-            type(ANSWER_D_INPUT, answer);
+        public QuestionsPage EnterAnswerD(string answer){
+            Type(INPUT_ANSWER_D, answer);
             return this;
         }
-        public QuestionsPage clickRigthAnswerAsC(){
-            click(RIGHT_ANSWER_INPUT);
+        public QuestionsPage ClickRigthAnswerAsC(){
+            Click(INPUT_RIGHT_ANSWER);
             return this;
         }
-        public QuestionsPage clickIsPublic(){
-            if (isSelected(IS_PUBLIC_INPUT) == false)
-                click(IS_PUBLIC_INPUT);
+        public QuestionsPage ClickIsPublic(){
+            if (IsSelected(INPUT_IS_PUBLIC) == false)
+                Click(INPUT_IS_PUBLIC);
             return this;
         }
-        public QuestionsPage clickIsEDITABLE(){
-            if (isSelected(IS_EDITABLE_INPUT) == false)
-                click(IS_EDITABLE_INPUT);
+        public QuestionsPage ClickIsEditable(){
+            if (IsSelected(INPUT_IS_EDITABLE) == false)
+                Click(INPUT_IS_EDITABLE);
             return this;
         }
-        public QuestionsPage selectTestCategory(string testCategories){
+        public QuestionsPage SelectTestCategory(string testCategories){
             string[] names = testCategories.Split(',');
             foreach (var name in names){
-                click(By.XPath("//a[contains(text(), '" + name + "')]"));
+                Click(By.XPath("//a[contains(text(), '" + name + "')]"));
             }
             return this;
         }
-        public QuestionsPage submit(){
-            click(SUBMIT_BUTTON);
+        public QuestionsPage Submit(){
+            Click(BUTTON_SUBMIT);
             return this;
         }
-        public QuestionsPage assert(){
-            AssertionCustom.assertElementVisible("Element Not Found", driver, SUCCESS);
+        public QuestionsPage Assert(){
+            AssertionCustom.AssertElementVisible("Element Not Found", Driver, ALERT_SUCCESS);
             return this;
         }
-        public QuestionsPage searchNewlyAddedQuestionByNameAndDeleteIt(string name){
-            searchNewlyAddedQuestionByName(name);
+        public QuestionsPage SearchNewlyAddedQuestionByNameAndDeleteIt(string name){
+            SearchNewlyAddedQuestionByName(name);
             try{
-                clickThreePoints();
+                ClickThreePoints();
             }catch (Exception e){
                 Console.WriteLine("Error while clicking 3dots. Looks like there is no record. Returning null." + e.Message);
                 return null;
             }
-            clickDeleteSingleQuestionPopup();
-            assert();
+            ClickDeleteSingleQuestionPopup();
+            Assert();
             return this;
         }
-        public QuestionsPage searchNewlyAddedQuestionByName(string name){
-            type(SEARCH_BOX, name);
-            sleepms(1000);
+        public QuestionsPage SearchNewlyAddedQuestionByName(string name){
+            Type(INPUT_SEARCH_BOX, name);
+            Sleepms(1000);
             return this;
         }
-        public QuestionsPage clickThreePoints(){
-            click(THREE_POINTS);
+        public QuestionsPage ClickThreePoints(){
+            Click(BUTTON_THREE_POINTS);
             return this;
         }
-        public QuestionsPage clickDeleteSingleQuestionPopup(){
-            click(DELETE_SINGLE_QUESTION_POPUP);
+        public QuestionsPage ClickDeleteSingleQuestionPopup(){
+            Click(BUTTON_DELETE_SINGLE_QUESTION_POPUP);
             return this;
         }
-        public QuestionsPage enterMatching1(string value){
-            type(MATCHING_INPUT_1, value);
+        public QuestionsPage EnterMatching1(string value){
+            Type(INPUT_MATCHING_1, value);
             return this;
         }
-        public QuestionsPage enterMatching2(string value){
-            type(MATCHING_INPUT_2, value);
+        public QuestionsPage EnterMatching2(string value){
+            Type(BUTTON_MATCHING_2, value);
             return this;
         }
-        public QuestionsPage enterOrdering1(string value)
-        {
-            type(ORDERING_INPUT_1, value);
+        public QuestionsPage EnterOrdering1(string value){
+            Type(INPUT_ORDERING_1, value);
             return this;
         }
-        public QuestionsPage enterOrdering2(string value)
-        {
-            type(ORDERING_INPUT_2, value);
+        public QuestionsPage EnterOrdering2(string value){
+            Type(INPUT_ORDERING_2, value);
             return this;
         }
-        public QuestionsPage enterOrdering3(string value)
-        {
-            type(ORDERING_INPUT_3, value);
+        public QuestionsPage EnterOrdering3(string value) {
+            Type(INPUT_ORDERING_3, value);
             return this;
         }
-        public QuestionsPage clickAddChoice()
-        {
-            click(ORDERING_ADD_BUTTON);
+        public QuestionsPage ClickAddChoice(){
+            Click(BUTTON_ORDERING_ADD);
             return this;
         }
-        public QuestionsPage enterOrdering4(string value)
-        {
-            type(ORDERING_INPUT_4, value);
+        public QuestionsPage EnterOrdering4(string value){
+            Type(INPUT_ORDERING_4, value);
             return this;
         }
-        public QuestionsPage delete3thMatchingInput(){
-            click(MATCHING_INPUT_3_DELETE_BUTTON);
+        public QuestionsPage Delete3ThMatchingInput(){
+            Click(BUTTON_MATCHING_INPUT_3_DELETE);
             return this;
         }
-
-        public QuestionsPage answer1ForMultipleChoice(string answer){
-            type(MULTIPLE_CHOICE_ANSWER1_INPUT, answer);
+        public QuestionsPage Answer1ForMultipleChoice(string answer){
+            Type(INPUT_MULTIPLE_CHOICE_ANSWER1, answer);
             return this;
         }
-        public QuestionsPage answer2ForMultipleChoice(string answer){
-            type(MULTIPLE_CHOICE_ANSWER2_INPUT, answer);
+        public QuestionsPage Answer2ForMultipleChoice(string answer){
+            Type(INPUT_MULTIPLE_CHOICE_ANSWER2, answer);
             return this;
         }
-        public QuestionsPage answer3ForMultipleChoice(string answer){
-            type(MULTIPLE_CHOICE_ANSWER3_INPUT, answer);
+        public QuestionsPage Answer3ForMultipleChoice(string answer){
+            Type(INPUT_MULTIPLE_CHOICE_ANSWER3, answer);
             return this;
         }
-
-        
     }
 }

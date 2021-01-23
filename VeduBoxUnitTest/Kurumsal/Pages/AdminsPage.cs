@@ -6,126 +6,100 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using VeduBoxUnitTest.Assertion;
 
-namespace VeduBoxUnitTest.Kurumsal.Pages
-{
-    class AdminsPage : Page
-    {
+namespace VeduBoxUnitTest.Kurumsal.Pages {
+    class AdminsPage : Page {
 
-        private static readonly By SEARCH_BOX = By.CssSelector("input[ng-model='filter.$']");
-        private static readonly By THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
-        private static readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
-        private static readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private static readonly By DELETE_ADMIN = By.CssSelector("a[ng-click='delete(admin)']");
-        private static readonly By ADD_BUTTON = By.XPath("//*[@id='mainSection']/div/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/button");
-        private static readonly By INPUT_FIRST_NAME = By.CssSelector("input[ng-model='admin.firstName']");
-        private static readonly By INPUT_LAST_NAME = By.CssSelector("input[ng-model='admin.lastName']");
-        private static readonly By INPUT_EMAIL = By.CssSelector("input[ng-model='admin.email']");
-        private static readonly By INPUT_USER_NAME = By.CssSelector("input[ng-model='admin.userName']");
-        private static readonly By INPUT_PASSWORD = By.XPath("(//input[@ng-model='admin.password'])[2]");
-        private static readonly By GENERATE = By.CssSelector("button[ng-click='generateRandomPassword()']");
-        private static readonly By CHECK_GDPR = By.CssSelector("input[ng-model='admin.gdprAccepted']");
-        private static readonly By SAVE_BUTTON = By.CssSelector("button[type='submit'][form='adminForm']");
+        private readonly By INPUT_SEARCH_BOX = By.CssSelector("input[ng-model='filter.$']");
+        private readonly By BUTTON_THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
+        private readonly By ALERT_ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
+        private readonly By ALERT_SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private readonly By A_DELETE_ADMIN = By.CssSelector("a[ng-click='delete(admin)']");
+        private readonly By BUTTON_ADD = By.XPath("//*[@id='mainSection']/div/div[1]/div[2]/div[1]/div[1]/div[2]/div[2]/button");
+        private readonly By INPUT_FIRST_NAME = By.CssSelector("input[ng-model='admin.firstName']");
+        private readonly By INPUT_LAST_NAME = By.CssSelector("input[ng-model='admin.lastName']");
+        private readonly By INPUT_EMAIL = By.CssSelector("input[ng-model='admin.email']");
+        private readonly By INPUT_USER_NAME = By.CssSelector("input[ng-model='admin.userName']");
+        private readonly By INPUT_PASSWORD = By.XPath("(//input[@ng-model='admin.password'])[2]");
+        private readonly By BUTTON_GENERATE = By.CssSelector("button[ng-click='generateRandomPassword()']");
+        private readonly By CHECKBOX_GDPR = By.CssSelector("input[ng-model='admin.gdprAccepted']");
+        private readonly By BUTTON_SAVE = By.CssSelector("button[type='submit'][form='adminForm']");
 
+        private string USER;
 
-        private static string _user;
-
-        public AdminsPage(IWebDriver wd, string user) : base(wd)
-        {
-            _user = user;
+        public AdminsPage(IWebDriver wd, string user) : base(wd){
+            USER = user;
         }
-
-        public AdminsPage searchNewlyAddedAdminByName(string name)
-        {
-            type(SEARCH_BOX, name);
-            sleepms(1000);
+        public AdminsPage SearchNewlyAddedAdminByName(string name) {
+            Type(INPUT_SEARCH_BOX, name);
+            Sleepms(1000);
             return this;
         }
-        public AdminsPage searchNewlyAddedAdminByNameAndDeleteIt(string name)
-        {
-            searchNewlyAddedAdminByName(name);
-            try
-            {
-                click3Points();
-            }
-            catch (Exception e)
-            {
+        public AdminsPage SearchNewlyAddedAdminByNameAndDeleteIt(string name){
+            SearchNewlyAddedAdminByName(name);
+            try {
+                Click3Points();
+            }catch (Exception e){
                 Console.WriteLine("Error while clicking 3dots. Looks like there is no record. Returning null." + e.Message);
                 return null;
             }
-            clickDeleteButton();
-            clickAreUSure();
-            assert();
+            ClickDeleteButton();
+            ClickAreUSure();
+            Assert();
             return this;
         }
-        public AdminsPage click3Points()
-        {
-            click(THREE_POINTS);
+        public AdminsPage Click3Points(){
+            Click(BUTTON_THREE_POINTS);
             return this;
         }
-        public AdminsPage clickDeleteButton()
-        {
-            click(DELETE_ADMIN);
+        public AdminsPage ClickDeleteButton() {
+            Click(A_DELETE_ADMIN);
             return this;
         }
-        public AdminsPage clickAreUSure()
-        {
-            click(ARE_U_SURE_OK);
+        public AdminsPage ClickAreUSure(){
+            Click(ALERT_ARE_U_SURE_OK);
             return this;
         }
-        public AdminsPage assert()
-        {
-            AssertionCustom.assertElementVisible("Element Not Found", driver, SUCCESS);
+        public AdminsPage Assert() {
+            AssertionCustom.AssertElementVisible("Element Not Found", Driver, ALERT_SUCCESS);
             return this;
         }
-        public AdminsPage selectGPDR()
-        {
-            if (isSelected(CHECK_GDPR) == false)
-                click(CHECK_GDPR);
+        public AdminsPage SelectGpdr() {
+            if (IsSelected(CHECKBOX_GDPR) == false)
+                Click(CHECKBOX_GDPR);
             return this;
         }
-
-        public AdminsPage clickAddButton()
-        {
-            click(ADD_BUTTON);
+        public AdminsPage ClickAddButton(){
+            Click(BUTTON_ADD);
             return this;
         }
-        public AdminsPage enterFirstName(string first_name)
-        {
-            type(INPUT_FIRST_NAME, first_name);
+        public AdminsPage EnterFirstName(string firstName) {
+            Type(INPUT_FIRST_NAME, firstName);
             return this;
         }
-        public AdminsPage enterLastName(string last_name)
-        {
-            type(INPUT_LAST_NAME, last_name);
+        public AdminsPage EnterLastName(string lastName) {
+            Type(INPUT_LAST_NAME, lastName);
             return this;
         }
-        public AdminsPage enterEmail(string email)
-        {
-            type(INPUT_EMAIL, email);
+        public AdminsPage EnterEmail(string email) {
+            Type(INPUT_EMAIL, email);
             return this;
         }
-        public AdminsPage enterUserName(string user_name)
-        {
-            type(INPUT_USER_NAME, user_name);
+        public AdminsPage EnterUserName(string userName) {
+            Type(INPUT_USER_NAME, userName);
             return this;
         }
-        public AdminsPage enterPassword(string password)
-        {
-            type(INPUT_PASSWORD, password);
+        public AdminsPage EnterPassword(string password) {
+            Type(INPUT_PASSWORD, password);
             return this;
         }
 
-        public AdminsPage clickGenerate()
-        {
-            click(GENERATE);
+        public AdminsPage ClickGenerate() {
+            Click(BUTTON_GENERATE);
             return this;
         }
-        public AdminsPage clickSaveButton()
-        {
-            click(SAVE_BUTTON);
+        public AdminsPage ClickSaveButton() {
+            Click(BUTTON_SAVE);
             return this;
         }
-
-
     }
 }

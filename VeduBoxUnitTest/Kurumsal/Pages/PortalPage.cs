@@ -8,79 +8,67 @@ using System.Threading.Tasks;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class PortalPage : Page{
-        private static string _user;
-        private static readonly By SEARCH = By.Id("packageDetailSearch");
-        private static readonly By COURSE_PACKAGE_SEARCH = By.Id("packageDetailCourseSearch");
-        private static readonly By VIEW = By.Id("packageDetailCourseView");
-        private static readonly By COURSE_PACKAGE_VIEW = By.Id("packageDetailPredefinedCourseView");
-        private static readonly By COURSES_PACKAGES = By.CssSelector("[ng-click='gTab = 2;']");
-        private static readonly By COURSES = By.CssSelector("[ng-click='gTab = 1;']");
-        private static readonly By INPUT_LOGIN = By.Id("packageDetailCourseViewLogin");
-        private static readonly By INPUT_REGISTER = By.Id("packageDetailCourseViewRegister");
-        private static readonly By CONTINUE = By.Id("packageDetailCourseViewContinue");
-        private static readonly By COURSES_PACKAGE_CONTINUE = By.XPath("(//button[@ng-click='go()'])[2]");
-        private static readonly By DISMISS_POLICY = By.CssSelector("a[ng-click='dismissPolicy()']");
-        private static readonly By ADD_CART = By.CssSelector("#packageDetailCourseAddToCart");
-        private static readonly By COURSE_PACKAGE_ADD_CART = By.CssSelector("#packageDetailPredefinedCourseAddToCart");
-        private static readonly By GO_TO_CART = By.XPath("(//button[@ng-click=' goToCart()'])[2]");
+
+        private string USER;
+        private readonly By INPUT_SEARCH = By.Id("packageDetailSearch");
+        private readonly By INPUT_COURSE_PACKAGE_SEARCH = By.Id("packageDetailCourseSearch");
+        private readonly By BUTTON_VIEW = By.Id("packageDetailCourseView");
+        private readonly By BUTTON_COURSE_PACKAGE_VIEW = By.Id("packageDetailPredefinedCourseView");
+        private readonly By BUTTON_COURSES_PACKAGES = By.CssSelector("[ng-click='gTab = 2;']");
+        private readonly By BUTTON_COURSES = By.CssSelector("[ng-click='gTab = 1;']");
+        private readonly By INPUT_LOGIN = By.Id("packageDetailCourseViewLogin");
+        private readonly By INPUT_REGISTER = By.Id("packageDetailCourseViewRegister");
+        private readonly By BUTTON_CONTINUE = By.Id("packageDetailCourseViewContinue");
+        private readonly By BUTTON_COURSES_PACKAGE_CONTINUE = By.XPath("(//button[@ng-click='go()'])[2]");
+        private readonly By A_DISMISS_POLICY = By.CssSelector("a[ng-click='dismissPolicy()']");
+        private readonly By BUTTON_ADD_CART = By.CssSelector("#packageDetailCourseAddToCart");
+        private readonly By BUTTON_COURSE_PACKAGE_ADD_CART = By.CssSelector("#packageDetailPredefinedCourseAddToCart");
+        private readonly By BUTTON_GO_TO_CART = By.XPath("(//button[@ng-click=' goToCart()'])[2]");
 
         public PortalPage(IWebDriver wd, string user) : base(wd){
-            _user = user;
+            USER = user;
         }
-        public PortalPage clickSearch()
-        {
-            click(SEARCH);
+        public PortalPage ClickSearch(){
+            Click(INPUT_SEARCH);
             return this;
         }
-        public PortalPage searchEntry(string entry){
-            type(SEARCH, entry);
+        public PortalPage SearchEntry(string entry){
+            Type(INPUT_SEARCH, entry);
             return this;
         }
-        public PortalPage searchCoursesPackageEntry(string entry)
-        {
-            type(COURSE_PACKAGE_SEARCH, entry);
+        public PortalPage SearchCoursesPackageEntry(string entry){
+            Type(INPUT_COURSE_PACKAGE_SEARCH, entry);
             return this;
         }
-        public PortalPage clickCoursesPackages()
-        {
-            click(COURSES_PACKAGES);
+        public PortalPage ClickCoursesPackages(){
+            Click(BUTTON_COURSES_PACKAGES);
             return this;
         }
-
-        public PortalPage clickCourses()
-        {
-            click(COURSES);
+        public PortalPage ClickCourses(){
+            Click(BUTTON_COURSES);
             return this;
         }
-
-        public PortalPage clickView(){
-            click(VIEW);
+        public PortalPage ClickView(){
+            Click(BUTTON_VIEW);
             return this;
         }
-        public PortalPage clickCoursePackagesView()
-        {
-            click(COURSE_PACKAGE_VIEW);
+        public PortalPage ClickCoursePackagesView(){
+            Click(BUTTON_COURSE_PACKAGE_VIEW);
             return this;
         }
-        public PortalPage selectLogin(){
-            click(INPUT_LOGIN);
+        public PortalPage SelectLogin(){
+            Click(INPUT_LOGIN);
             return this;
         }
-
-        public PaymentPage selectContinue(){
-            sleepms(500);
-            click(COURSES_PACKAGE_CONTINUE);
-            Console.WriteLine("clicked to continue");
-            return new PaymentPage(driver, _user);
+        public PaymentPage SelectContinue(){
+            Sleepms(500);
+            Click(BUTTON_COURSES_PACKAGE_CONTINUE);
+            return new PaymentPage(Driver, USER);
         }
-        public PaymentPage selectCoursesPackageContinue()
-        {
-            click(COURSES_PACKAGE_CONTINUE);
-            Console.WriteLine("clicked successfully to the COURSES PACKAGES CONTINUE");
-
+        public PaymentPage SelectCoursesPackageContinue(){
+            Click(BUTTON_COURSES_PACKAGE_CONTINUE);
            /* 
-            try
-            {
+            try{
                  WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(180));
                  wait.IgnoreExceptionTypes(typeof(WebDriverException));
 
@@ -89,31 +77,23 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
                  alert.Accept();
                 
                 sleepms(1000);
-            }
-            catch
-            {
+            }catch{
                 Console.WriteLine("Alert is not exist");
             }
            */
-           
-            return new PaymentPage(driver, _user);
+            return new PaymentPage(Driver, USER);
         }
-        public PortalPage addtoCart()
-        {
-            click(ADD_CART);
+        public PortalPage AddToCart(){
+            Click(BUTTON_ADD_CART);
             return this;
         }
-        public PortalPage addtoCoursePackageCart()
-        {
-            click(COURSE_PACKAGE_ADD_CART);
+        public PortalPage AddtoCoursePackageCart(){
+            Click(BUTTON_COURSE_PACKAGE_ADD_CART);
             return this;
         }
-        public PortalPage goToCart()
-        {
-            click(GO_TO_CART);
+        public PortalPage GoToCart(){
+            Click(BUTTON_GO_TO_CART);
             return this;
         }
-
-
     }
 }

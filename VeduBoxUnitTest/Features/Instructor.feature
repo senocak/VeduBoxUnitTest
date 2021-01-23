@@ -2,12 +2,12 @@
 
 Scenario: 1_instructor_add_live
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks live is exist
 	Given instructor adds new live with
 		| Key               | Value                  |
 		| course_name       | defaultCourse1         |
-		| meetingType       | pro                    |
+		| meetingType       | Pro                    |
 		| title             | deneme                 |
 		| timezone          | Turkey Time (GMT+3:00) |
 		| duration          | 120                    |
@@ -17,12 +17,12 @@ Scenario: 1_instructor_add_live
 
 Scenario: 2_instructor_live_start
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks live is exist
 	Given instructor adds new live with
 		| Key               | Value                  |
 		| course_name       | defaultCourse1         |
-		| meetingType       | pro                    |
+		| meetingType       | Pro                    |
 		| title             | deneme                 |
 		| hour              | 18                     |
 		| min               | 00                     |
@@ -34,7 +34,7 @@ Scenario: 2_instructor_live_start
 
 Scenario: 3_instructor_add_student
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks student is exist
 		| Key   | Value                            |
 		| email | anil_instructor_student@anil.com |
@@ -53,7 +53,7 @@ Scenario: 3_instructor_add_student
 
 Scenario: 4_instructor_add_course
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks course is exist
 		| Key  | Value                          |
 		| name | anil_vedubox_course_instructor |
@@ -67,7 +67,7 @@ Scenario: 4_instructor_add_course
 
 Scenario: 5_instructor_add_subject
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks course is exist
 		| Key  | Value                          |
 		| name | anil_vedubox_course_instructor |
@@ -85,12 +85,12 @@ Scenario: 5_instructor_add_subject
 
 Scenario: 6_instructor_add_webinar_join_webinar
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks live is exist
 	Given instructor adds new webinar with
 		| Key               | Value                  |
 		| course_name       | defaultCourse1         |
-		| meetingType       | webinar                |
+		| meetingType       | Webinar                |
 		| title             | deneme                 |
 		| hour              | 18                     |
 		| min               | 00                     |
@@ -105,12 +105,12 @@ Scenario: 6_instructor_add_webinar_join_webinar
 		| phone     | 123456789012    |
 		| email     | lorem@ipsum.com |
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Then instructor deletes webinar with
 
 Scenario: 7_instructor_add_content_as_document
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks course is exist
 		| Key  | Value               |
 		| name | anil_vedubox_course |
@@ -133,7 +133,7 @@ Scenario: 7_instructor_add_content_as_document
 	 
 Scenario: 8_instrcutor_add_content_as_video
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks course is exist
 		| Key  | Value               |
 		| name | anil_vedubox_course |
@@ -156,7 +156,7 @@ Scenario: 8_instrcutor_add_content_as_video
 	 
 Scenario: 9_instructor_add_content_as_video_with_vimeo
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks course is exist
 		| Key  | Value               |
 		| name | anil_vedubox_course |
@@ -169,18 +169,18 @@ Scenario: 9_instructor_add_content_as_video_with_vimeo
 		| course | anil_vedubox_course  |
 		| title  | anil_vedubox_subject |
 	Given instructor adds video with vimeo
-		| Key    | Value                                  |
-		| course | anil_vedubox_course                    |
-		| title  | anil_vedubox_video_to_subject_vimeo_id |
-		| desc   | anil_vedubox_video_desc                |
-		| id     | 444883013                              |
+		| Key      | Value                                  |
+		| course   | anil_vedubox_course                    |
+		| title    | anil_vedubox_video_to_subject_vimeo_id |
+		| desc     | anil_vedubox_video_desc                |
+		| vimeo_id | 444883013                              |
 	Then instructor delete course
 		| Key  | Value               |
 		| name | anil_vedubox_course |
 
 Scenario: 10_instructor_add_content_as_link
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks course is exist
 		| Key  | Value               |
 		| name | anil_vedubox_course |
@@ -197,14 +197,14 @@ Scenario: 10_instructor_add_content_as_link
 		| course | anil_vedubox_course                       |
 		| title  | anil_vedubox_course_content_as_link_title |
 		| desc   | anil_vedubox_course_content_as_link_desc  |
-		| link   | https://mail.google.com/mail/u/1/#inbox   |
+		| link   | https://github.com/senocak                |
 	Then instructor delete course
 		| Key  | Value               |
 		| name | anil_vedubox_course |
 
 Scenario: 11_instructor_add_content_as_embed_code
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks course is exist
 		| Key  | Value               |
 		| name | anil_vedubox_course |
@@ -217,18 +217,18 @@ Scenario: 11_instructor_add_content_as_embed_code
 		| course | anil_vedubox_course  |
 		| title  | anil_vedubox_subject |
 	Given instructor adds content as embed code
-		| Key        | Value                                                                                       |
-		| course     | anil_vedubox_course                                                                         |
-		| title      | anil_vedubox_course_content_as_embed_code_title                                             |
-		| desc       | anil_vedubox_course_content_as_embed_code_desc                                              |
-		| embed_code | <iframe width="1280" height="968" src="https://www.youtube.com/embed/ZzBDAtbcFvM"></iframe> |
+		| Key        | Value                                                             |
+		| course     | anil_vedubox_course                                               |
+		| title      | anil_vedubox_course_content_as_embed_code_title                   |
+		| desc       | anil_vedubox_course_content_as_embed_code_desc                    |
+		| embed_code | <iframe src="https://www.youtube.com/embed/ZzBDAtbcFvM"></iframe> |
 	Then instructor delete course
 		| Key  | Value               |
 		| name | anil_vedubox_course |
 
 Scenario: 19_instructor_add_question_batch_question_from_excel
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks question is exist
 		| Key  | Value                            |
 		| name | anil_vedubox_question_from_excel |
@@ -241,7 +241,7 @@ Scenario: 19_instructor_add_question_batch_question_from_excel
 
 Scenario: 12_instructor_add_question_multiple_choice
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks question is exist
 		| Key  | Value                          |
 		| name | Soru - MULTIPLE CHOICE By ANIL |
@@ -260,7 +260,7 @@ Scenario: 12_instructor_add_question_multiple_choice
 
 Scenario: 13_instructor_add_question_true_false
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks question is exist
 		| Key  | Value                     |
 		| name | Soru - TRUE FALSE By ANIL |
@@ -276,7 +276,7 @@ Scenario: 13_instructor_add_question_true_false
 	
 Scenario: 14_instructor_add_question_open_ended
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks question is exist
 		| Key  | Value                     |
 		| name | Soru - open ended By ANIL |
@@ -291,7 +291,7 @@ Scenario: 14_instructor_add_question_open_ended
 
 Scenario: 15_instrcutor_add_question_ordering
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks question is exist
 		| Key  | Value                   |
 		| name | Soru - ORDERING By ANIL |
@@ -310,7 +310,7 @@ Scenario: 15_instrcutor_add_question_ordering
 
 Scenario: 16_instrcutor_add_question_matching
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks question is exist
 		| Key  | Value                   |
 		| name | Soru - MATCHING By ANIL |
@@ -327,7 +327,7 @@ Scenario: 16_instrcutor_add_question_matching
 
 Scenario: 17_instructor_add_question_fill_in_the_blanks
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks question is exist
 		| Key  | Value                                 |
 		| name | Soru - FILL IN THE BLANKS By ((ANIL)) |
@@ -342,7 +342,7 @@ Scenario: 17_instructor_add_question_fill_in_the_blanks
 
 Scenario: 18_instructor_add_question_multiple_answer
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks question is exist
 		| Key  | Value                          |
 		| name | Soru - MULTIPLE ANSWER By ANIL |
@@ -360,7 +360,7 @@ Scenario: 18_instructor_add_question_multiple_answer
 
 Scenario: 20_instructor_add_test_pool_multiple_choice
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks test poll question is exist
 		| Key  | Value                                  |
 		| name | anil_vedubox_test_pool_multiple_choice |
@@ -376,7 +376,7 @@ Scenario: 20_instructor_add_test_pool_multiple_choice
 
 Scenario: 21_instructor_add_test_multiple_choice_adding_question_with_document
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks test poll question is exist
 		| Key  | Value                                                |
 		| name | anil_vedubox_test_pool_multiple_choice_with_document |
@@ -402,7 +402,7 @@ Scenario: 21_instructor_add_test_multiple_choice_adding_question_with_document
 
 Scenario: 23_instructor_add_exam_multiple_choice
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks exam is exist
 		| Key  | Value                                |
 		| name | anil_instructor_exam_multiple_choice |
@@ -419,7 +419,7 @@ Scenario: 23_instructor_add_exam_multiple_choice
 
 Scenario: 24_instructor_add_exam_multiple_choice_with_pdf
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks exam is exist
 		| Key  | Value                                         |
 		| name | anil_instructor_exam_multiple_choice_with_pdf |
@@ -436,7 +436,7 @@ Scenario: 24_instructor_add_exam_multiple_choice_with_pdf
 
 Scenario: 25_instructor_add_exam_open_ended
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks exam is exist
 		| Key  | Value                           |
 		| name | anil_instructor_exam_open_ended |
@@ -453,17 +453,17 @@ Scenario: 25_instructor_add_exam_open_ended
 
 Scenario: 26_instructor_answers_Question_And_Answer
     #Given Open Kurumsal Login Page
-	#Given Login as "instructor"
+	#Given Login as "Instructor"
 	#Given instructor checks Q&A is exist
 	Given Open Kurumsal Login Page
-	Given Login as "student"
+	Given Login as "Student"
     Given student adds new Q&A
 		| Key        | Value                           |
 		| courseName | defaultCourse2 (Anil Senocak)   |
 		| subject    | defaultQuestionAndAnswer        |
 		| message    | defaultQuestionAndAnswerMessage |
     Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Then  instructor answers the question
 	| Key    | Value                    |
 	| answer | anil answer the question |
@@ -471,7 +471,7 @@ Scenario: 26_instructor_answers_Question_And_Answer
 
 Scenario: 22_instructor_add_test_poll_open_ended
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks test poll question is exist
 		| Key  | Value                             |
 		| name | anil_vedubox_test_pool_open_ended |
@@ -487,7 +487,7 @@ Scenario: 22_instructor_add_test_poll_open_ended
 
 Scenario: 0_instructor_add_exam_with_default_params
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks exam is exist
 		| Key  | Value                |
 		| name | anil_instructor_exam |
@@ -503,7 +503,7 @@ Scenario: 0_instructor_add_exam_with_default_params
 
 Scenario: 31_instructor_add_poll_question_multiple
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks poll question is exist
 		| Key      | Value                                 |
 		| question | Soru - MULTIPLE POLL QUESTION By ANIL |
@@ -520,7 +520,7 @@ Scenario: 31_instructor_add_poll_question_multiple
 		
 Scenario: 32_instructor_add_poll_question_open_ended
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks poll question is exist
 		| Key      | Value                                   |
 		| question | Soru - OPEN ENDED POLL QUESTION By ANIL |
@@ -537,7 +537,7 @@ Scenario: 32_instructor_add_poll_question_open_ended
 		
 Scenario: 33_instructor_add_poll_question_true_false
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks poll question is exist
 		| Key      | Value                                   |
 		| question | Soru - TRUE FALSE POLL QUESTION By ANIL |
@@ -550,12 +550,12 @@ Scenario: 33_instructor_add_poll_question_true_false
 
 Scenario: 35_instructor_query_live
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks live is exist
 	Given instructor adds new live with
 		| Key               | Value                  |
 		| course_name       | defaultCourse1         |
-		| meetingType       | pro                    |
+		| meetingType       | Pro                    |
 		| title             | deneme                 |
 		| timezone          | Turkey Time (GMT+3:00) |
 		| duration          | 120                    |

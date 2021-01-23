@@ -152,6 +152,7 @@
     <Compile Include="Kurumsal\Pages\BranchPage.cs" />
     <Compile Include="Kurumsal\Pages\CatalogPage.cs" />
     <Compile Include="Kurumsal\Pages\CoursesPage.cs" />
+    <Compile Include="Kurumsal\Pages\DiscountCodesPage.cs" />
     <Compile Include="Kurumsal\Pages\CustomFieldsPage.cs" />
     <Compile Include="Kurumsal\Pages\EarningsPage.cs" />
     <Compile Include="Kurumsal\Pages\ExamPage.cs" />
@@ -162,7 +163,7 @@
     <Compile Include="Kurumsal\Pages\ManagersPage.cs" />
     <Compile Include="Kurumsal\Pages\QuestionsAndAnswersPage.cs" />
     <Compile Include="Kurumsal\Pages\TeachersPage.cs" />
-    <Compile Include="Kurumsal\Pages\OpenURL.cs" />
+    <Compile Include="Kurumsal\Pages\OpenUrl.cs" />
     <Compile Include="Kurumsal\Pages\Page.cs" />
     <Compile Include="Kurumsal\Pages\ParentPage.cs" />
     <Compile Include="Kurumsal\Pages\PaymentPage.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="Kurumsal\Pages\WebinarPage.cs" />
     <Compile Include="StepDefinitions\StepDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Constants.cs" />
     <Compile Include="Utils\Dates.cs" />
     <Compile Include="Utils\TableExtensions.cs" />
   </ItemGroup>

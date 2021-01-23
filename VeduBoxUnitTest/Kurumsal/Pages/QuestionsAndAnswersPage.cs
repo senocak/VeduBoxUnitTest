@@ -7,123 +7,98 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using VeduBoxUnitTest.Assertion;
 
-namespace VeduBoxUnitTest.Kurumsal.Pages
-{
-    class QuestionsAndAnswersPage : Page
-    {
-        private static readonly By NEW_TICKET = By.CssSelector("a[ui-sref='veduBox.student.me.studentQuestions.new']");
-        private static readonly By COURSE = By.CssSelector("select[ng-model='selectedCourse']");
-        private static readonly By SUBJECT = By.CssSelector("input[ng-model='studentQuestion.subject']");
-        private static readonly By NEXT_BUTTON = By.CssSelector("span[translate='common.next']");
-        private static readonly By UPLOAD_PICTURE = By.Id("askUploadImage");
-        private static readonly By SEND_BUTTON = By.CssSelector("span[translate='common.send']");
-        private static readonly By SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
-        private static readonly By MESSAGE = By.XPath("/html/body/div[3]/div/section/div/div[1]/div/div/div/div/form/div/div[1]/fieldset[3]/div/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
-        private static readonly By VIEW_DETAIL = By.CssSelector("span[ng-click='getMessageDetails(questionAndAnswer.id,questionAndAnswer.instructorName)']");
-        private static readonly By ANSWER_FIELD = By.XPath("/html/body/div[3]/div/section/div/div[1]/div/section/div[2]/div/table/tbody/tr[2]/td/div[3]/div[1]/div[2]/div/div/vedu-box-text-angular/text-angular/div[2]/div[3]/p");
-        private static readonly By REPLY_BUTTON = By.CssSelector("div[translate='studentQuestion.Reply']");
-        private static readonly By DELETE_TICKET = By.XPath("(//span[@translate='routeStates.teacher.me.courses.edit.deleteTicket'])[1]");
-        private static readonly By ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
-        private static string _user;
-        public QuestionsAndAnswersPage(IWebDriver wd, string user) : base(wd)
-        {
-            _user = user;
+namespace VeduBoxUnitTest.Kurumsal.Pages{
+    class QuestionsAndAnswersPage : Page{
+    
+        private readonly By BUTTON_NEW_TICKET = By.CssSelector("a[ui-sref='veduBox.student.me.studentQuestions.new']");
+        private readonly By SELECT_COURSE = By.CssSelector("select[ng-model='selectedCourse']");
+        private readonly By INPUT_SUBJECT = By.CssSelector("input[ng-model='studentQuestion.subject']");
+        private readonly By BUTTON_NEXT = By.CssSelector("span[translate='common.next']");
+        private readonly By BUTTON_UPLOAD_PICTURE = By.Id("askUploadImage");
+        private readonly By BUTTON_SEND = By.CssSelector("span[translate='common.send']");
+        private readonly By ALERT_SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private readonly By DIV_MESSAGE = By.XPath("/html/body/div[3]/div/section/div/div[1]/div/div/div/div/form/div/div[1]/fieldset[3]/div/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By SPAN_VIEW_DETAIL = By.CssSelector("span[ng-click='getMessageDetails(questionAndAnswer.id,questionAndAnswer.instructorName)']");
+        private readonly By P_ANSWER_FIELD = By.XPath("/html/body/div[3]/div/section/div/div[1]/div/section/div[2]/div/table/tbody/tr[2]/td/div[3]/div[1]/div[2]/div/div/vedu-box-text-angular/text-angular/div[2]/div[3]/p");
+        private readonly By BUTTON_REPLY = By.CssSelector("div[translate='studentQuestion.Reply']");
+        private readonly By BUTTON_DELETE_TICKET = By.XPath("(//span[@translate='routeStates.teacher.me.courses.edit.deleteTicket'])[1]");
+        private readonly By ALERT_ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
+        private string USER;
+        public QuestionsAndAnswersPage(IWebDriver wd, string user) : base(wd){
+            USER = user;
         }
-        public QuestionsAndAnswersPage clickNewTicket()
-        {
-            click(NEW_TICKET);
+        public QuestionsAndAnswersPage ClickNewTicket(){
+            Click(BUTTON_NEW_TICKET);
             return this;
         }
-        public QuestionsAndAnswersPage SelectCourse(string courseName)
-        {
-            selectDropDown(COURSE, courseName);
+        public QuestionsAndAnswersPage SelectCourse(string courseName){
+            SelectDropDown(SELECT_COURSE, courseName);
             return this;
         }
-        public QuestionsAndAnswersPage enterSubject(string subject)
-        {
-            type(SUBJECT,subject);
+        public QuestionsAndAnswersPage EnterSubject(string subject){
+            Type(INPUT_SUBJECT,subject);
             return this;
         }
-        public QuestionsAndAnswersPage enterMessage(string message)
-        {
-            type(MESSAGE, message);
+        public QuestionsAndAnswersPage EnterMessage(string message){
+            Type(DIV_MESSAGE, message);
             return this;
         }
-        public QuestionsAndAnswersPage clickNextButton()
-        {
-            click(NEXT_BUTTON);
+        public QuestionsAndAnswersPage ClickNextButton(){
+            Click(BUTTON_NEXT);
             return this;
         }
-        public QuestionsAndAnswersPage selectFile()
-        {
-            type(
-                    UPLOAD_PICTURE,
+        public QuestionsAndAnswersPage SelectFile(){
+            Type(
+                    BUTTON_UPLOAD_PICTURE,
                     Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Docs\\file.png"))
                 );
-
             return this;
         }
-        public QuestionsAndAnswersPage clickSendButton()
-        {
-            click(SEND_BUTTON);
+        public QuestionsAndAnswersPage ClickSendButton(){
+            Click(BUTTON_SEND);
             return this;
         }
-        public QuestionsAndAnswersPage assert()
-        {
-            AssertionCustom.assertElementVisible("Element Not Found", driver, SUCCESS);
+        public QuestionsAndAnswersPage Assert(){
+            AssertionCustom.AssertElementVisible("Element Not Found", Driver, ALERT_SUCCESS);
             return this;
         }
-        public QuestionsAndAnswersPage checkQuestionIsExist()
-        {
-            try
-            {
-                openViewDetail();
-            }
-            catch (Exception e)
-            {
+        public QuestionsAndAnswersPage CheckQuestionIsExist(){
+            try{
+                OpenViewDetail();
+            }catch (Exception e){
                 Console.WriteLine("View(for question) was not found: " + e.Message);
                 return null;
             }
-            clickDeleteThisTicket();
-            clickAreUSure();
-            assert();
+            ClickDeleteThisTicket();
+            ClickAreUSure();
+            Assert();
             return this;
         }
-        public QuestionsAndAnswersPage deleteNewAddedQuestions()
-        {
-            openViewDetail(); 
-            clickDeleteThisTicket();
-            clickAreUSure();
-            assert();
+        public QuestionsAndAnswersPage DeleteNewAddedQuestions(){
+            OpenViewDetail(); 
+            ClickDeleteThisTicket();
+            ClickAreUSure();
+            Assert();
             return this;
         }
-        public QuestionsAndAnswersPage openViewDetail()
-        {
-            click(VIEW_DETAIL);
-            Console.WriteLine("Clicked view element");
+        public QuestionsAndAnswersPage OpenViewDetail(){
+            Click(SPAN_VIEW_DETAIL);
             return this;
         }
-        public QuestionsAndAnswersPage enterAnswer(string answer)
-        {
-            type(ANSWER_FIELD, answer);
+        public QuestionsAndAnswersPage EnterAnswer(string answer){
+            Type(P_ANSWER_FIELD, answer);
             return this;
         }
-        public QuestionsAndAnswersPage clickReplyButton()
-        {
-            click(REPLY_BUTTON);
-            Console.WriteLine("Clicked reply button");
+        public QuestionsAndAnswersPage ClickReplyButton(){
+            Click(BUTTON_REPLY);
             return this;
         }
-        public QuestionsAndAnswersPage clickDeleteThisTicket()
-        {
-            click(DELETE_TICKET);
-            Console.WriteLine("Clicked delete this ticket");
+        public QuestionsAndAnswersPage ClickDeleteThisTicket(){
+            Click(BUTTON_DELETE_TICKET);
             return this;
         }
-        public QuestionsAndAnswersPage clickAreUSure()
-        {
-            click(ARE_U_SURE_OK);
-            Console.WriteLine("Clicked delete this ticket");
+        public QuestionsAndAnswersPage ClickAreUSure(){
+            Click(ALERT_ARE_U_SURE_OK);
             return this;
         }
     }

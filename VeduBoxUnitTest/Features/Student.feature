@@ -2,12 +2,12 @@
 
 Scenario: 1_student_live_register
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks live is exist
 	Given instructor adds new live with
 		| Key               | Value                  |
 		| course_name       | defaultCourse1         |
-		| meetingType       | basic                  |
+		| meetingType       | Basic                  |
 		| title             | deneme                 |
 		| hour              | 18                     |
 		| min               | 00                     |
@@ -16,15 +16,15 @@ Scenario: 1_student_live_register
 		| registrationLimit | 50                     |
 		| description       | Deneme 123             |
 	Given Open Kurumsal Login Page
-	Given Login as "student"
+	Given Login as "Student"
 	Then student registers live
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Then instructor deletes live
 	 
 Scenario: 3_student_portal_single_course_purchase_and_reflection
 	Given Open Kurumsal Login Page
-	Given Login as "student"
+	Given Login as "Student"
 	Then student purchase course
 		| Key        | Value                         |
 		| entry      | Default Course1               |
@@ -41,7 +41,7 @@ Scenario: 3_student_portal_single_course_purchase_and_reflection
 
 Scenario: 4_student_course_package_purchase_and_reflection
 	Given Open Kurumsal Login Page
-	Given Login as "student"
+	Given Login as "Student"
 	Then  Student add course package purchase and reflection
 		| Key        | Value                           |
 		| entry      | Default Course Package1         |
@@ -58,7 +58,7 @@ Scenario: 4_student_course_package_purchase_and_reflection
 
 Scenario: 5_student_portal_Shopping_Cart_Shopping
 	Given Open Kurumsal Login Page
-	Given Login as "student"
+	Given Login as "Student"
 	Then  Student make portal shopping both course and course package
 		| Key           | Value                           |
 		| course        | Default Course1                 |
@@ -76,7 +76,7 @@ Scenario: 5_student_portal_Shopping_Cart_Shopping
 
 Scenario: 6_student_exam_start_finish_multiple_choice
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks exam is exist
 		| Key  | Value                |
 		| name | anil_instructor_exam |
@@ -87,17 +87,17 @@ Scenario: 6_student_exam_start_finish_multiple_choice
 		| catalogs    | defaultKatalog1,defaultKatalog2  |
 		| tests       | Default Multiple Choice Test1    |
 	Given Open Kurumsal Login Page
-	Given Login as "student"
+	Given Login as "Student"
 	Then student takes exam
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor delete exam with
 		| Key  | Value                |
 		| name | anil_instructor_exam |
 
 Scenario: 7_student_exam_start_finish_mixed
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks exam is exist
 		| Key  | Value                |
 		| name | anil_instructor_exam |
@@ -108,17 +108,17 @@ Scenario: 7_student_exam_start_finish_mixed
 		| catalogs    | defaultKatalog1,defaultKatalog2  |
 		| tests       | Default Multiple Choice Test1    |
 	Given Open Kurumsal Login Page
-	Given Login as "student"
+	Given Login as "Student"
 	Then student takes exam
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor delete exam with
 		| Key  | Value                |
 		| name | anil_instructor_exam |
 
 Scenario: 8_student_exam_start_finish_open_ended
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks exam is exist
 		| Key  | Value                |
 		| name | anil_instructor_exam |
@@ -129,58 +129,58 @@ Scenario: 8_student_exam_start_finish_open_ended
 		| catalogs    | defaultKatalog1,defaultKatalog2  |
 		| tests       | Default Open Ended Test1         |
 	Given Open Kurumsal Login Page
-	Given Login as "student"
+	Given Login as "Student"
 	Then student takes exam
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor delete exam with
 		| Key  | Value                |
 		| name | anil_instructor_exam |
 
 Scenario: 9_student_live_start
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks live is exist
     Given instructor adds new live with
 		| Key               | Value                  |
 		| course_name       | defaultCourse1         |
-		| meetingType       | pro                    |
+		| meetingType       | Pro                    |
 		| title             | deneme                 |
 		| timezone          | Turkey Time (GMT+3:00) |
 		| duration          | 120                    |
 		| registrationLimit | 50                     |
 		| description       | Deneme 123             |
     Given Open Kurumsal Login Page
-	Given Login as "student"
+	Given Login as "Student"
     Then  student verify start live
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Then instructor deletes live
 
 Scenario: 11_student_add_Question_And_Answer
 	#Given Open Kurumsal Login Page
-	#Given Login as "instructor"
+	#Given Login as "Instructor"
 	#Given instructor checks Q&A is exist
 	Given Open Kurumsal Login Page
-	Given Login as "student"
+	Given Login as "Student"
     Given student adds new Q&A
 		| Key        | Value                           |
 		| courseName | defaultCourse2 (Anil Senocak)   |
 		| subject    | defaultQuestionAndAnswer        |
 		| message    | defaultQuestionAndAnswerMessage |
     Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Then instructor deletes new Q&A
 
 
 Scenario: 13_student_query_live
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Given instructor checks live is exist
 	Given instructor adds new live with
 		| Key               | Value                  |
 		| course_name       | defaultCourse1         |
-		| meetingType       | basic                  |
+		| meetingType       | Basic                  |
 		| title             | deneme                 |
 		| hour              | 18                     |
 		| min               | 00                     |
@@ -189,7 +189,7 @@ Scenario: 13_student_query_live
 		| registrationLimit | 50                     |
 		| description       | Deneme 123             |
 	Given Open Kurumsal Login Page
-	Given Login as "student"
+	Given Login as "Student"
 	 Then instructor query live
 	| Key              | Value          |
 	| startHourParam   | 00             |
@@ -198,7 +198,7 @@ Scenario: 13_student_query_live
 	| endMinuteParam   | 55             |
 	| courseName       | defaultCourse1 |
 	Given Open Kurumsal Login Page
-	Given Login as "instructor"
+	Given Login as "Instructor"
 	Then instructor deletes live
    
 

@@ -8,18 +8,18 @@ using VeduBoxUnitTest.Assertion;
 
 namespace VeduBoxUnitTest.Kurumsal.Pages{
     class EarningsPage : Page{
-        private static string _user;
-        private static readonly By SEARCH = By.XPath("//*[@id='mainSection']/div/div[1]/div[2]/div/div/div/div[1]/div/div[1]/div/div[2]/input");
+        private string USER;
+        private readonly By INPUT_SEARCH = By.XPath("//*[@id='mainSection']/div/div[1]/div[2]/div/div/div/div[1]/div/div[1]/div/div[2]/input");
 
         public EarningsPage(IWebDriver wd, string user) : base(wd){
-            _user = user;
+            USER = user;
         }
-        public EarningsPage searchEntry(string value){
-            type(SEARCH, value);
+        public EarningsPage SearchEntry(string value){
+            Type(INPUT_SEARCH, value);
             return this;
         }
-        public EarningsPage assertSubjectIsVisible(string title){
-            AssertionCustom.assertElementVisible("Element Not Found", driver, By.XPath("//*[contains(text(), '" + title + "')]"));
+        public EarningsPage AssertSubjectIsVisible(string title){
+            AssertionCustom.AssertElementVisible("Element Not Found", Driver, By.XPath("//*[contains(text(), '" + title + "')]"));
             return this;
         }
     }

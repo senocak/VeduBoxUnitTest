@@ -1,6 +1,6 @@
 ﻿Feature: Instructor
 
-Scenario: 1_instructor_add_live
+Scenario: 01_instructor_add_live
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
 	Given instructor checks live is exist
@@ -15,7 +15,7 @@ Scenario: 1_instructor_add_live
 		| description       | Deneme 123             |
 	Then instructor deletes live
 
-Scenario: 2_instructor_live_start
+Scenario: 02_instructor_live_start
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
 	Given instructor checks live is exist
@@ -32,7 +32,7 @@ Scenario: 2_instructor_live_start
 		| description       | Deneme 123             |
 	Then verify start live and delete live with
 
-Scenario: 3_instructor_add_student
+Scenario: 03_instructor_add_student
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
 	Given instructor checks student is exist
@@ -51,7 +51,7 @@ Scenario: 3_instructor_add_student
 		| Key   | Value                            |
 		| email | anil_instructor_student@anil.com |
 
-Scenario: 4_instructor_add_course
+Scenario: 04_instructor_add_course
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
 	Given instructor checks course is exist
@@ -65,7 +65,7 @@ Scenario: 4_instructor_add_course
 		| Key  | Value                          |
 		| name | anil_vedubox_course_instructor |
 
-Scenario: 5_instructor_add_subject
+Scenario: 05_instructor_add_subject
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
 	Given instructor checks course is exist
@@ -83,7 +83,7 @@ Scenario: 5_instructor_add_subject
 		| Key  | Value                          |
 		| name | anil_vedubox_course_instructor |
 
-Scenario: 6_instructor_add_webinar_join_webinar
+Scenario: 06_instructor_add_webinar_join_webinar
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
 	Given instructor checks live is exist
@@ -108,7 +108,7 @@ Scenario: 6_instructor_add_webinar_join_webinar
 	Given Login as "Instructor"
 	Then instructor deletes webinar with
 
-Scenario: 7_instructor_add_content_as_document
+Scenario: 07_instructor_add_content_as_document
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
 	Given instructor checks course is exist
@@ -131,7 +131,7 @@ Scenario: 7_instructor_add_content_as_document
 		| Key  | Value               |
 		| name | anil_vedubox_course |
 	 
-Scenario: 8_instrcutor_add_content_as_video
+Scenario: 08_instrcutor_add_content_as_video
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
 	Given instructor checks course is exist
@@ -154,7 +154,7 @@ Scenario: 8_instrcutor_add_content_as_video
 		| Key  | Value               |
 		| name | anil_vedubox_course |
 	 
-Scenario: 9_instructor_add_content_as_video_with_vimeo
+Scenario: 09_instructor_add_content_as_video_with_vimeo
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
 	Given instructor checks course is exist

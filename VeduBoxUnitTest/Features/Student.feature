@@ -1,6 +1,6 @@
 ﻿Feature: Student
 
-Scenario: 1_student_live_register
+Scenario: 01_student_live_register
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
 	Given instructor checks live is exist
@@ -22,7 +22,7 @@ Scenario: 1_student_live_register
 	Given Login as "Instructor"
 	Then instructor deletes live
 	 
-Scenario: 3_student_portal_single_course_purchase_and_reflection
+Scenario: 03_student_portal_single_course_purchase_and_reflection
 	Given Open Kurumsal Login Page
 	Given Login as "Student"
 	Then student purchase course
@@ -39,7 +39,7 @@ Scenario: 3_student_portal_single_course_purchase_and_reflection
 		| cardDate   | 11/22                         |
 		| cardCVC    | 123                           |
 
-Scenario: 4_student_course_package_purchase_and_reflection
+Scenario: 04_student_course_package_purchase_and_reflection
 	Given Open Kurumsal Login Page
 	Given Login as "Student"
 	Then  Student add course package purchase and reflection
@@ -56,7 +56,7 @@ Scenario: 4_student_course_package_purchase_and_reflection
 		| cardDate   | 11/22                           |
 		| cardCVC    | 123                             |
 
-Scenario: 5_student_portal_Shopping_Cart_Shopping
+Scenario: 05_student_portal_Shopping_Cart_Shopping
 	Given Open Kurumsal Login Page
 	Given Login as "Student"
 	Then  Student make portal shopping both course and course package
@@ -74,7 +74,7 @@ Scenario: 5_student_portal_Shopping_Cart_Shopping
 		| cardDate      | 11/22                           |
 		| cardCVC       | 123                             |
 
-Scenario: 6_student_exam_start_finish_multiple_choice
+Scenario: 06_student_exam_start_finish_multiple_choice
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
 	Given instructor checks exam is exist
@@ -95,7 +95,7 @@ Scenario: 6_student_exam_start_finish_multiple_choice
 		| Key  | Value                |
 		| name | anil_instructor_exam |
 
-Scenario: 7_student_exam_start_finish_mixed
+Scenario: 07_student_exam_start_finish_mixed
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
 	Given instructor checks exam is exist
@@ -116,7 +116,7 @@ Scenario: 7_student_exam_start_finish_mixed
 		| Key  | Value                |
 		| name | anil_instructor_exam |
 
-Scenario: 8_student_exam_start_finish_open_ended
+Scenario: 08_student_exam_start_finish_open_ended
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
 	Given instructor checks exam is exist
@@ -137,7 +137,7 @@ Scenario: 8_student_exam_start_finish_open_ended
 		| Key  | Value                |
 		| name | anil_instructor_exam |
 
-Scenario: 9_student_live_start
+Scenario: 09_student_live_start
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
 	Given instructor checks live is exist

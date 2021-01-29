@@ -30,7 +30,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By BUTTON_THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
         private readonly By A_DELETE_USER = By.CssSelector("a[ng-click='delete(user)']");
         private readonly By ALERT_ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
-        private readonly By BUTTON_BATCH = By.XPath("//*[@id='mainSection']/div/div[1]/div[2]/div/div[1]/div/div[4]");
+        private readonly By BUTTON_BATCH = By.XPath("//*[@id='mainSection']/div/div[1]/div[2]/div/div[1]/div/div[3]");
         private readonly By BUTTON_BATCH_CREATE = By.CssSelector("button[ui-sref='veduBox.admin.students.batchCreate ']");
         private readonly By INPUT_BATCH_FILE = By.Id("html_btn");
         private readonly By SELECT_BRANCH_BATCH_CREATE = By.CssSelector("select[ng-model='branchId']");

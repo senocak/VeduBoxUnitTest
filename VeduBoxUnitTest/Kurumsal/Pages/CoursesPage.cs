@@ -65,6 +65,14 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By INPUT_RESOURCE_VIDEO_VIMEO_TEXT = By.Id("resourceTypeVideoIfVimeoIdValue");
         private readonly By LABEL_UPLOADED_FILE = By.CssSelector("label[ng-bind='resource.fileName']");
         private readonly By SELECT_RESOURCE_TEST = By.Id("rescourceTypeTest");
+        private readonly By DIV_EMBEDDED_DESCRIPTION_FOR_TEST = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By INPUT_PASS_POINT = By.CssSelector("input[ng-model='resource.passPoint']");
+        private readonly By INPUT_REPEAT_NUMBER = By.CssSelector("input[ng-model='resource.repeatNumber']");
+        private readonly By CHECK_REDIRECT_TO_RESULT_PAGE_AFTER_TEST = By.CssSelector("input[ng-model='resource.redirectToResultPageAfterFinished']");
+        private readonly By CHECK_IS_BETWEEN_DATES = By.CssSelector("input[ng-model='resource.isBetweenDates']");
+        private readonly By CHECK_IS_EXAM_RESULT_DOWNLOAD = By.CssSelector("input[ng-model='resource.isExamResultDownloadEnable']");
+        private readonly By CHECK_ARE_STUDENT_ANSWERS_SHOWN_IN_EXAM_RESULT = By.CssSelector("input[ng-model='resource.areStudentAnswersShownInExamResult']");
+        private readonly By RADIO_FIRST_TEST = By.XPath("//*[@id='resourceForm']/div[1]/div[18]/div/div[2]/table/tbody/tr[1]/td[2]/input");
         private readonly By SELECT_RESOURCE_TEXT = By.Id("rescourceTypeText");
         private readonly By DIV_RESOURCE_TEXT_DESCRIPTION= By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[2]/div/text-angular/div[2]/div[3]");
         private readonly By BUTTON_RESOURCE_TEXT_SAVE = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[2]/div/div/button[1]");
@@ -366,6 +374,48 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         }
         public CoursesPage ClickResourceTypeTest(){
             Click(SELECT_RESOURCE_TEST);
+            return this;
+        }
+        public CoursesPage SetTestDescription(string text) {
+            Type(DIV_EMBEDDED_DESCRIPTION_FOR_TEST, text);
+            return this;
+        }
+        public CoursesPage SetPassPoint(int point) {
+            Type(INPUT_PASS_POINT, point);
+            return this;
+        }
+        public CoursesPage SetRepeatNumber(int number) {
+            Type(INPUT_REPEAT_NUMBER, number);
+            return this;
+        }
+        public CoursesPage SetRedirectToResultPageAfterTest() {
+            if (IsSelected(CHECK_REDIRECT_TO_RESULT_PAGE_AFTER_TEST) == false) {
+                Click(CHECK_REDIRECT_TO_RESULT_PAGE_AFTER_TEST);
+            }
+            return this;
+        }
+        public CoursesPage SetIsBetweenDates() {
+            if (IsSelected(CHECK_IS_BETWEEN_DATES) == false) {
+                Click(CHECK_IS_BETWEEN_DATES);
+            }
+            return this;
+        }
+        public CoursesPage SetIsExamResultDownload() {
+            if (IsSelected(CHECK_IS_EXAM_RESULT_DOWNLOAD) == false) {
+                Click(CHECK_IS_EXAM_RESULT_DOWNLOAD);
+            }
+            return this;
+        }
+        public CoursesPage SetFirstTestToList() {
+            if (IsSelected(RADIO_FIRST_TEST) == false) {
+                Click(RADIO_FIRST_TEST);
+            }
+            return this;
+        }
+        public CoursesPage SetAreStudentAnswersShownInExamResult() {
+            if (IsSelected(CHECK_ARE_STUDENT_ANSWERS_SHOWN_IN_EXAM_RESULT) == false) {
+                Click(CHECK_ARE_STUDENT_ANSWERS_SHOWN_IN_EXAM_RESULT);
+            }
             return this;
         }
         public CoursesPage ClickResourceTypeText(){

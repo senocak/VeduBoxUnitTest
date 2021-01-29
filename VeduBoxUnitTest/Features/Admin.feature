@@ -1,6 +1,6 @@
 ﻿Feature: Admin
 
-Scenario: 0_admin_add_catalog
+Scenario: 00_admin_add_catalog
 	Given Open Kurumsal Login Page
 	Given Login as "Admin"
 	Given admin checks catalog is exist
@@ -28,7 +28,7 @@ Scenario: 0_admin_add_catalog
 		| Key   | Value               |
 		| name  | anil_vedubox_catalog|
 	
-Scenario: 1_admin_add_live
+Scenario: 01_admin_add_live
 	Given Open Kurumsal Login Page
 	Given Login as "Admin"
 	Given admin checks live is exist
@@ -43,7 +43,7 @@ Scenario: 1_admin_add_live
 		| description       | Deneme 123             |
 	Then admin deletes live
 
-Scenario: 2_admin_add_user
+Scenario: 02_admin_add_user
 	Given Open Kurumsal Login Page
 	Given Login as "Admin"
 	Given admin checks user is exist
@@ -63,7 +63,7 @@ Scenario: 2_admin_add_user
 		| Key   | Value                 |
 		| email | admin_deneme@anil.com |
 
-Scenario: 3_admin_create_course
+Scenario: 03_admin_create_course
 	Given Open Kurumsal Login Page
 	Given Login as "Admin"
 	Given admin checks course is exist
@@ -81,7 +81,7 @@ Scenario: 3_admin_create_course
 		| Key  | Value              |
 		| name | anil_vedubox_course|
 
-Scenario: 4_admin_earnings_payment_control
+Scenario: 04_admin_earnings_payment_control
 	Given Open Kurumsal Login Page
 	Given Login as "Student"
 	Then student purchase course
@@ -103,7 +103,7 @@ Scenario: 4_admin_earnings_payment_control
 		| Key  | Value     |
 		| name | Ahmet1234 |
 
-Scenario: 5_admin_add_role
+Scenario: 05_admin_add_role
 	Given Open Kurumsal Login Page
 	Given Login as "Admin"
 	Given admin checks instructor is exist
@@ -126,7 +126,7 @@ Scenario: 5_admin_add_role
 		| Key  | Value                             |
 		| name | anil_vedubox_instructor_firstname |
 	
-Scenario: 5_1_admin_add_branch
+Scenario: 05_1_admin_add_branch
 	Given Open Kurumsal Login Page
 	Given Login as "Admin"
 	Given admin checks branch is exist
@@ -140,7 +140,7 @@ Scenario: 5_1_admin_add_branch
 		| Key   | Value               |
 		| name  | anil_vedubox_branch |
 
-Scenario: 6_admin_add_announcement
+Scenario: 06_admin_add_announcement
 	Given Open Kurumsal Login Page
 	Given Login as "Admin"
 	Given admin checks announcement is exist
@@ -154,7 +154,7 @@ Scenario: 6_admin_add_announcement
 		| Key  | Value                     |
 		| name | anil_vedubox_announcement |
 	 
-Scenario: 7_admin_add_poll_question_multiple_choice
+Scenario: 07_admin_add_poll_question_multiple_choice
 	Given Open Kurumsal Login Page
 	Given Login as "Admin"
 	Given Admin checks poll question is exist
@@ -171,7 +171,7 @@ Scenario: 7_admin_add_poll_question_multiple_choice
 		| Key      | Value                                      |
 		| question | anıl_vedubox_poll_questıon_multıple_choıce |
 		 
-Scenario: 8_admin_add_poll_question_open_ended
+Scenario: 08_admin_add_poll_question_open_ended
 	Given Open Kurumsal Login Page
 	Given Login as "Admin"
 	Given Admin checks poll question is exist
@@ -184,7 +184,7 @@ Scenario: 8_admin_add_poll_question_open_ended
 		| Key      | Value                                 |
 		| question | anıl_vedubox_poll_questıon_open_ended |
 		 
-Scenario: 9_admin_add_poll_question_true_false
+Scenario: 09_admin_add_poll_question_true_false
 	Given Open Kurumsal Login Page
 	Given Login as "Admin"
 	Given Admin checks poll question is exist
@@ -513,12 +513,38 @@ Scenario: 24_admin_add_content_embed
 		| teacher     | Anil Senocak        |
 		| catalog     | defaultKatalog1     |
 	Given admin adds new resource as embed
-		| Key                  | Value                                                             |
-		| name                 | anil_vedubox_course                                               |
-		| subject_title        | anil_vedubox_course_subject                                       |
-		| resource_title       | anil_vedubox_course_resource_title                                |
-		| resource_description | anil_vedubox_course_resource_description                          |
+		| Key                  | Value                                              |
+		| name                 | anil_vedubox_course                                |
+		| subject_title        | anil_vedubox_course_subject                        |
+		| resource_title       | anil_vedubox_course_resource_title                 |
+		| resource_description | anil_vedubox_course_resource_description           |
 		| embed_code           | <iframe src="http://github.com/senocak "></iframe> |
+	Then admin deletes added Course
+		| Key  | Value              |
+		| name | anil_vedubox_course|
+
+Scenario: 25_admin_add_content_test
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks course is exist
+		| Key  | Value               |
+		| name | anil_vedubox_course |
+	Given admin adds new course with
+		| Key         | Value               |
+		| name        | anil_vedubox_course |
+		| tags        | anil,vedubox,course |
+		| description | Anil Vedubox Course |
+		| category    | defaultCategory1    |
+		| teacher     | Anil Senocak        |
+		| catalog     | defaultKatalog1     |
+	Given admin adds new resource as test
+		| Key                  	| Value                                     |
+		| name                 	| anil_vedubox_course                       |
+		| subject_title        	| anil_vedubox_course_subject               |
+		| resource_title      	| anil_vedubox_course_resource_title        |
+		| resource_description	| anil_vedubox_course_resource_description	|
+		| point           		| 10 										|
+		| repeat				| 1         								|
 	Then admin deletes added Course
 		| Key  | Value              |
 		| name | anil_vedubox_course|

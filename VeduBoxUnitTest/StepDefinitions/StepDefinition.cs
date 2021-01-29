@@ -1556,6 +1556,33 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .ClickResourceLinkSave()
                 .Assert();
         }
+        
+        [Given(@"admin adds new resource as test")]
+        public void GivenAdminAddsNewResourceAsTest(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenCoursesPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedCourseByName(dictionary["name"])
+                .Click3Points()
+                .ClickResources()
+                .AddSubject()
+                .EnterSubjectTitle(dictionary["subject_title"])
+                .SaveSubjectTitle()
+                .AddResource()
+                .ClickResourceTypeTest()
+                .EnterResourceTitle(dictionary["resource_title"])
+                .SetTestDescription(dictionary["resource_description"])
+                .SetPassPoint(Int32.Parse(dictionary["point"]))
+                .SetRepeatNumber(Int32.Parse(dictionary["repeat"]))
+                .SetRedirectToResultPageAfterTest()
+                .SelectVideoUserReview()
+                .SetIsBetweenDates()
+                .SetIsExamResultDownload()
+                .SetAreStudentAnswersShownInExamResult()
+                .SetFirstTestToList()
+                .ClickResourceLinkSave()
+                .Assert();
+        }
         [Given(@"admin adds new resource as text")]
         public void GivenAdminAddsNewResourceAsText(Table table){
             var dictionary = TableExtensions.ToDictionary(table);

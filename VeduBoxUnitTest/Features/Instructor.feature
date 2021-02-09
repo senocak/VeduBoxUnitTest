@@ -5,14 +5,14 @@ Scenario: 01_instructor_add_live
 	Given Login as "Instructor"
 	Given instructor checks live is exist
 	Given instructor adds new live with
-		| Key               | Value                  |
-		| course_name       | defaultCourse1         |
-		| meetingType       | Pro                    |
-		| title             | deneme                 |
-		| timezone          | Turkey Time (GMT+3:00) |
-		| duration          | 120                    |
-		| registrationLimit | 50                     |
-		| description       | Deneme 123             |
+		| Key               | Value                   |
+		| course_name       | defaultCourse1          |
+		| meetingType       | Pro                     |
+		| title             | deneme                  |
+		| timezone          | Europe/Istanbul (GMT+3) |
+		| duration          | 120                     |
+		| registrationLimit | 50                      |
+		| description       | Deneme 123              |
 	Then instructor deletes live
 
 Scenario: 02_instructor_live_start
@@ -20,16 +20,16 @@ Scenario: 02_instructor_live_start
 	Given Login as "Instructor"
 	Given instructor checks live is exist
 	Given instructor adds new live with
-		| Key               | Value                  |
-		| course_name       | defaultCourse1         |
-		| meetingType       | Pro                    |
-		| title             | deneme                 |
-		| hour              | 18                     |
-		| min               | 00                     |
-		| timezone          | Turkey Time (GMT+3:00) |
-		| duration          | 120                    |
-		| registrationLimit | 50                     |
-		| description       | Deneme 123             |
+		| Key               | Value                   |
+		| course_name       | defaultCourse1          |
+		| meetingType       | Pro                     |
+		| title             | deneme                  |
+		| hour              | 18                      |
+		| min               | 00                      |
+		| timezone          | Europe/Istanbul (GMT+3) |
+		| duration          | 120                     |
+		| registrationLimit | 50                      |
+		| description       | Deneme 123              |
 	Then verify start live and delete live with
 
 Scenario: 03_instructor_add_student
@@ -88,16 +88,16 @@ Scenario: 06_instructor_add_webinar_join_webinar
 	Given Login as "Instructor"
 	Given instructor checks live is exist
 	Given instructor adds new webinar with
-		| Key               | Value                  |
-		| course_name       | defaultCourse1         |
-		| meetingType       | Webinar                |
-		| title             | deneme                 |
-		| hour              | 18                     |
-		| min               | 00                     |
-		| timezone          | Turkey Time (GMT+3:00) |
-		| duration          | 120                    |
-		| registrationLimit | 50                     |
-		| description       | Deneme 123             |
+		| Key               | Value                   |
+		| course_name       | defaultCourse1          |
+		| meetingType       | Webinar                 |
+		| title             | deneme                  |
+		| hour              | 18                      |
+		| min               | 00                      |
+		| timezone          | Europe/Istanbul (GMT+3) |
+		| duration          | 120                     |
+		| registrationLimit | 50                      |
+		| description       | Deneme 123              |
 	Then instructor copies webinar URL with
 		| Key       | Value           |
 		| firstName | Lorem           |
@@ -553,14 +553,14 @@ Scenario: 35_instructor_query_live
 	Given Login as "Instructor"
 	Given instructor checks live is exist
 	Given instructor adds new live with
-		| Key               | Value                  |
-		| course_name       | defaultCourse1         |
-		| meetingType       | Pro                    |
-		| title             | deneme                 |
-		| timezone          | Turkey Time (GMT+3:00) |
-		| duration          | 120                    |
-		| registrationLimit | 50                     |
-		| description       | Deneme 123             |
+		| Key               | Value                   |
+		| course_name       | defaultCourse1          |
+		| meetingType       | Pro                     |
+		| title             | deneme                  |
+		| timezone          | Europe/Istanbul (GMT+3) |
+		| duration          | 120                     |
+		| registrationLimit | 50                      |
+		| description       | Deneme 123              |
     Then instructor query live
 	| Key              | Value          |
 	| startHourParam   | 00             |

@@ -19,7 +19,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By ALERT_SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
         private readonly By DIV_MESSAGE = By.XPath("/html/body/div[3]/div/section/div/div[1]/div/div/div/div/form/div/div[1]/fieldset[3]/div/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
         private readonly By SPAN_VIEW_DETAIL = By.CssSelector("span[ng-click='getMessageDetails(questionAndAnswer.id,questionAndAnswer.instructorName)']");
-        private readonly By P_ANSWER_FIELD = By.XPath("/html/body/div[3]/div/section/div/div[1]/div/section/div[2]/div/table/tbody/tr[2]/td/div[3]/div[1]/div[2]/div/div/vedu-box-text-angular/text-angular/div[2]/div[3]/p");
+        private readonly By P_ANSWER_FIELD = By.XPath("/html/body/div[3]/div/section/div/div[1]/div/section/div[3]/div/table/tbody/tr[2]/td/div[3]/div[1]/div[2]/div/div/vedu-box-text-angular/text-angular/div[2]/div[3]/p");
         private readonly By BUTTON_REPLY = By.CssSelector("div[translate='studentQuestion.Reply']");
         private readonly By BUTTON_DELETE_TICKET = By.XPath("(//span[@translate='routeStates.teacher.me.courses.edit.deleteTicket'])[1]");
         private readonly By ALERT_ARE_U_SURE_OK = By.CssSelector("button.msc-ok");

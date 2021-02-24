@@ -1833,6 +1833,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .EnterName(dictionary["name"])
                 .SubmitAdd()
                 .Assert();
+            
         }
         [Given(@"admin deletes added test category")]
         public void GivenAdminDeleteTestCategory(Table table) {
@@ -1843,6 +1844,8 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .ClickDeleteButton()
                 .ClickAreUSure()
                 .Assert();
+            
+            
         }
     }
 }

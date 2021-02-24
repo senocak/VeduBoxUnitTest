@@ -5,16 +5,16 @@ Scenario: 01_student_live_register
 	Given Login as "Instructor"
 	Given instructor checks live is exist
 	Given instructor adds new live with
-		| Key               | Value                  |
-		| course_name       | defaultCourse1         |
-		| meetingType       | Basic                  |
-		| title             | deneme                 |
-		| hour              | 18                     |
-		| min               | 00                     |
-		| timezone          | Turkey Time (GMT+3:00) |
-		| duration          | 120                    |
-		| registrationLimit | 50                     |
-		| description       | Deneme 123             |
+		| Key               | Value                   |
+		| course_name       | defaultCourse1          |
+		| meetingType       | Basic                   |
+		| title             | deneme                  |
+		| hour              | 18                      |
+		| min               | 00                      |
+		| timezone          | Europe/Istanbul (GMT+3) |
+		| duration          | 120                     |
+		| registrationLimit | 50                      |
+		| description       | Deneme 123              |
 	Given Open Kurumsal Login Page
 	Given Login as "Student"
 	Then student registers live
@@ -142,14 +142,14 @@ Scenario: 09_student_live_start
 	Given Login as "Instructor"
 	Given instructor checks live is exist
     Given instructor adds new live with
-		| Key               | Value                  |
-		| course_name       | defaultCourse1         |
-		| meetingType       | Pro                    |
-		| title             | deneme                 |
-		| timezone          | Turkey Time (GMT+3:00) |
-		| duration          | 120                    |
-		| registrationLimit | 50                     |
-		| description       | Deneme 123             |
+		| Key               | Value                   |
+		| course_name       | defaultCourse1          |
+		| meetingType       | Pro                     |
+		| title             | deneme                  |
+		| timezone          | Europe/Istanbul (GMT+3) |
+		| duration          | 120                     |
+		| registrationLimit | 50                      |
+		| description       | Deneme 123              |
     Given Open Kurumsal Login Page
 	Given Login as "Student"
     Then  student verify start live
@@ -178,16 +178,16 @@ Scenario: 13_student_query_live
 	Given Login as "Instructor"
 	Given instructor checks live is exist
 	Given instructor adds new live with
-		| Key               | Value                  |
-		| course_name       | defaultCourse1         |
-		| meetingType       | Basic                  |
-		| title             | deneme                 |
-		| hour              | 18                     |
-		| min               | 00                     |
-		| timezone          | Turkey Time (GMT+3:00) |
-		| duration          | 120                    |
-		| registrationLimit | 50                     |
-		| description       | Deneme 123             |
+		| Key               | Value                   |
+		| course_name       | defaultCourse1          |
+		| meetingType       | Basic                   |
+		| title             | deneme                  |
+		| hour              | 18                      |
+		| min               | 00                      |
+		| timezone          | Europe/Istanbul (GMT+3) |
+		| duration          | 120                     |
+		| registrationLimit | 50                      |
+		| description       | Deneme 123              |
 	Given Open Kurumsal Login Page
 	Given Login as "Student"
 	 Then instructor query live

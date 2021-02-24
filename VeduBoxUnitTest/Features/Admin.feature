@@ -820,3 +820,19 @@ Scenario: 41_admin_library_add_content_sound
     Given admin deletes added catalog in library
 		| Key  | Value                   |
 		| name | test catalog to library |
+
+Scenario: 42_admin_add_test_category
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks test category is exist
+		| Key  | Value                   |
+		| name | anil new test category  |
+	Then admin adds new test category
+		| Key  | Value                   |
+		| name | anil new test category  |
+	Then admin update test category
+		| Key  | Value                   |
+		| name | anil new test category  |
+	Given admin deletes added test category
+		| Key  | Value                   |
+		| name | anil new test category  |

@@ -29,6 +29,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By DISCOUNT_CODES= By.CssSelector("a[title='Discount Codes']");
         private readonly By CUSTOM_FIELDS = By.CssSelector("a[title='Custom Fields']");
         private readonly By LIBRARY = By.CssSelector("a[title='Library']");
+        private readonly By TEST_CATEGORIES = By.CssSelector("a[title='Test Categories']");
         private readonly By USERNAME_LINK = By.CssSelector("span[ng-bind='$root.user.firstName | limitTo: 8']");
         private readonly By SWITCH_TO_ROLE = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/ul/li[3]/a");
         private readonly By ROLE_MODAL = By.CssSelector("a[ng-click='openSwitchRoleModal(role)']");
@@ -255,6 +256,16 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             }
             Console.WriteLine(user + ": clicked CustomFieldsPage element");
             return new LibraryPage(Driver, user);
+        }
+        public TestCategoriesPage OpenTestCategoriesPage(string user){
+            USER = user;
+            try{
+                Click(TEST_CATEGORIES);
+            }catch (Exception e){
+                Console.WriteLine("Error occured in CustomFieldsPage, user: " + user + ", Error is: " + e.Message);
+            }
+            Console.WriteLine(user + ": clicked CustomFieldsPage element");
+            return new TestCategoriesPage(Driver, user);
         }
         public HomePage ClickUserName(){
             Click(USERNAME_LINK);

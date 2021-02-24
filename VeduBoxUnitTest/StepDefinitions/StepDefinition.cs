@@ -1800,10 +1800,47 @@ namespace VeduBoxUnitTest.StepDefinitions{
         public void GivenAdminDeletesAddedCatalogInLibrary(Table table) {
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(Driver)
-                .OpenLibraryPage("admin")
+                .OpenLibraryPage(Constants.Roles.Admin.ToString())
                 .SearchNewlyAddedCatalog(dictionary["name"])
                 .ClickCatalog()
                 .DeleteCatalog()
+                .ClickAreUSure()
+                .Assert();
+        }
+        [Given(@"admin checks test category is exist")]
+        public void GivenAdminChecksTestCategoryIsExist(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenTestCategoriesPage(Constants.Roles.Admin.ToString())
+                .SearchTestCategoryAndDeleteIt(dictionary["name"]);
+        }
+        [Then(@"admin adds new test category")]
+        public void GivenAdminAddsTestCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenTestCategoriesPage(Constants.Roles.Admin.ToString())
+                .ClickAddButton()
+                .EnterName(dictionary["name"])
+                .SubmitAdd()
+                .Assert();
+        }
+        [Then(@"admin update test category")]
+        public void GivenAdminUpdateTestCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenTestCategoriesPage(Constants.Roles.Admin.ToString())
+                .ClickName(dictionary["name"])
+                .EnterName(dictionary["name"])
+                .SubmitAdd()
+                .Assert();
+        }
+        [Given(@"admin deletes added test category")]
+        public void GivenAdminDeleteTestCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenTestCategoriesPage(Constants.Roles.Admin.ToString())
+                .ClickName(dictionary["name"])
+                .ClickDeleteButton()
                 .ClickAreUSure()
                 .Assert();
         }

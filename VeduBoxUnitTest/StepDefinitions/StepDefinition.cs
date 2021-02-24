@@ -92,6 +92,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .SetRegistrationLimit(Int32.Parse(dictionary["registrationLimit"]))
                 .SetDescription(dictionary["description"])
                 //.setTrainer("test eğitmen")
+                .SetStudent(dictionary.ContainsKey("student") ? dictionary["student"] : null)
                 .Submit()
                 .AssertLive();
         }

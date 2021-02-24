@@ -46,6 +46,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages {
                 ClickAreUSure();
                 Assert();
             }catch (Exception e) {
+                Console.WriteLine("Error occured in SearchTestCategoryAndDeleteIt. Error is: " + e.Message);
                 return null;
             }
             return this;

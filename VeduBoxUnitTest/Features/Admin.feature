@@ -713,7 +713,7 @@ Scenario: 35_admin_zoom_link_copied
 	Given admin adds new live with
 		| Key               | Value                  |
 		| course_name       | defaultCourse1         |
-		| meetingType       | pro                    |
+		| meetingType       | Pro                    |
 		| title             | deneme                 |
 		| timezone          | Turkey Time (GMT+3:00) |
 		| duration          | 120                    |
@@ -836,3 +836,19 @@ Scenario: 42_admin_add_test_category
 	Given admin deletes added test category
 		| Key  | Value                   |
 		| name | anil new test category  |
+	
+Scenario: 43_admin_add_live_webinar_private
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks live is exist
+	Given admin adds new live with
+		| Key               | Value                  |
+		| course_name       | defaultCourse1         |
+		| meetingType       | Webinar                |
+		| title             | deneme                 |
+		| timezone          | Asia/Baku (GMT+4) |
+		| duration          | 120                    |
+		| registrationLimit | 50                     |
+		| description       | Deneme 123             |
+		| student       | defaultStudent1,defaultStudent2|
+	Then admin deletes live

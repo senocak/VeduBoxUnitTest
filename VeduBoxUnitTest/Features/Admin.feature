@@ -33,14 +33,14 @@ Scenario: 01_admin_add_live
 	Given Login as "Admin"
 	Given admin checks live is exist
 	Given admin adds new live with
-		| Key               | Value                  |
-		| course_name       | defaultCourse1         |
-		| meetingType       | Pro                    |
-		| title             | deneme                 |
-		| timezone          | Turkey Time (GMT+3:00) |
-		| duration          | 120                    |
-		| registrationLimit | 50                     |
-		| description       | Deneme 123             |
+		| Key               | Value                   |
+		| course_name       | defaultCourse1          |
+		| meetingType       | Pro                     |
+		| title             | deneme                  |
+		| timezone          | Europe/Istanbul (GMT+3) |
+		| duration          | 120                     |
+		| registrationLimit | 50                      |
+		| description       | Deneme 123              |
 	Then admin deletes live
 
 Scenario: 02_admin_add_user
@@ -383,14 +383,14 @@ Scenario: 19_admin_live_query
 	Given Login as "Admin"
 	Given admin checks live is exist
 	Given admin adds new live with
-		| Key               | Value                  |
-		| course_name       | defaultCourse1         |
-		| meetingType       | Pro                    |
-		| title             | deneme                 |
-		| timezone          | Turkey Time (GMT+3:00) |
-		| duration          | 120                    |
-		| registrationLimit | 50                     |
-		| description       | Deneme 123             |
+		| Key               | Value                   |
+		| course_name       | defaultCourse1          |
+		| meetingType       | Pro                     |
+		| title             | deneme                  |
+		| timezone          | Europe/Istanbul (GMT+3) |
+		| duration          | 120                     |
+		| registrationLimit | 50                      |
+		| description       | Deneme 123              |
     Then admin query live
 	| Key              | Value          |
 	| startHourParam   | 00             |
@@ -711,14 +711,14 @@ Scenario: 35_admin_zoom_link_copied
 	Given Login as "Admin"
 	Given admin checks live is exist
 	Given admin adds new live with
-		| Key               | Value                  |
-		| course_name       | defaultCourse1         |
-		| meetingType       | Pro                    |
-		| title             | deneme                 |
-		| timezone          | Turkey Time (GMT+3:00) |
-		| duration          | 120                    |
-		| registrationLimit | 50                     |
-		| description       | Deneme 123             |
+		| Key               | Value                   |
+		| course_name       | defaultCourse1          |
+		| meetingType       | Pro                     |
+		| title             | deneme                  |
+		| timezone          | Europe/Istanbul (GMT+3) |
+		| duration          | 120                     |
+		| registrationLimit | 50                      |
+		| description       | Deneme 123              |
     Then admin copies zoom link
 	Then admin deletes live
 	
@@ -727,14 +727,14 @@ Scenario: 36_admin_export_attendees_report
 	Given Login as "Admin"
 	Given admin checks live is exist
 	Given admin adds new live with
-		| Key               | Value                  |
-		| course_name       | defaultCourse1         |
-		| meetingType       | pro                    |
-		| title             | deneme                 |
-		| timezone          | Turkey Time (GMT+3:00) |
-		| duration          | 120                    |
-		| registrationLimit | 50                     |
-		| description       | Deneme 123             |
+		| Key               | Value                   |
+		| course_name       | defaultCourse1          |
+		| meetingType       | pro                     |
+		| title             | deneme                  |
+		| timezone          | Europe/Istanbul (GMT+3) |
+		| duration          | 120                     |
+		| registrationLimit | 50                      |
+		| description       | Deneme 123              |
 	Then admin exports attendees report
 	Then admin deletes live
 

@@ -247,9 +247,10 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             Click(BUTTON_QUERY_SEARCH);
             return this;
        }
-       public LivePage VerifyCourseName(string courseName){ 
+       public LivePage VerifyCourseName(string courseName){
+            Console.WriteLine("coursename is : " + courseName);
            Assertion.AssertionCustom.AssertElementVisible("CourseName "+courseName+ " is not visible",Driver,
-               By.XPath("//td[@class='ng-binding' and contains(text(),'" + courseName + "')]"));
+               By.XPath("(//td[@class='ng-binding' and contains(text(),'" + courseName + "')])[2]"));
           return this;
        }
        public LivePage ClickCloseButton(){

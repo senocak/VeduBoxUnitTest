@@ -930,3 +930,19 @@ Scenario: 48_admin_add_video_in_help
 	Given admin deletes added help
 		| Key  | Value                   |
 		| name | anil new video in help  |
+
+Scenario: 49_admin_add_link_in_help
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks help exists
+		| Key  | Value                   |
+		| name | anil new link in help  |
+	Then admin adds new help
+		| Key  | Value                   |
+		| name | anil new link in help  |
+	Then admin update link in help
+		| Key  | Value                   |
+		| name | anil new link in help  |
+	Given admin deletes added help
+		| Key  | Value                   |
+		| name | anil new link in help  |

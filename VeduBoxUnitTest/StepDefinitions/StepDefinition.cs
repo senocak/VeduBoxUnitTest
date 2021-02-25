@@ -2023,5 +2023,21 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .Assert();
             // TODO: After video is uploaded, assert popup not showed
         }
+        [Then(@"admin update link in help")]
+        public void GivenAdminUpdateLinkInHelp(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenHelpPage(Constants.Roles.Admin.ToString())
+                .ClickName(dictionary["name"])
+                .EnterName(dictionary["name"])
+                .ClickAddItemButton()
+                .SelectCategoryItem("link")
+                .ClickStep2Button()
+                .EnterDocumentTitle(dictionary["name"])
+                .EnterDocumentDesc(dictionary["name"])
+                .EnterLink(dictionary["name"])
+                .ClickSaveButtonInDocumentItem()
+                .Assert();
+        }
     }
 }

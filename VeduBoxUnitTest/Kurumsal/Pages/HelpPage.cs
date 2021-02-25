@@ -21,6 +21,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages {
         private readonly By INPUT_DOCUMENT_FILE = By.CssSelector("input[ng-model='helpItem.file']");
         private readonly By BUTTON_DOCUMENT_SAVE = By.CssSelector("button[ng-click='save()']");
         private readonly By BUTTON_FILE_SAVE = By.CssSelector("button[ng-click='submit()']");
+        private readonly By INPUT_DOCUMENT_LINK = By.CssSelector("input[ng-model='helpItem.url']");
         public HelpPage(IWebDriver wd, string user) : base(wd) {
             USER = user;
             JS = (IJavaScriptExecutor) wd;
@@ -121,6 +122,10 @@ namespace VeduBoxUnitTest.Kurumsal.Pages {
         }
         public HelpPage ClickSaveButtonInFileItem() {
             Click(BUTTON_FILE_SAVE);
+            return this;
+        }
+        public HelpPage EnterLink(string link) {
+            Type(INPUT_DOCUMENT_LINK, link);
             return this;
         }
     }

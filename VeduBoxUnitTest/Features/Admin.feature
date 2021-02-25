@@ -868,4 +868,19 @@ Scenario: 44_admin_add_single_image_in_image_pool
 	Given admin deletes added images category
 		| Key  | Value                   |
 		| name | anil new images category  |
-	
+
+Scenario: 45_admin_add_blog_category
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks blog category is exist
+		| Key  | Value                   |
+		| name | anil new blog category  |
+	Then admin adds new blog category
+		| Key  | Value                   |
+		| name | anil new blog category  |
+	Then admin update blog category
+		| Key  | Value                   |
+		| name | anil new blog category  |
+	Given admin deletes added blog category
+		| Key  | Value                   |
+		| name | anil new blog category  |

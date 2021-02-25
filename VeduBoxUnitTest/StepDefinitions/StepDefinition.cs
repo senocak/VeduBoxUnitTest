@@ -1886,5 +1886,53 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .Assert();
             // TODO: Images are not changing when category is selected. Test is failing for that reason
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        [Given(@"admin checks blog category is exist")]
+        public void GivenAdminChecksBlogCategoryIsExist(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenBlogPage(Constants.Roles.Admin.ToString())
+                .SearchBlogCategoryAndDeleteIt(dictionary["name"]);
+        }
+        [Then(@"admin adds new blog category")]
+        public void GivenAdminAddsBlogCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenBlogPage(Constants.Roles.Admin.ToString())
+                .EnterName(dictionary["name"])
+                .SubmitAdd()
+                .Assert();
+        }
+        [Then(@"admin update blog category")]
+        public void GivenAdminUpdateBlogCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenBlogPage(Constants.Roles.Admin.ToString())
+                .Click3Points(dictionary["name"])
+                .ClickUpdateButtonIn3PointsBy(dictionary["name"])
+                .EnterName(dictionary["name"])
+                .SubmitUpdate()
+                .Assert();
+        }
+        [Given(@"admin deletes added blog category")]
+        public void GivenAdminDeleteBlogCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenBlogPage(Constants.Roles.Admin.ToString())
+                .Click3Points(dictionary["name"])
+                .ClickDeleteIn3PointsBy(dictionary["name"])
+                .ClickAreUSure()
+                .Assert();
+        }
     }
 }

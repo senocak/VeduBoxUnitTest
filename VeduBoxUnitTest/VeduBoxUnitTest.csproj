@@ -149,6 +149,7 @@
     <Compile Include="Features\Student.feature.cs" />
     <Compile Include="Kurumsal\Pages\AdminsPage.cs" />
     <Compile Include="Kurumsal\Pages\AnnouncementsPage.cs" />
+    <Compile Include="Kurumsal\Pages\BlogPage.cs" />
     <Compile Include="Kurumsal\Pages\BranchPage.cs" />
     <Compile Include="Kurumsal\Pages\CatalogPage.cs" />
     <Compile Include="Kurumsal\Pages\CoursesPage.cs" />

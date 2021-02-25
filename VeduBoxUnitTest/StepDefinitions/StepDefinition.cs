@@ -1993,6 +1993,11 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .OpenHelpPage(Constants.Roles.Admin.ToString())
                 .ClickName(dictionary["name"])
                 .EnterName(dictionary["name"])
+                .SelectCategoryItem("document")
+                .ClickStep2Button()
+                .EnterDocumentTitle(dictionary["name"])
+                .EnterDocumentDesc(dictionary["name"])
+                .SelectFile()
                 .SubmitUpdate()
                 .Assert();
         }

@@ -885,7 +885,6 @@ Scenario: 45_admin_add_blog_category
 		| Key  | Value                   |
 		| name | anil new blog category  |
 
-
 Scenario: 46_admin_add_activation_codes
 	Given Open Kurumsal Login Page
 	Given Login as "Admin"
@@ -899,3 +898,19 @@ Scenario: 46_admin_add_activation_codes
 	Then admin deletes added activation codes
 		| Key         | Value         |
 		| code        | anilcode123   |
+
+Scenario: 47_admin_add_document_in_help
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks document in help exists
+		| Key  | Value                   |
+		| name | anil new document in help  |
+	Then admin adds new document in help
+		| Key  | Value                   |
+		| name | anil new document in help  |
+	Then admin update document in help
+		| Key  | Value                   |
+		| name | anil new document in help  |
+	Given admin deletes added document in help
+		| Key  | Value                   |
+		| name | anil new document in help  |

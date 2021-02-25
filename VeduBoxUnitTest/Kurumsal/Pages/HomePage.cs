@@ -33,6 +33,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By IMAGE_POOL = By.CssSelector("a[title='Image pool']");
         private readonly By BLOG = By.CssSelector("a[title='Blog']");
         private readonly By ACTIVATION_CODES = By.CssSelector("a[title='Activation Codes']");
+        private readonly By HELP = By.CssSelector("a[title='Help']");
         private readonly By USERNAME_LINK = By.CssSelector("span[ng-bind='$root.user.firstName | limitTo: 8']");
         private readonly By SWITCH_TO_ROLE = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/ul/li[3]/a");
         private readonly By ROLE_MODAL = By.CssSelector("a[ng-click='openSwitchRoleModal(role)']");
@@ -299,6 +300,16 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             }
             Console.WriteLine(user + ": clicked OpenBlogPage element");
             return new ActivationCodesPage(Driver, user);
+        }
+        public HelpPage OpenHelpPage(string user){
+            USER = user;
+            try{
+                Click(HELP);
+            }catch (Exception e){
+                Console.WriteLine("Error occured in OpenHelpPage, user: " + user + ", Error is: " + e.Message);
+            }
+            Console.WriteLine(user + ": clicked OpenHelpPage element");
+            return new HelpPage(Driver, user);
         }
         public HomePage ClickUserName(){
             Click(USERNAME_LINK);

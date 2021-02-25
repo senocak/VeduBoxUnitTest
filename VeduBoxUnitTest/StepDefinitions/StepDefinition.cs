@@ -1886,17 +1886,6 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .Assert();
             // TODO: Images are not changing when category is selected. Test is failing for that reason
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         [Given(@"admin checks blog category is exist")]
         public void GivenAdminChecksBlogCategoryIsExist(Table table) {
             var dictionary = TableExtensions.ToDictionary(table);
@@ -1971,6 +1960,49 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .SearchNewlyAddedActivationCodesByName(dictionary["code"])
                 .ClickThreePoints()
                 .ClickDelete()
+                .ClickAreUSure()
+                .Assert();
+        }
+        
+        
+        
+        
+        
+        
+        [Given(@"admin checks document in help exists")]
+        public void GivenAdminChecksDocumentInHelpIsExist(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenHelpPage(Constants.Roles.Admin.ToString())
+                .SearchCategoryAndDeleteIt(dictionary["name"]);
+        }
+        [Then(@"admin adds new document in help")]
+        public void GivenAdminAddsDocumentInHelp(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenHelpPage(Constants.Roles.Admin.ToString())
+                .ClickAddButton()
+                .EnterName(dictionary["name"])
+                .SubmitAdd()
+                .Assert();
+        }
+        [Then(@"admin update document in help")]
+        public void GivenAdminUpdateDocumentInHelp(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenHelpPage(Constants.Roles.Admin.ToString())
+                .ClickName(dictionary["name"])
+                .EnterName(dictionary["name"])
+                .SubmitUpdate()
+                .Assert();
+        }
+        [Given(@"admin deletes added document in help")]
+        public void GivenAdminDeleteDocumentInHelp(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenHelpPage(Constants.Roles.Admin.ToString())
+                .ClickName(dictionary["name"])
+                .ClickDeleteButton()
                 .ClickAreUSure()
                 .Assert();
         }

@@ -44,7 +44,6 @@ namespace VeduBoxUnitTest.Kurumsal.Pages
             return this;
         }
         public BlogPage ClickDeleteIn3PointsBy(string name){
-            
             Click(By.XPath("//*[text()='"+name+"']/following-sibling::td[2]/div/ul/button[2]"));
             return this;
         }

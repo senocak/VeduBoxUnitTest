@@ -884,3 +884,18 @@ Scenario: 45_admin_add_blog_category
 	Given admin deletes added blog category
 		| Key  | Value                   |
 		| name | anil new blog category  |
+
+
+Scenario: 46_admin_add_activation_codes
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks activation codes is exist
+		| Key  | Value       |
+		| code | anilcode123 |
+	Then admin adds activation codes
+		| Key         | Value         |
+		| code        | anilcode123   |
+		| limit       | 33            |
+	Then admin deletes added activation codes
+		| Key         | Value         |
+		| code        | anilcode123   |

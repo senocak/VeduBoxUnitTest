@@ -32,6 +32,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By TEST_CATEGORIES = By.CssSelector("a[title='Test Categories']");
         private readonly By IMAGE_POOL = By.CssSelector("a[title='Image pool']");
         private readonly By BLOG = By.CssSelector("a[title='Blog']");
+        private readonly By ACTIVATION_CODES = By.CssSelector("a[title='Activation Codes']");
         private readonly By USERNAME_LINK = By.CssSelector("span[ng-bind='$root.user.firstName | limitTo: 8']");
         private readonly By SWITCH_TO_ROLE = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/ul/li[3]/a");
         private readonly By ROLE_MODAL = By.CssSelector("a[ng-click='openSwitchRoleModal(role)']");
@@ -288,6 +289,16 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             }
             Console.WriteLine(user + ": clicked OpenBlogPage element");
             return new BlogPage(Driver, user);
+        }
+        public ActivationCodesPage OpenActivationCodesPage(string user){
+            USER = user;
+            try{
+                Click(ACTIVATION_CODES);
+            }catch (Exception e){
+                Console.WriteLine("Error occured in OpenBlogPage, user: " + user + ", Error is: " + e.Message);
+            }
+            Console.WriteLine(user + ": clicked OpenBlogPage element");
+            return new ActivationCodesPage(Driver, user);
         }
         public HomePage ClickUserName(){
             Click(USERNAME_LINK);

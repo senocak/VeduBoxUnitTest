@@ -31,7 +31,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 //WebBrowser.Driver.CaptureScreenShot(_scenarioContext.ScenarioInfo.Title);
                 Console.WriteLine("Title:" + ScenarioContext.Current.ScenarioInfo.Title + " is failed.");
             }
-            Driver.Quit();
+            //Driver.Quit();
         }
         [Given(@"Open Kurumsal Login Page")]
         public void GivenOpenKurumsalLoginPage(){
@@ -1931,6 +1931,46 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .OpenBlogPage(Constants.Roles.Admin.ToString())
                 .Click3Points(dictionary["name"])
                 .ClickDeleteIn3PointsBy(dictionary["name"])
+                .ClickAreUSure()
+                .Assert();
+        }
+        [Given(@"admin checks activation codes is exist")]
+        public void GivenAdminChecksActivationCodesİsExist(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenActivationCodesPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedActivationCodesByNameAndDeleteIt(dictionary["code"]);
+        }
+        [Then(@"admin adds activation codes")]
+        public void ThenAddActivationCodes(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenActivationCodesPage(Constants.Roles.Admin.ToString())
+                .ClickAddButton()
+                .EnterCode(dictionary["code"])
+                .EnterDesc(dictionary["code"])
+                .EnterLimit(Int32.Parse(dictionary["limit"]))
+                .SetStartDate(
+                    yearParam:Utils.Dates.GetCurrentYear()+1,
+                    monthParam:null,
+                    dayParam:null
+                )
+                .SetEndDate(
+                    yearParam:Utils.Dates.GetCurrentYear()+1,
+                    monthParam:null,
+                    dayParam:null
+                )
+                .ClickSaveButton()
+                .Assert();
+        }
+        [Then(@"admin deletes added activation codes")]
+        public void ThenAdminDeletesAddedActivationCodes(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenActivationCodesPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedActivationCodesByName(dictionary["code"])
+                .ClickThreePoints()
+                .ClickDelete()
                 .ClickAreUSure()
                 .Assert();
         }

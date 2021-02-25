@@ -902,15 +902,31 @@ Scenario: 46_admin_add_activation_codes
 Scenario: 47_admin_add_document_in_help
 	Given Open Kurumsal Login Page
 	Given Login as "Admin"
-	Given admin checks document in help exists
+	Given admin checks help exists
 		| Key  | Value                   |
 		| name | anil new document in help  |
-	Then admin adds new document in help
+	Then admin adds new help
 		| Key  | Value                   |
 		| name | anil new document in help  |
 	Then admin update document in help
 		| Key  | Value                   |
 		| name | anil new document in help  |
-	Given admin deletes added document in help
+	Given admin deletes added help
 		| Key  | Value                   |
 		| name | anil new document in help  |
+
+Scenario: 48_admin_add_video_in_help
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks help exists
+		| Key  | Value                   |
+		| name | anil new video in help  |
+	Then admin adds new help
+		| Key  | Value                   |
+		| name | anil new video in help  |
+	Then admin update video in help
+		| Key  | Value                   |
+		| name | anil new video in help  |
+	Given admin deletes added help
+		| Key  | Value                   |
+		| name | anil new video in help  |

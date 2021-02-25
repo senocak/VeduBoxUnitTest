@@ -20,6 +20,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages {
         private readonly By INPUT_DOCUMENT_DESC = By.Id("txtDescription");
         private readonly By INPUT_DOCUMENT_FILE = By.CssSelector("input[ng-model='helpItem.file']");
         private readonly By BUTTON_DOCUMENT_SAVE = By.CssSelector("button[ng-click='save()']");
+        private readonly By BUTTON_FILE_SAVE = By.CssSelector("button[ng-click='submit()']");
         public HelpPage(IWebDriver wd, string user) : base(wd) {
             USER = user;
             JS = (IJavaScriptExecutor) wd;
@@ -107,8 +108,19 @@ namespace VeduBoxUnitTest.Kurumsal.Pages {
             );
             return this;
         }
+        public HelpPage SelectVideo() {
+            Type(
+                INPUT_DOCUMENT_FILE,
+                Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Docs\\video.mp4"))
+            );
+            return this;
+        }
         public HelpPage ClickSaveButtonInDocumentItem() {
             Click(BUTTON_DOCUMENT_SAVE);
+            return this;
+        }
+        public HelpPage ClickSaveButtonInFileItem() {
+            Click(BUTTON_FILE_SAVE);
             return this;
         }
     }

@@ -1963,21 +1963,15 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .ClickAreUSure()
                 .Assert();
         }
-        
-        
-        
-        
-        
-        
-        [Given(@"admin checks document in help exists")]
-        public void GivenAdminChecksDocumentInHelpIsExist(Table table) {
+        [Given(@"admin checks help exists")]
+        public void GivenAdminChecksHelpIsExist(Table table) {
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(Driver)
                 .OpenHelpPage(Constants.Roles.Admin.ToString())
                 .SearchCategoryAndDeleteIt(dictionary["name"]);
         }
-        [Then(@"admin adds new document in help")]
-        public void GivenAdminAddsDocumentInHelp(Table table) {
+        [Then(@"admin adds new help")]
+        public void GivenAdminAddsNewHelp(Table table) {
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(Driver)
                 .OpenHelpPage(Constants.Roles.Admin.ToString())
@@ -2002,8 +1996,8 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .ClickSaveButtonInDocumentItem()
                 .Assert();
         }
-        [Given(@"admin deletes added document in help")]
-        public void GivenAdminDeleteDocumentInHelp(Table table) {
+        [Given(@"admin deletes added help")]
+        public void GivenAdminDeleteAddedHelp(Table table) {
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(Driver)
                 .OpenHelpPage(Constants.Roles.Admin.ToString())
@@ -2011,6 +2005,23 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .ClickDeleteButton()
                 .ClickAreUSure()
                 .Assert();
+        }
+        [Then(@"admin update video in help")]
+        public void GivenAdminUpdateVideoInHelp(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenHelpPage(Constants.Roles.Admin.ToString())
+                .ClickName(dictionary["name"])
+                .EnterName(dictionary["name"])
+                .ClickAddItemButton()
+                .SelectCategoryItem("video")
+                .ClickStep2Button()
+                .EnterDocumentTitle(dictionary["name"])
+                .EnterDocumentDesc(dictionary["name"])
+                .SelectVideo()
+                .ClickSaveButtonInFileItem()
+                .Assert();
+            // TODO: After video is uploaded, assert popup not showed
         }
     }
 }

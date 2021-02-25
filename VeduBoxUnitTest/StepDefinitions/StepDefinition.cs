@@ -1993,12 +1993,13 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .OpenHelpPage(Constants.Roles.Admin.ToString())
                 .ClickName(dictionary["name"])
                 .EnterName(dictionary["name"])
+                .ClickAddItemButton()
                 .SelectCategoryItem("document")
                 .ClickStep2Button()
                 .EnterDocumentTitle(dictionary["name"])
                 .EnterDocumentDesc(dictionary["name"])
                 .SelectFile()
-                .SubmitUpdate()
+                .ClickSaveButtonInDocumentItem()
                 .Assert();
         }
         [Given(@"admin deletes added document in help")]

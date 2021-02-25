@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using OpenQA.Selenium;
 using VeduBoxUnitTest.Assertion;
 
@@ -17,55 +18,54 @@ namespace VeduBoxUnitTest.Kurumsal.Pages {
         private readonly By BUTTON_STEP_2 = By.CssSelector("button[ng-click='step = 2']");
         private readonly By INPUT_DOCUMENT_TITLE = By.Id("txtName");
         private readonly By INPUT_DOCUMENT_DESC = By.Id("txtDescription");
-        private readonly By INPUT_DOCUMENT_DESC = By.Id("txtDescription");
-        
-        
-        
+        private readonly By INPUT_DOCUMENT_FILE = By.CssSelector("input[ng-model='helpItem.file']");
+        private readonly By BUTTON_DOCUMENT_SAVE = By.CssSelector("button[ng-click='save()']");
         public HelpPage(IWebDriver wd, string user) : base(wd) {
             USER = user;
-            JS = (IJavaScriptExecutor)wd;
+            JS = (IJavaScriptExecutor) wd;
         }
         public HelpPage ClickAddButton() {
             Click(A_ADD_CATEGORY);
             return this;
         }
-        public HelpPage EnterName(string name){
+        public HelpPage EnterName(string name) {
             Type(INPUT_NAME, name);
             return this;
         }
-        public HelpPage SubmitUpdate(){
+        public HelpPage SubmitUpdate() {
             Click(SUBMIT_UPDATE);
             return this;
         }
-        public HelpPage SubmitAdd(){
+        public HelpPage SubmitAdd() {
             Click(SUBMIT_ADD);
             return this;
         }
-        public HelpPage ClickAreUSure(){
+        public HelpPage ClickAreUSure() {
             Click(ALERT_ARE_U_SURE_OK);
             return this;
         }
-        public HelpPage ClickName(string name){
-            Click(By.XPath("//*[text()='"+name+"']"));
+        public HelpPage ClickName(string name) {
+            Click(By.XPath("//*[text()='" + name + "']"));
             return this;
         }
-        public HelpPage ClickDeleteButton(){
+        public HelpPage ClickDeleteButton() {
             Click(BUTTON_DELETE);
             return this;
         }
-        public HelpPage SearchCategoryAndDeleteIt(string name){
+        public HelpPage SearchCategoryAndDeleteIt(string name) {
             try {
                 ClickName(name);
                 ClickDeleteButton();
                 ClickAreUSure();
                 Assert();
-            }catch (Exception e) {
+            }
+            catch (Exception e) {
                 Console.WriteLine("Error occured in SearchCategoryAndDeleteIt. Error is: " + e.Message);
                 return null;
             }
             return this;
         }
-        public HelpPage Assert(){
+        public HelpPage Assert() {
             AssertionCustom.AssertElementVisible("Element Not Found", Driver, ALERT_SUCCESS);
             return this;
         }
@@ -85,7 +85,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages {
             }else {
                 throw new Exception("Undefined Category item");
             }
-            Click(By.CssSelector("span[ng-click='resourceTypeId = "+item+"']"));
+            Click(By.CssSelector("span[ng-click='resourceTypeId = " + item + "']"));
             return this;
         }
         public HelpPage ClickStep2Button() {
@@ -100,11 +100,15 @@ namespace VeduBoxUnitTest.Kurumsal.Pages {
             Type(INPUT_DOCUMENT_DESC, desc);
             return this;
         }
-        public HelpPage SelectFile(){
+        public HelpPage SelectFile() {
             Type(
-                INPUT_RESOURCE_TYPE_DOC_FILE,
+                INPUT_DOCUMENT_FILE,
                 Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Docs\\file.png"))
             );
+            return this;
+        }
+        public HelpPage ClickSaveButtonInDocumentItem() {
+            Click(BUTTON_DOCUMENT_SAVE);
             return this;
         }
     }

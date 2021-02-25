@@ -1845,8 +1845,46 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .ClickDeleteButton()
                 .ClickAreUSure()
                 .Assert();
-            
-            
+        }
+        [Given(@"admin checks images category is exist")]
+        public void GivenAdminChecksImageCategoryIsExist(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenImagePoolPage(Constants.Roles.Admin.ToString())
+                .SearchImageCategoryAndDeleteIt(dictionary["name"]);
+        }
+        [Then(@"admin adds new images category")]
+        public void GivenAdminAddsImageCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenImagePoolPage(Constants.Roles.Admin.ToString())
+                .ClickAddButton()
+                .EnterName(dictionary["name"])
+                .SubmitAdd()
+                .Assert();
+        }
+        [Then(@"admin update images category")]
+        public void GivenAdminUpdateImageCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenImagePoolPage(Constants.Roles.Admin.ToString())
+                .ClickName(dictionary["name"])
+                .EnterName(dictionary["name"])
+                .EnterImage()
+                .EnterImageText(dictionary["name"])
+                .SubmitUpdate()
+                .Assert();
+        }
+        [Given(@"admin deletes added images category")]
+        public void GivenAdminDeleteImageCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenImagePoolPage(Constants.Roles.Admin.ToString())
+                .ClickName(dictionary["name"])
+                .ClickDeleteButton()
+                .ClickAreUSure()
+                .Assert();
+            // TODO: Images are not changing when category is selected. Test is failing for that reason
         }
     }
 }

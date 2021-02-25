@@ -157,6 +157,7 @@
     <Compile Include="Kurumsal\Pages\EarningsPage.cs" />
     <Compile Include="Kurumsal\Pages\ExamPage.cs" />
     <Compile Include="Kurumsal\Pages\HomePage.cs" />
+    <Compile Include="Kurumsal\Pages\ImagePoolPage.cs" />
     <Compile Include="Kurumsal\Pages\LibraryPage.cs" />
     <Compile Include="Kurumsal\Pages\LivePage.cs" />
     <Compile Include="Kurumsal\Pages\LoginPage.cs" />

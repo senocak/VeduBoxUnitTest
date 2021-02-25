@@ -852,3 +852,20 @@ Scenario: 43_admin_add_live_webinar_private
 		| description       | Deneme 123             |
 		| student       | defaultStudent1,defaultStudent2|
 	Then admin deletes live
+
+Scenario: 44_admin_add_single_image_in_image_pool
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks images category is exist
+		| Key  | Value                   |
+		| name | anil new images category  |
+	Then admin adds new images category
+		| Key  | Value                   |
+		| name | anil new images category  |
+	Then admin update images category
+		| Key  | Value                   |
+		| name | anil new images category  |
+	Given admin deletes added images category
+		| Key  | Value                   |
+		| name | anil new images category  |
+	

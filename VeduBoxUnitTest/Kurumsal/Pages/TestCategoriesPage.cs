@@ -55,8 +55,5 @@ namespace VeduBoxUnitTest.Kurumsal.Pages {
             AssertionCustom.AssertElementVisible("Element Not Found", Driver, ALERT_SUCCESS);
             return this;
         }
-        
-        
-        
     }
 }

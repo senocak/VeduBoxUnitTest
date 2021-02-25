@@ -946,3 +946,19 @@ Scenario: 49_admin_add_link_in_help
 	Given admin deletes added help
 		| Key  | Value                   |
 		| name | anil new link in help  |
+
+Scenario: 50_admin_add_embed_in_help
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks help exists
+		| Key  | Value                   |
+		| name | anil new embed in help  |
+	Then admin adds new help
+		| Key  | Value                   |
+		| name | anil new embed in help  |
+	Then admin update embed in help
+		| Key  | Value                   |
+		| name | anil new embed in help  |
+	Given admin deletes added help
+		| Key  | Value                   |
+		| name | anil new embed in help  |

@@ -31,7 +31,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 //WebBrowser.Driver.CaptureScreenShot(_scenarioContext.ScenarioInfo.Title);
                 Console.WriteLine("Title:" + ScenarioContext.Current.ScenarioInfo.Title + " is failed.");
             }
-            //Driver.Quit();
+            Driver.Quit();
         }
         [Given(@"Open Kurumsal Login Page")]
         public void GivenOpenKurumsalLoginPage(){
@@ -2036,6 +2036,22 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .EnterDocumentTitle(dictionary["name"])
                 .EnterDocumentDesc(dictionary["name"])
                 .EnterLink(dictionary["name"])
+                .ClickSaveButtonInDocumentItem()
+                .Assert();
+        }
+        [Then(@"admin update embed in help")]
+        public void GivenAdminUpdateEmbedInHelp(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenHelpPage(Constants.Roles.Admin.ToString())
+                .ClickName(dictionary["name"])
+                .EnterName(dictionary["name"])
+                .ClickAddItemButton()
+                .SelectCategoryItem("embed_code")
+                .ClickStep2Button()
+                .EnterDocumentTitle(dictionary["name"])
+                .EnterDocumentDesc(dictionary["name"])
+                .EnterEmbedCode(dictionary["name"])
                 .ClickSaveButtonInDocumentItem()
                 .Assert();
         }

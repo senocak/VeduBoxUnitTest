@@ -147,8 +147,10 @@
     <Compile Include="Features\Admin.feature.cs" />
     <Compile Include="Features\Instructor.feature.cs" />
     <Compile Include="Features\Student.feature.cs" />
+    <Compile Include="Kurumsal\Pages\ActivationCodesPage.cs" />
     <Compile Include="Kurumsal\Pages\AdminsPage.cs" />
     <Compile Include="Kurumsal\Pages\AnnouncementsPage.cs" />
+    <Compile Include="Kurumsal\Pages\BlogPage.cs" />
     <Compile Include="Kurumsal\Pages\BranchPage.cs" />
     <Compile Include="Kurumsal\Pages\CatalogPage.cs" />
     <Compile Include="Kurumsal\Pages\CoursesPage.cs" />
@@ -156,7 +158,9 @@
     <Compile Include="Kurumsal\Pages\CustomFieldsPage.cs" />
     <Compile Include="Kurumsal\Pages\EarningsPage.cs" />
     <Compile Include="Kurumsal\Pages\ExamPage.cs" />
+    <Compile Include="Kurumsal\Pages\HelpPage.cs" />
     <Compile Include="Kurumsal\Pages\HomePage.cs" />
+    <Compile Include="Kurumsal\Pages\ImagePoolPage.cs" />
     <Compile Include="Kurumsal\Pages\LibraryPage.cs" />
     <Compile Include="Kurumsal\Pages\LivePage.cs" />
     <Compile Include="Kurumsal\Pages\LoginPage.cs" />
@@ -169,6 +173,7 @@
     <Compile Include="Kurumsal\Pages\PaymentPage.cs" />
     <Compile Include="Kurumsal\Pages\PollQuestionsPage.cs" />
     <Compile Include="Kurumsal\Pages\PollsPage.cs" />
+    <Compile Include="Kurumsal\Pages\TestCategoriesPage.cs" />
     <Compile Include="Kurumsal\Pages\TestPoolPage.cs" />
     <Compile Include="Kurumsal\Pages\PortalPage.cs" />
     <Compile Include="Kurumsal\Pages\QuestionsPage.cs" />

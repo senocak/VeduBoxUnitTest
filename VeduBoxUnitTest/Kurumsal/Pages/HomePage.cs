@@ -29,6 +29,11 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By DISCOUNT_CODES= By.CssSelector("a[title='Discount Codes']");
         private readonly By CUSTOM_FIELDS = By.CssSelector("a[title='Custom Fields']");
         private readonly By LIBRARY = By.CssSelector("a[title='Library']");
+        private readonly By TEST_CATEGORIES = By.CssSelector("a[title='Test Categories']");
+        private readonly By IMAGE_POOL = By.CssSelector("a[title='Image pool']");
+        private readonly By BLOG = By.CssSelector("a[title='Blog']");
+        private readonly By ACTIVATION_CODES = By.CssSelector("a[title='Activation Codes']");
+        private readonly By HELP = By.CssSelector("a[title='Help']");
         private readonly By USERNAME_LINK = By.CssSelector("span[ng-bind='$root.user.firstName | limitTo: 8']");
         private readonly By SWITCH_TO_ROLE = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/ul/li[3]/a");
         private readonly By ROLE_MODAL = By.CssSelector("a[ng-click='openSwitchRoleModal(role)']");
@@ -251,10 +256,60 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             try{
                 Click(LIBRARY);
             }catch (Exception e){
-                Console.WriteLine("Error occured in CustomFieldsPage, user: " + user + ", Error is: " + e.Message);
+                Console.WriteLine("Error occured in OpenLibraryPage, user: " + user + ", Error is: " + e.Message);
             }
-            Console.WriteLine(user + ": clicked CustomFieldsPage element");
+            Console.WriteLine(user + ": clicked OpenLibraryPage element");
             return new LibraryPage(Driver, user);
+        }
+        public TestCategoriesPage OpenTestCategoriesPage(string user){
+            USER = user;
+            try{
+                Click(TEST_CATEGORIES);
+            }catch (Exception e){
+                Console.WriteLine("Error occured in OpenTestCategoriesPage, user: " + user + ", Error is: " + e.Message);
+            }
+            Console.WriteLine(user + ": clicked OpenTestCategoriesPage element");
+            return new TestCategoriesPage(Driver, user);
+        }
+        public ImagePoolPage OpenImagePoolPage(string user){
+            USER = user;
+            try{
+                Click(IMAGE_POOL);
+            }catch (Exception e){
+                Console.WriteLine("Error occured in OpenImagePoolPage, user: " + user + ", Error is: " + e.Message);
+            }
+            Console.WriteLine(user + ": clicked OpenImagePoolPage element");
+            return new ImagePoolPage(Driver, user);
+        }
+        public BlogPage OpenBlogPage(string user){
+            USER = user;
+            try{
+                Click(BLOG);
+            }catch (Exception e){
+                Console.WriteLine("Error occured in OpenBlogPage, user: " + user + ", Error is: " + e.Message);
+            }
+            Console.WriteLine(user + ": clicked OpenBlogPage element");
+            return new BlogPage(Driver, user);
+        }
+        public ActivationCodesPage OpenActivationCodesPage(string user){
+            USER = user;
+            try{
+                Click(ACTIVATION_CODES);
+            }catch (Exception e){
+                Console.WriteLine("Error occured in OpenBlogPage, user: " + user + ", Error is: " + e.Message);
+            }
+            Console.WriteLine(user + ": clicked OpenBlogPage element");
+            return new ActivationCodesPage(Driver, user);
+        }
+        public HelpPage OpenHelpPage(string user){
+            USER = user;
+            try{
+                Click(HELP);
+            }catch (Exception e){
+                Console.WriteLine("Error occured in OpenHelpPage, user: " + user + ", Error is: " + e.Message);
+            }
+            Console.WriteLine(user + ": clicked OpenHelpPage element");
+            return new HelpPage(Driver, user);
         }
         public HomePage ClickUserName(){
             Click(USERNAME_LINK);

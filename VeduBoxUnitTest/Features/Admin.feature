@@ -713,7 +713,7 @@ Scenario: 35_admin_zoom_link_copied
 	Given admin adds new live with
 		| Key               | Value                   |
 		| course_name       | defaultCourse1          |
-		| meetingType       | pro                     |
+		| meetingType       | Pro                     |
 		| title             | deneme                  |
 		| timezone          | Europe/Istanbul (GMT+3) |
 		| duration          | 120                     |
@@ -820,3 +820,145 @@ Scenario: 41_admin_library_add_content_sound
     Given admin deletes added catalog in library
 		| Key  | Value                   |
 		| name | test catalog to library |
+
+Scenario: 42_admin_add_test_category
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks test category is exist
+		| Key  | Value                   |
+		| name | anil new test category  |
+	Then admin adds new test category
+		| Key  | Value                   |
+		| name | anil new test category  |
+	Then admin update test category
+		| Key  | Value                   |
+		| name | anil new test category  |
+	Given admin deletes added test category
+		| Key  | Value                   |
+		| name | anil new test category  |
+	
+Scenario: 43_admin_add_live_webinar_private
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks live is exist
+	Given admin adds new live with
+		| Key               | Value                  |
+		| course_name       | defaultCourse1         |
+		| meetingType       | Webinar                |
+		| title             | deneme                 |
+		| timezone          | Asia/Baku (GMT+4) |
+		| duration          | 120                    |
+		| registrationLimit | 50                     |
+		| description       | Deneme 123             |
+		| student       | defaultStudent1,defaultStudent2|
+	Then admin deletes live
+
+Scenario: 44_admin_add_single_image_in_image_pool
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks images category is exist
+		| Key  | Value                   |
+		| name | anil new images category  |
+	Then admin adds new images category
+		| Key  | Value                   |
+		| name | anil new images category  |
+	Then admin update images category
+		| Key  | Value                   |
+		| name | anil new images category  |
+	Given admin deletes added images category
+		| Key  | Value                   |
+		| name | anil new images category  |
+
+Scenario: 45_admin_add_blog_category
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks blog category is exist
+		| Key  | Value                   |
+		| name | anil new blog category  |
+	Then admin adds new blog category
+		| Key  | Value                   |
+		| name | anil new blog category  |
+	Then admin update blog category
+		| Key  | Value                   |
+		| name | anil new blog category  |
+	Given admin deletes added blog category
+		| Key  | Value                   |
+		| name | anil new blog category  |
+
+Scenario: 46_admin_add_activation_codes
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks activation codes is exist
+		| Key  | Value       |
+		| code | anilcode123 |
+	Then admin adds activation codes
+		| Key         | Value         |
+		| code        | anilcode123   |
+		| limit       | 33            |
+	Then admin deletes added activation codes
+		| Key         | Value         |
+		| code        | anilcode123   |
+
+Scenario: 47_admin_add_document_in_help
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks help exists
+		| Key  | Value                   |
+		| name | anil new document in help  |
+	Then admin adds new help
+		| Key  | Value                   |
+		| name | anil new document in help  |
+	Then admin update document in help
+		| Key  | Value                   |
+		| name | anil new document in help  |
+	Given admin deletes added help
+		| Key  | Value                   |
+		| name | anil new document in help  |
+
+Scenario: 48_admin_add_video_in_help
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks help exists
+		| Key  | Value                   |
+		| name | anil new video in help  |
+	Then admin adds new help
+		| Key  | Value                   |
+		| name | anil new video in help  |
+	Then admin update video in help
+		| Key  | Value                   |
+		| name | anil new video in help  |
+	Given admin deletes added help
+		| Key  | Value                   |
+		| name | anil new video in help  |
+
+Scenario: 49_admin_add_link_in_help
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks help exists
+		| Key  | Value                   |
+		| name | anil new link in help  |
+	Then admin adds new help
+		| Key  | Value                   |
+		| name | anil new link in help  |
+	Then admin update link in help
+		| Key  | Value                   |
+		| name | anil new link in help  |
+	Given admin deletes added help
+		| Key  | Value                   |
+		| name | anil new link in help  |
+
+Scenario: 50_admin_add_embed_in_help
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks help exists
+		| Key  | Value                   |
+		| name | anil new embed in help  |
+	Then admin adds new help
+		| Key  | Value                   |
+		| name | anil new embed in help  |
+	Then admin update embed in help
+		| Key  | Value                   |
+		| name | anil new embed in help  |
+	Given admin deletes added help
+		| Key  | Value                   |
+		| name | anil new embed in help  |

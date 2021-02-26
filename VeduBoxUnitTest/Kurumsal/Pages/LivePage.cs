@@ -382,6 +382,16 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             SelectDropDown(SELECT_TRAINER, trainer);
             return this;
         }
+        public LivePage SetStudent(string students){
+            if (students != null) {
+                SetPrivate();
+                string[] studentNames = students.Split(',');
+                foreach (var student in studentNames){
+                    Click(By.XPath("//a[contains(text(), '" + student + "')]"));
+                }
+            }
+            return this;
+        }
         public LivePage SetPrivate(){
             if (!IsSelected(CHECKBOX_PRIVATE))
                 Click(CHECKBOX_PRIVATE);

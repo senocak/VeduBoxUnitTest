@@ -92,6 +92,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .SetRegistrationLimit(Int32.Parse(dictionary["registrationLimit"]))
                 .SetDescription(dictionary["description"])
                 //.setTrainer("test eğitmen")
+                .SetStudent(dictionary.ContainsKey("student") ? dictionary["student"] : null)
                 .Submit()
                 .AssertLive();
         }
@@ -1800,11 +1801,258 @@ namespace VeduBoxUnitTest.StepDefinitions{
         public void GivenAdminDeletesAddedCatalogInLibrary(Table table) {
             var dictionary = TableExtensions.ToDictionary(table);
             new HomePage(Driver)
-                .OpenLibraryPage("admin")
+                .OpenLibraryPage(Constants.Roles.Admin.ToString())
                 .SearchNewlyAddedCatalog(dictionary["name"])
                 .ClickCatalog()
                 .DeleteCatalog()
                 .ClickAreUSure()
+                .Assert();
+        }
+        [Given(@"admin checks test category is exist")]
+        public void GivenAdminChecksTestCategoryIsExist(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenTestCategoriesPage(Constants.Roles.Admin.ToString())
+                .SearchTestCategoryAndDeleteIt(dictionary["name"]);
+        }
+        [Then(@"admin adds new test category")]
+        public void GivenAdminAddsTestCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenTestCategoriesPage(Constants.Roles.Admin.ToString())
+                .ClickAddButton()
+                .EnterName(dictionary["name"])
+                .SubmitAdd()
+                .Assert();
+        }
+        [Then(@"admin update test category")]
+        public void GivenAdminUpdateTestCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenTestCategoriesPage(Constants.Roles.Admin.ToString())
+                .ClickName(dictionary["name"])
+                .EnterName(dictionary["name"])
+                .SubmitAdd()
+                .Assert();
+            
+        }
+        [Given(@"admin deletes added test category")]
+        public void GivenAdminDeleteTestCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenTestCategoriesPage(Constants.Roles.Admin.ToString())
+                .ClickName(dictionary["name"])
+                .ClickDeleteButton()
+                .ClickAreUSure()
+                .Assert();
+        }
+        [Given(@"admin checks images category is exist")]
+        public void GivenAdminChecksImageCategoryIsExist(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenImagePoolPage(Constants.Roles.Admin.ToString())
+                .SearchImageCategoryAndDeleteIt(dictionary["name"]);
+        }
+        [Then(@"admin adds new images category")]
+        public void GivenAdminAddsImageCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenImagePoolPage(Constants.Roles.Admin.ToString())
+                .ClickAddButton()
+                .EnterName(dictionary["name"])
+                .SubmitAdd()
+                .Assert();
+        }
+        [Then(@"admin update images category")]
+        public void GivenAdminUpdateImageCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenImagePoolPage(Constants.Roles.Admin.ToString())
+                .ClickName(dictionary["name"])
+                .EnterName(dictionary["name"])
+                .EnterImage()
+                .EnterImageText(dictionary["name"])
+                .SubmitUpdate()
+                .Assert();
+        }
+        [Given(@"admin deletes added images category")]
+        public void GivenAdminDeleteImageCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenImagePoolPage(Constants.Roles.Admin.ToString())
+                .ClickName(dictionary["name"])
+                .ClickDeleteButton()
+                .ClickAreUSure()
+                .Assert();
+            // TODO: Images are not changing when category is selected. Test is failing for that reason
+        }
+        [Given(@"admin checks blog category is exist")]
+        public void GivenAdminChecksBlogCategoryIsExist(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenBlogPage(Constants.Roles.Admin.ToString())
+                .SearchBlogCategoryAndDeleteIt(dictionary["name"]);
+        }
+        [Then(@"admin adds new blog category")]
+        public void GivenAdminAddsBlogCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenBlogPage(Constants.Roles.Admin.ToString())
+                .EnterName(dictionary["name"])
+                .SubmitAdd()
+                .Assert();
+        }
+        [Then(@"admin update blog category")]
+        public void GivenAdminUpdateBlogCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenBlogPage(Constants.Roles.Admin.ToString())
+                .Click3Points(dictionary["name"])
+                .ClickUpdateButtonIn3PointsBy(dictionary["name"])
+                .EnterName(dictionary["name"])
+                .SubmitUpdate()
+                .Assert();
+        }
+        [Given(@"admin deletes added blog category")]
+        public void GivenAdminDeleteBlogCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenBlogPage(Constants.Roles.Admin.ToString())
+                .Click3Points(dictionary["name"])
+                .ClickDeleteIn3PointsBy(dictionary["name"])
+                .ClickAreUSure()
+                .Assert();
+        }
+        [Given(@"admin checks activation codes is exist")]
+        public void GivenAdminChecksActivationCodesİsExist(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenActivationCodesPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedActivationCodesByNameAndDeleteIt(dictionary["code"]);
+        }
+        [Then(@"admin adds activation codes")]
+        public void ThenAddActivationCodes(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenActivationCodesPage(Constants.Roles.Admin.ToString())
+                .ClickAddButton()
+                .EnterCode(dictionary["code"])
+                .EnterDesc(dictionary["code"])
+                .EnterLimit(Int32.Parse(dictionary["limit"]))
+                .SetStartDate(
+                    yearParam:Utils.Dates.GetCurrentYear()+1,
+                    monthParam:null,
+                    dayParam:null
+                )
+                .SetEndDate(
+                    yearParam:Utils.Dates.GetCurrentYear()+1,
+                    monthParam:null,
+                    dayParam:null
+                )
+                .ClickSaveButton()
+                .Assert();
+        }
+        [Then(@"admin deletes added activation codes")]
+        public void ThenAdminDeletesAddedActivationCodes(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenActivationCodesPage(Constants.Roles.Admin.ToString())
+                .SearchNewlyAddedActivationCodesByName(dictionary["code"])
+                .ClickThreePoints()
+                .ClickDelete()
+                .ClickAreUSure()
+                .Assert();
+        }
+        [Given(@"admin checks help exists")]
+        public void GivenAdminChecksHelpIsExist(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenHelpPage(Constants.Roles.Admin.ToString())
+                .SearchCategoryAndDeleteIt(dictionary["name"]);
+        }
+        [Then(@"admin adds new help")]
+        public void GivenAdminAddsNewHelp(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenHelpPage(Constants.Roles.Admin.ToString())
+                .ClickAddButton()
+                .EnterName(dictionary["name"])
+                .SubmitAdd()
+                .Assert();
+        }
+        [Then(@"admin update document in help")]
+        public void GivenAdminUpdateDocumentInHelp(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenHelpPage(Constants.Roles.Admin.ToString())
+                .ClickName(dictionary["name"])
+                .EnterName(dictionary["name"])
+                .ClickAddItemButton()
+                .SelectCategoryItem("document")
+                .ClickStep2Button()
+                .EnterDocumentTitle(dictionary["name"])
+                .EnterDocumentDesc(dictionary["name"])
+                .SelectFile()
+                .ClickSaveButtonInDocumentItem()
+                .Assert();
+        }
+        [Given(@"admin deletes added help")]
+        public void GivenAdminDeleteAddedHelp(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenHelpPage(Constants.Roles.Admin.ToString())
+                .ClickName(dictionary["name"])
+                .ClickDeleteButton()
+                .ClickAreUSure()
+                .Assert();
+        }
+        [Then(@"admin update video in help")]
+        public void GivenAdminUpdateVideoInHelp(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenHelpPage(Constants.Roles.Admin.ToString())
+                .ClickName(dictionary["name"])
+                .EnterName(dictionary["name"])
+                .ClickAddItemButton()
+                .SelectCategoryItem("video")
+                .ClickStep2Button()
+                .EnterDocumentTitle(dictionary["name"])
+                .EnterDocumentDesc(dictionary["name"])
+                .SelectVideo()
+                .ClickSaveButtonInFileItem()
+                .Assert();
+            // TODO: After video is uploaded, assert popup not showed
+        }
+        [Then(@"admin update link in help")]
+        public void GivenAdminUpdateLinkInHelp(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenHelpPage(Constants.Roles.Admin.ToString())
+                .ClickName(dictionary["name"])
+                .EnterName(dictionary["name"])
+                .ClickAddItemButton()
+                .SelectCategoryItem("link")
+                .ClickStep2Button()
+                .EnterDocumentTitle(dictionary["name"])
+                .EnterDocumentDesc(dictionary["name"])
+                .EnterLink(dictionary["name"])
+                .ClickSaveButtonInDocumentItem()
+                .Assert();
+        }
+        [Then(@"admin update embed in help")]
+        public void GivenAdminUpdateEmbedInHelp(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenHelpPage(Constants.Roles.Admin.ToString())
+                .ClickName(dictionary["name"])
+                .EnterName(dictionary["name"])
+                .ClickAddItemButton()
+                .SelectCategoryItem("embed_code")
+                .ClickStep2Button()
+                .EnterDocumentTitle(dictionary["name"])
+                .EnterDocumentDesc(dictionary["name"])
+                .EnterEmbedCode(dictionary["name"])
+                .ClickSaveButtonInDocumentItem()
                 .Assert();
         }
     }

@@ -31,7 +31,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 //WebBrowser.Driver.CaptureScreenShot(_scenarioContext.ScenarioInfo.Title);
                 Console.WriteLine("Title:" + ScenarioContext.Current.ScenarioInfo.Title + " is failed.");
             }
-          //  Driver.Quit();
+           Driver.Quit();
         }
         [Given(@"Open Kurumsal Login Page")]
         public void GivenOpenKurumsalLoginPage(){

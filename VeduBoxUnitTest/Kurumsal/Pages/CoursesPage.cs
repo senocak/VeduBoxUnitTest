@@ -77,6 +77,61 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By DIV_RESOURCE_TEXT_DESCRIPTION= By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[2]/div/text-angular/div[2]/div[3]");
         private readonly By BUTTON_RESOURCE_TEXT_SAVE = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[2]/div/div/button[1]");
         private readonly string UPLOADED_FILE_TEXT = "video.mp4";
+        private readonly By BUTTON_COURSES_FILES = By.CssSelector("a[ng-bind*='common.files']");
+        private readonly By BUTTON_COURSE_ADD_CATEGORY = By.CssSelector("span[translate*='routeStates.teacher.courseFile.lblAddRootCourseFile']");
+        private readonly By INPUT_CATEGORY_NAME = By.CssSelector("input[ng-model*='courseFile.name']");
+        private readonly By BUTTON_COURSE_ADD_CATEGORY_OK = By.CssSelector("span[ng-bind*='common.add']");
+        private readonly By BUTTON_COURSE_ADD_ITEM = By.CssSelector("span[translate='routeStates.teacher.courseFile.lblAddCourseFileItem']");
+        private readonly By BUTTON_CATEGORY_CHOOSE_DOCUMENT = By.CssSelector("span.fa-file");
+        private readonly By BUTTON_CATEGORY_CHOOSE_VIDEO = By.CssSelector("span.fa-vimeo");
+        private readonly By BUTTON_CATEGORY_CHOOSE_LINK = By.CssSelector("span.fa-link");
+        private readonly By BUTTON_CATEGORY_CHOOSE_CODE = By.CssSelector("span.fa-code");
+        private readonly By BUTTON_CATEGORY_CHOOSE_TEXT = By.CssSelector("span.fa-font");
+        private readonly By BUTTON_CATEGORY_CHOOSE_TEST = By.CssSelector("span.fa-pencil");
+        private readonly By BUTTON_CATEGORY_CHOOSE_OK = By.CssSelector("span[translate='common.ok']");
+        private readonly By INPUT_CATEGORY_DOCUMENT_TITLE = By.XPath("(//input[@id='txtName'])[1]");
+        private readonly By TEXTAREA_CATEGORY_DOCUMENT_DESC = By.XPath("(//textarea[@id='txtDescription'])[1]");
+        private readonly By BUTTON_ADD_DOCUMENT_TYPE_SAVE = By.XPath("(//i[@class='fa fa-save'])[2]");
+        private readonly By INPUT_SELECT_FILE_TO_CATEGORY = By.XPath("(//input[@ng-model='courseFileItem.file'])[1]");
+        private readonly By INPUT_CATEGORY_LINK = By.XPath("(//input[@ng-model='courseFileItem.url'])[1]");
+        private readonly By TEXTAREA_CATEGORY_CODE = By.XPath("(//textarea[@ng-model='courseFileItem.code'])[1]");
+        private readonly By BUTTON_CATEGORY_UPDATE = By.CssSelector("span[translate='common.update']");
+        private readonly By BUTTON_CATEGORY_HOMEWORK = By.CssSelector("span[ng-bind*='homework']");
+        private readonly By BUTTON_CATEGORY_PROFILE = By.CssSelector("span[ng-bind*='Profile']");
+        private readonly By BUTTON_CATEGORY_CONTENTS = By.CssSelector("span[ng-bind*='btnSubjects']");
+        private readonly By BUTTON_CATEGORY_ANNOUNCEMENTS = By.CssSelector("span[ng-bind*='announcements']");
+        private readonly By BUTTON_CATEGORY_POLLS = By.CssSelector("span[ng-bind*='polls']");
+        private readonly By BUTTON_CATEGORY_ADD_HOMEWORK = By.CssSelector("a[ng-click='addEditHomeworks(0)']");
+        private readonly By INPUT_HOMEWORK_TITLE = By.CssSelector("input[ng-model='homework.title']");
+        private readonly By INPUT_HOMEWORK_DESC = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div[1]/div[2]/div/text-angular/div[2]/div[3]");
+        private readonly By INPUT_HOMEWORK_PASS_POINT = By.CssSelector("input[ng-model='homework.passPoint']");
+        private readonly By INPUT_HOMEWORK_WEIGHT_PERCENTAGE = By.CssSelector("input[ng-model='homework.weightPercent']");
+        private readonly By BUTTON_HOMEWORK_SAVE = By.XPath("(//span[@translate='common.save'])[3]");
+        private readonly By BUTTON_HOMEWORK_ADD_ITEM = By.XPath("//span[@translate='routeStates.teacher.library.lblAddLibraryItem']");
+        private readonly By BUTTON_HOMEWORK_SELECT = By.CssSelector("span[translate='common.select']");
+        private readonly By INPUT_HOMEWORK_DOC_TITLE = By.Id("txtName");
+        private readonly By INPUT_HOMEWORK_DOC_DESC = By.CssSelector("textarea[ng-model='homeworkItem.description']");
+        private readonly By INPUT_HOMEWORK_DOC_SELECT = By.CssSelector("input[ng-model='homeworkItem.file']");
+        private readonly By INPUT_HOMEWORK_LINK = By.CssSelector("input[ng-model='homeworkItem.url']");
+        private readonly By INPUT_HOMEWORK_EMBED = By.CssSelector("textarea[ng-model='homeworkItem.code']");
+        private readonly By INPUT_HOMEWORK_TEST_TITLE = By.CssSelector("input[ng-model='homeworkItem.title']");
+        private readonly By INPUT_HOMEWORK_TEST_DESC = By.CssSelector("#txtDescription");
+        private readonly By INPUT_HOMEWORK_TEST_PASS_POINT = By.CssSelector("input[ng-model='homeworkItem.passPoint']");
+        private readonly By INPUT_HOMEWORK_TEST_REPEAT_NUMBER = By.CssSelector("input[ng-model='homeworkItem.repeatNumber']");
+        private readonly By SELECT_HOMEWORK_TEST = By.XPath("(//td[@ng-click='toggleSelection(test.testId); testSelected(test)'])[1]");
+        private readonly By INPUT_HOMEWORK_START_DATE_NEW_MODEL_SELECT_DATA = By.CssSelector("input[ng-model='homework.startDate']");
+        private readonly By BUTTON_START_DATE_OPEN_DATEPICKER = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div[1]/div[3]/div/p/span/button");
+        private readonly By BUTTON_START_DATE_CHOOSE_YEAR = By.XPath("(//button[@ng-click='toggleMode()'])[1]");
+        private readonly By BUTTON_START_DATE_GO_PREVIOUS_YEAR = By.XPath("(//button[@ng-click='move(-1)'])[1]");
+        private readonly By BUTTON_START_DATE_GO_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[1]");
+        private readonly By INPUT_HOMEWORK_END_DATE_NEW_MODEL_SELECT_DATA = By.CssSelector("input[ng-model='homework.endDate']");
+        private readonly By BUTTON_END_DATE_OPEN_DATEPICKER = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div[1]/div[4]/div/p/span/button");
+        private readonly By BUTTON_END_DATE_CHOOSE_YEAR = By.XPath("(//button[@ng-click='toggleMode()'])[2]");
+        private readonly By BUTTON_END_DATE_GO_PREVIOUS_YEAR = By.XPath("(//button[@ng-click='move(-1)'])[2]");
+        private readonly By BUTTON_END_DATE_GO_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[2]");
+        private readonly By START_DATE_DONE = By.XPath("(//button[@ng-click='close()'])[1]");
+        private readonly By END_DATE_DONE = By.XPath("(//button[@ng-click='close()'])[2]");
+
 
         private string USER;
         public CoursesPage(IWebDriver wd, string user) : base(wd){
@@ -430,5 +485,345 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             Click(BUTTON_RESOURCE_TEXT_SAVE);
             return this;
         }
+        public CoursesPage ClickCourses(string coursename)
+        {
+            Click(By.XPath("//div[@ng-bind='course.name'][contains(text(), '" + coursename + "')]"));
+            return this;
+        }
+        public CoursesPage ClickFiles()
+        {
+            Click(BUTTON_COURSES_FILES);
+            return this;
+        }
+        public CoursesPage ClickAddCategory()
+        {
+            Click(BUTTON_COURSE_ADD_CATEGORY);
+            return this;
+        }
+        public CoursesPage EnterCategoryName(string categoryName)
+        {
+            Type(INPUT_CATEGORY_NAME, categoryName);
+                return this;
+        }
+        public CoursesPage ClickAddCategoryConfirm()
+        {
+            Click(BUTTON_COURSE_ADD_CATEGORY_OK);
+            return this;
+        }
+        public CoursesPage ChooseCategory(string addedCategoryName)
+        {
+            Click(By.XPath("//a[contains(text(), '" + addedCategoryName + "')]"));
+            return this;
+        }
+        public CoursesPage ClickAddItemToCategoryButton()
+        {
+            Click(BUTTON_COURSE_ADD_ITEM);
+            return this;
+        }
+        public CoursesPage ChooseItemDocumentToCategory()
+        {
+            Click(BUTTON_CATEGORY_CHOOSE_DOCUMENT);
+            return this;
+        }
+        public CoursesPage ChooseItemVideoToCategory()
+        {
+            Click(BUTTON_CATEGORY_CHOOSE_VIDEO);
+            return this;
+        }
+        public CoursesPage ChooseItemLinkToCategory()
+        {
+            Click(BUTTON_CATEGORY_CHOOSE_LINK);
+            return this;
+        }
+        public CoursesPage ChooseItemTextToCategory()
+        {
+            Click(BUTTON_CATEGORY_CHOOSE_TEXT);
+            return this;
+        }
+        public CoursesPage ChooseItemTestToCategory()
+        {
+            Click(BUTTON_CATEGORY_CHOOSE_TEST);
+            return this;
+        }
+        public CoursesPage ChooseItemCodeToCategory()
+        {
+            Click(BUTTON_CATEGORY_CHOOSE_CODE);
+            return this;
+        }
+        public CoursesPage ClickCategoryFileTypeOk()
+        {
+            Click(BUTTON_CATEGORY_CHOOSE_OK);
+            return this;
+        }
+        public CoursesPage EnterCategoryTitle(string categoryTitle)
+        {
+            Type(INPUT_CATEGORY_DOCUMENT_TITLE, categoryTitle);
+            return this;
+        }
+        public CoursesPage EnterCategoryDescription(string categoryDescription)
+        {
+            Type(TEXTAREA_CATEGORY_DOCUMENT_DESC, categoryDescription);
+            return this;
+        }
+        public CoursesPage ClickCategoryDocumentSave()
+        {
+            Click(BUTTON_ADD_DOCUMENT_TYPE_SAVE);
+            return this;
+        }
+        public CoursesPage SelectFileDocument()
+        {
+            Type(
+                INPUT_SELECT_FILE_TO_CATEGORY,
+                Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Docs\\file.png"))
+            );
+            return this;
+        }
+        public CoursesPage SelectFileVideo()
+        {
+            Type(
+                INPUT_SELECT_FILE_TO_CATEGORY,
+                Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Docs\\video.mp4"))
+            );
+            return this;
+        }
+        public CoursesPage EnterCategoryLink(string link)
+        {
+            Type(INPUT_CATEGORY_LINK, link);
+            return this;
+        }
+        public CoursesPage EnterCategoryEmbed(string embed_code)
+        {
+            Type(TEXTAREA_CATEGORY_CODE, embed_code);
+            return this;
+        }
+        public CoursesPage ClickCategoryUpdate()
+        {
+            Click(BUTTON_CATEGORY_UPDATE);
+            return this;
+        }
+        public CoursesPage ClickHomework()
+        {
+            Click(BUTTON_CATEGORY_HOMEWORK);
+            return this;
+        }
+        public CoursesPage ClickProfile()
+        {
+            Click(BUTTON_CATEGORY_PROFILE);
+            return this;
+        }
+        public CoursesPage ClickContents()
+        {
+            Click(BUTTON_CATEGORY_CONTENTS);
+            return this;
+        }
+        public CoursesPage ClickAnnouncements()
+        {
+            Click(BUTTON_CATEGORY_ANNOUNCEMENTS);
+            return this;
+        }
+        public CoursesPage ClickPolls()
+        {
+            Click(BUTTON_CATEGORY_POLLS);
+            return this;
+        }
+        public CoursesPage ClickAddHomework()
+        {
+            Click(BUTTON_CATEGORY_ADD_HOMEWORK);
+            return this;
+        }
+        public CoursesPage EnterHomeworkTitle(string homework_title)
+        {
+            Type(INPUT_HOMEWORK_TITLE, homework_title);
+            return this;
+        }
+        public CoursesPage EnterHomeworkDescription(string homework_description)
+        {
+            Type(INPUT_HOMEWORK_DESC, homework_description);
+            return this;
+        }
+        public CoursesPage EnterHomeworkPassPoint(int pass_point)
+        {
+            Type(INPUT_HOMEWORK_PASS_POINT, pass_point);
+            return this;
+        }
+        public CoursesPage EnterHomeworkWeightPercentage(int weight_percentage)
+        {
+            Type(INPUT_HOMEWORK_WEIGHT_PERCENTAGE, weight_percentage);
+            return this;
+        }
+        public CoursesPage ClickHomeworkSave()
+        {
+            Click(BUTTON_HOMEWORK_SAVE);
+            return this;
+        }
+        public CoursesPage ClickHomeworkAddItem()
+        {
+            Click(BUTTON_HOMEWORK_ADD_ITEM);
+            return this;
+        }
+        public CoursesPage SelectDocumentType()
+        {
+            Click(BUTTON_HOMEWORK_SELECT);
+            return this;
+        }
+        public CoursesPage EnterHomeworkDocTitle(string homework_doc_title)
+        {
+            Type(INPUT_HOMEWORK_DOC_TITLE, homework_doc_title);
+            return this;
+        }
+        public CoursesPage EnterHomeworkDocDescription(string homework_doc_description)
+        {
+            Type(INPUT_HOMEWORK_DOC_DESC, homework_doc_description);
+            return this;
+        }
+        public CoursesPage SelectHomeworkFileDocument()
+        {
+            Type(
+                INPUT_HOMEWORK_DOC_SELECT,
+                Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Docs\\file.png")));
+            return this;
+        }
+        public CoursesPage SelectHomeworkFileVideo()
+        {
+            Type(
+                INPUT_HOMEWORK_DOC_SELECT,
+                Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Docs\\video.mp4"))
+            );
+            return this;
+        }
+        public CoursesPage EnterHomeworkLink(string link)
+        {
+            Type(INPUT_HOMEWORK_LINK, link);
+            return this;
+        }
+        public CoursesPage EnterHomeworkEmbed(string embed_code)
+        {
+            Type(INPUT_HOMEWORK_EMBED, embed_code);
+            return this;
+        }
+        public CoursesPage EnterHomeworkTestTitle(string homework_test_title)
+        {
+            Type(INPUT_HOMEWORK_TEST_TITLE, homework_test_title);
+            return this;
+        }
+        public CoursesPage EnterHomeworkTestDescription(string homework_test_description)
+        {
+            Type(INPUT_HOMEWORK_TEST_DESC, homework_test_description);
+            return this;
+        }
+        public CoursesPage EnterHomeworkTestPassPoint(int homework_test_pass_point)
+        {
+            Type(INPUT_HOMEWORK_TEST_PASS_POINT, homework_test_pass_point);
+            return this;
+        }
+        public CoursesPage EnterHomeworkTestRepeatNumber(int homework_test_repeat_number)
+        {
+            Type(INPUT_HOMEWORK_TEST_REPEAT_NUMBER, homework_test_repeat_number);
+            return this;
+        }
+        public CoursesPage SelectHomeworkTestType()
+        {
+            Click(SELECT_HOMEWORK_TEST);
+            return this;
+        }
+        public CoursesPage SetHomeworkStartDate(int yearParam = 0, string monthParam = null, string dayParam = null)
+        {
+            int year = yearParam == 0 ? Utils.Dates.GetCurrentYear() : yearParam;
+            string month = monthParam == null ? Utils.Dates.GetCurrentMonth() : monthParam;
+            string day = dayParam == null ? Utils.Dates.GetCurrentDay() : dayParam;
+
+            string getCurrentValueOfInput = GetAttribute(INPUT_HOMEWORK_START_DATE_NEW_MODEL_SELECT_DATA, "value");
+            string[] words = getCurrentValueOfInput.Split('/');
+            int getCurrentValueOfInputYear = Int32.Parse(words[2]);
+            int getCurrentValueOfInputMonth = Int32.Parse(words[1]);
+            string getCurrentValueOfInputDay = words[0];
+
+            try
+            {
+                Click(BUTTON_START_DATE_OPEN_DATEPICKER);
+                Console.WriteLine("clicked start date picker");
+                Click(BUTTON_START_DATE_CHOOSE_YEAR);
+                Console.WriteLine("clicked start date choose year");
+                if (year != getCurrentValueOfInputYear)
+                {
+                    if (year < getCurrentValueOfInputYear)
+                    {
+                        for (int i = getCurrentValueOfInputYear; i > year; i--)
+                        {
+                            Click(BUTTON_START_DATE_GO_PREVIOUS_YEAR);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = getCurrentValueOfInputYear; i < year; i++)
+                        {
+                            Click(BUTTON_START_DATE_GO_NEXT_YEAR);
+                        }
+                    }
+                }
+                Click(By.XPath("//span[contains(text(),'" + month + "')]"));
+                Click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[1]"));
+                Click(START_DATE_DONE);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Element not found:" + e);
+            }
+            Sleepms(500);
+            return this;
+        }
+        public CoursesPage SetHomeworkEndDate(int yearParam = 0, string monthParam = null, string dayParam = null)
+        {
+            int year = yearParam == 0 ? Utils.Dates.GetCurrentYear() : yearParam;
+            string month = monthParam == null ? Utils.Dates.GetCurrentMonth() : monthParam;
+            string day = dayParam == null ? Utils.Dates.GetCurrentDay() : dayParam;
+
+            string getCurrentValueOfInput = GetAttribute(INPUT_HOMEWORK_END_DATE_NEW_MODEL_SELECT_DATA, "value");
+            string[] words = getCurrentValueOfInput.Split('/');
+            int getCurrentValueOfInputYear = Int32.Parse(words[2]);
+            int getCurrentValueOfInputMonth = Int32.Parse(words[1]);
+            string getCurrentValueOfInputDay = words[0];
+
+            try
+            {
+                Click(BUTTON_END_DATE_OPEN_DATEPICKER);
+                Console.WriteLine("clicked end date picker");
+                Click(BUTTON_END_DATE_CHOOSE_YEAR);
+                Console.WriteLine("clicked start date choose year");
+                if (year != getCurrentValueOfInputYear)
+                {
+                    if (year < getCurrentValueOfInputYear)
+                    {
+                        for (int i = getCurrentValueOfInputYear; i > year; i--)
+                        {
+                            Click(BUTTON_END_DATE_GO_PREVIOUS_YEAR);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = getCurrentValueOfInputYear; i < year; i++)
+                        {
+                            Click(BUTTON_END_DATE_GO_NEXT_YEAR);
+                            Console.WriteLine("clicked end date go to next year " + i + " times");
+                        }
+                    }
+                }
+                Click(By.XPath("//span[contains(text(),'" + month + "')]"));
+                Console.WriteLine("clicked end date month " + month + " successfully");
+                Click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[2]"));
+
+                Console.WriteLine("clicked END date day " + day + " successfully");
+                Click(END_DATE_DONE);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Element not found:" + e);
+            }
+            Sleepms(500);
+            return this;
+        }
+
+
+
     }
 }

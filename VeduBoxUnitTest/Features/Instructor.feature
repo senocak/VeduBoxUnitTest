@@ -226,6 +226,7 @@ Scenario: 11_instructor_add_content_as_embed_code
 		| Key  | Value               |
 		| name | anil_vedubox_course |
 
+
 Scenario: 19_instructor_add_question_batch_question_from_excel
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
@@ -569,3 +570,237 @@ Scenario: 35_instructor_query_live
 	| endMinuteParam   | 55             |
 	| courseName       | defaultCourse1 |
 	Then instructor deletes live
+
+Scenario: 36_instructor_add_document_in_files
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor checks course is exist
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+	Given instructor adds new course with
+		| Key      | Value                          |
+		| name     | anil_vedubox_course_instructor |
+		| category | defaultCategory1               |
+    Then instructor add document in files
+	    | Key                 | Value                          |
+	    | coursename          | anil_vedubox_course_instructor |
+	    | categoryName        | anil_category                  |
+	    | addedCategoryName   | anil_category                  |
+	    | categoryTitle       | anil_title                     |
+	    | categoryDescription | anil_description               |
+    Then instructor delete course
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+
+Scenario: 37_instructor_add_video_in_files
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor checks course is exist
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+	Given instructor adds new course with
+		| Key      | Value                          |
+		| name     | anil_vedubox_course_instructor |
+		| category | defaultCategory1               |
+    Then instructor add video in files
+	    | Key                 | Value                          |
+	    | coursename          | anil_vedubox_course_instructor |
+	    | categoryName        | anil_category                  |
+	    | addedCategoryName   | anil_category                  |
+	    | categoryTitle       | anil_title                     |
+	    | categoryDescription | anil_description               |
+    Then instructor wait
+		| Key  | Value                          |
+		| time | 10 |
+    Then instructor delete course
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+    
+Scenario: 38_instructor_add_link_in_files
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor checks course is exist
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+	Given instructor adds new course with
+		| Key      | Value                          |
+		| name     | anil_vedubox_course_instructor |
+		| category | defaultCategory1               |
+    Then instructor add link in files
+	    | Key                 | Value                          |
+	    | coursename          | anil_vedubox_course_instructor |
+	    | categoryName        | anil_category                  |
+	    | addedCategoryName   | anil_category                  |
+	    | categoryTitle       | anil_title                     |
+	    | categoryDescription | anil_description               |
+	    | link                | https://github.com/senocak     |
+	Then instructor delete course
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |	
+
+Scenario: 39_instructor_add_embed_in_files
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor checks course is exist
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+	Given instructor adds new course with
+		| Key      | Value                          |
+		| name     | anil_vedubox_course_instructor |
+		| category | defaultCategory1               |
+    Then instructor add embed in files
+	    | Key                 | Value                                                             |
+	    | coursename          | anil_vedubox_course_instructor                                    |
+	    | categoryName        | anil_category                                                     |
+	    | addedCategoryName   | anil_category                                                     |
+	    | categoryTitle       | anil_title                                                        |
+	    | categoryDescription | anil_description                                                  |
+	    | embed_code          | <iframe src="https://www.youtube.com/embed/ZzBDAtbcFvM"></iframe> |
+	Then instructor delete course
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+
+Scenario: 44_instructor_add_document_in_homeworks
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor checks course is exist
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+	Given instructor adds new course with
+		| Key      | Value                          |
+		| name     | anil_vedubox_course_instructor |
+		| category | defaultCategory1               |
+    Then instructor add document in homework
+	    | Key                      | Value                          |
+	    | coursename               | anil_vedubox_course_instructor |
+	    | homework_title           | homework_title                 |
+	    | homework_description     | homework_desc                  |
+	    | pass_point               | 10                             |
+	    | weight_percentage        | 50                             |
+	    | homework_doc_title       | homework_doc_title             |
+	    | homework_doc_description | homework_doc_description       |
+    Then instructor delete course
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+
+Scenario: 45_instructor_add_video_in_homeworks
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor checks course is exist
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+	Given instructor adds new course with
+		| Key      | Value                          |
+		| name     | anil_vedubox_course_instructor |
+		| category | defaultCategory1               |
+    Then instructor add video in homework
+	    | Key                      | Value                          |
+	    | coursename               | anil_vedubox_course_instructor |
+	    | homework_title           | homework_title                 |
+	    | homework_description     | homework_desc                  |
+	    | pass_point               | 25                             |
+	    | weight_percentage        | 40                             |
+	    | homework_doc_title       | homework_doc_title             |
+	    | homework_doc_description | homework_doc_description       |
+	Then instructor wait
+		| Key  | Value                          |
+		| time | 10 |
+    Then instructor delete course
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+
+Scenario: 46_instructor_add_link_in_homeworks
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor checks course is exist
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+	Given instructor adds new course with
+		| Key      | Value                          |
+		| name     | anil_vedubox_course_instructor |
+		| category | defaultCategory1               |
+    Then instructor add link in homework
+	    | Key                      | Value                          |
+	    | coursename               | anil_vedubox_course_instructor |
+	    | homework_title           | homework_title                 |
+	    | homework_description     | homework_desc                  |
+	    | pass_point               | 50                             |
+	    | weight_percentage        | 15                             |
+	    | homework_doc_title       | homework_doc_title             |
+	    | homework_doc_description | homework_doc_description       |
+	    | link                     | https://github.com/senocak     |
+    Then instructor delete course
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+
+Scenario: 47_instructor_add_embed_in_homeworks
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor checks course is exist
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+	Given instructor adds new course with
+		| Key      | Value                          |
+		| name     | anil_vedubox_course_instructor |
+		| category | defaultCategory1               |
+    Then instructor add embed in homework
+	    | Key                      | Value                                                             |
+	    | coursename               | anil_vedubox_course_instructor                                    |
+	    | homework_title           | homework_title                                                    |
+	    | homework_description     | homework_desc                                                     |
+	    | pass_point               | 25                                                                |
+	    | weight_percentage        | 25                                                                |
+	    | homework_doc_title       | homework_doc_title                                                |
+	    | homework_doc_description | homework_doc_description                                          |
+	    | embed_code               | <iframe src="https://www.youtube.com/embed/ZzBDAtbcFvM"></iframe> |
+    Then instructor delete course
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+ 
+Scenario: 48_instructor_add_text_in_homeworks
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor checks course is exist
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+	Given instructor adds new course with
+		| Key      | Value                          |
+		| name     | anil_vedubox_course_instructor |
+		| category | defaultCategory1               |
+    Then instructor add text in homework
+	    | Key                      | Value                          |
+	    | coursename               | anil_vedubox_course_instructor |
+	    | homework_title           | homework_title                 |
+	    | homework_description     | homework_desc                  |
+	    | pass_point               | 25                             |
+	    | weight_percentage        | 10                             |
+	    | homework_doc_title       | homework_doc_title             |
+	    | homework_doc_description | homework_doc_description       |
+    Then instructor delete course
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+
+Scenario: 49_instructor_add_test_in_homeworks
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor checks course is exist
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+	Given instructor adds new course with
+		| Key      | Value                          |
+		| name     | anil_vedubox_course_instructor |
+		| category | defaultCategory1               |
+    Then instructor add test in homework
+	    | Key                         | Value                          |
+	    | coursename                  | anil_vedubox_course_instructor |
+	    | homework_title              | homework_title                 |
+	    | homework_description        | homework_desc                  |
+	    | pass_point                  | 30                             |
+	    | weight_percentage           | 20                             |
+	    | homework_test_title         | homework_test_title            |
+	    | homework_test_description   | homework_test_description      |
+	    | homework_test_pass_point    | 5                              |
+	    | homework_test_repeat_number | 10                             |
+    Then instructor delete course
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |

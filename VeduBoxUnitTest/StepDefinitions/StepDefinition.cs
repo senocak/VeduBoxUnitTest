@@ -31,7 +31,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 //WebBrowser.Driver.CaptureScreenShot(_scenarioContext.ScenarioInfo.Title);
                 Console.WriteLine("Title:" + ScenarioContext.Current.ScenarioInfo.Title + " is failed.");
             }
-            Driver.Quit();
+           Driver.Quit();
         }
         [Given(@"Open Kurumsal Login Page")]
         public void GivenOpenKurumsalLoginPage(){
@@ -344,7 +344,8 @@ namespace VeduBoxUnitTest.StepDefinitions{
         [Then(@"instructor delete course")]
         public void ThenİnstructorDeleteCourse(Table table){
             var dictionary = TableExtensions.ToDictionary(table);
-            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+            new HomePage(Driver)
+                .OpenCoursesPage(Constants.Roles.Instructor.ToString())
                     .SearchNewlyAddedCourseByName(dictionary["name"])
                     .DeleteAndAssertNewlyAddedCourseIfIsExist();
         }
@@ -2055,5 +2056,255 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .ClickSaveButtonInDocumentItem()
                 .Assert();
         }
+        [Then(@"instructor wait")]
+        public void GivenInstructorWait(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            Page.Sleepms(Int32.Parse(dictionary["time"]));
+            Console.WriteLine("waited for " + Int32.Parse(dictionary["time"]) + " seconds");
+        }
+        [Then(@"instructor add document in files")]
+        public void GivenInstructorAddDocumentInFile(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                .ClickCourses(dictionary["coursename"])
+                .ClickFiles()
+                .ClickAddCategory()
+                .EnterCategoryName(dictionary["categoryName"])
+                .ClickAddCategoryConfirm()
+                .Assert()
+                .ChooseCategory(dictionary["addedCategoryName"])
+                .ClickAddItemToCategoryButton()
+                .ChooseItemDocumentToCategory()
+                .ClickCategoryFileTypeOk()
+                .EnterCategoryTitle(dictionary["categoryTitle"])
+                .EnterCategoryDescription(dictionary["categoryDescription"])
+                .SelectFileDocument()
+                .ClickCategoryDocumentSave()
+                .Assert();
+        }
+        [Then(@"instructor add video in files")]
+        public void GivenInstructorAddVideoInFile(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                .ClickCourses(dictionary["coursename"])
+                .ClickFiles()
+                .ClickAddCategory()
+                .EnterCategoryName(dictionary["categoryName"])
+                .ClickAddCategoryConfirm()
+                .Assert()
+                .ChooseCategory(dictionary["addedCategoryName"])
+                .ClickAddItemToCategoryButton()
+                .ChooseItemVideoToCategory()
+                .ClickCategoryFileTypeOk()
+                .EnterCategoryTitle(dictionary["categoryTitle"])
+                .EnterCategoryDescription(dictionary["categoryDescription"])
+                .SelectFileVideo()
+                .ClickCategoryDocumentSave();
+            }
+        [Then(@"instructor add link in files")]
+        public void GivenInstructorAddLinkInFile(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                .ClickCourses(dictionary["coursename"])
+                .ClickFiles()
+                .ClickAddCategory()
+                .EnterCategoryName(dictionary["categoryName"])
+                .ClickAddCategoryConfirm()
+                .Assert()
+                .ChooseCategory(dictionary["addedCategoryName"])
+                .ClickAddItemToCategoryButton()
+                .ChooseItemLinkToCategory()
+                .ClickCategoryFileTypeOk()
+                .EnterCategoryTitle(dictionary["categoryTitle"])
+                .EnterCategoryDescription(dictionary["categoryDescription"])
+                .EnterCategoryLink(dictionary["link"])
+                .ClickCategoryDocumentSave()
+                .Assert();
+                }
+        [Then(@"instructor add embed in files")]
+        public void GivenInstructorAddEmbedInFile(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                .ClickCourses(dictionary["coursename"])
+                .ClickFiles()
+                .ClickAddCategory()
+                .EnterCategoryName(dictionary["categoryName"])
+                .ClickAddCategoryConfirm()
+                .Assert()
+                .ChooseCategory(dictionary["addedCategoryName"])
+                .ClickAddItemToCategoryButton()
+                .ChooseItemCodeToCategory()
+                .ClickCategoryFileTypeOk()
+                .EnterCategoryTitle(dictionary["categoryTitle"])
+                .EnterCategoryDescription(dictionary["categoryDescription"])
+                .EnterCategoryEmbed(dictionary["embed_code"])
+                .ClickCategoryDocumentSave()
+                .Assert();
+
+
+        }
+        [Then(@"instructor add document in homework")]
+        public void GivenInstructorAddDocumentInHomework(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                .ClickCourses(dictionary["coursename"])
+                .ClickCategoryUpdate()
+                .ClickHomework()
+                .ClickAddHomework()
+                .EnterHomeworkTitle(dictionary["homework_title"])
+                .EnterHomeworkDescription(dictionary["homework_description"])
+                .SetHomeworkStartDate()
+                .SetHomeworkEndDate()
+                .EnterHomeworkPassPoint(Int32.Parse(dictionary["pass_point"]))
+                .EnterHomeworkWeightPercentage(Int32.Parse(dictionary["weight_percentage"]))
+                .ClickHomeworkSave()
+                .Assert()
+                .ClickHomeworkAddItem()
+                .ChooseItemDocumentToCategory()
+                .SelectDocumentType()
+                .EnterHomeworkDocTitle(dictionary["homework_doc_title"])
+                .EnterHomeworkDocDescription(dictionary["homework_doc_description"])
+                .SelectHomeworkFileDocument()
+                .ClickHomeworkSave()
+                .Assert();
+        }
+        [Then(@"instructor add video in homework")]
+        public void GivenInstructorAddVideoInHomework(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                .ClickCourses(dictionary["coursename"])
+                .ClickCategoryUpdate()
+                .ClickHomework()
+                .ClickAddHomework()
+                .EnterHomeworkTitle(dictionary["homework_title"])
+                .EnterHomeworkDescription(dictionary["homework_description"])
+                .SetHomeworkStartDate()
+                .SetHomeworkEndDate()
+                .EnterHomeworkPassPoint(Int32.Parse(dictionary["pass_point"]))
+                .EnterHomeworkWeightPercentage(Int32.Parse(dictionary["weight_percentage"]))
+                .ClickHomeworkSave()
+                .Assert()
+                .ClickHomeworkAddItem()
+                .ChooseItemVideoToCategory()
+                .SelectDocumentType()
+                .EnterHomeworkDocTitle(dictionary["homework_doc_title"])
+                .EnterHomeworkDocDescription(dictionary["homework_doc_description"])
+                .SelectHomeworkFileVideo()
+                .ClickHomeworkSave();
+        }
+        [Then(@"instructor add link in homework")]
+        public void GivenInstructorAddLinkInHomework(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                .ClickCourses(dictionary["coursename"])
+                .ClickCategoryUpdate()
+                .ClickHomework()
+                .ClickAddHomework()
+                .EnterHomeworkTitle(dictionary["homework_title"])
+                .EnterHomeworkDescription(dictionary["homework_description"])
+                .SetHomeworkStartDate()
+                .SetHomeworkEndDate()
+                .EnterHomeworkPassPoint(Int32.Parse(dictionary["pass_point"]))
+                .EnterHomeworkWeightPercentage(Int32.Parse(dictionary["weight_percentage"]))
+                .ClickHomeworkSave()
+                .Assert()
+                .ClickHomeworkAddItem()
+                .ChooseItemLinkToCategory()
+                .SelectDocumentType()
+                .EnterHomeworkDocTitle(dictionary["homework_doc_title"])
+                .EnterHomeworkDocDescription(dictionary["homework_doc_description"])
+                .EnterHomeworkLink(dictionary["link"])
+                .ClickHomeworkSave()
+                .Assert();
+        }
+        [Then(@"instructor add embed in homework")]
+        public void GivenInstructorEmbedInHomework(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                .ClickCourses(dictionary["coursename"])
+                .ClickCategoryUpdate()
+                .ClickHomework()
+                .ClickAddHomework()
+                .EnterHomeworkTitle(dictionary["homework_title"])
+                .EnterHomeworkDescription(dictionary["homework_description"])
+                .SetHomeworkStartDate()
+                .SetHomeworkEndDate()
+                .EnterHomeworkPassPoint(Int32.Parse(dictionary["pass_point"]))
+                .EnterHomeworkWeightPercentage(Int32.Parse(dictionary["weight_percentage"]))
+                .ClickHomeworkSave()
+                .Assert()
+                .ClickHomeworkAddItem()
+                .ChooseItemCodeToCategory()
+                .SelectDocumentType()
+                .EnterHomeworkDocTitle(dictionary["homework_doc_title"])
+                .EnterHomeworkDocDescription(dictionary["homework_doc_description"])
+                .EnterHomeworkEmbed(dictionary["embed_code"])
+                .ClickHomeworkSave()
+                .Assert();
+        }
+        [Then(@"instructor add text in homework")]
+        public void GivenInstructorAddTextInHomework(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                .ClickCourses(dictionary["coursename"])
+                .ClickCategoryUpdate()
+                .ClickHomework()
+                .ClickAddHomework()
+                .EnterHomeworkTitle(dictionary["homework_title"])
+                .EnterHomeworkDescription(dictionary["homework_description"])
+                .SetHomeworkStartDate()
+                .SetHomeworkEndDate()
+                .EnterHomeworkPassPoint(Int32.Parse(dictionary["pass_point"]))
+                .EnterHomeworkWeightPercentage(Int32.Parse(dictionary["weight_percentage"]))
+                .ClickHomeworkSave()
+                .Assert()
+                .ClickHomeworkAddItem()
+                .ChooseItemTextToCategory()
+                .SelectDocumentType()
+                .EnterHomeworkDocTitle(dictionary["homework_doc_title"])
+                .EnterHomeworkDocDescription(dictionary["homework_doc_description"])
+                .ClickHomeworkSave()
+                .Assert();
+        }
+        [Then(@"instructor add test in homework")]
+        public void GivenInstructorAddTestInHomework(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                .ClickCourses(dictionary["coursename"])
+                .ClickCategoryUpdate()
+                .ClickHomework()
+                .ClickAddHomework()
+                .EnterHomeworkTitle(dictionary["homework_title"])
+                .EnterHomeworkDescription(dictionary["homework_description"])
+                .SetHomeworkStartDate()
+                .SetHomeworkEndDate()
+                .EnterHomeworkPassPoint(Int32.Parse(dictionary["pass_point"]))
+                .EnterHomeworkWeightPercentage(Int32.Parse(dictionary["weight_percentage"]))
+                .ClickHomeworkSave()
+                .Assert()
+                .ClickHomeworkAddItem()
+                .ChooseItemTestToCategory()
+                .SelectDocumentType()
+                .EnterHomeworkTestTitle(dictionary["homework_test_title"])
+                .EnterHomeworkTestDescription(dictionary["homework_test_description"])
+                .EnterHomeworkTestPassPoint(Int32.Parse(dictionary["homework_test_pass_point"]))
+                .EnterHomeworkTestRepeatNumber(Int32.Parse(dictionary["homework_test_repeat_number"]))
+                .SelectHomeworkTestType()
+                .ClickHomeworkSave()
+                .Assert();
+        }
+
+
     }
 }

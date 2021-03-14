@@ -596,7 +596,7 @@ Scenario: 28_admin_disccount_codes_add_is_not_limited
 	Given admin checks discount code is exist
 		| Key  | Value  |
 		| name | code12 |
-	Given admin adds new discount code with
+	Given admin adds new discount code with not limited
 		| Key         | Value                      |
 		| code        | code12                     |
 		| description | Anil Vedubox Discount Code |

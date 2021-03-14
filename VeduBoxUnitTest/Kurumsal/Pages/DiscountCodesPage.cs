@@ -26,6 +26,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By BUTTON_START_DATE_CHOOSE_YEAR = By.XPath("/html/body/div[3]/div/section/div/div[1]/div[3]/div/div/div[2]/form/div[1]/div[8]/div/p/ul/li[1]/div/table/thead/tr[1]/th[2]/button");
         private readonly By BUTTON_START_DATE_PREVIOUS_YEAR = By.XPath("//*[@id='discountCodeForm']/div[1]/div[8]/div/p/ul/li[1]/div/table/thead/tr[1]/th[1]/button");
         private readonly By BUTTON_START_DATE_NEXT_YEAR = By.XPath("//*[@id='discountCodeForm']/div[1]/div[8]/div/p/ul/li[1]/div/table/thead/tr[1]/th[3]/button");
+        private readonly By BUTTON_NOT_LIMITED_START_DATE_CHOOSE_YEAR = By.XPath("/html/body/div[3]/div/section/div/div[1]/div[3]/div/div/div[2]/form/div[1]/div[7]/div/p/ul/li[1]/div/table/thead/tr[1]/th[2]/button");
 
         private readonly By INPUT_END_DATE_TEXTBOX = By.CssSelector("input[ng-model='endDate']");
         private readonly By BUTTON_END_DATE_PICKER = By.CssSelector("button[ng-click='endDatePicker($event)']");
@@ -33,7 +34,9 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By BUTTON_END_DATE_PREVIOUS_YEAR = By.XPath("//*[@id='discountCodeForm']/div[1]/div[9]/div/p/ul/li[1]/div/table/thead/tr[1]/th[1]/button");
         private readonly By BUTTON_END_DATE_NEXT_YEAR = By.XPath("//*[@id='discountCodeForm']/div[1]/div[9]/div/p/ul/li[1]/div/table/thead/tr[1]/th[3]/button");
         private readonly By BUTTON_SAVE = By.XPath("//*[@id='discountCodeForm']/div[2]/button[1]");
-
+        private readonly By BUTTON_NOT_LIMITED_END_DATE_CHOOSE_YEAR = By.XPath("/html/body/div[3]/div/section/div/div[1]/div[3]/div/div/div[2]/form/div[1]/div[8]/div/p/ul/li[1]/div/table/thead/tr[1]/th[2]/button");
+        private readonly By BUTTON_NOT_LIMITED_END_DATE_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[2]");
+        private readonly By BUTTON_NOT_LIMITED_END_DATE_PREVIOUS_YEAR = By.XPath("(//button[@ng-click='move(-1)'])[2]");
         public DiscountCodesPage(IWebDriver wd, string user) : base(wd){
             USER = user;
         }
@@ -162,9 +165,100 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
                         }
                     }
                 }
+
+                Click(By.XPath("//span[contains(text(),'" + month + "')]"));
+                Click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[2]"));
+                
+            }catch (Exception e){
+                Console.WriteLine("Element not found:" + e);
+            }
+            Sleepms(500);
+            return this;
+        }
+        public DiscountCodesPage SetNotLimitedStartDate(int yearParam = 0, string monthParam = null, string dayParam = null)
+        {
+            int year = yearParam == 0 ? Utils.Dates.GetCurrentYear() : yearParam;
+            string month = monthParam == null ? Utils.Dates.GetCurrentMonth() : monthParam;
+            string day = dayParam == null ? Utils.Dates.GetCurrentDay() : dayParam;
+
+            string getCurrentValueOfInput = GetAttribute(INPUT_START_DATE_TEXTBOX, "value");
+
+            string[] words = getCurrentValueOfInput.Split('/');
+            string getCurrentValueOfInputDay = words[0];
+            int getCurrentValueOfInputMonth = Int32.Parse(words[1]);
+            int getCurrentValueOfInputYear = Int32.Parse(words[2]);
+
+            try
+            {
+                Click(BUTTON_START_DATE_PICKER);
+                Click(BUTTON_NOT_LIMITED_START_DATE_CHOOSE_YEAR);
+                if (year != getCurrentValueOfInputYear)
+                {
+                    if (year < getCurrentValueOfInputYear)
+                    {
+                        for (int i = getCurrentValueOfInputYear; i > year; i--)
+                        {
+                            Click(BUTTON_START_DATE_PREVIOUS_YEAR);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = getCurrentValueOfInputYear; i < year; i++)
+                        {
+                            Click(BUTTON_START_DATE_NEXT_YEAR);
+                        }
+                    }
+                }
                 Click(By.XPath("//span[contains(text(),'" + month + "')]"));
                 Click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[1]"));
-            }catch (Exception e){
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Element not found:" + e);
+            }
+            Sleepms(500);
+            return this;
+        }
+        public DiscountCodesPage SetNotLimitedEndDate(int yearParam = 0, string monthParam = null, string dayParam = null)
+        {
+            int year = yearParam == 0 ? Utils.Dates.GetCurrentYear() : yearParam;
+            string month = monthParam == null ? Utils.Dates.GetCurrentMonth() : monthParam;
+            string day = dayParam == null ? Utils.Dates.GetCurrentDay() : dayParam;
+
+            string getCurrentValueOfInput = GetAttribute(INPUT_END_DATE_TEXTBOX, "value");
+            string[] words = getCurrentValueOfInput.Split('/');
+            string getCurrentValueOfInputDay = words[0];
+            int getCurrentValueOfInputMonth = Int32.Parse(words[1]);
+            int getCurrentValueOfInputYear = Int32.Parse(words[2]);
+
+            try
+            {
+                Click(BUTTON_END_DATE_PICKER);
+                Click(BUTTON_NOT_LIMITED_END_DATE_CHOOSE_YEAR);
+                if (year != getCurrentValueOfInputYear)
+                {
+                    if (year < getCurrentValueOfInputYear)
+                    {
+                        for (int i = getCurrentValueOfInputYear; i > year; i--)
+                        {
+                            Click(BUTTON_NOT_LIMITED_END_DATE_PREVIOUS_YEAR);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = getCurrentValueOfInputYear; i < year; i++)
+                        {
+                            Click(BUTTON_NOT_LIMITED_END_DATE_NEXT_YEAR);
+                        }
+                    }
+                }
+
+                Click(By.XPath("//span[contains(text(),'" + month + "')]"));
+                Click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[2]"));
+
+            }
+            catch (Exception e)
+            {
                 Console.WriteLine("Element not found:" + e);
             }
             Sleepms(500);

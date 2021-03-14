@@ -99,11 +99,11 @@ Scenario: 06_instructor_add_webinar_join_webinar
 		| registrationLimit | 50                      |
 		| description       | Deneme 123              |
 	Then instructor copies webinar URL with
-		| Key       | Value           |
-		| firstName | Lorem           |
-		| lastName  | Ipsum           |
-		| phone     | 123456789012    |
-		| email     | lorem@ipsum.com |
+		| Key          | Value           |
+		| firstName    | Lorem           |
+		| lastName     | Ipsum           |
+		| email        | lorem@ipsum.com |
+		| confirmEmail | lorem@ipsum.com |
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
 	Then instructor deletes webinar with

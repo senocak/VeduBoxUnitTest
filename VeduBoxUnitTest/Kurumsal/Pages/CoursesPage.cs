@@ -12,9 +12,9 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By INPUT_NAME_ADMIN = By.CssSelector("input[ng-model='course.name']");
         private readonly By INPUT_NAME_INSTRUCTOR = By.CssSelector("input[ng-model='courseAndPackage.courseName']");
         private readonly By INPUT_TAGS = By.XPath("//*[@id='courseForm']/div[1]/div[2]/div/div/input");
-        private readonly By DIV_DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By DIV_DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[5]/div/div/div/div/form/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
         private readonly By DIV_CREATE_COURSE_DESCRIPTION = By.XPath("/html/body/div[3]/div/section/div/div[1]/div[3]/div/div/div[2]/form/div[1]/div[3]/div/text-angular/div[2]/div[3]");
-        private readonly By DIV_EMBEDDED_DESCRIPTION = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By DIV_EMBEDDED_DESCRIPTION = By.CssSelector("div[placeholder='Description']");
         private readonly By SELECT_CATEGORY_ADMIN = By.CssSelector("select[ng-model='course.categoryId']");
         private readonly By SELECT_CATEGORY_INSTRUCTOR = By.CssSelector("select[ng-model='courseAndPackage.categoryId']");
         private readonly By SELECT_TEACHER = By.CssSelector("select[ng-model='course.teacherUserId']");
@@ -39,7 +39,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By DIV_SELECT_RESOURCE_DOC = By.Id("rescourceTypeDoc");
         private readonly By BUTTON_RESOURCE_OK = By.Id("rescourceTypeOkBtn");
         private readonly By INPUT_RESOURCE_TITLE = By.Id("txtName");
-        private readonly By DIV_RESOURCE_DESC = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By DIV_RESOURCE_DESC = By.CssSelector("div[placeholder='Description']");
         private readonly By CHECKBOX_RESOURCE_DOWNLOADABLE_CHECK = By.Id("resourceTypeDocDownload");
         private readonly By CHECKBOX_RESOURCE_VIDEO_SPEED_CONTROL= By.CssSelector("input[ng-model='resource.videoSpeedControl']");
         private readonly By CHECKBOX_RESOURCE_DOC_REVIEW_CHECK = By.Id("resourceTypeDocReview");
@@ -53,7 +53,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By INPUT_RESOURCE_EMBED_CODE = By.CssSelector("textarea[ng-model='resource.code']");
         private readonly By INPUT_RESOURCE_TYPE_DOC_FILE = By.Id("resourceTypeDocFile");
         private readonly By INPUT_RESOURCE_TYPE_DOC_VIDEO1 = By.Id("fileVideo");
-        private readonly By BUTTON_RESOURCE_VIDEO_UPLOAD_BUTTON = By.XPath("//*[@id='resourceForm']/div[1]/div[5]/div/button");
+        private readonly By BUTTON_RESOURCE_VIDEO_UPLOAD_BUTTON = By.CssSelector("button[translate='common.upload']");
         private readonly By INPUT_RESOURCE_TYPE_DOC_VIDEO2 = By.Id("fileTwo");
         private readonly By CHECKBOX_RESOURCE_VIDEO_PREVIEW = By.CssSelector("input[ng-model='resource.preview']");
         private readonly By CHECKBOX_RESOURCE_VIDEO_DOWNLOADABLE = By.CssSelector("input[ng-model='resource.downloadable']");
@@ -65,7 +65,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By INPUT_RESOURCE_VIDEO_VIMEO_TEXT = By.Id("resourceTypeVideoIfVimeoIdValue");
         private readonly By LABEL_UPLOADED_FILE = By.CssSelector("label[ng-bind='resource.fileName']");
         private readonly By SELECT_RESOURCE_TEST = By.Id("rescourceTypeTest");
-        private readonly By DIV_EMBEDDED_DESCRIPTION_FOR_TEST = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]");
+        private readonly By DIV_EMBEDDED_DESCRIPTION_FOR_TEST = By.CssSelector("div[placeholder='Description']");
         private readonly By INPUT_PASS_POINT = By.CssSelector("input[ng-model='resource.passPoint']");
         private readonly By INPUT_REPEAT_NUMBER = By.CssSelector("input[ng-model='resource.repeatNumber']");
         private readonly By CHECK_REDIRECT_TO_RESULT_PAGE_AFTER_TEST = By.CssSelector("input[ng-model='resource.redirectToResultPageAfterFinished']");
@@ -74,7 +74,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By CHECK_ARE_STUDENT_ANSWERS_SHOWN_IN_EXAM_RESULT = By.CssSelector("input[ng-model='resource.areStudentAnswersShownInExamResult']");
         private readonly By RADIO_FIRST_TEST = By.XPath("//*[@id='resourceForm']/div[1]/div[18]/div/div[2]/table/tbody/tr[1]/td[2]/input");
         private readonly By SELECT_RESOURCE_TEXT = By.Id("rescourceTypeText");
-        private readonly By DIV_RESOURCE_TEXT_DESCRIPTION= By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[1]/div[2]/div/text-angular/div[2]/div[3]");
+        private readonly By DIV_RESOURCE_TEXT_DESCRIPTION= By.XPath("/html/body/div[6]/div/div/div/div[5]/div/div/div/div/form/div[1]/div[2]/div/text-angular/div[2]/div[3]");
         private readonly By BUTTON_RESOURCE_TEXT_SAVE = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[2]/div/div/button[1]");
         private readonly string UPLOADED_FILE_TEXT = "video.mp4";
         private readonly By BUTTON_COURSES_FILES = By.CssSelector("a[ng-bind*='common.files']");
@@ -131,6 +131,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By BUTTON_END_DATE_GO_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[2]");
         private readonly By START_DATE_DONE = By.XPath("(//button[@ng-click='close()'])[1]");
         private readonly By END_DATE_DONE = By.XPath("(//button[@ng-click='close()'])[2]");
+        private readonly By VIMEO = By.Id("videoSaveOptionVimeo");
 
 
         private string USER;
@@ -361,6 +362,11 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         }
         public CoursesPage ClickResourceTypeEmbedCode(){
             Click(SELECT_RESOURCE_EMBED_CODE);
+            return this;
+        }
+        public CoursesPage ClickVimeo()
+        {
+            Click(VIMEO);
             return this;
         }
         public CoursesPage SelectVideo1(){

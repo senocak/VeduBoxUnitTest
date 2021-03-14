@@ -31,7 +31,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 //WebBrowser.Driver.CaptureScreenShot(_scenarioContext.ScenarioInfo.Title);
                 Console.WriteLine("Title:" + ScenarioContext.Current.ScenarioInfo.Title + " is failed.");
             }
-           Driver.Quit();
+         //  Driver.Quit();
         }
         [Given(@"Open Kurumsal Login Page")]
         public void GivenOpenKurumsalLoginPage(){
@@ -392,10 +392,10 @@ namespace VeduBoxUnitTest.StepDefinitions{
                     .GoToWebinar()
                     .EnterFirstName(dictionary["firstName"])
                     .EnterLastName(dictionary["lastName"])
-                    .EnterPhoneNumber(dictionary["phone"])
                     .EnterEmail(dictionary["email"])
-                    .SetAgreePolicy()
-                    .SetGpdrPolicy()
+                    .EnterConfirmEmail(dictionary["confirmEmail"])
+                   // .SetAgreePolicy()
+                   // .SetGpdrPolicy()
                     .ClickCreateAccount()
                     .AssertEmailSentText();
         }
@@ -543,6 +543,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                     .OpenCourseUpdate()
                     .AddResource()
                     .ClickResourceTypeVideo()
+                    .ClickVimeo()
                     //.clickOkAfterType()
                     .EnterResourceTitle(dictionary["title"])
                     .EnterResourceDescription(dictionary["desc"])
@@ -573,6 +574,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                     .OpenCourseUpdate()
                     .AddResource()
                     .ClickResourceTypeVideo()
+                    .ClickVimeo()
                     //.clickOkAfterType()
                     .EnterResourceTitle(dictionary["title"])
                     .EnterResourceDescription(dictionary["desc"])
@@ -902,7 +904,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                .SelectShowToStudents()
                .SelectShowToTeachers()
                .SelectShowToParents()
-               .EnterEndDate()
+               //.EnterEndDate()
                .ClickSaveButton()
                .Assert();
         }
@@ -1482,6 +1484,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .SaveSubjectTitle()
                 .AddResource()
                 .ClickResourceTypeVideo()
+                .ClickVimeo()
                 .EnterResourceTitle(dictionary["resource_title"])
                 .EnterResourceDescription(dictionary["resource_description"])
                 .SelectVideo1()
@@ -1507,6 +1510,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .SaveSubjectTitle()
                 .AddResource()
                 .ClickResourceTypeVideo()
+                .ClickVimeo()
                 .EnterResourceTitle(dictionary["resource_title"])
                 .EnterResourceDescription(dictionary["resource_description"])
                 .SelectVimeoId()
@@ -1623,7 +1627,24 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .SelectIsLimited(Boolean.Parse(dictionary["limit"]))
                 .EnterLimit(dictionary.ContainsKey("usage_limit") ? dictionary["usage_limit"] : null)
                 .SetStartDate()
-                .SetEndDate(Utils.Dates.GetNextYear(NEXT_YEAR), Utils.Dates.GetNextMonth(Months.April), Utils.Dates.GetNextDay(30))
+                .SetEndDate(Utils.Dates.GetNextYear(NEXT_YEAR), Utils.Dates.GetNextMonth(Months.April), Utils.Dates.GetNextDay(15))
+                .ClickSave()
+                .Assert();
+        }
+        [Given(@"admin adds new discount code with not limited")]
+        public void GivenAdminAddsNewDiscountCodeWithNotLimited(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenDiscountCodesPage(Constants.Roles.Admin.ToString())
+                .ClickAddNew()
+                .EnterCode(dictionary["code"])
+                .EnterDescription(dictionary["description"])
+                .EnterPercentage(dictionary["percentage"])
+                .SelectIsLimited(Boolean.Parse(dictionary["limit"]))
+                .EnterLimit(dictionary.ContainsKey("usage_limit") ? dictionary["usage_limit"] : null)
+                .SetNotLimitedStartDate()
+                .SetNotLimitedEndDate(Utils.Dates.GetNextYear(NEXT_YEAR), Utils.Dates.GetNextMonth(Months.April), Utils.Dates.GetNextDay(15))
                 .ClickSave()
                 .Assert();
         }

@@ -16,7 +16,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private static By CHECKBOX_SHOW_TO_STUDENTS = By.CssSelector("input[ng-model='announcement.showStudents']");
         private static By CHECKBOX_SHOW_TO_TEACHERS = By.CssSelector("input[ng-model='announcement.showTeachers']");
         private static By CHECKBOX_SHOW_TO_PARENTS = By.CssSelector("input[ng-model='announcement.showParents']");
-        private static By INPUT_END_DATE = By.Id("dpEndDate");
+        private static By INPUT_END_DATE = By.CssSelector("button[ng-click='endDatePicker($event)']");
         private static By BUTTON_SAVE = By.CssSelector("button[type='submit'][form='announcementForm']");
         private static By BUTTON_THREE_POINTS = By.CssSelector("button.btn.btn-link.dropdown-toggle");
         private static By BUTTON_DELETE_USER = By.CssSelector("button[ng-click='delete(announcement)']");

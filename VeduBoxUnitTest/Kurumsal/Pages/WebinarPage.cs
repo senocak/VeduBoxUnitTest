@@ -10,13 +10,13 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
     class WebinarPage : Page{
 
         private string USER;
-        private readonly By INPUT_FIRST_NAME = By.CssSelector("input[ng-model='account.fname']");
-        private readonly By INPUT_LAST_NAME = By.CssSelector("input[ng-model='account.lname']");
-        private readonly By INPUT_PHONE_NUMBER = By.CssSelector("input[ng-model='account.phoneNumber']");
-        private readonly By INPUT_EMAIL = By.CssSelector("input[ng-model='account.email']");
+        private readonly By INPUT_FIRST_NAME = By.Id("question_first_name");
+        private readonly By INPUT_LAST_NAME = By.Id("question_last_name");
+        private readonly By INPUT_CONFIRM_EMAIL = By.Id("question_confirm_email");
+        private readonly By INPUT_EMAIL = By.Id("question_email");
         private readonly By CHECK_GPDR = By.CssSelector("input[ng-model='isGdprRead']");
         private readonly By CHECK_IS_TERM = By.CssSelector("input[ng-model='isTermRead']");
-        private readonly By BUTTON_CREATE_ACCOUNT = By.CssSelector("button[ng-click='submit()']");
+        private readonly By BUTTON_CREATE_ACCOUNT = By.Id("btnSubmit");
         
         public WebinarPage(IWebDriver wd, string user) : base(wd){
             USER = user;
@@ -29,8 +29,8 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             Type(INPUT_LAST_NAME, name);
             return this;
         }
-        public WebinarPage EnterPhoneNumber(String number){
-            Type(INPUT_PHONE_NUMBER, number);
+        public WebinarPage EnterConfirmEmail(String confirmMail){
+            Type(INPUT_CONFIRM_EMAIL, confirmMail);
             return this;
         }
         public WebinarPage EnterEmail(String mail){
@@ -56,7 +56,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             return this;
         }
         public WebinarPage AssertEmailSentText(){
-            AssertionCustom.AssertElementVisible("Element Not Found", Driver, By.XPath("//*[contains(text(), 'The email sent')]"));
+            AssertionCustom.AssertElementVisible("Element Not Found", Driver, By.XPath("//*[contains(text(), 'Webinar Registration Approved')]"));
             return this;
         }
     }

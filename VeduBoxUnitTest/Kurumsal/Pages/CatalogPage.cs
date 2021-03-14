@@ -11,7 +11,8 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By BUTTON_ADD_NEW = By.CssSelector("button[ui-sref='veduBox.admin.packages.detail({id: 0})']");
         private readonly By INPUT_NAME = By.CssSelector("input[ng-model='package.name']");
         private readonly By INPUT_TAGS = By.XPath("//*[@id='packageForm']/div[1]/div[2]/div/div/input");
-        private readonly By TEXTAREA_DESCRIPTION = By.CssSelector("textarea[ng-model='package.description']");
+        //private readonly By TEXTAREA_DESCRIPTION = By.CssSelector("textarea[ng-model='package.description']");
+        private readonly By TEXTAREA_DESCRIPTION = By.XPath("/html/body/div[3]/div/section/div/div[1]/div[3]/div/div[2]/form/div[1]/div[4]/div/text-angular/div[2]/div[3]");
         private readonly By BUTTON_SUBMIT = By.CssSelector("button[type='submit']:nth-child(1)");
         private readonly By ALERT_SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
         private readonly By INPUT_SEARCH_BOX = By.CssSelector("input.form-control.vedu-search");

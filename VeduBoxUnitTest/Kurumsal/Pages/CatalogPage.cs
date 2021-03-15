@@ -227,7 +227,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
                 }
                 Click(By.XPath("//span[contains(text(),'" + month + "')]"));
                 Console.WriteLine("clicked end date month " + month + " successfully");
-                Click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[2]"));
+                Click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[4]"));
 
                 Console.WriteLine("clicked start date day " + day + " successfully");
             }catch (Exception e){

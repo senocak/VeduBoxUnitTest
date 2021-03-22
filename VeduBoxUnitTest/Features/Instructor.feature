@@ -470,6 +470,15 @@ Scenario: 26_instructor_answers_Question_And_Answer
 	| answer | anil answer the question |
 	Then instructor deletes new Q&A
 
+Scenario: 27_instructor_add_new_support
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor adds new support
+		| Key          	| Value                 |
+		| subject		| anil_vedubox_support	|
+		| description	| anil_vedubox_support	|
+		| new_course 	| false 				|
+
 Scenario: 22_instructor_add_test_poll_open_ended
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"

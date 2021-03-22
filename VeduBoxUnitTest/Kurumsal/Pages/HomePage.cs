@@ -34,13 +34,14 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By BLOG = By.CssSelector("a[title='Blog']");
         private readonly By ACTIVATION_CODES = By.CssSelector("a[title='Activation Codes']");
         private readonly By HELP = By.CssSelector("a[title='Help']");
+        private readonly By SUPPORT = By.CssSelector("a[title='Support']");
         private readonly By USERNAME_LINK = By.CssSelector("span[ng-bind='$root.user.firstName | limitTo: 8']");
         private readonly By SWITCH_TO_ROLE = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/ul/li[3]/a");
         private readonly By ROLE_MODAL = By.CssSelector("a[ng-click='openSwitchRoleModal(role)']");
         private readonly By PASSWORD = By.CssSelector("input[ng-model='loginData.password']");
         private readonly By SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div[2]/button[1]");
         private readonly By ROLE_TEXT = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/a/span[2]");
-        
+
         private readonly By INPUT_SEARCH_FORUM = By.CssSelector("input[ng-model='stext']");
         private readonly By BUTTON_DELETE_FORUM = By.CssSelector("button[ng-click='deletePost(post)']");
         private readonly By ALERT_ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
@@ -385,6 +386,16 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         public HomePage ClickPostForum() {
             Click(BUTTON_FORUM_POST_BUTTON);
             return this;
+        }
+        public SupportPage OpenSupportPage(string user){
+            USER = user;
+            try{
+                Click(SUPPORT);
+            }catch (Exception e){
+                Console.WriteLine("Error occured in OpenSupportPage, user: " + user + ", Error is: " + e.Message);
+            }
+            Console.WriteLine(user + ": clicked OpenSupportPage element");
+            return new SupportPage(Driver, user);
         }
     }
 }

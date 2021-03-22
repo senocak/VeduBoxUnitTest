@@ -2339,7 +2339,6 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .ClickPostForum();
             //.Assert();
         }
-
         [Given(@"admin deletes added forum")]
         public void GivenAdminDeletesAddedForum(Table table) {
             var dictionary = TableExtensions.ToDictionary(table);
@@ -2347,6 +2346,18 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .EnterForumSearch(dictionary["name"])
                 .ClickDeleteForumButton()
                 .ClickAreUSure()
+                .Assert();
+        }
+        [Given(@"instructor adds new support")]
+        public void InstructorAddsNewSupport(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenSupportPage(Constants.Roles.Instructor.ToString())
+                .EnterSubject(dictionary["subject"])
+                .EnterDesc(dictionary["description"])
+                .EnterImage()
+                .SetNewCourseDemand(Convert.ToBoolean(dictionary["new_course"]))
+                .ClickSubmit()
                 .Assert();
         }
     }

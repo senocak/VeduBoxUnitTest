@@ -479,6 +479,15 @@ Scenario: 27_instructor_add_new_support
 		| description	| anil_vedubox_support	|
 		| new_course 	| false 				|
 
+Scenario: 28_instructor_add_new_support_is_new_course_demand
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor adds new support
+		| Key          	| Value                 |
+		| subject		| anil_vedubox_support	|
+		| description	| anil_vedubox_support	|
+		| new_course 	| true 				|
+
 Scenario: 22_instructor_add_test_poll_open_ended
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"

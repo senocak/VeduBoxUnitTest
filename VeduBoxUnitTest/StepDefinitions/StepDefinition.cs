@@ -2360,5 +2360,52 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .ClickSubmit()
                 .Assert();
         }
+        
+        
+        
+        
+        
+        
+        
+        [Given(@"instructor checks images category is exist")]
+        public void GivenInstructorChecksImageCategoryIsExist(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenImagePoolPage(Constants.Roles.Instructor.ToString())
+                .SearchImageCategoryAndDeleteIt(dictionary["name"]);
+        }
+        [Then(@"instructor adds new images category")]
+        public void GivenInstructorAddsImageCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenImagePoolPage(Constants.Roles.Instructor.ToString())
+                .ClickAddButton()
+                .EnterName(dictionary["name"])
+                .SubmitAdd()
+                .Assert();
+        }
+        [Then(@"instructor update images category")]
+        public void GivenInstructorUpdateImageCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenImagePoolPage(Constants.Roles.Instructor.ToString())
+                .ClickName(dictionary["name"])
+                .EnterName(dictionary["name"])
+                .EnterImage()
+                .EnterImageText(dictionary["name"])
+                .SubmitUpdate()
+                .Assert();
+        }
+        [Given(@"instructor deletes added images category")]
+        public void GivenInstructorDeleteImageCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenImagePoolPage(Constants.Roles.Instructor.ToString())
+                .ClickName(dictionary["name"])
+                .ClickDeleteButton()
+                .ClickAreUSure()
+                .Assert();
+            // TODO: Images are not changing when category is selected. Test is failing for that reason
+        }
     }
 }

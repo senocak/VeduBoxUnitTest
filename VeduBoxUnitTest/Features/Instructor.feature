@@ -520,6 +520,27 @@ Scenario: 0_instructor_add_exam_with_default_params
 		| Key  | Value                |
 		| name | anil_instructor_exam |
 
+
+
+
+Scenario: 30_instructor_add_new_picture_image_pool
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given instructor checks images category is exist
+		| Key  | Value                   |
+		| name | instructor anil new images category  |
+	Then instructor adds new images category
+		| Key  | Value                   |
+		| name | instructor anil new images category  |
+	Then instructor update images category
+		| Key  | Value                   |
+		| name | instructor anil new images category  |
+	Given instructor deletes added images category
+		| Key  | Value                   |
+		| name | instructor anil new images category  |
+	
+	
+
 Scenario: 31_instructor_add_poll_question_multiple
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"

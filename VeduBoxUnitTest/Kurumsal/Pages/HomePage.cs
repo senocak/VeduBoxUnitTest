@@ -41,6 +41,13 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By SAVE_BUTTON = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div[2]/button[1]");
         private readonly By ROLE_TEXT = By.XPath("//*[@id='top-navbar']/ul[3]/li[5]/a/span[2]");
         
+        private readonly By INPUT_SEARCH_FORUM = By.CssSelector("input[ng-model='stext']");
+        private readonly By BUTTON_DELETE_FORUM = By.CssSelector("button[ng-click='deletePost(post)']");
+        private readonly By ALERT_ARE_U_SURE_OK = By.CssSelector("button.msc-ok");
+        private readonly By ALERT_SUCCESS = By.CssSelector("[class='toast ng-scope toast-success']");
+        private readonly By DIV_TEXT_FORUM = By.CssSelector("div[ng-model='html']");
+        private readonly By BUTTON_FORUM_POST_BUTTON = By.CssSelector("button[ng-click='createPost(shareMain); shareMain=false']");
+
         private string USER;
         public HomePage(IWebDriver wd) : base(wd){}
         public HomePage ClickUpdateAcceptButton(){
@@ -341,6 +348,43 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             }
             Console.WriteLine(user + ": clicked openDiscountCodesPage element");
             return new DiscountCodesPage(Driver, user);
+        }
+        public HomePage SearchForumAndDeleteIt(string text) {
+            EnterForumSearch(text);
+            try {
+                ClickDeleteForumButton();
+                ClickAreUSure();
+                Assert();
+            }catch (Exception e) {
+                Console.WriteLine("Error occured in SearchForumAndDeleteIt. Error is: " + e.Message);
+                return null;
+            }
+            EnterForumSearch("");
+            return this;
+        }
+        public HomePage ClickDeleteForumButton() {
+            Click(BUTTON_DELETE_FORUM);
+            return this;
+        }
+        public HomePage EnterForumSearch(string text) {
+            Type(INPUT_SEARCH_FORUM, text);
+            return this;
+        }
+        public HomePage ClickAreUSure() {
+            Click(ALERT_ARE_U_SURE_OK);
+            return this;
+        }
+        public HomePage Assert() {
+            AssertionCustom.AssertElementVisible("Element Not Found", Driver, ALERT_SUCCESS);
+            return this;
+        }
+        public HomePage EnterDescription(string description){
+            Type(DIV_TEXT_FORUM, description);
+            return this;
+        }
+        public HomePage ClickPostForum() {
+            Click(BUTTON_FORUM_POST_BUTTON);
+            return this;
         }
     }
 }

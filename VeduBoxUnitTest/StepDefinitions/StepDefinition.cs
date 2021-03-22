@@ -2326,6 +2326,28 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .Assert();
         }
 
+        [Given(@"admin checks forum exists")]
+        public void GivenAdminChecksForumExist(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver).SearchForumAndDeleteIt(dictionary["name"]);
+        }
+        [Then(@"admin adds new forum")]
+        public void GivenAdminAddsNewForum(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .EnterDescription(dictionary["name"])
+                .ClickPostForum();
+            //.Assert();
+        }
 
+        [Given(@"admin deletes added forum")]
+        public void GivenAdminDeletesAddedForum(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .EnterForumSearch(dictionary["name"])
+                .ClickDeleteForumButton()
+                .ClickAreUSure()
+                .Assert();
+        }
     }
 }

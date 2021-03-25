@@ -166,6 +166,7 @@
     <Compile Include="Kurumsal\Pages\LoginPage.cs" />
     <Compile Include="Kurumsal\Pages\ManagersPage.cs" />
     <Compile Include="Kurumsal\Pages\QuestionsAndAnswersPage.cs" />
+    <Compile Include="Kurumsal\Pages\SupportPage.cs" />
     <Compile Include="Kurumsal\Pages\TeachersPage.cs" />
     <Compile Include="Kurumsal\Pages\OpenUrl.cs" />
     <Compile Include="Kurumsal\Pages\Page.cs" />

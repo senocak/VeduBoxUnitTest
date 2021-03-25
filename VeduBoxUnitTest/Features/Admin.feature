@@ -962,3 +962,16 @@ Scenario: 50_admin_add_embed_in_help
 	Given admin deletes added help
 		| Key  | Value                   |
 		| name | anil new embed in help  |
+
+Scenario: 51_admin_new_forum_post_in_mainpage
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given admin checks forum exists
+		| Key  | Value           |
+		| name | anil new forum  |
+	Then admin adds new forum
+		| Key  | Value           |
+		| name | anil new forum  |
+	Given admin deletes added forum
+		| Key  | Value           |
+		| name | anil new forum  |

@@ -74,6 +74,7 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By CHECK_ARE_STUDENT_ANSWERS_SHOWN_IN_EXAM_RESULT = By.CssSelector("input[ng-model='resource.areStudentAnswersShownInExamResult']");
         private readonly By RADIO_FIRST_TEST = By.XPath("//*[@id='resourceForm']/div[1]/div[18]/div/div[2]/table/tbody/tr[1]/td[2]/input");
         private readonly By SELECT_RESOURCE_TEXT = By.Id("rescourceTypeText");
+        private readonly By SELECT_RESOURCE_INTERACTIVE_VIDEO = By.Id("rescourceTypeInteractiveVideo");
         private readonly By DIV_RESOURCE_TEXT_DESCRIPTION= By.XPath("/html/body/div[6]/div/div/div/div[5]/div/div/div/div/form/div[1]/div[2]/div/text-angular/div[2]/div[3]");
         private readonly By BUTTON_RESOURCE_TEXT_SAVE = By.XPath("/html/body/div[6]/div/div/div/div[4]/div/div/div/div/form/div[2]/div/div/button[1]");
         private readonly string UPLOADED_FILE_TEXT = "video.mp4";
@@ -405,6 +406,10 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             Click(BUTTON_RESOURCE_LINK_SAVE);
             return this;
         }
+        public CoursesPage ClickInteractiveVideoSave(){
+            Click(By.CssSelector("button[ng-click='submitInteractiveVideo()']"));
+            return this;
+        }
         public CoursesPage ClickResourceTypeEmbedCode(){
             Click(SELECT_RESOURCE_EMBED_CODE);
             return this;
@@ -478,6 +483,18 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             Type(INPUT_RESOURCE_VIDEO_VIMEO_TEXT, id);
             return this;
         }
+        public CoursesPage EnterInteractiveVimeoId(string id){
+            Type(By.CssSelector("input[ng-model='vimeoId']"), id);
+            return this;
+        }
+        public CoursesPage ClickNext(){
+            Click(By.XPath("//*[@id='pageBody']/div/div/div/div[2]/div[1]/button[1]"));
+            return this;
+        }
+        public CoursesPage ClickNext2(){
+            Click(By.XPath("//*[@id='pageBody']/div/div/div/div[2]/div[2]/button[2]"));
+            return this;
+        }
         public CoursesPage ClickResourceTypeTest(){
             Click(SELECT_RESOURCE_TEST);
             return this;
@@ -528,8 +545,16 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             Click(SELECT_RESOURCE_TEXT);
             return this;
         }
+        public CoursesPage ClickResourceTypeInteractiveVideo(){
+            Click(SELECT_RESOURCE_INTERACTIVE_VIDEO);
+            return this;
+        }
         public CoursesPage SetDescriptionForText(string description){
             Type(DIV_RESOURCE_TEXT_DESCRIPTION, description);
+            return this;
+        }
+        public CoursesPage SetDescriptionForInteractiveVimeo(string description){
+            Type(By.XPath("/html/body/div[6]/div/div/div/div[5]/div/div/div/div/div/div/div[1]/div/div[1]/form/div/div[1]/div[2]/div/vedu-box-text-angular/text-angular/div[2]/div[3]"), description);
             return this;
         }
         public CoursesPage ClickSaveButtonForText(){
@@ -1004,8 +1029,21 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             Sleepms(500);
             return this;
         }
-
-
-
+        public CoursesPage ClickAddAnnouncement() {
+            Click(By.CssSelector("button[ng-click='addEditAnnouncement(0)']"));
+            return this;
+        }
+        public CoursesPage EnterAnnouncementTitle(string text){
+            Type(By.CssSelector("input[ng-model='announcement.title']"), text);
+            return this;
+        }
+        public CoursesPage EnterAnnouncementDescription(string text){
+            Type(By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div[1]/div[2]/div/text-angular/div[2]/div[3]"), text);
+            return this;
+        }
+        public CoursesPage ClickAnnouncementSave() {
+            Click(By.XPath("//*[@id='announcementForm']/div[2]/button[1]"));
+            return this;
+        }
     }
 }

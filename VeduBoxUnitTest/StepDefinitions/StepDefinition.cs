@@ -31,7 +31,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 //WebBrowser.Driver.CaptureScreenShot(_scenarioContext.ScenarioInfo.Title);
                 Console.WriteLine("Title:" + ScenarioContext.Current.ScenarioInfo.Title + " is failed.");
             }
-         //Driver.Quit();
+         Driver.Quit();
         }
         [Given(@"Open Kurumsal Login Page")]
         public void GivenOpenKurumsalLoginPage(){
@@ -2396,5 +2396,113 @@ namespace VeduBoxUnitTest.StepDefinitions{
             new HomePage(Driver).OpenCoursesPage(Constants.Roles.Instructor.ToString());
         }
 
+
+        [Given(@"admin checks forum exists")]
+        public void GivenAdminChecksForumExist(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver).SearchForumAndDeleteIt(dictionary["name"]);
+        }
+        [Then(@"admin adds new forum")]
+        public void GivenAdminAddsNewForum(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .EnterDescription(dictionary["name"])
+                .ClickPostForum();
+            //.Assert();
+        }
+        [Given(@"admin deletes added forum")]
+        public void GivenAdminDeletesAddedForum(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .EnterForumSearch(dictionary["name"])
+                .ClickDeleteForumButton()
+                .ClickAreUSure()
+                .Assert();
+        }
+        [Given(@"instructor adds new support")]
+        public void InstructorAddsNewSupport(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenSupportPage(Constants.Roles.Instructor.ToString())
+                .EnterSubject(dictionary["subject"])
+                .EnterDesc(dictionary["description"])
+                .EnterImage()
+                .SetNewCourseDemand(Convert.ToBoolean(dictionary["new_course"]))
+                .ClickSubmit()
+                .Assert();
+        }
+        [Given(@"instructor checks images category is exist")]
+        public void GivenInstructorChecksImageCategoryIsExist(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenImagePoolPage(Constants.Roles.Instructor.ToString())
+                .SearchImageCategoryAndDeleteIt(dictionary["name"]);
+        }
+        [Then(@"instructor adds new images category")]
+        public void GivenInstructorAddsImageCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenImagePoolPage(Constants.Roles.Instructor.ToString())
+                .ClickAddButton()
+                .EnterName(dictionary["name"])
+                .SubmitAdd()
+                .Assert();
+        }
+        [Then(@"instructor update images category")]
+        public void GivenInstructorUpdateImageCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenImagePoolPage(Constants.Roles.Instructor.ToString())
+                .ClickName(dictionary["name"])
+                .EnterName(dictionary["name"])
+                .EnterImage()
+                .EnterImageText(dictionary["name"])
+                .SubmitUpdate()
+                .Assert();
+        }
+        [Given(@"instructor deletes added images category")]
+        public void GivenInstructorDeleteImageCategory(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new HomePage(Driver)
+                .OpenImagePoolPage(Constants.Roles.Instructor.ToString())
+                .ClickName(dictionary["name"])
+                .ClickDeleteButton()
+                .ClickAreUSure()
+                .Assert();
+            // TODO: Images are not changing when category is selected. Test is failing for that reason
+        }
+        [Given(@"instructor adds new resource as interactive video")]
+        public void GivenInstructorAddsNewResourceAsVideo(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                .ClickCourses(dictionary["name"])
+                .OpenCourseUpdate()
+                .AddSubject()
+                .EnterSubjectTitle(dictionary["subject_title"])
+                .SaveSubjectTitle()
+                .AddResource()
+                .ClickResourceTypeInteractiveVideo()
+                .EnterResourceTitle(dictionary["resource_title"])
+                .SetDescriptionForInteractiveVimeo(dictionary["resource_description"])
+                .SelectVimeoId()
+                .EnterInteractiveVimeoId("1000000")
+                .ClickNext()
+                .ClickNext2()
+                .ClickInteractiveVideoSave()
+                .Assert();
+        }
+        [Given(@"instructor adds new announcements")]
+        public void GivenİnstructorAddsNewCourseWithAnnouncements(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                .ClickCourses(dictionary["name"])
+                .OpenCourseUpdate()
+                .ClickAnnouncements()
+                .ClickAddAnnouncement()
+                .EnterAnnouncementTitle(dictionary["title"])
+                .EnterAnnouncementDescription(dictionary["description"])
+                .ClickAnnouncementSave()
+                .Assert();
+        }
     }
 }

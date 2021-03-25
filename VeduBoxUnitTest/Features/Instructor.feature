@@ -470,6 +470,24 @@ Scenario: 26_instructor_answers_Question_And_Answer
 	| answer | anil answer the question |
 	Then instructor deletes new Q&A
 
+Scenario: 27_instructor_add_new_support
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor adds new support
+		| Key          	| Value                 |
+		| subject		| anil_vedubox_support	|
+		| description	| anil_vedubox_support	|
+		| new_course 	| false 				|
+
+Scenario: 28_instructor_add_new_support_is_new_course_demand
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor adds new support
+		| Key          	| Value                 |
+		| subject		| anil_vedubox_support	|
+		| description	| anil_vedubox_support	|
+		| new_course 	| true 				|
+
 Scenario: 22_instructor_add_test_poll_open_ended
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
@@ -501,6 +519,24 @@ Scenario: 0_instructor_add_exam_with_default_params
 	Given instructor delete exam with
 		| Key  | Value                |
 		| name | anil_instructor_exam |
+	
+Scenario: 30_instructor_add_new_picture_image_pool
+	Given Open Kurumsal Login Page
+	Given Login as "Admin"
+	Given instructor checks images category is exist
+		| Key  | Value                   |
+		| name | instructor anil new images category  |
+	Then instructor adds new images category
+		| Key  | Value                   |
+		| name | instructor anil new images category  |
+	Then instructor update images category
+		| Key  | Value                   |
+		| name | instructor anil new images category  |
+	Given instructor deletes added images category
+		| Key  | Value                   |
+		| name | instructor anil new images category  |
+	
+	
 
 Scenario: 31_instructor_add_poll_question_multiple
 	Given Open Kurumsal Login Page
@@ -705,7 +741,55 @@ Scenario: 41_instructor_add_test_content_in_courses
 		| Key  | Value               |
 		| name | anil_vedubox_course |
 
-Scenario: 44_instructor_add_document_in_homeworks
+Scenario: 42_instructor_add_interactive_video_content_in_courses
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor checks course is exist
+		| Key  | Value               |
+		| name | anil_vedubox_course_instructor |
+	Given instructor adds new course with
+		| Key         | Value               |
+		| name        | anil_vedubox_course_instructor |
+		| tags        | anil,vedubox,course |
+		| description | Anil Vedubox Course |
+		| category    | defaultCategory1    |
+		| teacher     | Anil Senocak        |
+		| catalog     | defaultKatalog1     |
+	Given instructor adds new resource as interactive video
+		| Key                  | Value                                    |
+		| name                 | anil_vedubox_course_instructor                      |
+		| subject_title        | anil_vedubox_course_instructor_subject              |
+		| resource_title       | anil_vedubox_course_instructor_resource_title       |
+		| resource_description | anil_vedubox_course_instructor_resource_description |
+		| vimeo_id             | 444883013                                |
+	Then instructor delete course
+		| Key  | Value              |
+		| name | anil_vedubox_course_instructor|
+
+Scenario: 43_instructor_add_announcements
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor checks course is exist
+		| Key  | Value               |
+		| name | anil_vedubox_course_instructor |
+	Given instructor adds new course with
+		| Key         | Value               |
+		| name        | anil_vedubox_course_instructor |
+		| tags        | anil,vedubox,course |
+		| description | Anil Vedubox Course |
+		| category    | defaultCategory1    |
+		| teacher     | Anil Senocak        |
+		| catalog     | defaultKatalog1     |
+	Given instructor adds new announcements
+		| Key                  | Value                                    |
+		| name                 | anil_vedubox_course_instructor                      |
+		| title        | anil_vedubox_course_instructor_subject              |
+		| description | anil_vedubox_course_instructor_resource_description |
+	Then instructor delete course
+		| Key  | Value              |
+		| name | anil_vedubox_course_instructor|
+
+	Scenario: 44_instructor_add_document_in_homeworks
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
 	Given instructor checks course is exist

@@ -519,10 +519,7 @@ Scenario: 0_instructor_add_exam_with_default_params
 	Given instructor delete exam with
 		| Key  | Value                |
 		| name | anil_instructor_exam |
-
-
-
-
+	
 Scenario: 30_instructor_add_new_picture_image_pool
 	Given Open Kurumsal Login Page
 	Given Login as "Admin"
@@ -699,6 +696,51 @@ Scenario: 39_instructor_add_embed_in_files
 		| Key  | Value                          |
 		| name | anil_vedubox_course_instructor |
 
+Scenario: 40_instructor_add_poll_in_courses
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor checks course is exist
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+	Given instructor adds new course with
+		| Key      | Value                          |
+		| name     | anil_vedubox_course_instructor |
+		| category | defaultCategory1               |
+    Then instructor add polls in courses
+	    | Key                      | Value                          |
+	    | coursename               | anil_vedubox_course_instructor |
+	    | polls_title              | polls_title                    |
+	    | polls_description        | polls_description              |
+	    | polls_test_repeat_number | 10                             |
+	Then instructor delete course
+		| Key  | Value                          |
+		| name | anil_vedubox_course_instructor |
+
+Scenario: 41_instructor_add_test_content_in_courses
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor checks course is exist
+		| Key  | Value               |
+		| name | anil_vedubox_course |
+	Given instructor adds new course with
+		| Key      | Value               |
+		| name     | anil_vedubox_course |
+		| category | defaultCategory1    |
+	Given instructor adds subject with
+		| Key    | Value                |
+		| course | anil_vedubox_course  |
+		| title  | anil_vedubox_subject |
+	Given instructor adds test content in courses
+		| Key                | Value                        |
+		| course             | anil_vedubox_course          |
+		| title              | anil_vedubox_file_to_subject |
+		| desc               | desc                         |
+		| test_pass_point    | 5                            |
+		| test_repeat_number | 10                           |
+	Then instructor delete course
+		| Key  | Value               |
+		| name | anil_vedubox_course |
+
 Scenario: 42_instructor_add_interactive_video_content_in_courses
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
@@ -746,8 +788,8 @@ Scenario: 43_instructor_add_announcements
 	Then instructor delete course
 		| Key  | Value              |
 		| name | anil_vedubox_course_instructor|
-	
-Scenario: 44_instructor_add_document_in_homeworks
+
+	Scenario: 44_instructor_add_document_in_homeworks
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"
 	Given instructor checks course is exist

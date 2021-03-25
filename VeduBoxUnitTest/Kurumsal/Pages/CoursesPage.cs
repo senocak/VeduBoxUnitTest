@@ -102,6 +102,31 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         private readonly By BUTTON_CATEGORY_CONTENTS = By.CssSelector("span[ng-bind*='btnSubjects']");
         private readonly By BUTTON_CATEGORY_ANNOUNCEMENTS = By.CssSelector("span[ng-bind*='announcements']");
         private readonly By BUTTON_CATEGORY_POLLS = By.CssSelector("span[ng-bind*='polls']");
+        private readonly By BUTTON_CATEGORY_ADD_POLLS = By.CssSelector("button[ng-click='addEditPoll(0)']");
+        private readonly By INPUT_POLLS_TITLE = By.CssSelector("input[ng-model='poll.name']");
+        private readonly By INPUT_POLLS_DESCRIPTION = By.CssSelector("textarea[ng-model='poll.description']");
+        private readonly By INPUT_POLLS_TEST_REPEAT_NUMBER = By.CssSelector("input[ng-model='poll.repeatNumber']");
+        private readonly By TEST_PASS_POINT = By.CssSelector("input[ng-model='resource.passPoint']");
+        private readonly By TEST_REPEAT_NUMBER = By.CssSelector("input[ng-model='resource.repeatNumber']");
+        private readonly By SELECT_TEST = By.XPath("(//td[contains(@ng-click,'toggleSelection')])[1]");
+        private readonly By TEST_SAVE_BUTTON = By.XPath("(//button[@type='submit'])[3]");
+
+        
+        private readonly By INPUT_POLLS_START_DATE_NEW_MODEL_SELECT_DATA = By.CssSelector("input[ng-model='poll.startDate']");
+        private readonly By BUTTON_POLLS_START_DATE_OPEN_DATEPICKER = By.XPath("(//button[contains(@ng-click,'open')])[3]");
+        private readonly By BUTTON_POLLS_START_DATE_CHOOSE_YEAR = By.XPath("(//button[@ng-click='toggleMode()'])[1]");
+        private readonly By BUTTON_POLLS_START_DATE_GO_PREVIOUS_YEAR = By.XPath("(//button[@ng-click='move(-1)'])[1]");
+        private readonly By BUTTON_POLLS_START_DATE_GO_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[1]");
+        private readonly By INPUT_POLLS_END_DATE_NEW_MODEL_SELECT_DATA = By.CssSelector("input[ng-model='poll.endDate']");
+        private readonly By BUTTON_POLLS_END_DATE_OPEN_DATEPICKER = By.XPath("(//button[contains(@ng-click,'open')])[4]");
+        private readonly By BUTTON_POLLS_END_DATE_CHOOSE_YEAR = By.XPath("(//button[@ng-click='toggleMode()'])[2]");
+        private readonly By BUTTON_POLLS_END_DATE_GO_PREVIOUS_YEAR = By.XPath("(//button[@ng-click='move(-1)'])[2]");
+        private readonly By BUTTON_POLLS_END_DATE_GO_NEXT_YEAR = By.XPath("(//button[@ng-click='move(1)'])[2]");
+        private readonly By BUTTON_POLLS_NEXT = By.XPath("(//button[@ng-click='goToStep(2)'])[1]");
+        private readonly By POLL_1 = By.XPath("(//span[@translate='common.set'])[2]");
+        private readonly By POLL_2 = By.XPath("(//span[@translate='common.set'])[3]");
+        private readonly By BUTTON_POLLS_SAVE = By.CssSelector("button[ng-click='goToStep(3)']");
+        
         private readonly By BUTTON_CATEGORY_ADD_HOMEWORK = By.CssSelector("a[ng-click='addEditHomeworks(0)']");
         private readonly By INPUT_HOMEWORK_TITLE = By.CssSelector("input[ng-model='homework.title']");
         private readonly By INPUT_HOMEWORK_DESC = By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div[1]/div[2]/div/text-angular/div[2]/div[3]");
@@ -316,6 +341,26 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         }
         public CoursesPage EnterResourceDescription(string desc){
             Type(DIV_RESOURCE_DESC, desc);
+            return this;
+        }
+        public CoursesPage EnterTestPassPoint(int test_pass_point)
+        {
+            Type(TEST_PASS_POINT, test_pass_point);
+            return this;
+        }
+        public CoursesPage EnterTestrEPEATnUMBER(int test_repeat_number)
+        {
+            Type(TEST_REPEAT_NUMBER, test_repeat_number);
+            return this;
+        }
+        public CoursesPage SelectTest()
+        {
+            Click(SELECT_TEST);
+            return this;
+        }
+        public CoursesPage ClickTestSaveButton()
+        {
+            Click(TEST_SAVE_BUTTON);
             return this;
         }
         public CoursesPage EnterEmbedCode(string code){
@@ -655,6 +700,137 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
         public CoursesPage ClickPolls()
         {
             Click(BUTTON_CATEGORY_POLLS);
+            return this;
+        }
+        public CoursesPage ClickAddPolls()
+        {
+            Click(BUTTON_CATEGORY_ADD_POLLS);
+            return this;
+        }
+        public CoursesPage EnterPollsTitle(string polls_title)
+        {
+            Type(INPUT_POLLS_TITLE, polls_title);
+            return this;
+        }
+        public CoursesPage EnterPollsDescription(string polls_description)
+        {
+            Type(INPUT_POLLS_DESCRIPTION, polls_description);
+            return this;
+        }
+        public CoursesPage EnterPollsTestRepeatNumber(int polls_test_repeat_number)
+        {
+            Type(INPUT_POLLS_TEST_REPEAT_NUMBER, polls_test_repeat_number);
+            return this;
+        }
+        public CoursesPage SetPollsStartDate(int yearParam = 0, string monthParam = null, string dayParam = null)
+        {
+            int year = yearParam == 0 ? Utils.Dates.GetCurrentYear() : yearParam;
+            string month = monthParam == null ? Utils.Dates.GetCurrentMonth() : monthParam;
+            string day = dayParam == null ? Utils.Dates.GetCurrentDay() : dayParam;
+
+            string getCurrentValueOfInput = GetAttribute(INPUT_POLLS_START_DATE_NEW_MODEL_SELECT_DATA, "value");
+            string[] words = getCurrentValueOfInput.Split('/');
+            int getCurrentValueOfInputYear = Int32.Parse(words[2]);
+            int getCurrentValueOfInputMonth = Int32.Parse(words[1]);
+            string getCurrentValueOfInputDay = words[0];
+
+            try
+            {
+                Click(BUTTON_POLLS_START_DATE_OPEN_DATEPICKER);
+                Console.WriteLine("clicked start date picker");
+                Click(BUTTON_POLLS_START_DATE_CHOOSE_YEAR);
+                Console.WriteLine("clicked start date choose year");
+                if (year != getCurrentValueOfInputYear)
+                {
+                    if (year < getCurrentValueOfInputYear)
+                    {
+                        for (int i = getCurrentValueOfInputYear; i > year; i--)
+                        {
+                            Click(BUTTON_POLLS_START_DATE_GO_PREVIOUS_YEAR);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = getCurrentValueOfInputYear; i < year; i++)
+                        {
+                            Click(BUTTON_POLLS_START_DATE_GO_NEXT_YEAR);
+                        }
+                    }
+                }
+                Click(By.XPath("//span[contains(text(),'" + month + "')]"));
+                Click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[2]"));
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Element not found:" + e);
+            }
+            Sleepms(500);
+            return this;
+        }
+        public CoursesPage SetPollsEndDate(int yearParam = 0, string monthParam = null, string dayParam = null)
+        {
+            int year = yearParam == 0 ? Utils.Dates.GetCurrentYear() : yearParam;
+            string month = monthParam == null ? Utils.Dates.GetCurrentMonth() : monthParam;
+            string day = dayParam == null ? Utils.Dates.GetCurrentDay() : dayParam;
+
+            string getCurrentValueOfInput = GetAttribute(INPUT_POLLS_END_DATE_NEW_MODEL_SELECT_DATA, "value");
+            string[] words = getCurrentValueOfInput.Split('/');
+            int getCurrentValueOfInputYear = Int32.Parse(words[2]);
+            int getCurrentValueOfInputMonth = Int32.Parse(words[1]);
+            string getCurrentValueOfInputDay = words[0];
+
+            try
+            {
+                Click(BUTTON_POLLS_END_DATE_OPEN_DATEPICKER);
+                Console.WriteLine("clicked end date picker");
+                Click(BUTTON_POLLS_END_DATE_CHOOSE_YEAR);
+                Console.WriteLine("clicked start date choose year");
+                if (year != getCurrentValueOfInputYear)
+                {
+                    if (year < getCurrentValueOfInputYear)
+                    {
+                        for (int i = getCurrentValueOfInputYear; i > year; i--)
+                        {
+                            Click(BUTTON_POLLS_END_DATE_GO_PREVIOUS_YEAR);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = getCurrentValueOfInputYear; i < year; i++)
+                        {
+                            Click(BUTTON_POLLS_END_DATE_GO_NEXT_YEAR);
+                            Console.WriteLine("clicked end date go to next year " + i + " times");
+                        }
+                    }
+                }
+                Click(By.XPath("//span[contains(text(),'" + month + "')]"));
+              
+                Click(By.XPath("(//span[@class='ng-binding' and contains(text(),'" + day + "')])[3]"));  
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Element not found:" + e);
+            }
+            Sleepms(500);
+            return this;
+        }
+
+        public CoursesPage ClickPollsNext()
+        {
+            Click(BUTTON_POLLS_NEXT);
+            return this;
+        }
+        public CoursesPage AddPolls()
+        {
+            Click(POLL_1);
+            Click(POLL_2);
+
+            return this;
+        }
+        public CoursesPage ClickPollsSave()
+        {
+            Click(BUTTON_POLLS_SAVE);
             return this;
         }
         public CoursesPage ClickAddHomework()

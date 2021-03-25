@@ -31,7 +31,7 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 //WebBrowser.Driver.CaptureScreenShot(_scenarioContext.ScenarioInfo.Title);
                 Console.WriteLine("Title:" + ScenarioContext.Current.ScenarioInfo.Title + " is failed.");
             }
-         Driver.Quit();
+         //Driver.Quit();
         }
         [Given(@"Open Kurumsal Login Page")]
         public void GivenOpenKurumsalLoginPage(){
@@ -2326,6 +2326,75 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .Assert();
         }
 
+        [Then(@"instructor add polls in courses")]
+        public void GivenInstructorAddPollInCourses(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                .ClickCourses(dictionary["coursename"])
+                .ClickCategoryUpdate()
+                .ClickPolls()
+                .ClickAddPolls()
+                .EnterPollsTitle(dictionary["polls_title"])
+                .EnterPollsDescription(dictionary["polls_description"])
+                .EnterPollsTestRepeatNumber(Int32.Parse(dictionary["polls_test_repeat_number"]))
+                .SetPollsStartDate()
+                .SetPollsEndDate()
+                .ClickPollsNext()
+                .AddPolls()
+                .ClickPollsSave()
+                .Assert();
+               
+        }
+        [Then(@"instructor_add_test_content_in_courses")]
+        public void GivenInstructorAddTestContentInCourses(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                .ClickCourses(dictionary["coursename"])
+                .ClickCategoryUpdate()
+                .ClickHomework()
+                .ClickAddHomework()
+                .EnterHomeworkTitle(dictionary["homework_title"])
+                .EnterHomeworkDescription(dictionary["homework_description"])
+                .SetHomeworkStartDate()
+                .SetHomeworkEndDate()
+                .EnterHomeworkPassPoint(Int32.Parse(dictionary["pass_point"]))
+                .EnterHomeworkWeightPercentage(Int32.Parse(dictionary["weight_percentage"]))
+                .ClickHomeworkSave()
+                .Assert()
+                .ClickHomeworkAddItem()
+                .ChooseItemTestToCategory()
+                .SelectDocumentType()
+                .EnterHomeworkTestTitle(dictionary["homework_test_title"])
+                .EnterHomeworkTestDescription(dictionary["homework_test_description"])
+                .EnterHomeworkTestPassPoint(Int32.Parse(dictionary["homework_test_pass_point"]))
+                .EnterHomeworkTestRepeatNumber(Int32.Parse(dictionary["homework_test_repeat_number"]))
+                .SelectHomeworkTestType()
+                .ClickHomeworkSave()
+                .Assert();
+        }
+
+        [Given(@"instructor adds test content in courses")]
+        public void GivenİnstructorAddsTestContentInCourses(Table table)
+        {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                    .SearchNewlyAddedCourseByName(dictionary["course"])
+                    .OpenCourseDetail(dictionary["course"])
+                    .OpenCourseUpdate()
+                    .AddResource()
+                    .ClickResourceTypeTest()
+                    //.clickOkAfterType()
+                    .EnterResourceTitle(dictionary["title"])
+                    .EnterResourceDescription(dictionary["desc"])
+                    .EnterTestPassPoint(Int32.Parse(dictionary["test_pass_point"]))
+                    .EnterTestrEPEATnUMBER(Int32.Parse(dictionary["test_repeat_number"]))
+                    .SelectTest()
+                    .ClickTestSaveButton()
+                    .Assert();
+            new HomePage(Driver).OpenCoursesPage(Constants.Roles.Instructor.ToString());
+        }
 
     }
 }

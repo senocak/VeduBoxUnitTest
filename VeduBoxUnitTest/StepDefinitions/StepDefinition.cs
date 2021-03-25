@@ -2407,5 +2407,25 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .Assert();
             // TODO: Images are not changing when category is selected. Test is failing for that reason
         }
+        [Given(@"instructor adds new resource as interactive video")]
+        public void GivenInstructorAddsNewResourceAsVideo(Table table) {
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                .ClickCourses(dictionary["name"])
+                .OpenCourseUpdate()
+                .AddSubject()
+                .EnterSubjectTitle(dictionary["subject_title"])
+                .SaveSubjectTitle()
+                .AddResource()
+                .ClickResourceTypeInteractiveVideo()
+                .EnterResourceTitle(dictionary["resource_title"])
+                .SetDescriptionForInteractiveVimeo(dictionary["resource_description"])
+                .SelectVimeoId()
+                .EnterInteractiveVimeoId("1000000")
+                .ClickNext()
+                .ClickNext2()
+                .ClickInteractiveVideoSave()
+                .Assert();
+        }
     }
 }

@@ -699,6 +699,31 @@ Scenario: 39_instructor_add_embed_in_files
 		| Key  | Value                          |
 		| name | anil_vedubox_course_instructor |
 
+Scenario: 42_instructor_add_interactive_video_content_in_courses
+	Given Open Kurumsal Login Page
+	Given Login as "Instructor"
+	Given instructor checks course is exist
+		| Key  | Value               |
+		| name | anil_vedubox_course_instructor |
+	Given instructor adds new course with
+		| Key         | Value               |
+		| name        | anil_vedubox_course_instructor |
+		| tags        | anil,vedubox,course |
+		| description | Anil Vedubox Course |
+		| category    | defaultCategory1    |
+		| teacher     | Anil Senocak        |
+		| catalog     | defaultKatalog1     |
+	Given instructor adds new resource as interactive video
+		| Key                  | Value                                    |
+		| name                 | anil_vedubox_course_instructor                      |
+		| subject_title        | anil_vedubox_course_instructor_subject              |
+		| resource_title       | anil_vedubox_course_instructor_resource_title       |
+		| resource_description | anil_vedubox_course_instructor_resource_description |
+		| vimeo_id             | 444883013                                |
+	Then instructor delete course
+		| Key  | Value              |
+		| name | anil_vedubox_course_instructor|
+	
 Scenario: 44_instructor_add_document_in_homeworks
 	Given Open Kurumsal Login Page
 	Given Login as "Instructor"

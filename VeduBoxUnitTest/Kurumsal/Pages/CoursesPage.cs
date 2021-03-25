@@ -853,8 +853,21 @@ namespace VeduBoxUnitTest.Kurumsal.Pages{
             Sleepms(500);
             return this;
         }
-
-
-
+        public CoursesPage ClickAddAnnouncement() {
+            Click(By.CssSelector("button[ng-click='addEditAnnouncement(0)']"));
+            return this;
+        }
+        public CoursesPage EnterAnnouncementTitle(string text){
+            Type(By.CssSelector("input[ng-model='announcement.title']"), text);
+            return this;
+        }
+        public CoursesPage EnterAnnouncementDescription(string text){
+            Type(By.XPath("/html/body/div[6]/div/div/div/div[2]/form/div[1]/div[2]/div/text-angular/div[2]/div[3]"), text);
+            return this;
+        }
+        public CoursesPage ClickAnnouncementSave() {
+            Click(By.XPath("//*[@id='announcementForm']/div[2]/button[1]"));
+            return this;
+        }
     }
 }

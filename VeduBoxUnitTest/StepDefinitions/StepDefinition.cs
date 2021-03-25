@@ -2427,5 +2427,18 @@ namespace VeduBoxUnitTest.StepDefinitions{
                 .ClickInteractiveVideoSave()
                 .Assert();
         }
+        [Given(@"instructor adds new announcements")]
+        public void GivenİnstructorAddsNewCourseWithAnnouncements(Table table){
+            var dictionary = TableExtensions.ToDictionary(table);
+            new CoursesPage(Driver, Constants.Roles.Instructor.ToString())
+                .ClickCourses(dictionary["name"])
+                .OpenCourseUpdate()
+                .ClickAnnouncements()
+                .ClickAddAnnouncement()
+                .EnterAnnouncementTitle(dictionary["title"])
+                .EnterAnnouncementDescription(dictionary["description"])
+                .ClickAnnouncementSave()
+                .Assert();
+        }
     }
 }
